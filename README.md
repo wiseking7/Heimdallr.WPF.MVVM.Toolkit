@@ -18,8 +18,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] GeometryConverter.cs [지정된 이름에 해당하는 GeometryItem의 데이터를 반환]
    - [x] GeometryData.cs      [GeometryConverter를 사용하여 각 아이콘에 대한 데이터를 반환]
  - **Images [Folder]**
-   - [x] ImageItem.cs        [images.yaml 파일 자료 (name, data) 속성]
-   - [x] GeometryRoot.cs        [images.yaml 파일 geometries Name]
-   - [x] GeometryContainer.cs [GeometryItem 개체들을 관리하는 정적 클래스]
-   - [x] GeometryConverter.cs [지정된 이름에 해당하는 GeometryItem의 데이터를 반환]
-   - [x] GeometryData.cs        [GeometryConverter를 사용하여 각 아이콘에 대한 데이터를 반환]
+   - [x] ImageItem.cs           [images.yaml 파일 자료 (name, data) 속성]
+   - [x] ImageRoot.cs        [images.yaml 파일 images Name]
+   - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
+   - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
+   - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
