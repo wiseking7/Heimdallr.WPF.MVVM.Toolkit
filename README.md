@@ -9,7 +9,12 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 ### Heimdallr.ToolKit Project Overview
 **■ Resources [Folder]**
  - **Data [Folder]**
-  - [x] geometries.json [Geometry Data]
-  - [x] images.yaml [Image Data]
+   - [x] geometries.json [Geometry Data]
+   - [x] images.yaml [Image Data]
  - **Geometies [Folder]**
+   - [x] GeometryItem.cs        [geometries.json 파일 자료 (name, data) 속성]
+   - [x] GeometryRoot.cs        [geometries.json 파일 geometries Name]
+   - [x] GeometryContainer.cs [GeometryItem 개체들을 관리하는 정적 클래스]
+   - [x] GeometryConverter.cs [지정된 이름에 해당하는 GeometryItem의 데이터를 반환]
+   - [x] GeometryData.cs        [GeometryConverter를 사용하여 각 아이콘에 대한 데이터를 반환]
  - **Images [Folder]**
