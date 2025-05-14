@@ -23,3 +23,15 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
    - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
+**■ Events [Folder]**
+ - [x] SwitchLanguagePubsub.cs [string -> 변경언어]
+ - [x] SwitchLanguagePubsub.cs [string -> 테마변경언어]
+
+
+
+
+
+
+
+
+
