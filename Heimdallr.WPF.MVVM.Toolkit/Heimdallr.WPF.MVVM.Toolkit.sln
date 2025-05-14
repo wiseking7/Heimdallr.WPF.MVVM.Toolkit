@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35919.96 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdallr.App", "Heimdallr.App\Heimdallr.App.csproj", "{85D024CF-6284-42C5-A77F-22CF69A005AC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Heimdallr.ToolKit", "Heimdallr.ToolKit\Heimdallr.ToolKit.csproj", "{61A489A0-603F-4484-9B11-4991C900B5F7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{85D024CF-6284-42C5-A77F-22CF69A005AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{85D024CF-6284-42C5-A77F-22CF69A005AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{85D024CF-6284-42C5-A77F-22CF69A005AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{85D024CF-6284-42C5-A77F-22CF69A005AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{61A489A0-603F-4484-9B11-4991C900B5F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{61A489A0-603F-4484-9B11-4991C900B5F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{61A489A0-603F-4484-9B11-4991C900B5F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{61A489A0-603F-4484-9B11-4991C900B5F7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BABF136D-5896-46A4-9A1E-DA773FB83B49}
+	EndGlobalSection
+EndGlobal

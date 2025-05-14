@@ -1,0 +1,22 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls;assembly=Heimdallr.ToolKit"
+    xmlns:views="clr-namespace:Heimdallr.App">
+
+
+  <Style TargetType="{x:Type views:MainWindow}"
+          BasedOn="{StaticResource {x:Type ctrls:DarkThemeWindow}}">
+    <Setter Property="Content">
+      <Setter.Value>
+
+        <Border>
+
+          <ctrls:HeimdallrIcon Width="100" Height="100" Fill="Black" Image="Bmw" />
+
+        </Border>
+
+      </Setter.Value>
+    </Setter>
+</Style>
+</ResourceDictionary>

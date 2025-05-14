@@ -1,0 +1,4 @@
+﻿1. 파일속성 
+   속성	              값
+Build Action	Embedded Resource
+Copy to Output	필요 없음
