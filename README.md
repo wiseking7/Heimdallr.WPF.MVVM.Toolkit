@@ -9,5 +9,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 ### Heimdallr.ToolKit Project Overview
 **■ Resources [Folder]**
  - **Data [Folder]**
+  - [x] geometries.json [Geometry Data]
+  - [x] images.yaml [Image Data]
  - **Geometies [Folder]**
  - **Images [Folder]**
