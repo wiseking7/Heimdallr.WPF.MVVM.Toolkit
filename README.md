@@ -32,7 +32,15 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] EasingFunctionBaseMode.cs [Geometry Data]
 - [x] ColorAnimationItem.cs [UI 요소의 색상 속성(예: Background, BorderBrush, Foreground 등)을 부드럽게 전환, 예: 버튼 배경색이 점점 어두워지는 효과]
 - [x] DoubleAnimationItem.cs [수치형 속성(크기, 위치, 투명도 등)의 부드러운 애니메이션, 예: 버튼이 커지거나, 불투명도가 0 → 1로 변화]
-- [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness처럼 Thickness 타입 속성에 부드러운 변화 적용, 예: 마우스를 올렸을 때 컨트롤의 여백이 커지는 효과 ]
+- [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness처럼 Thickness 타입 속성에 부드러운 변화 적용, 예: 마우스를 올렸을 때 컨트롤의 여백이 커지는 효과]
+
+**■ Contracts [Folder]**
+- [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공하는 인터페이스]
+- [x] IViewInitializable.cs [MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행되는 초기화 작업을 정의하는 인터페이스 (ViewModel ↔ View 연결 직후	초기화, 바인딩, View 정보 활용)]
+- [x] IViewLoadable.cs [WPF MVVM 아키텍처에서 View의 Loaded 이벤트가 발생했을 때, ViewModel이 후처리 로직을 수행할 수 있도록 정의하는 인터페이스 (View의 Loaded 이벤트 발생 후	비동기 데이터 로딩, View 크기/상태 기반 처리)]
+
+
+
 
 
 
