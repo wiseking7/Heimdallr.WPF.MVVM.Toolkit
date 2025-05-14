@@ -26,11 +26,13 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 **■ Events [Folder]**
  - [x] SwitchLanguagePubsub.cs [string -> 변경언어 예제참조]
  - [x] SwitchLanguagePubsub.cs [string -> 테마변경언어]
+
 **■ Animations [Folder]**
 - **EasingFunctions [Folder]**
    - [x] EasingFunctionBaseMode.cs [Geometry Data]
-
-
+- [x] ColorAnimationItem.cs [UI 요소의 색상 속성(예: Background, BorderBrush, Foreground 등)을 부드럽게 전환, 예: 버튼 배경색이 점점 어두워지는 효과]
+- [x] DoubleAnimationItem.cs [수치형 속성(크기, 위치, 투명도 등)의 부드러운 애니메이션, 예: 버튼이 커지거나, 불투명도가 0 → 1로 변화]
+- [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness처럼 Thickness 타입 속성에 부드러운 변화 적용, 예: 마우스를 올렸을 때 컨트롤의 여백이 커지는 효과 ]
 
 
 
