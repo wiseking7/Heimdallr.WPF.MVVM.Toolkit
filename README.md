@@ -18,7 +18,51 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness 등의 Thickness 속성에 애니메이션을 적용(타겟 요소 및 속성)]
 
 **■ Applications [Folder]**
-  - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정), )]
+  - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정))]
+
+**■ Attributes [Folder]**
+  - [x] UseDimmingAttribute.cs [특정 클래스에 대해 "디밍(Dimming) 효과를 사용할지 여부"를 지정, 뷰(View)나 윈도우(Window) 클래스에 적용하여, 해당 UI가 표시될 때 배경을 어둡게 처리할지 결정]
+
+**■ Commons [Folder]** [공유]
+  - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
+
+**■ Contracts [Folder]** [계약]
+  - **Viewing [Folder]** [보기]
+   - [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공]
+   - [x] IViewInitializable.cs [MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행]
+   - [x] IViewLoadable.cs [View의 Loaded 이벤트가 발생했을 때, ViewModel이 후처리 로직을 수행]
+
+**■ Converters [Folder]** [계약]
+  - [x] BaseValueConverter.cs [BaseValueConverter<T> 제네릭 클래스,  MarkupExtension 은 XAML에서 사용할 수 있도록 확장 기능]
+  - [x] BooleanToVisibilityConverter.cs [bool 값을 Visibility로 변환]
+  - [x] BoolToColorConverter.cs [True/False 값에 따라 색상을 반환]
+  - [x] ComparisonConverter.cs [CheckBox, RadioButton, ComboBox, ListBox 등 선택 상태를 비교 기반으로 관리]
+  - [x] ComparisonMultiConverter.cs [다중 값(MultiBinding) 비교]
+  - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
+  - [x] EnumToTextConverter.cs [Enum 값을 문자열로 변환]
+  - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
+  - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
+  - [x] InverseComparisonConverter.cs [value != parameter일 때 true 반환하는 반전]
+  - [x] MobileNumberConverter.cs [휴대전화번호 예-> 01012345678 → 010-1234-5678]
+  - [x] MultiBooleanToVisibilityConverter.cs [로그인 시 사용 버튼을 화면에 표시 및 표시하지 않음]
+  - [x] NullableBoolToTextConverter.cs [bool? (nullable bool)을 "예", "아니오", "모름" 등의 문자열로 변환합니다.]
+  - [x] NullableIntConverter.cs [TextBox 에 Int 기본값 0 을 빈공간으로 처리]
+  - [x] NumberCommaConverter.cs [숫자를 콤마 표기 천단위]
+  - [x] PasswordToVisibilityConverter.cs [비밀번호 입력이나 특정 값의 상태에 따라 Visibility 값을 반환]
+  - [x] ResourceBinding.cs [사용시점은 -> "리소스를 동적으로 바인딩하고 싶을 때]
+  - [x] StringToVisibilityConverter.cs [문자열이 비어 있는지 여부에 따라 Visibility를 반환]
+  - [x] ValidatingBorderBrushConverter.cs [유효성 검사 및 기본 색상 값이 정상적으로 전달되었는지 확인]
+  - [x] ValidatingBorderThicknessConverter.cs [유효성 검사 실패 시 두 번째 값 반환 (기본 테두리 두께 등)]
+
+
+
+
+
+
+
+
+
+
 
 **■ Resources [Folder]**
  - **Data [Folder]**
