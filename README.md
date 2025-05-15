@@ -8,7 +8,18 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 ### CommunityToolkit.Mvvm (8.4.0), Prism.DryIco (9.0.537), WpfAutoGrid.Core (1.5.1), Newtonsoft.Json (13.0.3), YamlDotNet.NetCore (1.0.0) Nuget Package 설치
 ### Heimdallr.ToolKit Project Overview
 **■ Properties [Folder]**
-  - [x] AssemblyInfo.cs 
+  - [x] AssemblyInfo.cs
+
+**■ Animations [Folder]**
+ - **EasingFunctions [Folder]**
+    - [x] EasingFunctionBaseMode.cs [이징 함수(easing function) 의 다양한 모드를 정의하는데 사용(Enum)]
+  - [x] ColorAnimationItem.cs [WPF에서 색상 애니메이션을 제어하는 ColorAnimation을 상속(적용할 대상과 속성, 이징 모드 등을 설정)]
+  - [x] DoubleAnimationItem.cs [Storyboard에서 사용할 수 있도록 대상 속성, 대상 이름, 이징 함수 등을 설]
+  - [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness 등의 Thickness 속성에 애니메이션을 적용(타겟 요소 및 속성)]
+
+**■ Applications [Folder]**
+  - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정), )]
+
 **■ Resources [Folder]**
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
