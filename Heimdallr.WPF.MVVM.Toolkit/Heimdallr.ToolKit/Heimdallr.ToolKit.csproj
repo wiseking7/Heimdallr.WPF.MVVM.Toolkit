@@ -6,12 +6,28 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Resources\Data\heimdall.ico</ApplicationIcon>
+	<PackageId>Heimdallr.ToolKit</PackageId>
+	<Authors>Heimdallr Team</Authors>
+    <Company>Heimdallr</Company>
+    <Product>Heimdallr.ToolKit</Product>
+	<PackageTags>WPF, MVVM, Prism, Toolkit</PackageTags>
+    <Description>WPF 필수(Prism, Community.Toolkit.Mvvm, AutoGrid 를 사용하는 필수 유틸리티</Description>
+    <PackageIcon>heimdall.ico</PackageIcon>
+	<Copyright>Copyright 2025 Heimdallr Team</Copyright>
+    <RepositoryUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</RepositoryUrl>
+	<PackageProjectUrl>https://github.com/wiseking7</PackageProjectUrl>
+    <AssemblyVersion>1.25.05</AssemblyVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Data\geometries.json" />
     <None Remove="Resources\Data\images.yaml" />
     <None Remove="Resources\Data\pathgeometries.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Resources\Data\heimdall.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +55,13 @@
     <Folder Include="UI\Controls\DatePicker\" />
     <Folder Include="UI\Controls\NewFolder1\" />
     <Folder Include="UI\Controls\NewFolder\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Resources\Data\heimdall.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
