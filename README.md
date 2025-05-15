@@ -54,20 +54,60 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] ValidatingBorderBrushConverter.cs [유효성 검사 및 기본 색상 값이 정상적으로 전달되었는지 확인]
   - [x] ValidatingBorderThicknessConverter.cs [유효성 검사 실패 시 두 번째 값 반환 (기본 테두리 두께 등)]
 
+**■ Dialogs [Folder]**
+ - **Base [Folder]**
+   - [x] ObservableDialog.cs [Prism의 IDialogAware를 구현하여 다이얼로그 제어, UseDimmingAttribute를 기반으로 다이얼로그가 열릴 때 배경 디밍 효과를 자동 적용]
 
+**■ Enums [Folder]**
+  - [x] IconMode.cs [None, Icon, Image]
+  - [x] IconType.cs [Geometry 에서 사용할 Icon Name]
+  - [x] ImageType.cs [Image 에서 사용할 Image Name]
+  - [x] JustifyEnum.cs [수평 레이아웃 배치에서 자식 요소들 사이의 간격을 어떻게 분배할지를 설정할 때 사용]
 
+**■ Events [Folder]**
+  - [x] SwitchLanguagePubsub.cs [문자열을 전달받아 언어 변경]
+  - [x] SwitchThemePubsub.cs [문자열을 전달받아 Theme 변경]
 
+**■ Extensions [Folder]** [확장]
+  - [x] AnimationExtensions.cs [Background, Foreground, BorderBrush, Fill 애니메이션]
+  - [x] DependencyExtensions.cs [유틸리티 확장 메서드를 제공하는 매우 실용적인 도우미 클래스]
+  - [x] EnumExtensions.cs [Enum 값에 정의된 Attribute를 가져옵니다]
 
+**■ Helpers [Folder]**
+  - [x] DimmingManager.cs [전역적으로 ViewModel 또는 다른 코드에서 UI와의 의존성 없이 디밍 상태를 변경]
+  - [x] ThemeManager.cs [테마의 색상변경]
 
+**■ Infrastructure [Folder]** [기본구조]
+ - **AutoWiring [Folder]** [자동연결]
+   - [x] AutoWireManager.cs [View와 ViewModel을 자동으로 연결(Auto-Wiring)]
+   - [x] ViewModelLocationScenario.cs [ViewModel을 View에 연결하기 위한 시나리오 정의의 추상클래스]
+   - [x] ViewModelLocatorCollection.cs [View와 ViewModel 간의 자동 연결(Locator) 등록을 도와주는 컬렉션]
+   - [x] ViewModelLocatorItem.cs [View와 ViewModel 간의 연결 관계를 정의하는 단일 매핑 항목]
+ - **Messaging [Folder]** 
+   - [x] EventAggregatorHub.cs [ViewModel 간 이벤트 기반 통신]
+   - [x] IEventHub.cs [Prism PubSubEvent 시스템의 추상화 컴포넌트 간 강한 결합 없이 메시지를 주고받기 위해 활용]
+ - **Navigation [Folder]** 
+   - [x] ContentManager.cs [Region 기반의 View 전환을 간결하게 처리하기 위한 헬퍼 유틸리티]
 
+**■ Interfaces [Folder]**
+  - [x] IResourceManager.cs [아무 멤버가 없는 인터페이스지만, 특정 타입을 구분하는 데 사용]
+  - [x] IThemeManager.cs [아무 멤버가 없는 인터페이스지만, 특정 타입을 구분하는 데 사용]
 
-
-
+**■ Models [Folder]**
+  - [x] FontFamilyUnit.cs [폰트 설정을 구성하고 외부 YAML 파일과 매핑되도록 설계된 폰트]
+  - [x] FontPack.cs [FontFamilyUnit 폰트 설정]
+  - [x] LanguagePack.cs [LanguageUnit Lanuage 설정]
+  - [x] LanguageUnit.cs [Lanuage 설정으 구성하고 외부 YAML 파일과 매핑대도록 설계된 Lanuage]
+  - [x] SolidColorBrushUnit.cs [색상 테마 정의와 같은 기능을 위해 YAML로 정의된 색상 값을 불러와 사용]
+  - [x] ThemeModel.cs [테마 코드, 테마 이름, 아이콘 타입, 값 등을 저장, 데이터를 관리하고, 사용자가 선택한 테마에 맞는 값을 활용]
+  - [x] ThemePack.cs [테마의 색상 을 YAML에서 설계된 Color 설정]
+  - [x] ThemeRoot.cs [Theme, Font, Lanuage YAML]
 
 **■ Resources [Folder]**
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
    - [x] images.yaml [Image Data]
+   - [x] Summary.txt [리소스 사용방법] 
  - **Geometies [Folder]**
    - [x] GeometryItem.cs      [geometries.json 파일 자료 (name, data) 속성]
    - [x] GeometryRoot.cs      [geometries.json 파일 geometries Name]
@@ -82,24 +122,12 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
   - **Initialization [Folder]**
     - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
+    - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
 
-**■ Events [Folder]**
-   - [x] SwitchLanguagePubsub.cs [string -> 변경언어 예제참조]
-   - [x] SwitchLanguagePubsub.cs [string -> 테마변경언어]
-
-**■ Animations [Folder]**
-- **EasingFunctions [Folder]**
-  - [x] EasingFunctionBaseMode.cs [Geometry Data]
-  - [x] ColorAnimationItem.cs [UI 요소의 색상 속성(예: Background, BorderBrush, Foreground 등)을 부드럽게 전환, 예: 버튼 배경색이 점점 어두워지는 효과]
-  - [x] DoubleAnimationItem.cs [수치형 속성(크기, 위치, 투명도 등)의 부드러운 애니메이션, 예: 버튼이 커지거나, 불투명도가 0 → 1로 변화]
-  - [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness처럼 Thickness 타입 속성에 부드러운 변화 적용, 예: 마우스를 올렸을 때 컨트롤의 여백이 커지는 효과]
-
-**■ Contracts [Folder]**
-   - [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공하는 인터페이스]
-   - [x] IViewInitializable.cs [MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행되는 초기화 작업을 정의하는 인터페이스 (ViewModel ↔ View 연결 직후	초기화, 바인딩, View 정보 활용)]
-   - [x] IViewLoadable.cs [WPF MVVM 아키텍처에서 View의 Loaded 이벤트가 발생했을 때, ViewModel이 후처리 로직을 수행할 수 있도록 정의하는 인터페이스 (View의 Loaded 이벤트 발생 후	비동기 데이터 로딩, View 크기/상태 기반 처리)]
-
-
+**■ Themes [Folder]**
+ - **Controls [Folder]**
+  - **Base [Folder]**
+ - [x] Generic.xaml [Themes 의 Xaml 등록]
 
 
 
