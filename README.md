@@ -161,4 +161,16 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **TreeView [Folder]**
   - **Window [Folder]**
 
+**■ 기타**
+ 왜 Release로 빌드하나요?
+ 최적화: Release 모드는 코드 최적화가 적용되어, 실행 속도나 크기가 더 효율적입니다.
+ 디버깅 정보 제거: Debug 빌드는 디버깅 정보를 포함하지만, Release 빌드는 이러한 정보를 제거하고 실제 배포에 필요한 코드만 포함됩니다. 이는 패키지 크기를 줄이고, 실제 실행에 필요한 최적화된 코드를 제공합니다.
+ 배포 준비: NuGet 패키지는 일반적으로 실제 운영 환경에서 사용되므로 최적화된 Release 빌드로 패키지를 만드는 것이 표준입니다.
+
+ .csproj 파일에 <GeneratePackageOnBuild>true</GeneratePackageOnBuild> 속성이 설정되어 있으면, 빌드가 완료되면 .nupkg 파일이 자동으로 생성됩니다.
+ 생성된 .nupkg 파일은 bin\Release 폴더 안에 위치합니다.
+
+
+
+
 
