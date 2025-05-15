@@ -6,6 +6,10 @@ using System.Windows.Markup;
 
 namespace Heimdallr.ToolKit.Converters;
 
+/// <summary>
+/// XAML에서 동적으로 리소스를 바인딩할 수 있도록 도와주는 커스텀 마크업 확장(MarkupExtension) 입니다.
+/// 사용시점은 -> "리소스를 동적으로 바인딩하고 싶을 때
+/// </summary>
 public class ResourceBinding : MarkupExtension
 {
   #region Helper Properties
@@ -38,23 +42,28 @@ public class ResourceBinding : MarkupExtension
   /// <param name="e"></param>
   private static void ResourceKeyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
+    // 바인딩 대상이 FrameworkElement가 아니거나, 값이 튜플이 아니면 무시
     if (!(d is FrameworkElement target) || !(e.NewValue is Tuple<object, DependencyProperty> newVal))
     {
       return;
     }
 
+    // 바인딩할 DependencyProperty 추출
     DependencyProperty dp = newVal.Item2;
 
+    // 리소스 키가 null이면 기본값으로 설정
     if (newVal.Item1 == null)
     {
       target.SetValue(dp, dp.GetMetadata(target).DefaultValue);
       return;
     }
 
+    // 리소스 키가 유효하면 해당 리소스를 설정
     target.SetResourceReference(dp, newVal.Item1);
   }
   #endregion
 
+  // 생성자 오버로드: Path를 문자열로 받는 버전
   public ResourceBinding() { }
 
   public ResourceBinding(string path)
@@ -72,7 +81,9 @@ public class ResourceBinding : MarkupExtension
   /// <returns></returns>
   public override object ProvideValue(IServiceProvider serviceProvider)
   {
+    // 타겟 정보(IProvideValueTarget) 획득
     IProvideValueTarget? provideValueTargetService = serviceProvider.GetService(typeof(IProvideValueTarget)) as IProvideValueTarget;
+
     if (provideValueTargetService == null)
     {
       // 바인딩 정보를 얻을 수 없으면 아무 값도 설정하지 않음
@@ -89,6 +100,7 @@ public class ResourceBinding : MarkupExtension
       return DependencyProperty.UnsetValue;  // return null
     }
 
+    // WPF 디자인 타임 특수 객체 처리: SharedDp는 무시 (XAML 디자인 시 오류 방지용)
     if (provideValueTargetService.TargetObject != null &&
         provideValueTargetService.TargetObject.GetType().FullName == "System.Windows.SharedDp")
     {
@@ -113,6 +125,7 @@ public class ResourceBinding : MarkupExtension
       return DependencyProperty.UnsetValue;
     }
 
+    // 단일 Binding 설정
     Binding binding = new Binding();
 
     #region binding
@@ -124,6 +137,7 @@ public class ResourceBinding : MarkupExtension
     binding.ConverterParameter = ConverterParameter;
     binding.ConverterCulture = ConverterCulture;
 
+    // RelativeSource나 ElementName, Source 중 하나를 설정
     if (RelativeSource != null)
     {
       binding.RelativeSource = RelativeSource;
@@ -141,18 +155,23 @@ public class ResourceBinding : MarkupExtension
 
     binding.FallbackValue = FallbackValue;
 
+    // MultiBinding 설정: 리소스 키 + 대상 속성을 하나의 객체로 전달
     MultiBinding multiBinding = new MultiBinding()
     {
+      // 내부적으로 Tuple<리소스키, 속성> 생성
       Converter = HelperConverter.Current,
       ConverterParameter = dependencyProperty
     };
 
+    // ViewModel에서 키만 전달해도 됨
     multiBinding.Bindings.Add(binding);
 
     multiBinding.NotifyOnSourceUpdated = true;
 
+    // 리소스 키와 대상 속성을 ResourceBindingKeyHelperProperty에 바인딩
     _ = frameworkElement.SetBinding(ResourceBindingKeyHelperProperty, multiBinding);
 
+    // 시각적으로는 바인딩 없음. 내부 처리만
     return DependencyProperty.UnsetValue;
 
     #endregion
@@ -229,26 +248,26 @@ public class ResourceBinding : MarkupExtension
   #endregion
 }
 /* 사용예제
- *<Window x:Class="ExampleApp.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:conv="clr-namespace:Heimdallr.WPF.Converters"
-        Title="Demo" Height="200" Width="300">
+ 어떻게 사용하는가?
+<!-- ViewModel에 있는 ThemeKey 속성의 값으로 리소스를 바인딩 -->
+<Border Background="{local:ResourceBinding Path=ThemeKey}" />
 
-    <Window.Resources>
-        <SolidColorBrush x:Key="MyDynamicBrush" Color="DarkOrange"/>
-    </Window.Resources>
-
-    <Grid Background="{conv:ResourceBinding Path=SelectedBrush}" />
-</Window>
- 
-ViewModel
-public class MainViewModel : INotifyPropertyChanged
+* ViewModel
+public class MainViewModel
 {
-    public string SelectedBrush => "MyDynamicBrush";
-    public event PropertyChangedEventHandler? PropertyChanged;
+  // ThemeKey가 변경되면 Background 색상이 바뀜
+  public string ThemeKey { get; set; } = "PrimaryBackgroundBrush";
 }
 
-SelectedBrush 속성이 바뀌면 "MyDynamicBrush" 리소스를 찾아 Grid의 배경에 자동 적용됩니다.
+* XAML 정의된 소스
+<Application.Resources>
+  <SolidColorBrush x:Key="PrimaryBackgroundBrush" Color="#FFCCE5FF" />
+  <SolidColorBrush x:Key="SecondaryBackgroundBrush" Color="#FFE5E5E5" />
+</Application.Resources>
 
-만약 ViewModel이 null을 반환하면, UnsetValue를 통해 Grid는 아무것도 하지 않고 기본 배경을 유지합니다.
- */
+* 언제 쓰나?
+상황	                                                                             기존 방식	                           문제	                ResourceBinding으로 해결
+리소스를 ViewModel의 값으로 동적으로 바꾸고 싶을 때	                    {StaticResource}, {DynamicResource}       	Binding 사용 불가	             Binding 가능
+테마, 컬러, 스타일 등 XAML 리소스를 뷰모델 값으로 지정하고 싶을 때	                     불가                            MVVM에 어긋남	         ViewModel 속성 값으로 리소스 키 지정 가능
+
+*/

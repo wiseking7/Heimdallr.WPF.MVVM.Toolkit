@@ -151,6 +151,7 @@ public enum IconType
   WeatherNight,
   Web,
   WhiteBalanceSunny,
-  YouTube
+  YouTube,
+  Discount
 }
 

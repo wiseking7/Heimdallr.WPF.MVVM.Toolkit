@@ -144,7 +144,7 @@
               <anima:ThicknessAnimationItem TargetName="galaxy" Property="Margin" Mode="CubicEaseInOut" Duration="0:0:0.5" To="0 0 0 0" />
               <anima:ColorAnimationItem TargetName="ellipse" Property="(Fill).Color" Mode="CubicEaseInOut" Duration="0:0:0.5" To="#FFE5B91A" />
               <anima:ColorAnimationItem TargetName="border" Property="(Background).Color" Mode="CubicEaseInOut" Duration="0:0:0.5" To="#FF191C25" />
-              <anima:ColorAnimationItem TargetName="galaxy" Property="Opacity" Mode="CubicEaseInOut" Duration="0:0:0.5" To="1" />
+              <anima:DoubleAnimationItem TargetName="galaxy" Property="Opacity" Mode="CubicEaseInOut" Duration="0:0:0.5" To="1" />
             </Storyboard>     
             
             <Storyboard x:Key="SlideIn">

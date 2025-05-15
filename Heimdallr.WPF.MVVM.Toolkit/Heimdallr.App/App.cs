@@ -1,11 +1,17 @@
-﻿using System.Diagnostics;
+﻿using Heimdallr.ToolKit.Applications;
 using System.Windows;
-using System.Windows.Media;
 
 namespace Heimdallr.App;
 
-public class App : Application
+public class App : HeimdallrApplication
 {
+  protected override Window CreateShell()
+  {
+    //return Container.Resolve<ExploreerWindow>(); 사용안됨
+    return new MainWindow();
+  }
+}
+/*
   protected override void OnStartup(StartupEventArgs e)
   {
     base.OnStartup(e);
@@ -41,4 +47,5 @@ public class App : Application
 
     window.Show();
   }
-}
+ 
+ */

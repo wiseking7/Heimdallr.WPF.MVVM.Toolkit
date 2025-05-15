@@ -1,8 +1,9 @@
-<ResourceDictionary
+﻿<ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls;assembly=Heimdallr.ToolKit"
-    xmlns:views="clr-namespace:Heimdallr.App">
+    xmlns:views="clr-namespace:Heimdallr.App"
+    xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
 
 
   <Style TargetType="{x:Type views:MainWindow}"
@@ -10,10 +11,79 @@
     <Setter Property="Content">
       <Setter.Value>
 
-        <Border>
+        <Border Background="Transparent" Padding="20">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="200"/>
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
+            </Grid.RowDefinitions>
 
-          <ctrls:HeimdallrIcon Width="100" Height="100" Fill="Black" Image="Bmw" />
+            <!-- Use the custom HeimdallrListView -->
+            <ctrls:HeimdallrListView ItemsSource="{Binding People}" Margin="10" Grid.Row="0"
+                              Background="gray">
 
+              <ctrls:HeimdallrListView.View>
+                <ctrls:HeimdallrGridView>
+                  <ctrls:HeimdallrGridView.ColumnHeaderContainerStyle>
+                    <Style TargetType="GridViewColumnHeader">
+                      <Setter Property="Background" Value="#FF7A1CAC"/>
+                      <Setter Property="Foreground" Value="#FFFFFFFF" />
+                      <Setter Property="Height" Value="50" />
+                      <!-- Padding을 0으로 설정 -->
+                      <Setter Property="Padding" Value="0" />
+                      <!-- Margin을 0으로 설정 -->
+                      <Setter Property="Margin" Value="0" />
+                      <!-- 테두리 제거 -->
+                      <Setter Property="BorderBrush" Value="Transparent" />
+                      <!-- 테두리 두께 제거 -->
+                      <Setter Property="BorderThickness" Value="0" />
+                    </Style>
+                  </ctrls:HeimdallrGridView.ColumnHeaderContainerStyle>
+                <!-- First column: Index -->
+                  <GridViewColumn Header="#" Width="50">
+                    <GridViewColumn.CellTemplate>
+                      <DataTemplate>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, 
+                                      Converter={conve:IndexToNumberConverter}}" />
+                      </DataTemplate>
+                    </GridViewColumn.CellTemplate>
+                  </GridViewColumn>
+
+                  <!-- Second column: Name -->
+                  <GridViewColumn Header="Name" Width="150" DisplayMemberBinding="{Binding Name}" />
+
+                  <!-- Third column: Age -->
+                  <GridViewColumn Header="Age" Width="100" DisplayMemberBinding="{Binding Age}" />
+              </ctrls:HeimdallrGridView>
+              </ctrls:HeimdallrListView.View>
+            </ctrls:HeimdallrListView>
+
+            <!-- 레이아웃의 어딘가에 사용자 지정 엄지 컨트롤을 적용합니다(예: 열 크기 조정) -->
+            <ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" />
+
+
+            <Viewbox Grid.Row="2">
+              <ctrls:HeimdallrIcon Icon="Apple" Fill="White"/>
+            </Viewbox>
+
+            <Viewbox Grid.Row="3">
+              <ctrls:HeimdallrIcon Image="Benz" Fill="White"/>
+            </Viewbox>
+
+            <Viewbox Grid.Row="4" Width="24" Height="24">
+              <Path Data="M256,256z M0,0z M152.8,12C119.7,16.1 91.7,40.5 83.5,72.5 79,89.9 80.5,106.4 86,121.1 86.3,121.9 86.1,122.9 85.5,123.5L10.8,197.3C10.4,197.7,10.1,198.3,10.1,199L10.1,242.4C10.1,243.7,11.2,244.7,12.5,244.7L55,244.7C56.3,244.7,57.4,243.7,57.4,242.4L57.4,212C57.4,210.7,58.5,209.7,59.8,209.7L90.5,209.7C91.8,209.7,92.9,208.7,92.9,207.4L92.9,177C92.9,175.7,94,174.7,95.3,174.7L160.9,174.7C205.2,174.7 243.8,141.4 246.2,97.7 248.7,47 204.8,5.6 152.8,12z M172.5,113.2C156.2,113.2 143,100.1 143,84 143,67.9 156.2,54.8 172.5,54.8 188.8,54.8 202,67.9 202,84 202,100.1 188.8,113.2 172.5,113.2z"
+                    Fill="White"
+                    Stretch="Uniform"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"/>
+            </Viewbox>
+          </Grid>
         </Border>
 
       </Setter.Value>

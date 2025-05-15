@@ -4,5 +4,6 @@ public enum IconMode
 {
   None,
   Icon,
-  Image
+  Image,
+  PathIcon
 }

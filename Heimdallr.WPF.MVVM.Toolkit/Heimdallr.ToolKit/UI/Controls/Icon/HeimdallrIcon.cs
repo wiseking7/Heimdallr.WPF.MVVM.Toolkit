@@ -1,4 +1,5 @@
 ﻿using Heimdallr.ToolKit.Enums;
+using Heimdallr.ToolKit.Resources.PathGeometries;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -84,6 +85,55 @@ public class HeimdallrIcon : ContentControl
   }
   #endregion
 
+  #region PathIcon
+  public PathIconType PathIcon
+  {
+    get => (PathIconType)GetValue(PathIconProperty);
+    set => SetValue(PathIconProperty, value);
+  }
+
+  public static readonly DependencyProperty PathIconProperty =
+    DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrIcon),
+      new PropertyMetadata(PathIconType.None, PathIconPropertyChanged));
+
+  private static void PathIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+  {
+    if (d is not HeimdallrIcon pathIcon)
+      return;
+
+    try
+    {
+      string name = pathIcon.PathIcon.ToString();
+      Debug.WriteLine($"[HeimdallrIcon] PathIcon 변경 감지: {name}");
+
+      var pathDataString = PathGeometryConverter.GetData(name);
+
+      if (string.IsNullOrWhiteSpace(pathDataString))
+      {
+        Debug.WriteLine($"[HeimdallrIcon] '{name}'의 pathDataString이 비어 있음.");
+        return;
+      }
+
+      var geometry = Geometry.Parse(pathDataString);
+
+      if (geometry == null)
+      {
+        Debug.WriteLine($"[HeimdallrIcon] '{name}'의 Geometry 파싱 실패.");
+        return;
+      }
+
+      pathIcon.Data = geometry;
+      pathIcon.Mode = IconMode.PathIcon;
+
+      Debug.WriteLine($"[HeimdallrIcon] '{name}'의 Geometry 적용 완료.");
+    }
+    catch (Exception ex)
+    {
+      Debug.WriteLine($"[HeimdallrIcon] PathIcon 로딩 오류: {ex.Message}");
+    }
+  }
+  #endregion
+
   #region Fill
   public Brush Fill
   {
@@ -120,6 +170,16 @@ public class HeimdallrIcon : ContentControl
   public override void OnApplyTemplate()
   {
     base.OnApplyTemplate();
+
+    // 데이터가 제대로 바인딩되었는지 확인
+    if (Data != null)
+    {
+      Debug.WriteLine("Data is properly set.");
+    }
+    else
+    {
+      Debug.WriteLine("Data is null.");
+    }
   }
 
   static HeimdallrIcon()

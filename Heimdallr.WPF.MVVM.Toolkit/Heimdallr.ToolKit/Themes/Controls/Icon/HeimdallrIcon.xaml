@@ -32,6 +32,10 @@
               <Setter TargetName="image" Property="Visibility" Value="Visible" />
               <Setter TargetName="viewbox" Property="Visibility" Value="Collapsed" />
             </Trigger>
+            <Trigger Property="Mode" Value="PathIcon">
+              <Setter TargetName="viewbox" Property="Visibility" Value="Visible" />
+              <Setter TargetName="image" Property="Visibility" Value="Collapsed" />
+            </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>

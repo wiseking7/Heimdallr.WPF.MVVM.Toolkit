@@ -49,7 +49,7 @@ public static class GeometryContainer
     Assembly assembly = Assembly.GetExecutingAssembly();
     string resourceName = "Heimdallr.ToolKit.Resources.Data.geometries.json";
 
-    Debug.WriteLine($"Resource 경로: {resourceName}");
+    Debug.WriteLine($"Geometry Resource 경로: {resourceName}");
 
     using Stream? stream = assembly.GetManifestResourceStream(resourceName);
     if (stream == null)
