@@ -107,6 +107,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
    - [x] images.yaml [Image Data]
+   - [ ] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
    - [x] Summary.txt [리소스 사용방법] 
  - **Geometies [Folder]**
    - [x] GeometryItem.cs      [geometries.json 파일 자료 (name, data) 속성]
