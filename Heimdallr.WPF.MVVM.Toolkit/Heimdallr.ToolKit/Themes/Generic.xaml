@@ -28,6 +28,7 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
 
     <!-- Icons & Window -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkSphereWindow.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkThemeWindow.xaml" />
 

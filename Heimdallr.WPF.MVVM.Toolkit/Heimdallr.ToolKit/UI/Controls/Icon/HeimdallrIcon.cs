@@ -1,5 +1,5 @@
 ﻿using Heimdallr.ToolKit.Enums;
-using Heimdallr.ToolKit.Resources.PathGeometries;
+using Heimdallr.ToolKit.Resources.PathDataStore;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -85,7 +85,7 @@ public class HeimdallrIcon : ContentControl
   }
   #endregion
 
-  #region PathIcon
+  #region PathIcon -> Xaml 기반
   public PathIconType PathIcon
   {
     get => (PathIconType)GetValue(PathIconProperty);
@@ -99,37 +99,21 @@ public class HeimdallrIcon : ContentControl
   private static void PathIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     if (d is not HeimdallrIcon pathIcon)
+    {
       return;
 
-    try
+    }
+
+    var geometry = PathGeometryStore.GetGeometry(pathIcon.PathIcon);
+    if (geometry != null)
     {
-      string name = pathIcon.PathIcon.ToString();
-      Debug.WriteLine($"[HeimdallrIcon] PathIcon 변경 감지: {name}");
-
-      var pathDataString = PathGeometryConverter.GetData(name);
-
-      if (string.IsNullOrWhiteSpace(pathDataString))
-      {
-        Debug.WriteLine($"[HeimdallrIcon] '{name}'의 pathDataString이 비어 있음.");
-        return;
-      }
-
-      var geometry = Geometry.Parse(pathDataString);
-
-      if (geometry == null)
-      {
-        Debug.WriteLine($"[HeimdallrIcon] '{name}'의 Geometry 파싱 실패.");
-        return;
-      }
-
       pathIcon.Data = geometry;
       pathIcon.Mode = IconMode.PathIcon;
-
-      Debug.WriteLine($"[HeimdallrIcon] '{name}'의 Geometry 적용 완료.");
+      Debug.WriteLine($"[HeimdallrIcon] '{pathIcon.PathIcon}' → Geometry 적용");
     }
-    catch (Exception ex)
+    else
     {
-      Debug.WriteLine($"[HeimdallrIcon] PathIcon 로딩 오류: {ex.Message}");
+      Debug.WriteLine($"[HeimdallrIcon] '{pathIcon.PathIcon}' → Geometry 없음");
     }
   }
   #endregion

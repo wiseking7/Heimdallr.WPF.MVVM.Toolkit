@@ -6,24 +6,41 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+
+	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <ApplicationIcon>Resources\Data\heimdall.ico</ApplicationIcon>
-	<PackageId>Heimdallr.ToolKit</PackageId>
+	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
+	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
+	<!-- 버전관리 추후 수정사항이 발생하는 버전 변경-->
+	<Version>1.5.0</Version>
 	<Authors>Heimdallr Team</Authors>
     <Company>Heimdallr</Company>
-    <Product>Heimdallr.ToolKit</Product>
+    <Product>Heimdallr.WPF.MVVM.ToolKit</Product>
 	<PackageTags>WPF, MVVM, Prism, Toolkit</PackageTags>
     <Description>WPF 필수(Prism, Community.Toolkit.Mvvm, AutoGrid 를 사용하는 필수 유틸리티</Description>
-    <PackageIcon>heimdall.ico</PackageIcon>
+    <PackageIcon></PackageIcon>
 	<Copyright>Copyright 2025 Heimdallr Team</Copyright>
+	<!-- 출처 URL 추가 -->
+	<PackageSourceUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</PackageSourceUrl>
+
+	<!-- 라이선스 URL 추가 -->
+	<PackageLicenseUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit/blob/main/LICENSE</PackageLicenseUrl>
+
+	<!-- 라이선스 표현식 추가 -->
+	<PackageLicenseExpression></PackageLicenseExpression>
+
     <RepositoryUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/wiseking7</PackageProjectUrl>
-    <AssemblyVersion>1.25.05</AssemblyVersion>
+
+	<!-- 고정 버전 -->
+	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<!-- 자동 증가되는 파일 버전 -->
+	<FileVersion>1.0.0.*</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Resources\Data\geometries.json" />
     <None Remove="Resources\Data\images.yaml" />
-    <None Remove="Resources\Data\pathgeometries.json" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,9 +52,6 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Data\images.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Resources\Data\pathgeometries.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
   </ItemGroup>
