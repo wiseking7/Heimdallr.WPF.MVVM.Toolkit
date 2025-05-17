@@ -63,6 +63,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] IconType.cs [Geometry 에서 사용할 Icon Name]
   - [x] ImageType.cs [Image 에서 사용할 Image Name]
   - [x] JustifyEnum.cs [수평 레이아웃 배치에서 자식 요소들 사이의 간격을 어떻게 분배할지를 설정할 때 사용]
+  - [x] PathIconType.cs [PathGeometry Data 열거형]
 
 **■ Events [Folder]**
   - [x] SwitchLanguagePubsub.cs [문자열을 전달받아 언어 변경]
@@ -121,9 +122,11 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
    - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
-  - **Initialization [Folder]**
-    - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
-    - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
+ - **PathDataStore [Folder]**
+  - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
+ - **Initialization [Folder]**
+   - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
+   - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
 
 **■ Themes [Folder]**
  - **Controls [Folder]**
@@ -133,6 +136,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
+    -[x] HeimdallrIcon.xaml []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
@@ -152,6 +156,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
+    -[x] HeimdallrIcon.cs []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
