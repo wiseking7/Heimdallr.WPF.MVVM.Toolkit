@@ -136,7 +136,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
-    -[x] HeimdallrIcon.xaml []
+    - [x] HeimdallrIcon.xaml []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
@@ -156,7 +156,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
-    -[x] HeimdallrIcon.cs []
+    - [x] HeimdallrIcon.cs []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
