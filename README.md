@@ -63,6 +63,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] IconType.cs [Geometry 에서 사용할 Icon Name]
   - [x] ImageType.cs [Image 에서 사용할 Image Name]
   - [x] JustifyEnum.cs [수평 레이아웃 배치에서 자식 요소들 사이의 간격을 어떻게 분배할지를 설정할 때 사용]
+  - [x] PathIconType.cs [PathGeometry Data 열거형]
 
 **■ Events [Folder]**
   - [x] SwitchLanguagePubsub.cs [문자열을 전달받아 언어 변경]
@@ -107,6 +108,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
    - [x] images.yaml [Image Data]
+   - [ ] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
    - [x] Summary.txt [리소스 사용방법] 
  - **Geometies [Folder]**
    - [x] GeometryItem.cs      [geometries.json 파일 자료 (name, data) 속성]
@@ -120,9 +122,11 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
    - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
-  - **Initialization [Folder]**
-    - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
-    - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
+ - **PathDataStore [Folder]**
+  - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
+ - **Initialization [Folder]**
+   - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
+   - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
 
 **■ Themes [Folder]**
  - **Controls [Folder]**
@@ -132,6 +136,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
+    - [x] HeimdallrIcon.xaml []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
@@ -151,6 +156,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
+    - [x] HeimdallrIcon.cs []
   - **ListBox [Folder]**
   - **ListView [Folder]**
   - **Region [Folder]**
@@ -160,5 +166,38 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **ToggleButton [Folder]**
   - **TreeView [Folder]**
   - **Window [Folder]**
+
+**■ 기타**
+ 왜 Release로 빌드하나요?
+ 최적화: Release 모드는 코드 최적화가 적용되어, 실행 속도나 크기가 더 효율적입니다.
+ 디버깅 정보 제거: Debug 빌드는 디버깅 정보를 포함하지만, Release 빌드는 이러한 정보를 제거하고 실제 배포에 필요한 코드만 포함됩니다. 이는 패키지 크기를 줄이고, 실제 실행에 필요한 최적화된 코드를 제공합니다.
+ 배포 준비: NuGet 패키지는 일반적으로 실제 운영 환경에서 사용되므로 최적화된 Release 빌드로 패키지를 만드는 것이 표준입니다.
+
+ .csproj 파일에 <GeneratePackageOnBuild>true</GeneratePackageOnBuild> 속성이 설정되어 있으면, 빌드가 완료되면 .nupkg 파일이 자동으로 생성됩니다.
+ 생성된 .nupkg 파일은 bin\Release 폴더 안에 위치합니다.
+
+**■ NeGut 패키지 관리**
+// 여러 네임스페이스를 하나의 URI로 묶어서 정의
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Animations")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Animations.EasingFunctions")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Attributes")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Commons")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Converters")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Dialogs.Base")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Enums")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Events")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Helpers")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Infrastructure.AutoWiring")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Models")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Resources.Geometies")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Resources.Images")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Resources.PathGeometries")]
+[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.UI.Controls")]
+
+// 하나의 접두사로 묶기
+[assembly: XmlnsPrefix("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "heimdallr")]
+
+
 
 
