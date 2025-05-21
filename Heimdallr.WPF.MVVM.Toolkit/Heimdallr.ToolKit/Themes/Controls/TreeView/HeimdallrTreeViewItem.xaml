@@ -1,0 +1,62 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters"
+    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <Style TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
+    <Setter Property="SelectionCommand" Value="{Binding RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrTreeView}, Path=DataContext.SelectionCommand}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="ItemsSource" Value="{Binding Children}" />
+    <Setter Property="Foreground" Value="#FFFFFFFF" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}">
+            <StackPanel >
+              <Grid x:Name="Item" Background="{TemplateBinding Background}" Height="36">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="*"/>
+                  <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="Path"/>
+                  <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Size"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Orientation="Horizontal" Margin="{Binding Depth, Converter={cnvts:DepthConverter}}">
+                  <ctrls:ChevronSwith x:Name="Chevron" Margin="10" IsChecked="{Binding RelativeSource={RelativeSource Templatedparent}, Path=IsExpanded}" />
+                  <ctrls:TreeViewIcon Type="{Binding Type}" Margin="10" Extension="{Binding Extension}"/>
+                  <TextBlock Text="{Binding Name}" Margin="10" />
+                </StackPanel>
+
+                <TextBlock Grid.Column="1" Text="{Binding Path}" Margin="10" />
+                <TextBlock Grid.Column="2" Text="{Binding Size, Converter={cnvts:SizeConverter}}" Margin="10" />
+
+              </Grid>
+              
+              <ItemsPresenter x:Name="Items" Visibility="Collapsed" />
+
+            </StackPanel>
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsExpanded" Value="True">
+              <Setter TargetName="Items" Property="Visibility" Value="Visible" />
+            </Trigger>
+            <!-- 전체에 영향을 주기때문에 데이터트리거로 변경 -->
+            <DataTrigger Binding="{Binding ElementName=Item, Path=IsMouseOver}" Value="True">
+              <Setter TargetName="Item" Property="Background" Value="#D1E3FF" />
+            </DataTrigger>
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Item" Property="Background" Value="#004EFF" />
+              <Setter TargetName="Item" Property="TextBlock.Text" Value="#FFFFFF" />
+            </Trigger>
+            <!-- 전체에 영향을 주기때문에 데이터트리거로 변경 -->
+            <DataTrigger Binding="{Binding Type}" Value="File">
+              <Setter TargetName="Chevron" Property="Visibility" Value="Hidden" />
+            </DataTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  
+</ResourceDictionary>

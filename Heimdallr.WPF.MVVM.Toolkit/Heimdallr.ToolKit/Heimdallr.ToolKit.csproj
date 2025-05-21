@@ -66,6 +66,8 @@
 
   <ItemGroup>
     <Folder Include="Themes\Controls\ListBox\" />
+    <Folder Include="Themes\Controls\StackPanel\" />
+    <Folder Include="Themes\Controls\Windows\" />
     <Folder Include="UI\Controls\DatePicker\" />
     <Folder Include="UI\Controls\NewFolder1\" />
     <Folder Include="UI\Controls\NewFolder\" />

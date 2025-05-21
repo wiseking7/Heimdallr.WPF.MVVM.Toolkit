@@ -14,20 +14,13 @@
         <Border Background="Transparent" Padding="20">
           <Grid>
             <Grid.RowDefinitions>
-              <RowDefinition Height="200"/>
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition Height="100" />
-              <RowDefinition Height="*" />
-              <RowDefinition />
+              <RowDefinition Height="100"/>
+              <RowDefinition Height="5"/>
+              <RowDefinition Height="5*"/>
+              <RowDefinition Height="1*"/>
+
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition />
-              <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-              
+
             <!-- Use the custom HeimdallrListView -->
             <ctrls:HeimdallrListView ItemsSource="{Binding People}" Margin="10" Grid.Row="0"
                               Background="gray">
@@ -71,28 +64,18 @@
             <!-- 레이아웃의 어딘가에 사용자 지정 엄지 컨트롤을 적용합니다(예: 열 크기 조정) -->
             <ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" />
 
-
-            <Viewbox Grid.Row="2">
-              <ctrls:HeimdallrIcon Icon="Apple" Fill="White"/>
-            </Viewbox>
-
-            <Viewbox Grid.Row="3">
-              <ctrls:HeimdallrIcon Image="Benz" Fill="White"/>
-            </Viewbox>
-
-            <Viewbox Grid.Row="4" Width="24" Height="24">
-              <Path Data=""
-                    Fill="White"
-                    Stretch="Uniform"
-                    HorizontalAlignment="Center"
-                    VerticalAlignment="Center"/>
-            </Viewbox>
-
-      
-            <ctrls:HeimdallrIcon PathIcon="RetailEllipse" Fill="SkyBlue" Grid.Row="5" Width="90" Height="90"/>
-
-            <ctrls:HeimdallrIcon PathIcon="Discount1" Fill="Red" Grid.Row="6" Width="50" Height="50" />
-
+            <!--#region HeimdallerView -->
+            <!--<ctrls:HeimdallrTreeView Grid.Row="2" ItemsSource="{Binding Files}"
+                                     CornerRadius="10"/>-->
+            <!--#endregion-->
+            
+            <!--#region HeimdallrMenuTreeView-->
+            <ctrls:HeimdallrMenuTreeView Grid.Row="2" Background="White" >
+              <ctrls:HeimdallrMenuTreeViewItem Header="HeimdallrMentTreeViewItem"></ctrls:HeimdallrMenuTreeViewItem>
+            </ctrls:HeimdallrMenuTreeView>
+            <!--#endregion-->
+            
+            <ctrls:HeimdallrIcon Grid.Row="3" PathIcon="TaxTextEllipse" Fill="Orange" Height="50" Width="50" />
           </Grid>
         </Border>
 

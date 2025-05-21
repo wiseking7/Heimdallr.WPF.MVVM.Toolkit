@@ -20,4 +20,15 @@ public class HeimdallrTreeView : TreeView
     set => SetValue(CornerRadiusProperty, value);
   }
   #endregion
+
+  static HeimdallrTreeView()
+  {
+    DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrTreeView),
+      new FrameworkPropertyMetadata(typeof(HeimdallrTreeView)));
+  }
+
+  protected override DependencyObject GetContainerForItemOverride()
+  {
+    return new HeimdallrTreeViewItem();
+  }
 }
