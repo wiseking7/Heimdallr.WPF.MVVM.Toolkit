@@ -138,7 +138,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
  
 **■ Themes [Folder]**
  - **Controls [Folder]**
-   - **Button [Folder]**
+  - **Button [Folder]**
     - [x] CloseButton.xaml [닫기 Button]
     - [x] MaximizeButton.xaml [크게 Button]
     - [x] MinimizeButton.xaml [작게 Button]
