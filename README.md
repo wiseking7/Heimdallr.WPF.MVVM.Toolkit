@@ -172,7 +172,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] HeimdallrTreeView.xaml [TreeView Style]
     - [x] HeimdallrTreeViewItem.xaml [TreeViewItem Style]  
   - **Window [Folder]**
-    - [x] Generic.xaml [Themes 의 Xaml 등록]
+    - [x] DarkThemeWindow.xaml [Window Style]
+  - [x] Generic.xaml [Themes 의 Xaml 등록 -> DarkThemeWindow.xaml, HeimdallrIcon.xaml, Color.xaml,
+                     CloseButton.xaml외 확인  ]
 
 **■ UI [Folder]**
  - **Controls [Folder]**
