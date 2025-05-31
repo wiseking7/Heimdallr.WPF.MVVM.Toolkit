@@ -116,7 +116,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
    - [x] images.yaml [Image Data]
-   - [ ] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
+   - [x] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
    - [x] Summary.txt [리소스 사용방법] 
  - **Geometies [Folder]**
    - [x] GeometryItem.cs      [geometries.json 파일 자료 (name, data) 속성]
@@ -130,17 +130,22 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
    - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
- - **PathDataStore [Folder]**
-  - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
- - **Initialization [Folder]**
+  - **Initialization [Folder]**
    - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
    - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
-
+ - **PathDataStore [Folder]**
+  - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
+ 
 **■ Themes [Folder]**
  - **Controls [Folder]**
-  - **Base [Folder]**
-  - **Border [Folder]**
-  - **Button [Folder]**
+   - **Button [Folder]**
+    - [x] CloseButton.xaml [닫기 Button]
+    - [x] MaximizeButton.xaml [크게 Button]
+    - [x] MinimizeButton.xaml [작게 Button]
+  - **CheckBox [Folder]**
+    - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
+  - **Colors [Folder]**
+    - [x] Color.xam [Color 항목]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
