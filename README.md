@@ -41,6 +41,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
   - [x] EnumToTextConverter.cs [Enum 값을 문자열로 변환]
   - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
+  - [x] IconSizeConverter.cs [HeimdallrTreeViewItem 의 Icon 의 크기 조정]
   - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
   - [x] InverseComparisonConverter.cs [value != parameter일 때 true 반환하는 반전]
   - [x] MobileNumberConverter.cs [휴대전화번호 예-> 01012345678 → 010-1234-5678]
@@ -50,7 +51,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] NumberCommaConverter.cs [숫자를 콤마 표기 천단위]
   - [x] PasswordToVisibilityConverter.cs [비밀번호 입력이나 특정 값의 상태에 따라 Visibility 값을 반환]
   - [x] ResourceBinding.cs [사용시점은 -> "리소스를 동적으로 바인딩하고 싶을 때]
+  - [x] SizeConverter.cs [파일 크기 등의 숫자 값을 사람이 읽기 쉬운 형식(B, KB 등)으로 변환하는 ValueConverter]
   - [x] StringToVisibilityConverter.cs [문자열이 비어 있는지 여부에 따라 Visibility를 반환]
+  - [x] SwitchThumbOffsetConverter.cs [트랙의 실제 너비(ActualWidth)에서 Thumb의 이동 가능한 거리를 계산하는 컨버터]
   - [x] ValidatingBorderBrushConverter.cs [유효성 검사 및 기본 색상 값이 정상적으로 전달되었는지 확인]
   - [x] ValidatingBorderThicknessConverter.cs [유효성 검사 실패 시 두 번째 값 반환 (기본 테두리 두께 등)]
 
@@ -95,6 +98,11 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] IThemeManager.cs [아무 멤버가 없는 인터페이스지만, 특정 타입을 구분하는 데 사용]
 
 **■ Models [Folder]**
+ - **TreeViewTest [Folder]**
+   - [x] FileCreator.cs [Text 폴더 생성]
+   - [x] FileItem.cs [TreeView 하위 자식 항목]
+   - [x] TreeViewInfo.cs [TreeView 정보]
+   - [x] TreeViewInfoBase.cs [TreeView 의 이름, 깊이, 타입 설정]
   - [x] FontFamilyUnit.cs [폰트 설정을 구성하고 외부 YAML 파일과 매핑되도록 설계된 폰트]
   - [x] FontPack.cs [FontFamilyUnit 폰트 설정]
   - [x] LanguagePack.cs [LanguageUnit Lanuage 설정]
