@@ -137,15 +137,15 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
  
 **■ Themes [Folder]**
- - **Controls [Folder]**
-  - **Button [Folder]**
-    - [x] CloseButton.xaml [닫기 Button]
-    - [x] MaximizeButton.xaml [크게 Button]
-    - [x] MinimizeButton.xaml [작게 Button]
-  - **CheckBox [Folder]**
-    - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
-  - **Colors [Folder]**
-    - [x] Color.xam [Color 항목]
+- **Controls [Folder]**
+   - **Button [Folder]**
+     - [x] CloseButton.xaml [닫기 Button]
+     - [x] MaximizeButton.xaml [크게 Button]
+     - [x] MinimizeButton.xaml [작게 Button]
+   - **CheckBox [Folder]**
+     - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
+   - **Colors [Folder]**
+     - [x] Color.xam [Color 항목]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
