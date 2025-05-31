@@ -149,17 +149,30 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
-    - [x] HeimdallrIcon.xaml []
+    - [x] HeimdallrIcon.xaml [Heimdallr Icon]
   - **ListBox [Folder]**
+    - [x] MagicBar.xaml [수평 Menu 컨트롤]
   - **ListView [Folder]**
+    - [x] HeimdallrGridView.xaml [GridViewColumnHeader Style]
+    - [x] HeimdallrListView.xaml [ListView Style]
+    - [x] HeimdallrListViewItem.xaml [ListViewItem Style]
   - **Region [Folder]**
+    - [x] HeimdallrRegion.xaml [Region Style]
   - **Slider [Folder]**
+    - [x] RiotSlider.xaml [Slider Style]
   - **SliderPanel [Folder]**
+    - [x] HeimdallrSlidingPanel.xaml [Slider Style] 
   - **StackPanel [Folder]**
+  - **Thumb [Folder]**
+    - [x] HeimdallrThumb.xaml [Thumb Style]
   - **ToggleButton [Folder]**
+    - [x] ChevronSwith.xaml [Up, Down Style]
+    - [x] ThemeSwitchButton.xaml [Switch Style]
   - **TreeView [Folder]**
+    - [x] HeimdallrTreeView.xaml [TreeView Style]
+    - [x] HeimdallrTreeViewItem.xaml [TreeViewItem Style]  
   - **Window [Folder]**
- - [x] Generic.xaml [Themes 의 Xaml 등록]
+    - [x] Generic.xaml [Themes 의 Xaml 등록]
 
 **■ UI [Folder]**
  - **Controls [Folder]**
