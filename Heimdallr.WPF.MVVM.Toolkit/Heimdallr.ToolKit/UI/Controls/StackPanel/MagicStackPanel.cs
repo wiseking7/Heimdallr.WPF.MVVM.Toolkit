@@ -15,7 +15,7 @@ public class MagicStackPanel : StackPanel
     set { SetValue(ItemHeightProperty, value); }
   }
   public static readonly DependencyProperty ItemHeightProperty =
-      DependencyProperty.Register("ItemHeight", typeof(double), typeof(MagicStackPanel),
+      DependencyProperty.Register(nameof(ItemHeight), typeof(double), typeof(MagicStackPanel),
         new PropertyMetadata(0.0, ItemHeightPropertyChanged));
 
   private static void ItemHeightPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

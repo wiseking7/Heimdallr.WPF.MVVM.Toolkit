@@ -14,10 +14,11 @@
         <Border Background="Transparent" Padding="20">
           <Grid>
             <Grid.RowDefinitions>
-              <RowDefinition Height="100"/>
+              <RowDefinition Height="Auto"/>
               <RowDefinition Height="5"/>
-              <RowDefinition Height="5*"/>
-              <RowDefinition Height="1*"/>
+              <RowDefinition Height="3*"/>
+              <RowDefinition Height="2*"/>
+              <RowDefinition Height="2*"/>
 
             </Grid.RowDefinitions>
 
@@ -46,7 +47,7 @@
                   <GridViewColumn Header="#" Width="50">
                     <GridViewColumn.CellTemplate>
                       <DataTemplate>
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, 
+                        <TextBlock Text="{Binding Path=., RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ListViewItem}, 
                                       Converter={conve:IndexToNumberConverter}}" />
                       </DataTemplate>
                     </GridViewColumn.CellTemplate>
@@ -64,18 +65,31 @@
             <!-- 레이아웃의 어딘가에 사용자 지정 엄지 컨트롤을 적용합니다(예: 열 크기 조정) -->
             <ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" />
 
-            <!--#region HeimdallerView -->
-            <!--<ctrls:HeimdallrTreeView Grid.Row="2" ItemsSource="{Binding Files}"
-                                     CornerRadius="10"/>-->
+            <!--#region -->
+            <ctrls:HeimdallrTreeView Grid.Row="2" >
+              <ctrls:HeimdallrTreeViewItem Header="제품" PathIcon="ChevronDownEllipse" FontSize="16" >
+                <ctrls:HeimdallrTreeViewItem Header="단위" PathIcon="UnitTextEllipse" Fill="Blue" />
+                <ctrls:HeimdallrTreeViewItem Header="가격" PathIcon="Price" Fill="Beige" />
+              </ctrls:HeimdallrTreeViewItem>
+              <ctrls:HeimdallrTreeViewItem Header="설정" PathIcon="ChevronDownEllipse">
+                <ctrls:HeimdallrTreeViewItem Header="정보" Image="AmazonPrime" />
+              </ctrls:HeimdallrTreeViewItem>
+            </ctrls:HeimdallrTreeView>
             <!--#endregion-->
+
+            <Grid Grid.Row="3">
+              <Canvas Background="LightGray">
+                <ctrls:HeimdallrThumb x:Name="dragthumb" Width="100" Height="100"
+                                      HorizontalAlignment="Left" VerticalAlignment="Top"
+                                      Canvas.Left="50" Canvas.Top="50" />
+              </Canvas>
+            </Grid>
             
-            <!--#region HeimdallrMenuTreeView-->
-            <ctrls:HeimdallrMenuTreeView Grid.Row="2" Background="White" >
-              <ctrls:HeimdallrMenuTreeViewItem Header="HeimdallrMentTreeViewItem"></ctrls:HeimdallrMenuTreeViewItem>
-            </ctrls:HeimdallrMenuTreeView>
-            <!--#endregion-->
             
-            <ctrls:HeimdallrIcon Grid.Row="3" PathIcon="TaxTextEllipse" Fill="Orange" Height="50" Width="50" />
+            
+            <!--<ctrls:HeimdallrIcon Grid.Row="3" PathIcon="HeimdallrLogo" Fill="Orange" Height="50" Width="50" />-->
+
+            <ctrls:HeimdallrSwitchCheckBox Grid.Row="4" Width="80" Height="35" ToolTip="MENU" />
           </Grid>
         </Border>
 

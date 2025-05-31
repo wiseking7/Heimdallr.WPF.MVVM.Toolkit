@@ -18,8 +18,8 @@ public class HeimdallrIcon : ContentControl
     set { SetValue(ModeProperty, value); }
   }
   public static readonly DependencyProperty ModeProperty =
-      DependencyProperty.Register(nameof(Mode), typeof(IconMode), typeof(HeimdallrIcon),
-        new PropertyMetadata(IconMode.None));
+      DependencyProperty.Register(nameof(Mode), typeof(IconMode),
+        typeof(HeimdallrIcon), new PropertyMetadata(IconMode.None));
   #endregion
 
   #region IconType
@@ -31,12 +31,15 @@ public class HeimdallrIcon : ContentControl
 
   public static readonly DependencyProperty IconProperty =
       DependencyProperty.Register(nameof(Icon), typeof(IconType),
-        typeof(HeimdallrIcon), new PropertyMetadata(IconType.None, IconPropertyChanged));
+        typeof(HeimdallrIcon),
+        new PropertyMetadata(IconType.None, IconPropertyChanged));
 
-  private static void IconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+  private static void IconPropertyChanged(DependencyObject d,
+    DependencyPropertyChangedEventArgs e)
   {
     HeimdallrIcon heimdallrIcon = (HeimdallrIcon)d;
-    string geometryData = ToolKit.Resources.Geometies.GeometryConverter.GetData(heimdallrIcon.Icon.ToString());
+    string geometryData = ToolKit.Resources.Geometies.GeometryConverter
+      .GetData(heimdallrIcon.Icon.ToString());
 
     heimdallrIcon.Data = Geometry.Parse(geometryData);
     heimdallrIcon.Mode = IconMode.Icon;
@@ -51,15 +54,18 @@ public class HeimdallrIcon : ContentControl
   }
 
   public static readonly DependencyProperty ImageProperty =
-      DependencyProperty.Register(nameof(Image), typeof(ImageType), typeof(HeimdallrIcon),
+      DependencyProperty.Register(nameof(Image), typeof(ImageType),
+        typeof(HeimdallrIcon),
         new PropertyMetadata(ImageType.None, ImagePropertyChanged));
 
-  private static void ImagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+  private static void ImagePropertyChanged(DependencyObject d,
+    DependencyPropertyChangedEventArgs e)
   {
     HeimdallrIcon heimdallrIcon = (HeimdallrIcon)d;
     try
     {
-      string base64 = ToolKit.Resources.Images.ImageConverter.GetData(heimdallrIcon.Image.ToString());
+      string base64 = ToolKit.Resources.Images.ImageConverter
+        .GetData(heimdallrIcon.Image.ToString());
 
       byte[] binaryData = Convert.FromBase64String(base64);
 
@@ -93,10 +99,12 @@ public class HeimdallrIcon : ContentControl
   }
 
   public static readonly DependencyProperty PathIconProperty =
-    DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrIcon),
+    DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType),
+      typeof(HeimdallrIcon),
       new PropertyMetadata(PathIconType.None, PathIconPropertyChanged));
 
-  private static void PathIconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+  private static void PathIconPropertyChanged(DependencyObject d,
+    DependencyPropertyChangedEventArgs e)
   {
     if (d is not HeimdallrIcon pathIcon)
     {
@@ -125,7 +133,8 @@ public class HeimdallrIcon : ContentControl
     set { SetValue(FillProperty, value); }
   }
   public static readonly DependencyProperty FillProperty =
-      DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIcon),
+      DependencyProperty.Register(nameof(Fill), typeof(Brush),
+        typeof(HeimdallrIcon),
         new PropertyMetadata(Brushes.Silver));
   #endregion
 
@@ -136,7 +145,8 @@ public class HeimdallrIcon : ContentControl
     set { SetValue(DataProperty, value); }
   }
   public static readonly DependencyProperty DataProperty =
-      DependencyProperty.Register(nameof(Data), typeof(Geometry), typeof(HeimdallrIcon),
+      DependencyProperty.Register(nameof(Data), typeof(Geometry),
+        typeof(HeimdallrIcon),
         new PropertyMetadata(null));
   #endregion
 
@@ -147,10 +157,12 @@ public class HeimdallrIcon : ContentControl
     set { SetValue(SourceProperty, value); }
   }
   public static readonly DependencyProperty SourceProperty =
-      DependencyProperty.Register(nameof(Source), typeof(ImageSource), typeof(HeimdallrIcon),
+      DependencyProperty.Register(nameof(Source), typeof(ImageSource),
+        typeof(HeimdallrIcon),
         new PropertyMetadata(null));
   #endregion
 
+  // 템플릿 적용시
   public override void OnApplyTemplate()
   {
     base.OnApplyTemplate();
@@ -158,11 +170,11 @@ public class HeimdallrIcon : ContentControl
     // 데이터가 제대로 바인딩되었는지 확인
     if (Data != null)
     {
-      Debug.WriteLine("Data is properly set.");
+      Debug.WriteLine("Data 는 속성(Property) 설정 입니다");
     }
     else
     {
-      Debug.WriteLine("Data is null.");
+      Debug.WriteLine("Data 가 null 입니다");
     }
   }
 

@@ -48,6 +48,7 @@ public enum PathIconType
   Ghost,
   Ghost1,
   Gift,
+  HeimdallrLogo,
   Home,
   HomeTextEllipse,
   Information,

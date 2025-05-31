@@ -5,7 +5,8 @@ namespace Heimdallr.ToolKit.Models.TreeViewTest;
 // 테스트용 폴더
 public class FileCreator
 {
-  public string BasePath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+  public string BasePath =
+    Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
 
   public void Crate()
   {

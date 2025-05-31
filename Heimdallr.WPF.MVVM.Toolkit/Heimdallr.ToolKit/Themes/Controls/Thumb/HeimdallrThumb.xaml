@@ -4,30 +4,44 @@
 
   <!-- Thumb 스타일 정의 -->
   <Style TargetType="{x:Type ctrls:HeimdallrThumb}">
+    <!-- Thumb 너비를 18로 설정 -->
     <Setter Property="Width" Value="18" />
+    
+    <!-- 배경: 동적 리소스를 사용한 선형 그라데이션 -->
     <Setter Property="Background">
       <Setter.Value>
         <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
           <GradientStopCollection>
+            <!-- 위쪽에 밝은 색 (BorderLightColor) -->
             <GradientStop Offset="0.0" Color="{DynamicResource BorderLightColor}" />
+
+            <!-- 아래쪽에 어두운 색 (BorderDarkColor) -->
             <GradientStop Offset="1.0" Color="{DynamicResource BorderDarkColor}" />
           </GradientStopCollection>
         </LinearGradientBrush>
       </Setter.Value>
     </Setter>
+
+    <!-- ControlTemplate: Thumb의 시각적 구조 정의 -->
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Thumb">
           <Border Padding="{TemplateBinding Padding}" Background="Transparent">
+            <!-- Border 안에 있는 사각형 (Rectangle) -->
             <Rectangle Width="1" HorizontalAlignment="Center" Fill="{TemplateBinding Background}" />
           </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
+
+    <!-- BorderBrush: 선형 그라데이션을 적용한 테두리 -->
     <Setter Property="BorderBrush">
       <Setter.Value>
         <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+          <!-- 위쪽에 검정색 -->
           <GradientStop Offset="0" Color="Black" />
+
+          <!-- 아래쪽에 흰색 -->
           <GradientStop Offset="1" Color="White" />
         </LinearGradientBrush>
       </Setter.Value>

@@ -5,58 +5,81 @@
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <Style TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
-    <Setter Property="SelectionCommand" Value="{Binding RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrTreeView}, Path=DataContext.SelectionCommand}" />
+    <Setter Property="SelectionCommand" 
+            Value="{Binding RelativeSource={RelativeSource 
+                      AncestorType=ctrls:HeimdallrTreeView}, 
+                        Path=DataContext.SelectionCommand}" />
     <Setter Property="Background" Value="Transparent" />
-    <Setter Property="ItemsSource" Value="{Binding Children}" />
-    <Setter Property="Foreground" Value="#FFFFFFFF" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
-          <Border Background="{TemplateBinding Background}"
-                  BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}">
-            <StackPanel >
-              <Grid x:Name="Item" Background="{TemplateBinding Background}" Height="36">
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="*"/>
-                  <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="Path"/>
-                  <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Size"/>
-                </Grid.ColumnDefinitions>
-                <StackPanel Orientation="Horizontal" Margin="{Binding Depth, Converter={cnvts:DepthConverter}}">
-                  <ctrls:ChevronSwith x:Name="Chevron" Margin="10" IsChecked="{Binding RelativeSource={RelativeSource Templatedparent}, Path=IsExpanded}" />
-                  <ctrls:TreeViewIcon Type="{Binding Type}" Margin="10" Extension="{Binding Extension}"/>
-                  <TextBlock Text="{Binding Name}" Margin="10" />
-                </StackPanel>
+          <StackPanel>
+            <!-- 헤더 영역표기 -->
+            <Grid x:Name="Item" Background="{TemplateBinding Background}" Height="36">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+              </Grid.ColumnDefinitions>
 
-                <TextBlock Grid.Column="1" Text="{Binding Path}" Margin="10" />
-                <TextBlock Grid.Column="2" Text="{Binding Size, Converter={cnvts:SizeConverter}}" Margin="10" />
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2">
+                <!-- 사용자 지정 업/다운 아이콘 Viewbox -->
+                <Viewbox x:Name="ExpandCollapseIcon" Margin="0,0,6,0"
+                         Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                         Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}">
+                  <Path x:Name="ExpandCollapsePath"
+                        Fill="{TemplateBinding Fill}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Data="{TemplateBinding Data}" />
+                </Viewbox>
 
-              </Grid>
-              
-              <ItemsPresenter x:Name="Items" Visibility="Collapsed" />
+                <!-- 이미지 아이콘 (사용자가 Image 지정한 경우) -->
+                <Image x:Name="ItemImage"
+                       Width="{TemplateBinding Width}"
+                       Height="{TemplateBinding Height}"
+                       Source="{TemplateBinding Source}"
+                       Visibility="Collapsed"
+                       Margin="0,0,6,0"/>
 
-            </StackPanel>
-          </Border>
+                <!-- 헤더 텍스트 -->
+                <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center"/>
+              </StackPanel>
+            </Grid>
+
+            <!-- 자식 항목 -->
+            <ItemsPresenter x:Name="Items" Margin="20,0,0,0" Visibility="Collapsed"/>
+          </StackPanel>
+
           <ControlTemplate.Triggers>
+            <!-- 확장 트리거 -->
             <Trigger Property="IsExpanded" Value="True">
-              <Setter TargetName="Items" Property="Visibility" Value="Visible" />
+              <Setter TargetName="Items" Property="Visibility" Value="Visible"/>
             </Trigger>
-            <!-- 전체에 영향을 주기때문에 데이터트리거로 변경 -->
-            <DataTrigger Binding="{Binding ElementName=Item, Path=IsMouseOver}" Value="True">
-              <Setter TargetName="Item" Property="Background" Value="#D1E3FF" />
-            </DataTrigger>
+
+            <!-- 마우스 오버 및 선택 시 배경 -->
             <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="Item" Property="Background" Value="#004EFF" />
-              <Setter TargetName="Item" Property="TextBlock.Text" Value="#FFFFFF" />
+              <Setter TargetName="Item" Property="Background" Value="#004EFF"/>
             </Trigger>
-            <!-- 전체에 영향을 주기때문에 데이터트리거로 변경 -->
-            <DataTrigger Binding="{Binding Type}" Value="File">
-              <Setter TargetName="Chevron" Property="Visibility" Value="Hidden" />
-            </DataTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Item" Property="Background" Value="#D1E3FF"/>
+            </Trigger>
+
+            <!-- 모드에 따라 이미지/패스 표시 -->
+            <Trigger Property="Mode" Value="Image">
+              <Setter TargetName="ItemImage" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Collapsed"/>
+            </Trigger>
+            <Trigger Property="Mode" Value="Icon">
+              <Setter TargetName="ItemImage" Property="Visibility" Value="Collapsed"/>
+              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Visible"/>
+            </Trigger>
+            <Trigger Property="Mode" Value="PathIcon">
+              <Setter TargetName="ItemImage" Property="Visibility" Value="Collapsed"/>
+              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Visible"/>
+            </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
-  
 </ResourceDictionary>

@@ -8,6 +8,7 @@ namespace Heimdallr.App.ViewMoels;
 
 public partial class MainViewModel : ObservableBase
 {
+  public string? TextMessage { get; set; }
   public ObservableCollection<Person> People { get; set; }
 
   public MainViewModel()
@@ -31,6 +32,9 @@ public partial class MainViewModel : ObservableBase
     GetFiles(root, source, depth);
 
     Files = source;
+
+    // HeimdallrTerrView
+    TextMessage = "MainViewModel!!";
   }
 
   // TreeView Test

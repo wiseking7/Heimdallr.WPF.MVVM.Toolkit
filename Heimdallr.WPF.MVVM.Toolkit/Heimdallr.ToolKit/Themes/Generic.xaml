@@ -7,9 +7,7 @@
   <ResourceDictionary.MergedDictionaries>
 
     <!-- Custom Control (Toggle, Button, TextBox, ListView 등 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrMenuTreeViewItem.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrMenuTreeView.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/TreeViewIcon.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ChevronSwith.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
@@ -19,7 +17,7 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/MagicBar.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListBox/MagicBar.xaml" />
 
     <!-- Panel & Region -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />

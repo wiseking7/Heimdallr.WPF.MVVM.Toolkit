@@ -14,31 +14,14 @@
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}">
-            <Grid Grid.IsSharedSizeScope="True">
-              <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="*" />
-              </Grid.RowDefinitions>
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto" MinWidth="200" SharedSizeGroup="Path"/>
-                <ColumnDefinition Width="Auto" MinWidth="100" SharedSizeGroup="Size"/>
-              </Grid.ColumnDefinitions>
-              <Label Grid.Column="0" Content="Name" Padding="10" Background="#FAFAFA"
-                     BorderBrush="#AAAAAA" BorderThickness="0 0 1 1"/>
-              <Label Grid.Column="1" Content="Path" Padding="10" Background="#FAFAFA"
-                     BorderBrush="#AAAAAA" BorderThickness="0 0 1 1"/>
-              <Label Grid.Column="2" Content="Size" Padding="10" Background="#FAFAFA"
-                     BorderBrush="#AAAAAA" BorderThickness="0 0 0 1"/>
-              <ctrls:MagicStackPanel Grid.Row="1" Grid.ColumnSpan="3"
-                                     VerticalAlignment="Top"
-                                     ItemHeight="{Binding ElementName=Items, Path=ActualHeight}" />
-              <ItemsPresenter x:Name="Items" Grid.Row="1" Grid.ColumnSpan="3" VerticalAlignment="Top"/>
+            <Grid>
+              <ctrls:MagicStackPanel VerticalAlignment="Top"
+                                     ItemHeight="{Binding ElementName=Items, Path=ActualHeight}"/>
+              <ItemsPresenter x:Name="Items" VerticalAlignment="Top"/> 
             </Grid>
           </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
-  
 </ResourceDictionary>
