@@ -3,6 +3,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls;assembly=Heimdallr.ToolKit"
     xmlns:views="clr-namespace:Heimdallr.App"
+    xmlns:spinn="clr-namespace:Heimdallr.ToolKit.Indicators;assembly=Heimdallr.ToolKit"
     xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
 
 
@@ -16,8 +17,8 @@
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
               <RowDefinition Height="5"/>
-              <RowDefinition Height="3*"/>
               <RowDefinition Height="2*"/>
+              <RowDefinition Height="5*"/>
               <RowDefinition Height="2*"/>
 
             </Grid.RowDefinitions>
@@ -77,19 +78,20 @@
             </ctrls:HeimdallrTreeView>
             <!--#endregion-->
 
-            <Grid Grid.Row="3">
-              <Canvas Background="LightGray">
-                <ctrls:HeimdallrThumb x:Name="dragthumb" Width="100" Height="100"
-                                      HorizontalAlignment="Left" VerticalAlignment="Top"
-                                      Canvas.Left="50" Canvas.Top="50" />
-              </Canvas>
-            </Grid>
-            
-            
-            
+            <spinn:LoadingSpinner SpinnerType="Bar" Grid.Row="3" Background="Orange"
+                                  LoadingContent="OK" IsLoading="True"
+                                  LoadingContentMargin="10"/>
+
+
             <!--<ctrls:HeimdallrIcon Grid.Row="3" PathIcon="HeimdallrLogo" Fill="Orange" Height="50" Width="50" />-->
 
-            <ctrls:HeimdallrSwitchCheckBox Grid.Row="4" Width="80" Height="35" ToolTip="MENU" />
+            <!--<ctrls:HeimdallrSwitchCheckBox Grid.Row="4" Width="80" Height="35" ToolTip="MENU" />-->
+
+            <ctrls:SliderContentMenu Grid.Row="4" IsOpen="{Binding IsChecked, ElementName=cbToggleMenu}">
+              <ctrls:SliderContentMenu.Content>
+                <TextBlock Text="OK 좋아요 잘되네요" />
+              </ctrls:SliderContentMenu.Content>
+            </ctrls:SliderContentMenu>
           </Grid>
         </Border>
 

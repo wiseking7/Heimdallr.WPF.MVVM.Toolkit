@@ -1,0 +1,28 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+    xmlns:fr="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options">
+
+  <!-- Indicator 컨트롤의 전경 색상 정의 (예: 애니메이션 원의 색상) -->
+  <SolidColorBrush
+        x:Key="IndicatorForeground"
+        fr:Freeze="True"
+        Color="#4EA2FF" />
+
+  <!-- Indicator 컨트롤의 배경 색상 정의 (배경 색상) -->
+  <SolidColorBrush
+        x:Key="IndicatorBackground"
+        fr:Freeze="True"
+        Color="#DDDDDD" />
+
+  <!-- Indicator의 X 축 스케일 비율 정의 (크기 조정) -->
+  <sys:Double
+        x:Key="IndicatorScaleX"
+        fr:Freeze="True">1</sys:Double>
+
+  <!-- Indicator의 Y 축 스케일 비율 정의 (크기 조정) -->
+  <sys:Double
+        x:Key="IndicatorScaleY"
+        fr:Freeze="True">1</sys:Double>
+</ResourceDictionary>

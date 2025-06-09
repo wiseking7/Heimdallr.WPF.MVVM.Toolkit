@@ -137,7 +137,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       Debug.WriteLine($"HeimdallrTreeViewItem 의 Image 항목을 찾을 수 없습니다: {ex.Message}");
 
       // 예외 발생시 이미지를 비워둡니다.
-      heimdallrTreeViewItemImage.Source = null;
+      heimdallrTreeViewItemImage.Source = null!;
     }
     catch (Exception ex)
     {

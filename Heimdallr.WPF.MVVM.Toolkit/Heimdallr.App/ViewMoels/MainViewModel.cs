@@ -8,11 +8,15 @@ namespace Heimdallr.App.ViewMoels;
 
 public partial class MainViewModel : ObservableBase
 {
+  private readonly IEventAggregator? _eventAggregator;
   public string? TextMessage { get; set; }
   public ObservableCollection<Person> People { get; set; }
 
-  public MainViewModel()
+  public MainViewModel(IEventAggregator eventAggregator)
   {
+
+    _eventAggregator = eventAggregator;
+
     People = new ObservableCollection<Person>
             {
                 new Person { Name = "John", Age = 30 },
@@ -20,6 +24,7 @@ public partial class MainViewModel : ObservableBase
                 new Person { Name = "Mark", Age = 35 },
                 new Person { Name = "Sara", Age = 28 }
             };
+
 
     // TreeView Test
     int depth = 0;
@@ -35,6 +40,35 @@ public partial class MainViewModel : ObservableBase
 
     // HeimdallrTerrView
     TextMessage = "MainViewModel!!";
+
+    ButtonClick = new DelegateCommand(OnButton);
+  }
+
+  private string? _myTextBox;
+  public string? MyTextbox
+  {
+    get { return _myTextBox; }
+    set { SetProperty(ref _myTextBox, value); }
+  }
+
+  private bool _isLoading;
+  public bool IsLoading
+  {
+    get => _isLoading;
+    set => SetProperty(ref _isLoading, value);
+  }
+
+  private async void OnButton()
+  {
+    if (!double.TryParse(MyTextbox, out double duration))
+    {
+      duration = 5;
+    }
+
+    IsLoading = true;
+
+    await Task.Delay(TimeSpan.FromSeconds(duration));
+    IsLoading = false;
   }
 
   // TreeView Test
@@ -83,6 +117,21 @@ public partial class MainViewModel : ObservableBase
   {
     string? name = item.Name;
   }
+
+  // 데이터 로딩 예시
+  public async Task LoadDataAsync()
+  {
+    // 로딩 시작
+    IsLoading = true;
+
+    // 데이터 로딩 시뮬레이션
+    await Task.Delay(3000); // 예시로 3초 지연
+
+    // 로딩 완료
+    IsLoading = false;
+  }
+
+  public DelegateCommand? ButtonClick { get; }
 }
 
 public class Person

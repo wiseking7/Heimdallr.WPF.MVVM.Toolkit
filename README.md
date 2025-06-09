@@ -41,6 +41,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
   - [x] EnumToTextConverter.cs [Enum 값을 문자열로 변환]
   - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
+  - [x] IconSizeConverter.cs [HeimdallrTreeViewItem 의 Icon 의 크기 조정]
   - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
   - [x] InverseComparisonConverter.cs [value != parameter일 때 true 반환하는 반전]
   - [x] MobileNumberConverter.cs [휴대전화번호 예-> 01012345678 → 010-1234-5678]
@@ -50,7 +51,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] NumberCommaConverter.cs [숫자를 콤마 표기 천단위]
   - [x] PasswordToVisibilityConverter.cs [비밀번호 입력이나 특정 값의 상태에 따라 Visibility 값을 반환]
   - [x] ResourceBinding.cs [사용시점은 -> "리소스를 동적으로 바인딩하고 싶을 때]
+  - [x] SizeConverter.cs [파일 크기 등의 숫자 값을 사람이 읽기 쉬운 형식(B, KB 등)으로 변환하는 ValueConverter]
   - [x] StringToVisibilityConverter.cs [문자열이 비어 있는지 여부에 따라 Visibility를 반환]
+  - [x] SwitchThumbOffsetConverter.cs [트랙의 실제 너비(ActualWidth)에서 Thumb의 이동 가능한 거리를 계산하는 컨버터]
   - [x] ValidatingBorderBrushConverter.cs [유효성 검사 및 기본 색상 값이 정상적으로 전달되었는지 확인]
   - [x] ValidatingBorderThicknessConverter.cs [유효성 검사 실패 시 두 번째 값 반환 (기본 테두리 두께 등)]
 
@@ -95,6 +98,11 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] IThemeManager.cs [아무 멤버가 없는 인터페이스지만, 특정 타입을 구분하는 데 사용]
 
 **■ Models [Folder]**
+ - **TreeViewTest [Folder]**
+   - [x] FileCreator.cs [Text 폴더 생성]
+   - [x] FileItem.cs [TreeView 하위 자식 항목]
+   - [x] TreeViewInfo.cs [TreeView 정보]
+   - [x] TreeViewInfoBase.cs [TreeView 의 이름, 깊이, 타입 설정]
   - [x] FontFamilyUnit.cs [폰트 설정을 구성하고 외부 YAML 파일과 매핑되도록 설계된 폰트]
   - [x] FontPack.cs [FontFamilyUnit 폰트 설정]
   - [x] LanguagePack.cs [LanguageUnit Lanuage 설정]
@@ -108,7 +116,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
  - **Data [Folder]**
    - [x] geometries.json [Geometry Data]
    - [x] images.yaml [Image Data]
-   - [ ] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
+   - [x] pathgeometries.json [PahIcon 지정시 PathGeometry Data Not Marked] 
    - [x] Summary.txt [리소스 사용방법] 
  - **Geometies [Folder]**
    - [x] GeometryItem.cs      [geometries.json 파일 자료 (name, data) 속성]
@@ -122,50 +130,101 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] ImageContainer.cs [ImageItem 개체들을 관리하는 정적 클래스]
    - [x] ImageConverter.cs [ImageContainer 에서 특정 이름의 ImageItem 을 조회, SVG 등 데이터 문자열을 반환]
    - [x] ImageData.cs        [ImageConverter 를 사용하여 각 Image에 대한 데이터를 반환]
- - **PathDataStore [Folder]**
-  - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
- - **Initialization [Folder]**
+- **Initialization [Folder]**
    - [x] BaseResourceInitializer.cs [WPF 또는 .NET 앱에서 테마/로케일 등의 리소스를 초기화하는 기반 추상 클래스]
    - [x] ResourceManager.cs [Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할]
-
+ - **PathDataStore [Folder]**
+   - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
+ 
 **■ Themes [Folder]**
- - **Controls [Folder]**
-  - **Base [Folder]**
-  - **Border [Folder]**
-  - **Button [Folder]**
+- **Controls [Folder]**
+   - **Button [Folder]**
+     - [x] CloseButton.xaml [닫기 Button]
+     - [x] MaximizeButton.xaml [크게 Button]
+     - [x] MinimizeButton.xaml [작게 Button]
+   - **CheckBox [Folder]**
+     - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
+   - **Colors [Folder]**
+     - [x] Color.xam [Color 항목]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
-    - [x] HeimdallrIcon.xaml []
+    - [x] HeimdallrIcon.xaml [Heimdallr Icon]
   - **ListBox [Folder]**
+    - [x] MagicBar.xaml [수평 Menu 컨트롤]
   - **ListView [Folder]**
+    - [x] HeimdallrGridView.xaml [GridViewColumnHeader Style]
+    - [x] HeimdallrListView.xaml [ListView Style]
+    - [x] HeimdallrListViewItem.xaml [ListViewItem Style]
   - **Region [Folder]**
+    - [x] HeimdallrRegion.xaml [Region Style]
   - **Slider [Folder]**
+    - [x] RiotSlider.xaml [Slider Style]
   - **SliderPanel [Folder]**
+    - [x] HeimdallrSlidingPanel.xaml [Slider Style] 
   - **StackPanel [Folder]**
+  - **Thumb [Folder]**
+    - [x] HeimdallrThumb.xaml [Thumb Style]
   - **ToggleButton [Folder]**
+    - [x] ChevronSwith.xaml [Up, Down Style]
+    - [x] ThemeSwitchButton.xaml [Switch Style]
   - **TreeView [Folder]**
+    - [x] HeimdallrTreeView.xaml [TreeView Style]
+    - [x] HeimdallrTreeViewItem.xaml [TreeViewItem Style]  
   - **Window [Folder]**
- - [x] Generic.xaml [Themes 의 Xaml 등록]
+    - [x] DarkThemeWindow.xaml [Window Style]
+  - [x] Generic.xaml [Themes 의 Xaml 등록 -> DarkThemeWindow.xaml, HeimdallrIcon.xaml, Color.xaml,
+                     CloseButton.xaml, MaximizeButton.xaml, MinimizeButton.xaml, HeimdallrRegion.xaml, HeimdallrSlidingPanel.xaml, MagicBar.xaml,
+                     RiotSlider.xam, ThemeSwitchButton.xaml, HeimdallrListView.xaml, HeimdallrListViewItem.xaml, HeimdallrGridView.xaml, HeimdallrThumb.xaml,
+                     HeimdallrTreeView.xaml, HeimdallrTreeViewItem.xaml, ChevronSwith.xaml, HeimdallrSwitchCheckBox.xamll
 
 **■ UI [Folder]**
  - **Controls [Folder]**
   - **Base [Folder]**
+    - [x] HeimdallrContents.cs [View와 ViewModel을 자동으로 연결(AutoWire)하는 컨트롤]
   - **Border [Folder]**
+    - [x] DraggableBar.cs [Border Drag]
   - **Button [Folder]**
+    - [x] CloseButton.cs [닫기 Button]
+    - [x] MaximizeButton.cs [크게 Button]
+    - [x] MinimizeButton.cs [작게 Button]
+  - **CheckBox [Folder]**
+    - [x] HeimdallrSwitchCheckBox.cs [Check Button 양옆으로 이동 Control]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
+    - [x] HeimdallrGrid.cs [AutoGrid 를 확장]
   - **Icon [Folder]**
-    - [x] HeimdallrIcon.cs []
+    - [x] HeimdallrIcon.cs [XAML 에서 사용가능한 Icon]
   - **ListBox [Folder]**
+    - [x] HeimdallrListBox.cs [미완성]
+    - [x] HeimdallrListBoxItem.cs [미완성]
+    - [x] MagicBar.cs [ListView 상속으로 확인]
   - **ListView [Folder]**
+    - [x] HeimdallrGridView.cs [GridViewColumnHeader Contrl]
+    - [x] HeimdallrListView.cs [ListView Control]
+    - [x] HeimdallrListViewItem.cs [ListViewItem Control] 
   - **Region [Folder]**
+    - [x] HeimdallrRegion.cs [Region Control]
   - **Slider [Folder]**
+    - [x] RiotSlider.cs [Slider Control] 
   - **SliderPanel [Folder]**
+    - [x] HeimdallrSlidingPanel.cs [SlidingPanel Control]
   - **StackPanel [Folder]**
+    - [x] HeimdallrPanel.cs [Panel Contrl]
+    - [x] HeimdallrStack.cs [Stack Control]
+    - [x] MagicStackPanel.cs [TreeView 에서 사용하는 StackPanel]
+  - **Thumb [Folder]**
+    - [x] HeimdallrThumb.cs [Thumb Contrl] 
   - **ToggleButton [Folder]**
+    - [x] ChevronSwith.cs []
+    - [x] HeimdallrToggleSwitch.cs []
+    - [x] ThemeSwitchButton.cs [] 
   - **TreeView [Folder]**
+    - [x] HeimdallrTreeView.cs []
+    - [x] HeimdallrTreeViewItem.cs []  
   - **Window [Folder]**
+    - [x] DarkThemeWindow.cs [DarkThemeWindow 클래스는 WPF 기반의 커스텀 창을 정의하며, 일반적인 기능(닫기, 최소화, 최대화, 드래그 이동)과함께 다크 테마, 디밍 처리(어두워짐), 태스크바 표시 여부 제어 같은 기능들을 포함 ]
+    - [x] HeimdallrWindow.cs [WPF 애플리케이션에서 MVVM 아키텍처에 맞춰 View와 ViewModel을 자동 연결하고, UI 조작에 유틸리티 기능을 제공하는 사용자 정의 Window입니다 IViewable (View 와 ViewModel 에 대한 참조 제공)] 
 
 **■ 기타**
  왜 Release로 빌드하나요?

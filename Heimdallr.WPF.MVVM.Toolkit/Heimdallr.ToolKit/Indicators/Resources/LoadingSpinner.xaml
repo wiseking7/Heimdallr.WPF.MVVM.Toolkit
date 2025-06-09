@@ -1,0 +1,137 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.Indicators"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+ 
+  <!-- LoadingSpinner 컨트롤을 위한 스타일 정의-->
+  <Style x:Key="LoadingSpinner" TargetType="{x:Type ctrls:LoadingSpinner}">
+    <!-- IsTabStop 속성을 False로 설정하여 탭 순서에서 제외 -->
+    <Setter Property="IsTabStop" Value="False" />
+
+    <!-- Focusable 속성을 False로 설정하여 포커스를 받을 수 없도록 함 -->
+    <Setter Property="Focusable" Value="False" />
+
+    <!-- 배경색을 #D8FFFFFF (반투명한 흰색)로 설정 -->
+    <Setter Property="Background" Value="#D8FFFFFF" />
+
+    <!-- ControlTemplate을 정의하여 BusyMask의 UI 구조를 정의 -->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:LoadingSpinner}">
+          <Grid>
+            <!-- 콘텐츠 영역을 정의하는 ContentControl -->
+            <!-- Content 바인딩 -->
+            <!-- ContentTemplate 바인딩 -->
+            <ContentControl
+                x:Name="Content"
+                HorizontalContentAlignment="Stretch"
+                VerticalContentAlignment="Stretch"
+                Content="{TemplateBinding Content}"
+                ContentTemplate="{TemplateBinding ContentTemplate}"
+                Focusable="False"
+                IsTabStop="False" />
+
+            <!-- BusyIndicator와 텍스트를 포함하는 BusyContent 영역 -->
+            <Border x:Name="BusyContent" 
+                    Background="{TemplateBinding Background}">
+
+              <!-- 수평 및 수직 가운데 정렬을 위한 StackPanel -->
+              <StackPanel HorizontalAlignment="Center" 
+                          VerticalAlignment="Center">
+
+                <!-- LoadingIndicator 타입을 템플릿 바인딩 -->
+                <ctrls:LoadingIndicator x:Name="Indicator"
+                    SpinnerType="{TemplateBinding SpinnerType}" />
+
+                <!-- BusyContent 텍스트 표시 -->
+                <TextBlock
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Text="{TemplateBinding LoadingContent}"
+                    Margin="{TemplateBinding LoadingContentMargin}"/>
+              </StackPanel>
+            </Border>
+
+            <!-- 상태에 따른 시각적 변화를 정의하는 VisualStateManager -->
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="VisibilityStates">
+
+                <!-- Visible 상태: BusyContent를 보이도록 설정하고,
+                      Content를 비활성화 -->
+                <VisualState x:Name="Visible">
+                  <Storyboard>
+                    <!-- BusyContent의 Visibility를 Visible로 변경하는 
+                         애니메이션 -->
+                    <ObjectAnimationUsingKeyFrames
+                        BeginTime="00:00:00"
+                        Storyboard.TargetName="BusyContent"
+                        Storyboard.TargetProperty="(UIElement.Visibility)" >
+                      <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                        <DiscreteObjectKeyFrame.Value>
+                          <!-- Visibility를 Visible로 설정 -->
+                          <Visibility>Visible</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+
+                    <!-- Content의 IsEnabled를 False로 설정하여 
+                         사용 불가 상태로 만듬 -->
+                    <ObjectAnimationUsingKeyFrames
+                        BeginTime="00:00:00"
+                        Storyboard.TargetName="Content"
+                        Storyboard.TargetProperty="(Control.IsEnabled)">
+                      <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                        <DiscreteObjectKeyFrame.Value>
+                          <!-- IsEnabled를 False로 설정 -->
+                          <sys:Boolean>False</sys:Boolean>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+
+                <!-- Hidden 상태: BusyContent를 숨기고, Content를 활성화 -->
+                <VisualState x:Name="Hidden">
+                  <Storyboard>
+                    <!-- BusyContent의 Visibility를 Collapsed로 변경하는 
+                         애니메이션 -->
+                    <ObjectAnimationUsingKeyFrames
+                        BeginTime="00:00:00"
+                        Storyboard.TargetName="BusyContent"
+                        Storyboard.TargetProperty="(UIElement.Visibility)" >
+                      <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                        <DiscreteObjectKeyFrame.Value>
+                          <!-- Visibility를 Collapsed로 설정 -->
+                          <Visibility>Collapsed</Visibility>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+
+                    <!-- Content의 IsEnabled를 True로 설정하여 활성화 -->
+                    <ObjectAnimationUsingKeyFrames
+                        BeginTime="00:00:00"
+                        Storyboard.TargetName="Content"
+                        Storyboard.TargetProperty="(Control.IsEnabled)">
+                      <DiscreteObjectKeyFrame KeyTime="00:00:00">
+                        <DiscreteObjectKeyFrame.Value>
+                          <!-- IsEnabled를 True로 설정 -->
+                          <sys:Boolean>True</sys:Boolean>
+                        </DiscreteObjectKeyFrame.Value>
+                      </DiscreteObjectKeyFrame>
+                    </ObjectAnimationUsingKeyFrames>
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+          </Grid>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!-- 위에서 정의한 BusyMaskStyle 스타일을 기본으로 사용하여 
+       BusyMask 스타일 지정 -->
+  <Style TargetType="ctrls:LoadingSpinner" BasedOn="{StaticResource LoadingSpinner}"/>
+
+</ResourceDictionary>

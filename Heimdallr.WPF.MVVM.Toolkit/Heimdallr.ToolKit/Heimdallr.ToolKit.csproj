@@ -11,8 +11,12 @@
     <ApplicationIcon>Resources\Data\heimdall.ico</ApplicationIcon>
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
-	<!-- 버전관리 추후 수정사항이 발생하는 버전 변경-->
+	<!-- 사용자가 원하는 버전-->
 	<Version>1.5.18</Version>
+	<!-- 고정 AssemblyVersion -->
+	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<!-- 고정 FileVersion-->
+	<FileVersion>1.0.0.0</FileVersion>
 	<Authors>Heimdallr Team</Authors>
     <Company>Heimdallr</Company>
     <Product>Heimdallr.WPF.MVVM.ToolKit</Product>
@@ -20,22 +24,21 @@
     <Description>WPF 필수(Prism, Community.Toolkit.Mvvm, AutoGrid 를 사용하는 필수 유틸리티</Description>
     <PackageIcon></PackageIcon>
 	<Copyright>Copyright 2025 Heimdallr Team</Copyright>
+	
 	<!-- 출처 URL 추가 -->
-	<PackageSourceUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</PackageSourceUrl>
+	<!--<PackageSourceUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</PackageSourceUrl>-->
 
 	<!-- 라이선스 URL 추가 -->
-	<PackageLicenseUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit/blob/main/LICENSE</PackageLicenseUrl>
+	<!--<PackageLicenseUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit/blob/main/LICENSE</PackageLicenseUrl>-->
 
 	<!-- 라이선스 표현식 추가 -->
-	<PackageLicenseExpression></PackageLicenseExpression>
+	<!--<PackageLicenseExpression>SPDX:MIT</PackageLicenseExpression>-->
 
     <RepositoryUrl>https://github.com/wiseking7/Heimdallr.WPF.MVVM.Toolkit</RepositoryUrl>
 	<PackageProjectUrl>https://github.com/wiseking7</PackageProjectUrl>
 
-	<!-- 고정 버전 -->
-	<AssemblyVersion>1.0.0.0</AssemblyVersion>
-	<!-- 자동 증가되는 파일 버전 -->
-	<FileVersion>1.0.0.*</FileVersion>
+	<License>MIT</License>
+	<!-- 직접 라이선스 이름을 입력하거나 URL을 입력 -->
   </PropertyGroup>
 
   <ItemGroup>

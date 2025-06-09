@@ -1,0 +1,181 @@
+﻿<ResourceDictionary 
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.Indicators"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <!-- ControlTemplate: BI:Indicator 컨트롤을 위한 템플릿 정의 -->
+  <ControlTemplate x:Key="Bar" TargetType="{x:Type ctrls:LoadingIndicator}">
+
+    <!-- 메인 그리드 정의, Indicator의 배치 및 크기 조정 -->
+    <Grid x:Name="MainGrid"
+          HorizontalAlignment="Center" VerticalAlignment="Center" >
+
+      <!-- 내부 그리드로, 표시기 애니메이션에 사용될 요소들을 포함 -->
+      <Grid RenderTransformOrigin="0.5 0.5">
+        <Grid.RenderTransform>
+          <!-- 크기 변환을 위한 ScaleTransform 사용 (확대/축소 효과) -->
+          <!-- IndicatorScaleX: 동적 리소스 -->
+          <!-- IndicatorScaleY: 동적 리소스 -->
+          <ScaleTransform 
+              ScaleX="{DynamicResource IndicatorScaleX}"
+              ScaleY="{DynamicResource IndicatorScaleY}"/>
+        </Grid.RenderTransform>
+
+        <!-- Ellipse1: 첫 번째 원형 요소, 애니메이션으로 이동하고 
+             투명도가 변경됨, IndicatorForeground: 원의 색상 
+             Opacity="0" 초기 투명도 값 -->
+        <Ellipse x:Name="Ellipse1" Width="8" Height="8"
+            Fill="{DynamicResource IndicatorForeground}"
+            Opacity="0" >
+          <Ellipse.RenderTransform>
+            <!-- 원의 초기 위치를 지정하는 TranslateTransform 
+            (X 방향으로 이동) -->
+            <TranslateTransform X="-75" />
+          </Ellipse.RenderTransform>
+        </Ellipse>
+
+        <!-- Ellipse2: 두 번째 원형 요소, Ellipse1과 동일한 방식으로 
+             처리됨 -->
+        <Ellipse x:Name="Ellipse2" Width="8" Height="8"
+            Fill="{DynamicResource IndicatorForeground}"
+            Opacity="0" >
+          <Ellipse.RenderTransform>
+            <TranslateTransform X="-75" />
+          </Ellipse.RenderTransform>
+        </Ellipse>
+
+        <!-- Ellipse3: 세 번째 원형 요소, Ellipse1과 동일한 방식으로 
+             처리됨 -->
+        <Ellipse x:Name="Ellipse3" Width="8" Height="8"
+            Fill="{DynamicResource IndicatorForeground}"
+            Opacity="0">
+          <Ellipse.RenderTransform>
+            <TranslateTransform X="-75" />
+          </Ellipse.RenderTransform>
+        </Ellipse>
+
+        <!-- Ellipse4: 네 번째 원형 요소, Ellipse1과 동일한 방식으로 
+             처리됨 -->
+        <Ellipse x:Name="Ellipse4" Width="8" Height="8"
+            Fill="{DynamicResource IndicatorForeground}"
+            Opacity="0" >
+          <Ellipse.RenderTransform>
+            <TranslateTransform X="-75" />
+          </Ellipse.RenderTransform>
+        </Ellipse>
+      </Grid>
+
+      <!-- VisualStateManager: 상태에 따라 애니메이션을 적용하는 상태 그룹 -->
+      <VisualStateManager.VisualStateGroups>
+
+        <!-- "ActiveStates" 그룹: 활성화된 상태의 애니메이션 정의 -->
+        <VisualStateGroup x:Name="ActiveStates">
+
+          <!-- "Active" 상태: 활성화된 상태에서 원들이 애니메이션으로 
+               이동하고 투명도 변경
+               AutoReverse -> 애니메이션이 끝나면 자동으로 반대로 재생
+               BeginTime -> 애니매이션 시작 시간 
+               RepeatBehavior -> 애니매이션 반복 
+               Duration -> 애니메이션 전체 시간 (2.7초) -->
+          <VisualState x:Name="Active">
+            <Storyboard AutoReverse="True" BeginTime="00:00:00"
+                RepeatBehavior="Forever" Duration="0:0:2.7" >
+
+              <!-- Ellipse1 애니메이션: X 좌표 이동과 투명도 변화 
+                   BeginTime -> 0.3초후 시작, 
+                   TargetName -> Ellipse1 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.3"
+                  Storyboard.TargetName="Ellipse1"
+                  Storyboard.TargetProperty="(UIElement.RenderTransform).
+                                              (TranslateTransform.X)" >
+
+                <!-- X 좌표 애니메이션: 원이 이동하는 경로 -->
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse2 애니메이션: X 좌표 이동과 투명도 변화 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.3"
+                  Storyboard.TargetName="Ellipse1"
+                  Storyboard.TargetProperty="(UIElement.Opacity)" >
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse2 애니메이션: X 좌표 이동과 투명도 변화 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.5"
+                  Storyboard.TargetName="Ellipse2"
+                  Storyboard.TargetProperty="(UIElement.RenderTransform)
+                                              .(TranslateTransform.X)">
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse2 투명도 애니메이션 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.5"
+                  Storyboard.TargetName="Ellipse2"
+                  Storyboard.TargetProperty="(UIElement.Opacity)">
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse3 애니메이션: X 좌표 이동과 투명도 변화 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.7"
+                  Storyboard.TargetName="Ellipse3"
+                  Storyboard.TargetProperty="(UIElement.RenderTransform)
+                                              .(TranslateTransform.X)">
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse3 투명도 애니메이션 -->
+              <DoubleAnimationUsingKeyFrames
+                            BeginTime="00:00:00.7"
+                            Storyboard.TargetName="Ellipse3"
+                            Storyboard.TargetProperty="(UIElement.Opacity)" >
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse4 애니메이션: X 좌표 이동과 투명도 변화 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.9"
+                  Storyboard.TargetName="Ellipse4"
+                  Storyboard.TargetProperty="(UIElement.RenderTransform)
+                                              .(TranslateTransform.X)">
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="0" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="15" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="75" />
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Ellipse4 투명도 애니메이션 -->
+              <DoubleAnimationUsingKeyFrames
+                  BeginTime="00:00:00.9"
+                  Storyboard.TargetName="Ellipse4"
+                  Storyboard.TargetProperty="(UIElement.Opacity)">
+                <LinearDoubleKeyFrame KeyTime="00:00:00.60" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:00.95" Value="1" />
+                <LinearDoubleKeyFrame KeyTime="00:00:01.55" Value="0" />
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+
+          <!-- Inactive 상태: 비활성화 상태는 별다른 애니메이션 없이 비워둠 -->
+          <VisualState x:Name="Inactive" />
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>

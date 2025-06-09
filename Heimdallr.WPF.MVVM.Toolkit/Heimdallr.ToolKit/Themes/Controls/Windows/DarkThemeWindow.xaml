@@ -14,6 +14,7 @@
     <Setter Property="MinWidth" Value="200" />
     <Setter Property="MinHeight" Value="200" />
     <Setter Property="Foreground" Value="#FFFFFF" />
+    <Setter Property="DimmingColor" Value="Bisque" />
     <Setter Property="BorderBrush" Value="#FF141414" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="UseLayoutRounding" Value="True" />
@@ -47,7 +48,7 @@
               <ctrls:HeimdallrGrid
                 Grid.Row="0"
                 Background="{Binding TitleHeaderBackground, RelativeSource={RelativeSource TemplatedParent}}"
-                Columns="*, Auto, Auto, Auto"
+                Columns="*, Auto, Auto, Auto, Auto"
                 Rows="Auto">
                 <ctrls:DraggableBar
                   x:Name="PART_DragBar"
@@ -61,9 +62,10 @@
                   Content="{TemplateBinding Title}"
                   Foreground="{TemplateBinding Foreground}"
                   IsHitTestVisible="False" />
-                <ctrls:MinimizeButton x:Name="PART_MinButton" Grid.Column="1" />
-                <ctrls:MaximizeButton x:Name="PART_MaxButton" Grid.Column="2" />
-                <ctrls:CloseButton x:Name="PART_CloseButton" Grid.Column="3" />
+                <ctrls:HeimdallrSwitchCheckBox x:Name="cbToogleMenu" ToolTip="MENU" Grid.Column="1" />
+                <ctrls:MinimizeButton x:Name="PART_MinButton" Grid.Column="2" />
+                <ctrls:MaximizeButton x:Name="PART_MaxButton" Grid.Column="3" />
+                <ctrls:CloseButton x:Name="PART_CloseButton" Grid.Column="4" />
               </ctrls:HeimdallrGrid>
 
               <!-- ClipToBounds="False" 콘텐츠가 영역을 넘어도 잘리지 않음.  -->
