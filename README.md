@@ -94,6 +94,10 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - [x] LoadingSpinnerType.cs [열거형]
  - **Resources [Folder]**
    - [x] Bar, Blocks, BouncingDot, Cogs, Cupertino, Dashes, DotCircle, DoubleBounce, Ellipse, Escalade, FourDots, Grid, None, Piston, Pulse, Ring, Swirl, ThreeDots, Teist, Wave XAML 파일
+ - **Views [Folder]**
+   - [x] LoadingSpinner.cs [LoadingSpinner 컨트롤 정의 (로딩 중 표시하는 스피너)]
+   - [x] VisualStates.cs [Visibility 관련 상태들] 
+   
 **■ Infrastructure [Folder]** [기본구조]
  - **AutoWiring [Folder]** [자동연결]
    - [x] AutoWireManager.cs [View와 ViewModel을 자동으로 연결(Auto-Wiring)]
@@ -159,6 +163,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
      - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
    - **Colors [Folder]**
      - [x] Color.xam [Color 항목]
+  - **ContentConttrol [Folder]**
+     - [x] SliderContentMenu.xam [슬라이드 메뉴(햄버거메뉴)]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
@@ -203,6 +209,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] MinimizeButton.cs [작게 Button]
   - **CheckBox [Folder]**
     - [x] HeimdallrSwitchCheckBox.cs [Check Button 양옆으로 이동 Control]
+   - **ContentConttrol [Folder]**
+    - [x] SliderContentMenu.cs [Slider 메뉴 ContentControl, 열기, 에니메애션, 너비]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
     - [x] HeimdallrGrid.cs [AutoGrid 를 확장]
