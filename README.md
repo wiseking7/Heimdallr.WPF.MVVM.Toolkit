@@ -39,7 +39,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] ComparisonConverter.cs [CheckBox, RadioButton, ComboBox, ListBox 등 선택 상태를 비교 기반으로 관리]
   - [x] ComparisonMultiConverter.cs [다중 값(MultiBinding) 비교]
   - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
+  - [x] DepthConverter.cs [하위자식 마진 구하기 예 TreeView]
   - [x] EnumToTextConverter.cs [Enum 값을 문자열로 변환]
+  - [x] HeimdallrRingSpinnerConverter.cs [여러 값을 하나로 변환하는 로직을 담고 있음, 여러 값을 입력으로 받아 하나의 결과를 반환] 
   - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
   - [x] IconSizeConverter.cs [HeimdallrTreeViewItem 의 Icon 의 크기 조정]
   - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
@@ -81,6 +83,21 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] DimmingManager.cs [전역적으로 ViewModel 또는 다른 코드에서 UI와의 의존성 없이 디밍 상태를 변경]
   - [x] ThemeManager.cs [테마의 색상변경]
 
+**■ Indicators [Folder -> Spinner Type]**
+ - **Extensions [Folder]**
+   - [x] DispatcherExtension.cs [지정된 시간 이후에 UI 스레드에서 작업을 실행합니다.]
+   - [x] EscaladeHelper.cs [Path 개체의 StrokeDashArray 속성을 제어하는 도우미 클래스] 
+ - **Helpers [Folder]**
+   - [x] EllipseHelper.cs [Ellipse 컨트롤의 StrokeDashArray 속성을 제어하는 제어하는 도우미 클래스] 
+ - **Models [Folder]**
+   - [x] LoadingIndicator.cs [Indicator(표기시) 의 형식을 지정 예:Twist, Bar, Ring...]
+   - [x] LoadingSpinnerType.cs [열거형]
+ - **Resources [Folder]**
+   - [x] Bar, Blocks, BouncingDot, Cogs, Cupertino, Dashes, DotCircle, DoubleBounce, Ellipse, Escalade, FourDots, Grid, None, Piston, Pulse, Ring, Swirl, ThreeDots, Teist, Wave XAML 파일
+ - **Views [Folder]**
+   - [x] LoadingSpinner.cs [LoadingSpinner 컨트롤 정의 (로딩 중 표시하는 스피너)]
+   - [x] VisualStates.cs [Visibility 관련 상태들] 
+   
 **■ Infrastructure [Folder]** [기본구조]
  - **AutoWiring [Folder]** [자동연결]
    - [x] AutoWireManager.cs [View와 ViewModel을 자동으로 연결(Auto-Wiring)]
@@ -146,6 +163,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
      - [x] HeimdallrSwitchCheckBox.xaml [Check Button 양옆으로 이동]
    - **Colors [Folder]**
      - [x] Color.xam [Color 항목]
+  - **ContentConttrol [Folder]**
+     - [x] SliderContentMenu.xam [슬라이드 메뉴(햄버거메뉴)]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
   - **Icon [Folder]**
@@ -190,6 +209,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] MinimizeButton.cs [작게 Button]
   - **CheckBox [Folder]**
     - [x] HeimdallrSwitchCheckBox.cs [Check Button 양옆으로 이동 Control]
+   - **ContentConttrol [Folder]**
+    - [x] SliderContentMenu.cs [Slider 메뉴 ContentControl, 열기, 에니메애션, 너비]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
     - [x] HeimdallrGrid.cs [AutoGrid 를 확장]

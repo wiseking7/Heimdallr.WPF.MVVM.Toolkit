@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.5.18</Version>
+	<Version>1.6.10</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
