@@ -41,7 +41,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
   - [x] DepthConverter.cs [하위자식 마진 구하기 예 TreeView]
   - [x] EnumToTextConverter.cs [Enum 값을 문자열로 변환]
-  - [x] HeimdallrRingSpinnerConverter.cs [여러 값을 하나로 변환하는 로직을 담고 있음, 여러 값을 입력으로 받아 하나의 결과를 반환] 
+  - [x] HeimdallrRingSpinnerConverter.cs [여러 값을 하나로 변환하는 로직을 담고 있음, 여러 값을 입력으로 받아 하나의 결과를 반환]
+  - [x] HoldSubmitButtonConverter.cs [Width/Height 값을 일정 비율로 계산하여 반환 -> HoldSubmitButton.xaml 에 사용]
+  - [x] HoldSubmitButtonDurationSecondsSubtractionConverter.cs [Duration에서 일정 시간을 뺀 Duration 반환 (애니메이션 시간 제어용) -> HoldSubmitButton.xaml 에 사용 ]
   - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
   - [x] IconSizeConverter.cs [HeimdallrTreeViewItem 의 Icon 의 크기 조정]
   - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
@@ -157,6 +159,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 - **Controls [Folder]**
    - **Button [Folder]**
      - [x] CloseButton.xaml [닫기 Button]
+     - [x] HoldSubmitButton.xaml [애니메이션 버튼 Ellipse]
      - [x] MaximizeButton.xaml [크게 Button]
      - [x] MinimizeButton.xaml [작게 Button]
    - **CheckBox [Folder]**
@@ -205,6 +208,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] DraggableBar.cs [Border Drag]
   - **Button [Folder]**
     - [x] CloseButton.cs [닫기 Button]
+    - [x] HoldSubmitButton.cs [애니메이션 버튼 EllipseFill, BgEllipseFill, HoldEllipseFill 색상구현 및 HoldDuration 구현]
     - [x] MaximizeButton.cs [크게 Button]
     - [x] MinimizeButton.cs [작게 Button]
   - **CheckBox [Folder]**
