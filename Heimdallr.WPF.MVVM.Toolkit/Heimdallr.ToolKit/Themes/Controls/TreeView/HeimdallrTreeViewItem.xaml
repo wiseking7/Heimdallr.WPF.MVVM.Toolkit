@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters"
-    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls"
+    xmlns:enums="clr-namespace:Heimdallr.ToolKit.Enums">
 
   <Style TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
     <Setter Property="SelectionCommand" 
@@ -21,28 +22,30 @@
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
 
-              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="10" Grid.ColumnSpan="2">
+              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2"
+                          Margin="{Binding Depth, Converter={cnvts:DepthConverter}}">
                 <!-- 사용자 지정 업/다운 아이콘 Viewbox -->
-                <Viewbox x:Name="ExpandCollapseIcon" Margin="0,0,6,0"
-                         Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
-                         Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}">
+                <Viewbox x:Name="ExpandCollapseIcon" Margin="{TemplateBinding Margin}"
+                         Height="{TemplateBinding IconHeight}"
+                         Width="{TemplateBinding IconWidth}">
                   <Path x:Name="ExpandCollapsePath"
                         Fill="{TemplateBinding Fill}"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
-                        Data="{TemplateBinding Data}" />
+                        Data="{TemplateBinding Data}"/>
                 </Viewbox>
 
                 <!-- 이미지 아이콘 (사용자가 Image 지정한 경우) -->
                 <Image x:Name="ItemImage"
-                       Width="{TemplateBinding Width}"
-                       Height="{TemplateBinding Height}"
-                       Source="{TemplateBinding Source}"
-                       Visibility="Collapsed"
-                       Margin="0,0,6,0"/>
+                      Width="{TemplateBinding IconWidth}"
+                      Height="{TemplateBinding IconHeight}"
+                      Source="{TemplateBinding Source}"
+                      Visibility="Collapsed"
+                       Stretch="UniformToFill"
+                      Margin="{TemplateBinding Margin}"/>
 
                 <!-- 헤더 텍스트 -->
-                <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center"/>
+                <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" Margin="5 0 0 0"/>
               </StackPanel>
             </Grid>
 
@@ -61,7 +64,7 @@
               <Setter TargetName="Item" Property="Background" Value="#004EFF"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="Item" Property="Background" Value="#D1E3FF"/>
+              <Setter TargetName="Item" Property="Background" Value="Transparent"/>
             </Trigger>
 
             <!-- 모드에 따라 이미지/패스 표시 -->

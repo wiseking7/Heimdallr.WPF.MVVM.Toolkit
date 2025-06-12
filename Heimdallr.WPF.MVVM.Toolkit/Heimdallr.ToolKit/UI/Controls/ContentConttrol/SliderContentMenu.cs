@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Heimdallr.ToolKit.Enums;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
@@ -139,5 +140,61 @@ public class SliderContentMenu : ContentControl
     BeginAnimation(WidthProperty, closingAnimation);
   }
   #endregion
+}
+
+public class SlideContentMenuItemRadio : RadioButton
+{
+  static SlideContentMenuItemRadio()
+  {
+    DefaultStyleKeyProperty.OverrideMetadata(typeof(SlideContentMenuItemRadio),
+      new FrameworkPropertyMetadata(typeof(SlideContentMenuItemRadio)));
+  }
+}
+
+public class SlideContentMenuItem : HeaderedItemsControl
+{
+  static SlideContentMenuItem()
+  {
+    DefaultStyleKeyProperty.OverrideMetadata(typeof(SlideContentMenuItem),
+        new FrameworkPropertyMetadata(typeof(SlideContentMenuItem)));
+  }
+
+  // 확장/축소 속성
+  public bool IsExpanded
+  {
+    get => (bool)GetValue(IsExpandedProperty);
+    set => SetValue(IsExpandedProperty, value);
+  }
+
+  public static readonly DependencyProperty IsExpandedProperty =
+      DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(SlideContentMenuItem),
+          new PropertyMetadata(false));
+
+  public PathIconType PathIcon
+  {
+    get => (PathIconType)GetValue(PathIconProperty);
+    set => SetValue(PathIconProperty, value);
+  }
+  public static readonly DependencyProperty PathIconProperty =
+      DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(SlideContentMenuItem),
+          new PropertyMetadata(PathIconType.None));
+
+  public ImageType Image
+  {
+    get => (ImageType)GetValue(ImageProperty);
+    set => SetValue(ImageProperty, value);
+  }
+  public static readonly DependencyProperty ImageProperty =
+      DependencyProperty.Register(nameof(Image), typeof(ImageType), typeof(SlideContentMenuItem),
+          new PropertyMetadata(ImageType.None));
+
+  public IconType Icon
+  {
+    get => (IconType)GetValue(IconProperty);
+    set => SetValue(IconProperty, value);
+  }
+  public static readonly DependencyProperty IconProperty =
+      DependencyProperty.Register(nameof(Icon), typeof(IconType), typeof(SlideContentMenuItem),
+          new PropertyMetadata(IconType.None));
 }
 

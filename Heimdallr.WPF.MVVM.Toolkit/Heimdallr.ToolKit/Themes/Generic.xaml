@@ -8,6 +8,7 @@
   <ResourceDictionary.MergedDictionaries>
 
     <!-- Custom Control (Toggle, Button, TextBox, ListView 등 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HoldSubmitButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentConttrol/SliderContentMenu.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />

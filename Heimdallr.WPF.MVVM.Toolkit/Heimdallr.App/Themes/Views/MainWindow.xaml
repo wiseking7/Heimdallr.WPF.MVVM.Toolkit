@@ -6,6 +6,32 @@
     xmlns:spinn="clr-namespace:Heimdallr.ToolKit.Indicators;assembly=Heimdallr.ToolKit"
     xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
 
+  <Style x:Key="FlatMenuButtonStyle" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="FontSize" Value="13"/>
+    <Setter Property="Foreground" Value="Black"/>
+    <Setter Property="Padding" Value="4"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+            <ContentPresenter />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter Property="Background" Value="#F5F5F5"/>
+            </Trigger>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter Property="Background" Value="#E0E0E0"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
 
   <Style TargetType="{x:Type views:MainWindow}"
           BasedOn="{StaticResource {x:Type ctrls:DarkThemeWindow}}">
@@ -16,10 +42,10 @@
           <Grid>
             <Grid.RowDefinitions>
               <RowDefinition Height="Auto"/>
-              <RowDefinition Height="5"/>
-              <RowDefinition Height="2*"/>
-              <RowDefinition Height="5*"/>
-              <RowDefinition Height="2*"/>
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition Height="100"/>
+              <RowDefinition />
 
             </Grid.RowDefinitions>
 
@@ -68,30 +94,113 @@
 
             <!--#region -->
             <ctrls:HeimdallrTreeView Grid.Row="2" >
-              <ctrls:HeimdallrTreeViewItem Header="제품" PathIcon="ChevronDownEllipse" FontSize="16" >
-                <ctrls:HeimdallrTreeViewItem Header="단위" PathIcon="UnitTextEllipse" Fill="Blue" />
-                <ctrls:HeimdallrTreeViewItem Header="가격" PathIcon="Price" Fill="Beige" />
+              <ctrls:HeimdallrTreeViewItem Header="제품" PathIcon="ChevronDownEllipse" FontSize="14" IconWidth="24" IconHeight="24"
+                                           Padding="10">
+                <ctrls:HeimdallrTreeViewItem Header="단위" PathIcon="UnitTextEllipse" FontSize="10" Fill="Blue" IconWidth="20" IconHeight="20"
+                                             />
+                <ctrls:HeimdallrTreeViewItem Header="가격" FontSize="10" PathIcon="Price" Fill="Beige"
+                                            />
               </ctrls:HeimdallrTreeViewItem>
-              <ctrls:HeimdallrTreeViewItem Header="설정" PathIcon="ChevronDownEllipse">
-                <ctrls:HeimdallrTreeViewItem Header="정보" Image="AmazonPrime" />
+              <ctrls:HeimdallrTreeViewItem Header="설정" PathIcon="ChevronDownEllipse" FontSize="14" IconWidth="24" IconHeight="24">
+                <ctrls:HeimdallrTreeViewItem Header="정보" Image="AmazonPrime" FontSize="10" IconWidth="20" IconHeight="20" />
               </ctrls:HeimdallrTreeViewItem>
             </ctrls:HeimdallrTreeView>
             <!--#endregion-->
 
-            <spinn:LoadingSpinner SpinnerType="Bar" Grid.Row="3" Background="Orange"
+            <!--<spinn:LoadingSpinner SpinnerType="Bar" Grid.Row="3" Background="Orange"
                                   LoadingContent="OK" IsLoading="True"
-                                  LoadingContentMargin="10"/>
+                                  LoadingContentMargin="10"/>-->
 
-
+            <ctrls:HoldSubmitButton Grid.Row="3"
+                                    Width="200" Height="200"
+                                    EllipseFill="AliceBlue"
+                                    BgEllipseFill="Beige"
+                                    HoldEllipseFill="BlanchedAlmond"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center"
+                                    HoldDuration="0:0:0.5"
+                                    Command="{Binding HoldSubmitButtonCommamd}">
+              <ctrls:HoldSubmitButton.Content>
+                <StackPanel Orientation="Horizontal">
+                  <ctrls:HeimdallrIcon PathIcon="Account" Fill="Orange" />
+                  <TextBlock Text="Hold Me" Foreground="Black" />
+                </StackPanel>
+              </ctrls:HoldSubmitButton.Content>
+            </ctrls:HoldSubmitButton>
             <!--<ctrls:HeimdallrIcon Grid.Row="3" PathIcon="HeimdallrLogo" Fill="Orange" Height="50" Width="50" />-->
 
             <!--<ctrls:HeimdallrSwitchCheckBox Grid.Row="4" Width="80" Height="35" ToolTip="MENU" />-->
 
-            <ctrls:SliderContentMenu Grid.Row="4" IsOpen="{Binding IsChecked, ElementName=cbToggleMenu}">
-              <ctrls:SliderContentMenu.Content>
-                <TextBlock Text="OK 좋아요 잘되네요" />
-              </ctrls:SliderContentMenu.Content>
-            </ctrls:SliderContentMenu>
+            <StackPanel Background="White" Width="240" Grid.Row="4">
+              <!-- 상위 메뉴 항목 -->
+              <Expander Header="Getting Started" IsExpanded="False" Background="Transparent" BorderThickness="0">
+                <Expander.HeaderTemplate>
+                  <DataTemplate>
+                    <Grid Margin="8">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <!-- 아이콘 -->
+                        <ColumnDefinition Width="*" />
+                        <!-- 텍스트 -->
+                        <ColumnDefinition Width="24"/>
+                        <!-- > 아이콘 -->
+                      </Grid.ColumnDefinitions>
+
+                      <!-- 좌측 아이콘 -->
+                      <ctrls:HeimdallrIcon Icon="None"
+                               Width="16" Height="16"
+                               Fill="Gray"
+                               VerticalAlignment="Center"/>
+
+                      <!-- 텍스트 -->
+                      <TextBlock Grid.Column="1"
+                     Text="{Binding}"
+                     VerticalAlignment="Center"
+                     FontSize="14"
+                     Foreground="Black"/>
+
+                      <!-- 오른쪽 화살표 -->
+                      <ctrls:HeimdallrIcon Grid.Column="2"
+                               PathIcon="ChevronRightEllipse"
+                               Width="10" Height="10"
+                               Fill="Gray"
+                               VerticalAlignment="Center"/>
+                    </Grid>
+                  </DataTemplate>
+                </Expander.HeaderTemplate>
+
+                <!-- 하위 항목 목록 -->
+                <StackPanel>
+                  <Button Style="{StaticResource FlatMenuButtonStyle}" Content="Overview" Padding="32,4"/>
+                  <Button Style="{StaticResource FlatMenuButtonStyle}" Content="Setup" Padding="32,4"/>
+                </StackPanel>
+              </Expander>
+
+              <!-- 또 다른 상위 메뉴 항목 -->
+              <Expander Header="Developer Guides" IsExpanded="False" Background="Transparent" BorderThickness="0">
+                <Expander.HeaderTemplate>
+                  <DataTemplate>
+                    <Grid Margin="8">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="24"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="24"/>
+                      </Grid.ColumnDefinitions>
+                      <ctrls:HeimdallrIcon Icon="None" Width="16" Height="16" Fill="Gray" VerticalAlignment="Center"/>
+                      <TextBlock Grid.Column="1" Text="{Binding}" VerticalAlignment="Center" FontSize="14"/>
+                      <ctrls:HeimdallrIcon Grid.Column="2" PathIcon="Product" Width="10" Height="10" Fill="Gray" VerticalAlignment="Center"/>
+                    </Grid>
+                  </DataTemplate>
+                </Expander.HeaderTemplate>
+
+                <StackPanel>
+                  <Button Style="{StaticResource FlatMenuButtonStyle}" Content="Routing" Padding="32,4"/>
+                  <Button Style="{StaticResource FlatMenuButtonStyle}" Content="Services" Padding="32,4"/>
+                </StackPanel>
+              </Expander>
+            </StackPanel>
+
+
           </Grid>
         </Border>
 

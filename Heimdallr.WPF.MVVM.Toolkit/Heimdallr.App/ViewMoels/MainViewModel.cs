@@ -3,6 +3,7 @@ using Heimdallr.ToolKit.Commons;
 using Heimdallr.ToolKit.Models.TreeViewTest;
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Windows;
 
 namespace Heimdallr.App.ViewMoels;
 
@@ -11,6 +12,13 @@ public partial class MainViewModel : ObservableBase
   private readonly IEventAggregator? _eventAggregator;
   public string? TextMessage { get; set; }
   public ObservableCollection<Person> People { get; set; }
+
+  public DelegateCommand HoldSubmitButtonCommamd => new DelegateCommand(ExecuteHoldSubmit);
+
+  private void ExecuteHoldSubmit()
+  {
+    MessageBox.Show("Hold Button");
+  }
 
   public MainViewModel(IEventAggregator eventAggregator)
   {

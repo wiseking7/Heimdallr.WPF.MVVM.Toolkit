@@ -1,5 +1,4 @@
 ﻿using Heimdallr.ToolKit.Enums;
-using Heimdallr.ToolKit.Models.TreeViewTest;
 using Heimdallr.ToolKit.Resources.PathDataStore;
 using System.Diagnostics;
 using System.IO;
@@ -13,12 +12,47 @@ namespace Heimdallr.ToolKit.UI.Controls;
 
 public class HeimdallrTreeViewItem : TreeViewItem
 {
-  #region CornerRadius
+  #region 확장시 사용될 (CornerRadius, ExpandIcon, CollapseIcon, Data, Fill, Source, Mode
 
   public static readonly DependencyProperty CornerRadiusProperty =
     DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius),
       typeof(HeimdallrTreeViewItem),
  new FrameworkPropertyMetadata());
+
+  // 아이콘 너비 조정
+  public double IconWidth
+  {
+    get => (double)GetValue(IconWidthProperty);
+    set => SetValue(IconWidthProperty, value);
+  }
+
+  public static readonly DependencyProperty IconWidthProperty =
+      DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(16.0)); // 기본값 16
+
+  // 아이콘 높이 조정
+  public double IconHeight
+  {
+    get => (double)GetValue(IconHeightProperty);
+    set => SetValue(IconHeightProperty, value);
+  }
+
+  public static readonly DependencyProperty IconHeightProperty =
+      DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(16.0)); // 기본값 16
+
+  // 선택시 명령
+  public ICommand SelectionCommand
+  {
+    get { return (ICommand)GetValue(SelectionCommandProperty); }
+    set { SetValue(SelectionCommandProperty, value); }
+  }
+
+  public static readonly DependencyProperty SelectionCommandProperty =
+      DependencyProperty.Register("SelectionCommand",
+        typeof(ICommand), typeof(HeimdallrTreeViewItem),
+        new PropertyMetadata(null));
+
 
   public CornerRadius CornerRadius
   {
@@ -26,6 +60,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(CornerRadiusProperty, value);
   }
 
+  // 확장 시 사용될 아이콘 Geometry 정의
   public Geometry ExpandIcon
   {
     get => (Geometry)GetValue(ExpandIconProperty);
@@ -35,6 +70,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(ExpandIcon), typeof(Geometry), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(null));
 
+  // 축소시 표기될 아이콘 
   public Geometry CollapseIcon
   {
     get => (Geometry)GetValue(CollapseIconProperty);
@@ -44,7 +80,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(CollapseIcon), typeof(Geometry), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(null));
 
-
+  // 실제 표시될 Path Data (Icon 으로 렌더링 됨)
   public Geometry Data
   {
     get => (Geometry)GetValue(DataProperty);
@@ -54,6 +90,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Data), typeof(Geometry), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(null));
 
+  // 아이콘 색상
   public Brush Fill
   {
     get => (Brush)GetValue(FillProperty);
@@ -63,6 +100,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(Brushes.Silver));
 
+  // 이미지 아이콘으로 사용할 경우의 소스 경로
   public ImageSource Source
   {
     get => (ImageSource)GetValue(SourceProperty);
@@ -73,6 +111,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Source), typeof(ImageSource), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(null));
 
+  // 아이콘이 어떤 모드로 동작하는지 (PathIcon, Image, Icon)
   public IconMode Mode
   {
     get { return (IconMode)GetValue(ModeProperty); }
@@ -82,7 +121,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Mode), typeof(IconMode), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(IconMode.None));
 
-
+  // 정해진 enum에 따라 Path 형태 아이콘을 지정
   public IconType Icon
   {
     get { return (IconType)GetValue(IconProperty); }
@@ -92,6 +131,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Icon), typeof(IconType), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(IconType.None, IconPropertyChanged));
 
+  //  // Icon이 변경되면 Geometry 값을 파싱하여 설정
   private static void IconPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     HeimdallrTreeViewItem heimdallrTreeViewItemIcon = (HeimdallrTreeViewItem)d;
@@ -102,6 +142,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     heimdallrTreeViewItemIcon.Mode = IconMode.Icon;
   }
 
+  // 이미지 아이콘 사용 시 base64 이미지를 로드하여 설정
   public ImageType Image
   {
     get => (ImageType)GetValue(ImageProperty);
@@ -112,6 +153,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(Image), typeof(ImageType), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(ImageType.None, ImagePropertyChanged));
 
+  // 변경되면 BitmapImage 값을 파싱하여 설정
   private static void ImagePropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     HeimdallrTreeViewItem heimdallrTreeViewItemImage = (HeimdallrTreeViewItem)d;
@@ -146,7 +188,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     }
   }
 
-
+  // Path 아이콘을 사용하며 PathGeometry로 변환하여 설정
   public PathIconType PathIcon
   {
     get => (PathIconType)GetValue(PathIconProperty);
@@ -180,17 +222,6 @@ public class HeimdallrTreeViewItem : TreeViewItem
 
   #endregion
 
-  public ICommand SelectionCommand
-  {
-    get { return (ICommand)GetValue(SelectionCommandProperty); }
-    set { SetValue(SelectionCommandProperty, value); }
-  }
-
-  public static readonly DependencyProperty SelectionCommandProperty =
-      DependencyProperty.Register("SelectionCommand",
-        typeof(ICommand), typeof(HeimdallrTreeViewItem),
-        new PropertyMetadata(null));
-
   static HeimdallrTreeViewItem()
   {
     DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrTreeViewItem),
@@ -202,19 +233,67 @@ public class HeimdallrTreeViewItem : TreeViewItem
     return new HeimdallrTreeViewItem();
   }
 
+  private PathIconType _originalPathIcon;
   public HeimdallrTreeViewItem()
   {
-    MouseLeftButtonUp += HeimdallrTreeViewItem_MouseLeftButtonUp;
+    Loaded += HeimdallrTreeViewItem_Loaded;
+    MouseDoubleClick += HeimdallrTreeViewItem_MouseDoubleClick;
+    Expanded += HeimdallrTreeViewItem_Expanded;
+    Collapsed += HeimdallrTreeViewItem_Collapsed;
   }
 
-  private void HeimdallrTreeViewItem_MouseLeftButtonUp(object sender,
+  // 초기 PathIcon 저장
+  private void HeimdallrTreeViewItem_Loaded(object sender, RoutedEventArgs e)
+  {
+    _originalPathIcon = PathIcon;
+  }
+
+  // 확장 시: 원래 PathIcon이 DownEllipse일 때만 UpEllipse로 변경
+  private void HeimdallrTreeViewItem_Expanded(object sender, RoutedEventArgs e)
+  {
+    if (_originalPathIcon == PathIconType.ChevronDownEllipse)
+      this.PathIcon = PathIconType.ChevronUpEllipse;
+
+    e.Handled = false;
+  }
+
+  // 축소 시: 원래 PathIcon이 DownEllipse일 때만 다시 Down으로 복원
+  private void HeimdallrTreeViewItem_Collapsed(object sender, RoutedEventArgs e)
+  {
+    if (_originalPathIcon == PathIconType.ChevronDownEllipse)
+      this.PathIcon = PathIconType.ChevronDownEllipse;
+
+    e.Handled = false;
+  }
+
+  private void HeimdallrTreeViewItem_MouseDoubleClick(object sender,
     MouseButtonEventArgs e)
   {
-    e.Handled = true;
+    // FileItem 클래스가 있을 경우
+    //if (DataContext is FileItem items)
+    //{
+    //  // FileItem이면 사용자 정의 명령 실행
+    //  e.Handled = true;
+    //  SelectionCommand?.Execute(items);
+    //}
+    //else
+    //{
+    //  // FileItem이 아니면 확장/축소를 수동으로 토글
+    //  if (sender is HeimdallrTreeViewItem item)
+    //  {
+    //    item.IsExpanded = !item.IsExpanded; // 확장 상태 반전
+    //    e.Handled = true; // 기본 이벤트는 처리 완료 (트리거 중복 방지)
+    //  }
+    //}
 
-    if (DataContext is FileItem items)
+    // 없을 경우
+    if (sender is HeimdallrTreeViewItem item)
     {
-      SelectionCommand?.Execute(items);
+      // 현재 상태 반전 (열기/닫기)
+      item.IsExpanded = !item.IsExpanded;
+
+      // 이벤트 소비
+      e.Handled = true;
     }
   }
 
