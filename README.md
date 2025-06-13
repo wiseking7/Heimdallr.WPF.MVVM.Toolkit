@@ -117,11 +117,6 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] IThemeManager.cs [아무 멤버가 없는 인터페이스지만, 특정 타입을 구분하는 데 사용]
 
 **■ Models [Folder]**
- - **TreeViewTest [Folder]**
-   - [x] FileCreator.cs [Text 폴더 생성]
-   - [x] FileItem.cs [TreeView 하위 자식 항목]
-   - [x] TreeViewInfo.cs [TreeView 정보]
-   - [x] TreeViewInfoBase.cs [TreeView 의 이름, 깊이, 타입 설정]
   - [x] FontFamilyUnit.cs [폰트 설정을 구성하고 외부 YAML 파일과 매핑되도록 설계된 폰트]
   - [x] FontPack.cs [FontFamilyUnit 폰트 설정]
   - [x] LanguagePack.cs [LanguageUnit Lanuage 설정]
@@ -167,9 +162,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
    - **Colors [Folder]**
      - [x] Color.xam [Color 항목]
   - **ContentConttrol [Folder]**
+     - [x] HeimdallrDropdownContentMenu.xaml [DropDown Menu]
      - [x] SliderContentMenu.xam [슬라이드 메뉴(햄버거메뉴)]
-  - **DatePicker [Folder]**
-  - **Grid [Folder]**
   - **Icon [Folder]**
     - [x] HeimdallrIcon.xaml [Heimdallr Icon]
   - **ListBox [Folder]**
@@ -178,13 +172,19 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] HeimdallrGridView.xaml [GridViewColumnHeader Style]
     - [x] HeimdallrListView.xaml [ListView Style]
     - [x] HeimdallrListViewItem.xaml [ListViewItem Style]
+  - **PassowrdBox [Folder]**
+    - [x] HeimdallrIconWaterMarkPasswordBox.xaml [Icon & WaterMark] 
   - **Region [Folder]**
     - [x] HeimdallrRegion.xaml [Region Style]
   - **Slider [Folder]**
     - [x] RiotSlider.xaml [Slider Style]
   - **SliderPanel [Folder]**
-    - [x] HeimdallrSlidingPanel.xaml [Slider Style] 
+    - [x] HeimdallrSlidingPanel.xaml [Slider Style]
+  - **Spinner [Folder]**
+    - [x] HeimdallrRingSpinner.xaml [Spinner Style] 
   - **StackPanel [Folder]**
+  - **TextBox [Folder]**
+    - [x] HeimdallrIconWaterMarkTextBox.xaml [Icon & WaterMark] 
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.xaml [Thumb Style]
   - **ToggleButton [Folder]**
@@ -214,6 +214,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **CheckBox [Folder]**
     - [x] HeimdallrSwitchCheckBox.cs [Check Button 양옆으로 이동 Control]
    - **ContentConttrol [Folder]**
+    - [x] HeimdallrDropdownContentMenu.cs [DropDown]
     - [x] SliderContentMenu.cs [Slider 메뉴 ContentControl, 열기, 에니메애션, 너비]
   - **DatePicker [Folder]**
   - **Grid [Folder]**
@@ -227,17 +228,23 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **ListView [Folder]**
     - [x] HeimdallrGridView.cs [GridViewColumnHeader Contrl]
     - [x] HeimdallrListView.cs [ListView Control]
-    - [x] HeimdallrListViewItem.cs [ListViewItem Control] 
+    - [x] HeimdallrListViewItem.cs [ListViewItem Control]
+  - **PassowrdBox [Folder]**
+    - [x] HeimdallrIconWaterMarkPasswordBox.cs [Icon & WaterMark] 
   - **Region [Folder]**
     - [x] HeimdallrRegion.cs [Region Control]
   - **Slider [Folder]**
     - [x] RiotSlider.cs [Slider Control] 
   - **SliderPanel [Folder]**
     - [x] HeimdallrSlidingPanel.cs [SlidingPanel Control]
+  - **Spinner [Folder]**
+    - [x] HeimdallrRingSpinner.cs [Spinner Style] 
   - **StackPanel [Folder]**
     - [x] HeimdallrPanel.cs [Panel Contrl]
     - [x] HeimdallrStack.cs [Stack Control]
     - [x] MagicStackPanel.cs [TreeView 에서 사용하는 StackPanel]
+  - **TextBox [Folder]**
+    - [x] HeimdallrIconWaterMarkTextBox.cs [Icon & WaterMark] 
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.cs [Thumb Contrl] 
   - **ToggleButton [Folder]**
