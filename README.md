@@ -28,9 +28,9 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 
 **■ Contracts [Folder]** [계약]
   - **Viewing [Folder]** [보기]
-   - [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공]
-   - [x] IViewInitializable.cs [MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행]
-   - [x] IViewLoadable.cs [View의 Loaded 이벤트가 발생했을 때, ViewModel이 후처리 로직을 수행]
+    - [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공]
+    - [x] IViewInitializable.cs [MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행]
+    - [x] IViewLoadable.cs [View의 Loaded 이벤트가 발생했을 때, ViewModel이 후처리 로직을 수행]
 
 **■ Converters [Folder]** [계약]
   - [x] BaseValueConverter.cs [BaseValueConverter<T> 제네릭 클래스,  MarkupExtension 은 XAML에서 사용할 수 있도록 확장 기능]
