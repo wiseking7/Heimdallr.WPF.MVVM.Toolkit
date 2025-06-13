@@ -7,10 +7,21 @@ namespace Heimdallr.ToolKit.Models;
 /// </summary>
 public class ThemeRoot
 {
+  /// <summary>
+  /// 테마
+  /// </summary>
   [YamlMember(Alias = "themes")]
   public List<ThemePack>? Themes { get; set; }
+
+  /// <summary>
+  /// 테마폰트
+  /// </summary>
   [YamlMember(Alias = "fonts")]
   public List<FontPack>? Fonts { get; set; }
+
+  /// <summary>
+  /// 테마언어
+  /// </summary>
   [YamlMember(Alias = "languages")]
   public List<LanguagePack>? Languages { get; set; }
 }

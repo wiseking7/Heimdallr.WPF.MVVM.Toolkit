@@ -19,6 +19,9 @@ public class HeimdallrThumb : Thumb
   private Point _dragStartPoint;
   private bool _isDragging = false;
 
+  /// <summary>
+  /// 정적생성자
+  /// </summary>
   static HeimdallrThumb()
   {
     // 기본 스타일을 HeimdallrThumb에 연결
@@ -26,6 +29,9 @@ public class HeimdallrThumb : Thumb
         new FrameworkPropertyMetadata(typeof(HeimdallrThumb)));
   }
 
+  /// <summary>
+  /// 생성자
+  /// </summary>
   public HeimdallrThumb()
   {
     // 마우스 왼쪽 버튼을 눌렀을 때 드래그를 시작

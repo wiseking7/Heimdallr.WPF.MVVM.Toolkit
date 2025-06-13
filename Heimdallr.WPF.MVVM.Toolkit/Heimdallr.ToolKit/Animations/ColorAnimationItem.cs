@@ -4,8 +4,11 @@ using System.Windows.Media.Animation;
 
 namespace Heimdallr.ToolKit.Animations;
 
-// 이 클래스는 WPF에서 색상 애니메이션을 제어하는 ColorAnimation을 상속받아
-// 애니메이션을 적용할 대상과 속성, 이징 모드 등을 설정하는 기능을 제공합니다.
+/// <summary>
+/// 이 클래스는 WPF에서 색상 애니메이션을 제어하는 ColorAnimation을 상속받아
+/// 애니메이션을 적용할 대상과 속성, 이징 모드 등을 설정하는 기능을 제공합니다.
+/// </summary>
+
 public class ColorAnimationItem : ColorAnimation
 {
   #region TargetName

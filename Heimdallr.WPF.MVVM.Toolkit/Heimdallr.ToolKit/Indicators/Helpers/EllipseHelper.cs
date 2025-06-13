@@ -4,21 +4,22 @@ using System.Windows.Shapes;
 
 namespace Heimdallr.ToolKit.Indicators;
 
-// EllipseHelper 클래스: Ellipse 컨트롤의 StrokeDashArray 속성을 제어하는
-// 도우미 클래스
+/// <summary>
+/// EllipseHelper 클래스: Ellipse 컨트롤의 StrokeDashArray 속성을 제어하는도우미 클래스
+/// </summary>
 public class EllipseHelper
 {
-  // StrokeDashArrayValue라는 Attached Property를 정의
-  // (Ellipse 개체에 적용됨)
-  // StrokeDashArrayValue는 Ellipse의 StrokeDashArray
-  // 값을 제어하기 위한 속성입니다.
-  // RegisterAttached -> UIElement 계층 구조에서 부모 요소에서 자식 요소로 속성을 "전달"하거나 "부착"할 때 사용
+  /// <summary>
+  /// StrokeDashArrayValue라는 Attached Property를 정의 (Ellipse 개체에 적용됨)
+  /// StrokeDashArrayValue는 Ellipse의 StrokeDashArray 값을 제어하기 위한 속성입니다.
+  /// RegisterAttached -> UIElement 계층 구조에서 부모 요소에서 자식 요소로 속성을 "전달"하거나 "부착"할 때 사용
+  /// </summary>
   public static readonly DependencyProperty StrokeDashArrayValueProperty =
       DependencyProperty.RegisterAttached("StrokeDashArrayValue",
           typeof(double), typeof(EllipseHelper),
           new PropertyMetadata(0.0, OnStrokeDashArrayValueChanged));
 
-  // Ellipse 객체에서 StrokeDashArrayValue 속성 값을 가져오는 메서드
+  /// Ellipse 객체에서 StrokeDashArrayValue 속성 값을 가져오는 메서드
   public static double GetStrokeDashArrayValue(Ellipse ellipse)
   {
     // GetValue 메서드를 통해 Ellipse 개체에 설정된
@@ -26,14 +27,18 @@ public class EllipseHelper
     return (double)ellipse.GetValue(StrokeDashArrayValueProperty);
   }
 
-  // Ellipse 개체에 StrokeDashArrayValue 속성 값을 설정하는 메서드
+  /// <summary>
+  /// Ellipse 개체에 StrokeDashArrayValue 속성 값을 설정하는 메서드
+  /// </summary>
+  /// <param name="ellipse"></param>
+  /// <param name="value"></param>
   public static void SetStrokeDashArrayValue(Ellipse ellipse, double value)
   {
     // SetValue 메서드를 사용하여 Ellipse 객체에 StrokeDashArrayValue 값을 설정
     ellipse.SetValue(StrokeDashArrayValueProperty, value);
   }
 
-  // StrokeDashArrayValue 속성 값이 변경될 때 호출되는 콜백 메서드
+  /// StrokeDashArrayValue 속성 값이 변경될 때 호출되는 콜백 메서드
   private static void OnStrokeDashArrayValueChanged
     (DependencyObject d, DependencyPropertyChangedEventArgs e)
   {

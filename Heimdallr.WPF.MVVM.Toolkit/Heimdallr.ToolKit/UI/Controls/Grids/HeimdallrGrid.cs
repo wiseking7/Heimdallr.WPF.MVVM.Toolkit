@@ -16,8 +16,14 @@ public class HeimdallrGrid : AutoGrid
 using WpfAutoGrid;
 namespace Heimdallr.ToolKit.UI.Controls;
 
+/// <summary>
+/// AutoGird 
+/// </summary>
 public class HeimdallrGrid : AutoGrid
 {
+  /// <summary>
+  /// 기본생성자
+  /// </summary>
   public HeimdallrGrid()
   {
 

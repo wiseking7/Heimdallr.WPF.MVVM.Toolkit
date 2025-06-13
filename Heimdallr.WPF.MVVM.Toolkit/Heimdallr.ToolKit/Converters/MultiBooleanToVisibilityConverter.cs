@@ -5,7 +5,9 @@ using System.Windows.Markup;
 
 namespace Heimdallr.ToolKit.Converters;
 
-// 다중 값(2개의 bool 값)을 입력받아 Visibility 상태를 결정하는 WPF 컨버터
+/// <summary>
+/// 다중 값(2개의 bool 값)을 입력받아 Visibility 상태를 결정하는 WPF 컨버터
+/// </summary>
 public class MultiBooleanToVisibilityConverter : MarkupExtension, IMultiValueConverter
 {
   /// <summary>

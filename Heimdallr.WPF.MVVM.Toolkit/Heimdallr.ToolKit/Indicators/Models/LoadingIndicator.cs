@@ -3,27 +3,33 @@ using System.Windows.Controls;
 
 namespace Heimdallr.ToolKit.Indicators;
 
+/// <summary>
+/// 표기기 모델
+/// </summary>
 public class LoadingIndicator : Control
 {
-  // IndicatorType 속성
-  // 이 속성은 Indicator 의 형식을 지정합니다.
-  // 예를 들어, 'Twist', 'Spin' 등이 될 수 있습니다.
+  /// <summary>
+  /// IndicatorType 속성, 이 속성은 Indicator 의 형식을 지정합니다. 예를 들어, 'Twist', 'Spin' 등이 될 수 있습니다.
+  /// </summary>
   public LoadingSpinnerType SpinnerType
   {
     get => (LoadingSpinnerType)GetValue(SpinnerTypeTypeProperty);
     set => SetValue(SpinnerTypeTypeProperty, value);
   }
 
-  // IndicatorType 속성에 대한 종속성 속성 정의
-  // 이 종속성 속성은 IndicatorType의 값이 변경될 때 UI에 반영되도록 합니다.
-  // 기본값 -> IndicatorType.Twist
+  /// <summary>
+  /// IndicatorType 속성에 대한 종속성 속성 정의 이 종속성 속성은 IndicatorType의 값이 변경될 때 UI에 반영되도록 합니다.
+  /// 기본값 -> IndicatorType.Twist
+  /// </summary>
   public static readonly DependencyProperty SpinnerTypeTypeProperty =
       DependencyProperty.Register(nameof(SpinnerType), typeof(LoadingSpinnerType),
         typeof(LoadingIndicator),
           new PropertyMetadata(LoadingSpinnerType.None));
 
-  // 정적 생성자: DefaultStyleKey를 오버라이드하여 기본 스타일을 정의합니다.
-  // 'Indicator' 컨트롤의 스타일은 기본적으로 이 클래스를 사용하게 됩니다.
+  /// <summary>
+  /// 정적 생성자: DefaultStyleKey를 오버라이드하여 기본 스타일을 정의합니다.
+  /// 'Indicator' 컨트롤의 스타일은 기본적으로 이 클래스를 사용하게 됩니다.
+  /// </summary>
   static LoadingIndicator()
   {
     DefaultStyleKeyProperty.OverrideMetadata(typeof(LoadingIndicator),
@@ -31,15 +37,18 @@ public class LoadingIndicator : Control
   }
 
 
-  // OnApplyTemplate 메서드: 템플릿이 적용되었을 때 호출됩니다.
-  // 템플릿이 적용되면 컨트롤의 시각적 상태를 업데이트합니다.
+  /// <summary>
+  /// OnApplyTemplate 메서드: 템플릿이 적용되었을 때 호출됩니다. 템플릿이 적용되면 컨트롤의 시각적 상태를 업데이트합니다
+  /// </summary>
   public override void OnApplyTemplate()
   {
     UpdateVisualState();
   }
 
-  // OnPropertyChanged 메서드: 속성 값이 변경될 때 호출됩니다.
-  // 속성 값이 변경되면 해당 속성에 맞춰 시각적 상태를 업데이트합니다.
+  /// <summary>
+  /// OnPropertyChanged 메서드: 속성 값이 변경될 때 호출됩니다. 속성 값이 변경되면 해당 속성에 맞춰 시각적 상태를 업데이트합니다.
+  /// </summary>
+  /// <param name="e"></param>
   protected override void OnPropertyChanged
     (DependencyPropertyChangedEventArgs e)
   {
@@ -52,7 +61,9 @@ public class LoadingIndicator : Control
     }
   }
 
-  // UpdateVisualState 메서드: 컨트롤의 시각적 상태를 변경합니다.
+  /// <summary>
+  /// UpdateVisualState 메서드: 컨트롤의 시각적 상태를 변경합니다.
+  /// </summary>
   private void UpdateVisualState()
   {
     // 템플릿이 적용되지 않으면 업데이트를 건너뜁니다.

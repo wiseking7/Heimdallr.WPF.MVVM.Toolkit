@@ -9,6 +9,14 @@ namespace Heimdallr.ToolKit.Converters;
 /// </summary>
 public class ComparisonConverter : BaseValueConverter<ComparisonConverter>
 {
+  /// <summary>
+  /// value 가 null 일 경우 false 반환
+  /// </summary>
+  /// <param name="value"></param>
+  /// <param name="targetType"></param>
+  /// <param name="parameter"></param>
+  /// <param name="culture"></param>
+  /// <returns></returns>
   public override object Convert(object value, Type targetType, object parameter, CultureInfo culture)
   {
     if (value == null)
@@ -21,6 +29,14 @@ public class ComparisonConverter : BaseValueConverter<ComparisonConverter>
     return value.Equals(parameter);
   }
 
+  /// <summary>
+  /// 컨트롤에서 발생한 값 (true인 경우만 의미 있음), parameter: 선택된 경우 반환할 값
+  /// </summary>
+  /// <param name="value"></param>
+  /// <param name="targetType"></param>
+  /// <param name="parameter"></param>
+  /// <param name="culture"></param>
+  /// <returns></returns>
   public override object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
   {
     // value: 컨트롤에서 발생한 값 (true인 경우만 의미 있음), parameter: 선택된 경우 반환할 값

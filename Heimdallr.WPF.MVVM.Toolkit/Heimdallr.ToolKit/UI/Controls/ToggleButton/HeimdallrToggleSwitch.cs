@@ -3,9 +3,15 @@ using System.Windows.Controls.Primitives;
 
 namespace Heimdallr.ToolKit.UI.Controls;
 
+/// <summary>
+/// Togglebutton Switch
+/// </summary>
 public class HeimdallrToggleSwitch : ToggleButton
 {
   #region CornerRadius
+  /// <summary>
+  /// CornerRadius 종속성 주입
+  /// </summary>
   public static readonly DependencyProperty CornerRadiusProperty =
       DependencyProperty.Register(
           "CornerRadius",
@@ -13,6 +19,9 @@ public class HeimdallrToggleSwitch : ToggleButton
           typeof(HeimdallrToggleSwitch),
           new FrameworkPropertyMetadata());
 
+  /// <summary>
+  /// CornerRadius 값 지정
+  /// </summary>
   public CornerRadius CornerRadius
   {
     get => (CornerRadius)GetValue(CornerRadiusProperty);

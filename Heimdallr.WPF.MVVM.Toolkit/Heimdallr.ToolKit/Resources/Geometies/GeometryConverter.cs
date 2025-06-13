@@ -2,6 +2,9 @@
 
 namespace Heimdallr.ToolKit.Resources.Geometies;
 
+/// <summary>
+/// Geometry 변환기
+/// </summary>
 public static class GeometryConverter
 {
   /// <summary>

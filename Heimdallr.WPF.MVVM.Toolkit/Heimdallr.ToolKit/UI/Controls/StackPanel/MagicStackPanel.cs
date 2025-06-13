@@ -4,7 +4,9 @@ using System.Windows.Media;
 
 namespace Heimdallr.ToolKit.UI.Controls;
 
-// StackPanel을 상속받은 사용자 정의 패널 클래스입니다.
+/// <summary>
+/// StackPanel을 상속받은 사용자 정의 패널 클래스입니다.
+/// </summary>
 // ItemHeight 속성을 바탕으로 일정 높이의 Border 요소들을 자동 생성하여 추가합니다.
 public class MagicStackPanel : StackPanel
 {
@@ -20,6 +22,9 @@ public class MagicStackPanel : StackPanel
     get { return (double)GetValue(ItemHeightProperty); }
     set { SetValue(ItemHeightProperty, value); }
   }
+  /// <summary>
+  /// 종속성주입
+  /// </summary>
   public static readonly DependencyProperty ItemHeightProperty =
       DependencyProperty.Register(nameof(ItemHeight), typeof(double), typeof(MagicStackPanel),
         new PropertyMetadata(0.0, ItemHeightPropertyChanged));

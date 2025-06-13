@@ -7,8 +7,15 @@ namespace Heimdallr.ToolKit.Models;
 /// </summary>
 public class ThemePack
 {
+  /// <summary>
+  /// 테마 Key
+  /// </summary>
   [YamlMember(Alias = "key")]
   public string? Key { get; set; }
+
+  /// <summary>
+  /// 테마 색상
+  /// </summary>
   [YamlMember(Alias = "colors")]
   public SolidColorBrushUnit? Colors { get; set; }
 }

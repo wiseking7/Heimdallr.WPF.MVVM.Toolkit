@@ -8,10 +8,25 @@
 /// </summary>
 public enum JustifyEnum
 {
+  /// <summary>
+  /// 없음
+  /// </summary>
   None,
-  SpaceAround,  // 자식 요소들 간의 간격을 고르게 분배
-  SpaceBetween, // 자식 요소들 간의 간격만 균등하게 배치
-  SpaceEvenly   // 자식 요소들 간의 간격을 고르게 분배
+
+  /// <summary>
+  /// 자식 요소들 간의 간격을 고르게 분배
+  /// </summary>
+  SpaceAround,
+
+  /// <summary>
+  /// 자식 요소들 간의 간격만 균등하게 배치
+  /// </summary>
+  SpaceBetween,
+
+  /// <summary>
+  /// 자식 요소들 간의 간격을 고르게 분배
+  /// </summary>
+  SpaceEvenly
 }
 
 /* 사용예제

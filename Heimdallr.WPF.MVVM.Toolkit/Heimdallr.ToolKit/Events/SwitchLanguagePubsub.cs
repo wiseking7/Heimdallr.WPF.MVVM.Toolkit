@@ -1,7 +1,7 @@
 ﻿namespace Heimdallr.ToolKit.Events;
 
 /// <summary>
-/// SwitchLanguagePubsub 클래스는 PubSubEvent<string>을 상속받아 특정 이벤트를 발행하고 구독하는 기능을 제공합니다. 
+/// 상속받아 특정 이벤트를 발행하고 구독하는 기능을 제공합니다. 
 /// 이 클래스는 문자열을 전달하는 이벤트를 발행할 수 있도록 합니다.
 /// string : 변경 언어
 /// </summary>

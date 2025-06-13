@@ -4,7 +4,6 @@ using System.Text.RegularExpressions;
 namespace Heimdallr.ToolKit.Converters;
 /// <summary>
 /// 휴대폰 번호를 문자열로 변환하는 WPF용 ValueConverter
-/// BaseValueConverter<T>를 상속받아 XAML에서 사용 가능하게 합니다.
 /// </summary>
 public class MobileNumberConverter : BaseValueConverter<MobileNumberConverter>
 {

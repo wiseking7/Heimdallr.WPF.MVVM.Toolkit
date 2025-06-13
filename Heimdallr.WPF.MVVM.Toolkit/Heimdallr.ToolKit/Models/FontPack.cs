@@ -7,8 +7,15 @@ namespace Heimdallr.ToolKit.Models;
 /// </summary>
 public class FontPack
 {
+  /// <summary>
+  /// 폰트 Key
+  /// </summary>
   [YamlMember(Alias = "key")]
   public string? Key { get; set; }
+
+  /// <summary>
+  /// 폰트
+  /// </summary>
   [YamlMember(Alias = "fonts")]
   public FontFamilyUnit? Fonts { get; set; }
 }

@@ -1,46 +1,114 @@
 ﻿namespace Heimdallr.ToolKit.Animations.EasingFunctions;
 
 /// <summary>
-/// 이징 함수(easing function) 의 다양한 모드를 정의하는데 사용
-/// 이징 함수는 애니메이션의 진행 속도를 조절하는 수학적 함수로, 
-/// 애니메이션이 어떻게 시작하고 끝나는지, 또는 애니메이션이 중간에 어떻게 진행되는지를 결정하는 중요한 역할을 합니다
+/// 이징 함수(easing function)의 다양한 모드를 정의하는 열거형(enum)입니다.
+/// 이징 함수란 애니메이션의 진행 속도를 수학적으로 조절하는 함수로,
+/// 애니메이션이 시작부터 끝날 때까지의 속도 변화를 자연스럽게 만들기 위해 사용됩니다.
+/// 예를 들어, 애니메이션이 갑자기 시작하거나 끝나는 대신 점점 빨라지거나 느려지는 등의 효과를 줄 수 있습니다.
+/// 각 모드는 애니메이션 속도의 변화 패턴을 다르게 정의합니다.
 /// </summary>
 public enum EasingFunctionBaseMode
 {
+  /// <summary>시작 시 뒤로 살짝 밀렸다가 앞으로 진행하는 효과 (BackEaseIn)</summary>
   BackEaseIn,
+
+  /// <summary>끝날 때 뒤로 살짝 밀렸다가 끝나는 효과 (BackEaseOut)</summary>
   BackEaseOut,
+
+  /// <summary>시작과 끝 모두 뒤로 밀리는 효과가 결합된 모드 (BackEaseInOut)</summary>
   BackEaseInOut,
+
+  /// <summary>시작 시 튕기듯이 점점 가속되는 효과 (BounceEaseIn)</summary>
   BounceEaseIn,
+
+  /// <summary>끝날 때 튕기듯이 점점 감속되는 효과 (BounceEaseOut)</summary>
   BounceEaseOut,
+
+  /// <summary>시작과 끝 모두 튕기는 효과가 결합된 모드 (BounceEaseInOut)</summary>
   BounceEaseInOut,
+
+  /// <summary>원호(circle) 형태로 천천히 시작하는 곡선 (CircleEaseIn)</summary>
   CircleEaseIn,
+
+  /// <summary>원호 형태로 천천히 끝나는 곡선 (CircleEaseOut)</summary>
   CircleEaseOut,
+
+  /// <summary>시작과 끝 모두 원호 형태인 곡선 (CircleEaseInOut)</summary>
   CircleEaseInOut,
+
+  /// <summary>3차 다항식(Cubic)으로 가속하는 형태 (CubicEaseIn)</summary>
   CubicEaseIn,
+
+  /// <summary>3차 다항식으로 감속하는 형태 (CubicEaseOut)</summary>
   CubicEaseOut,
+
+  /// <summary>3차 다항식으로 시작과 끝 모두 부드러운 변화 (CubicEaseInOut)</summary>
   CubicEaseInOut,
+
+  /// <summary>탄성(Elastic) 효과로 진동하며 시작하는 형태 (ElasticEaseIn)</summary>
   ElasticEaseIn,
+
+  /// <summary>탄성 효과로 진동하며 끝나는 형태 (ElasticEaseOut)</summary>
   ElasticEaseOut,
+
+  /// <summary>탄성 효과가 시작과 끝 모두에 적용된 모드 (ElasticEaseInOut)</summary>
   ElasticEaseInOut,
+
+  /// <summary>지수함수(Exponential)를 이용해 매우 빠르게 가속하는 효과 (ExponentialEaseIn)</summary>
   ExponentialEaseIn,
+
+  /// <summary>지수함수로 매우 느리게 감속하는 효과 (ExponentialEaseOut)</summary>
   ExponentialEaseOut,
+
+  /// <summary>시작과 끝 모두 지수함수 형태인 효과 (ExponentialEaseInOut)</summary>
   ExponentialEaseInOut,
+
+  /// <summary>거듭제곱 함수(Power)를 이용한 가속 효과 (PowerEaseIn)</summary>
   PowerEaseIn,
+
+  /// <summary>거듭제곱 함수를 이용한 감속 효과 (PowerEaseOut)</summary>
   PowerEaseOut,
+
+  /// <summary>거듭제곱 함수를 이용한 시작과 끝 모두 부드러운 변화 (PowerEaseInOut)</summary>
   PowerEaseInOut,
+
+  /// <summary>2차 다항식(Quadratic)으로 가속하는 형태 (QuadraticEaseIn)</summary>
   QuadraticEaseIn,
+
+  /// <summary>2차 다항식으로 감속하는 형태 (QuadraticEaseOut)</summary>
   QuadraticEaseOut,
+
+  /// <summary>2차 다항식으로 시작과 끝 모두 부드러운 변화 (QuadraticEaseInOut)</summary>
   QuadraticEaseInOut,
+
+  /// <summary>4차 다항식(Quartic)으로 가속하는 형태 (QuarticEaseIn)</summary>
   QuarticEaseIn,
+
+  /// <summary>4차 다항식으로 감속하는 형태 (QuarticEaseOut)</summary>
   QuarticEaseOut,
+
+  /// <summary>4차 다항식으로 시작과 끝 모두 부드러운 변화 (QuarticEaseInOut)</summary>
   QuarticEaseInOut,
+
+  /// <summary>5차 다항식(Quintic)으로 가속하는 형태 (QuinticEaseIn)</summary>
   QuinticEaseIn,
+
+  /// <summary>5차 다항식으로 감속하는 형태 (QuinticEaseOut)</summary>
   QuinticEaseOut,
+
+  /// <summary>5차 다항식으로 시작과 끝 모두 부드러운 변화 (QuinticEaseInOut)</summary>
   QuinticEaseInOut,
+
+  /// <summary>사인 함수(Sine)를 이용해 부드럽게 가속하는 형태 (SineEaseIn)</summary>
   SineEaseIn,
+
+  /// <summary>사인 함수를 이용해 부드럽게 감속하는 형태 (SineEaseOut)</summary>
   SineEaseOut,
+
+  /// <summary>사인 함수를 이용해 시작과 끝 모두 부드러운 변화 (SineEaseInOut)</summary>
   SineEaseInOut
 }
+
 /* 
 1. Easing Function이란?
    WPF 애니메이션에서 이징 함수는 애니메이션의 진행 방식, 즉 애니메이션의 속도를 어떻게 변화시킬지 제어합니다. 

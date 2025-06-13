@@ -7,16 +7,39 @@ namespace Heimdallr.ToolKit.Models;
 /// </summary>
 public class LanguageUnit
 {
+  /// <summary>
+  /// 언어 USA
+  /// </summary>
   [YamlMember(Alias = "usa")]
   public string? USA { get; set; }
+
+  /// <summary>
+  /// 언어 Kor
+  /// </summary>
   [YamlMember(Alias = "kor")]
   public string? KOR { get; set; }
+
+  /// <summary>
+  /// 언어 China
+  /// </summary>
   [YamlMember(Alias = "chn")]
   public string? CHN { get; set; }
+
+  /// <summary>
+  /// 언어 Japan
+  /// </summary>
   [YamlMember(Alias = "jpn")]
   public string? JPN { get; set; }
+
+  /// <summary>
+  /// 언어 베트남
+  /// </summary>
   [YamlMember(Alias = "vnm")]
   public string? VNM { get; set; }
+
+  /// <summary>
+  /// 언어 스페인
+  /// </summary>
   [YamlMember(Alias = "esp")]
   public string? ESP { get; set; }
 

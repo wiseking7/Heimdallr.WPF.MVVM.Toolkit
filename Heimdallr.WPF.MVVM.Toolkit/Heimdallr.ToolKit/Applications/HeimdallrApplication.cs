@@ -9,8 +9,11 @@ using System.Windows;
 
 namespace Heimdallr.ToolKit.Applications;
 
-// PrismApplication 을 상속받는 추상 클래스
-// Prism 의 MVVM 및 DI 기능을 기반으로, 테마 리소스와 ViewModel, IoC 모듈 설정을 포함하여 앱 전반을 초기화합니다.
+/// <summary>
+/// PrismApplication 을 상속받는 추상 클래스
+/// Prism 의 MVVM 및 DI 기능을 기반으로, 테마 리소스와 ViewModel, IoC 모듈 설정을 포함하여 앱 전반을 초기화합니다.
+/// </summary>
+
 public abstract class HeimdallrApplication : PrismApplication
 {
   // Prism 모듈 인터페이스를 구현한 사용자 정의 모듈을 담는 List

@@ -30,11 +30,18 @@ public class HeimdallrSlidingPanel : Control
     get => (bool)GetValue(IsOpenProperty);
     set => SetValue(IsOpenProperty, value);
   }
-
+  /// <summary>
+  /// 종속성주입
+  /// </summary>
   public static readonly DependencyProperty IsOpenProperty =
       DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(HeimdallrSlidingPanel),
           new PropertyMetadata(false, OnIsOpenPropertyChanged));
 
+  /// <summary>
+  /// 콜백 메서드
+  /// </summary>
+  /// <param name="d"></param>
+  /// <param name="e"></param>
   private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     if (d is HeimdallrSlidingPanel panel)
@@ -55,7 +62,9 @@ public class HeimdallrSlidingPanel : Control
     get => (Duration)GetValue(OpenCloseDurationProperty);
     set => SetValue(OpenCloseDurationProperty, value);
   }
-
+  /// <summary>
+  /// 종속성주입
+  /// </summary>
   public static readonly DependencyProperty OpenCloseDurationProperty =
       DependencyProperty.Register(nameof(OpenCloseDuration), typeof(Duration), typeof(HeimdallrSlidingPanel),
           new PropertyMetadata(Duration.Automatic));
@@ -72,7 +81,9 @@ public class HeimdallrSlidingPanel : Control
     get => (UIElement)GetValue(PanelContentProperty);
     set => SetValue(PanelContentProperty, value);
   }
-
+  /// <summary>
+  /// 종속성주입
+  /// </summary>
   public static readonly DependencyProperty PanelContentProperty =
       DependencyProperty.Register(nameof(PanelContent), typeof(UIElement), typeof(HeimdallrSlidingPanel),
           new PropertyMetadata(null));
@@ -89,7 +100,9 @@ public class HeimdallrSlidingPanel : Control
     get => (double)GetValue(DefaultOpenWidthProperty);
     set => SetValue(DefaultOpenWidthProperty, value);
   }
-
+  /// <summary>
+  /// 종속성주입
+  /// </summary>
   public static readonly DependencyProperty DefaultOpenWidthProperty =
       DependencyProperty.Register(nameof(DefaultOpenWidth), typeof(double), typeof(HeimdallrSlidingPanel),
           new PropertyMetadata(100.0));

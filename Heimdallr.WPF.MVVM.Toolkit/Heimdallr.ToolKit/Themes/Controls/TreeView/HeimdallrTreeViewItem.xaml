@@ -5,80 +5,118 @@
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls"
     xmlns:enums="clr-namespace:Heimdallr.ToolKit.Enums">
 
-  <Style TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
-    <Setter Property="SelectionCommand" 
-            Value="{Binding RelativeSource={RelativeSource 
-                      AncestorType=ctrls:HeimdallrTreeView}, 
-                        Path=DataContext.SelectionCommand}" />
+  <Style x:Key="FlatToggleButtonStyle" TargetType="ToggleButton">
+    <Setter Property="Background" Value="Transparent"/>
+    <Setter Property="BorderBrush" Value="Transparent"/>
+    <Setter Property="BorderThickness" Value="0"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="ToggleButton">
+          <ContentPresenter
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   RecognizesAccessKey="True"/>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <Style TargetType="{x:Type ctrls:HeimdallrTreeViewItem}"
+         BasedOn="{StaticResource {x:Type TreeViewItem}}">
     <Setter Property="Background" Value="Transparent" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrTreeViewItem}">
           <StackPanel>
-            <!-- 헤더 영역표기 -->
-            <Grid x:Name="Item" Background="{TemplateBinding Background}" Height="36">
-              <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-              </Grid.ColumnDefinitions>
+            <!-- Header 영역 -->
+            <Border
+                x:Name="border"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                SnapsToDevicePixels="True"
+                Padding="3"
+                Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={cnvts:DepthConverter}}">
 
-              <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Grid.ColumnSpan="2"
-                          Margin="{Binding Depth, Converter={cnvts:DepthConverter}}">
-                <!-- 사용자 지정 업/다운 아이콘 Viewbox -->
-                <Viewbox x:Name="ExpandCollapseIcon" Margin="{TemplateBinding Margin}"
-                         Height="{TemplateBinding IconHeight}"
-                         Width="{TemplateBinding IconWidth}">
-                  <Path x:Name="ExpandCollapsePath"
-                        Fill="{TemplateBinding Fill}"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Data="{TemplateBinding Data}"/>
-                </Viewbox>
+              <Grid>
+                <Grid.ColumnDefinitions>
+                  <!-- 아이콘이미지 -->
+                  <ColumnDefinition Width="Auto" />
 
-                <!-- 이미지 아이콘 (사용자가 Image 지정한 경우) -->
-                <Image x:Name="ItemImage"
-                      Width="{TemplateBinding IconWidth}"
-                      Height="{TemplateBinding IconHeight}"
-                      Source="{TemplateBinding Source}"
-                      Visibility="Collapsed"
-                       Stretch="UniformToFill"
-                      Margin="{TemplateBinding Margin}"/>
+                  <!-- 문자열 -->
+                  <ColumnDefinition Width="*" />
+                  <!-- ToggleButton -->
+                  <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
 
-                <!-- 헤더 텍스트 -->
-                <TextBlock Text="{TemplateBinding Header}" VerticalAlignment="Center" Margin="5 0 0 0"/>
-              </StackPanel>
-            </Grid>
+                <!-- PathIcon -->
+                <ctrls:HeimdallrIcon 
+                    Grid.Column="0"
+                    PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                    Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                    Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                    Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}" />
 
-            <!-- 자식 항목 -->
-            <ItemsPresenter x:Name="Items" Margin="20,0,0,0" Visibility="Collapsed"/>
+                  <!-- 문자열 -->
+                  <TextBlock 
+                      Grid.Column="1"
+                      Text="{TemplateBinding Text}"
+                      VerticalAlignment="Center" Margin="20 0 0 0"
+                      Padding="3" />
+
+                  <!-- 펼침 접힘 아이콘 -->
+                <ToggleButton 
+                      Grid.Column="2"
+                      IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
+                      Style="{StaticResource FlatToggleButtonStyle}"
+                      VerticalAlignment="Center" 
+                      Margin="50 0 0 0">
+
+                  <Grid Width="Auto" Height="Auto">
+                    <!-- 확장 아이콘 -->
+                    <ctrls:HeimdallrIcon
+                        x:Name="ExpandIconElement"
+                        PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                        Fill="{Binding ExpandIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                        Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                        Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                        Visibility="Collapsed" />
+                    <!-- 축소 아이콘 -->
+                    <ctrls:HeimdallrIcon x:Name="CollapseIconElement"
+                        PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"       
+                        Fill="{Binding CollapseIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                        Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                        Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                        Visibility="Collapsed" />
+                  </Grid>
+                </ToggleButton>
+              </Grid>
+            </Border>
+            <ItemsPresenter x:Name="itemsHost"
+                            Margin="0 2 0 0"
+                            Visibility="Collapsed" />
           </StackPanel>
 
           <ControlTemplate.Triggers>
             <!-- 확장 트리거 -->
             <Trigger Property="IsExpanded" Value="True">
-              <Setter TargetName="Items" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="itemsHost" Property="Visibility" Value="Visible" />
+              <Setter TargetName="ExpandIconElement" Property="Visibility" Value="Visible" />
+              <Setter TargetName="CollapseIconElement" Property="Visibility" Value="Collapsed" />
             </Trigger>
 
-            <!-- 마우스 오버 및 선택 시 배경 -->
+            <Trigger Property="IsExpanded" Value="False">
+              <Setter TargetName="ExpandIconElement" Property="Visibility" Value="Collapsed" />
+              <Setter TargetName="CollapseIconElement" Property="Visibility" Value="Visible" />
+            </Trigger>
+
+            <!-- 선택 및 마우스 오버 스타일 -->
             <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="Item" Property="Background" Value="#004EFF"/>
+              <Setter TargetName="border" Property="Background" Value="#FF3DC2EC"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="Item" Property="Background" Value="Transparent"/>
-            </Trigger>
-
-            <!-- 모드에 따라 이미지/패스 표시 -->
-            <Trigger Property="Mode" Value="Image">
-              <Setter TargetName="ItemImage" Property="Visibility" Value="Visible"/>
-              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Collapsed"/>
-            </Trigger>
-            <Trigger Property="Mode" Value="Icon">
-              <Setter TargetName="ItemImage" Property="Visibility" Value="Collapsed"/>
-              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Visible"/>
-            </Trigger>
-            <Trigger Property="Mode" Value="PathIcon">
-              <Setter TargetName="ItemImage" Property="Visibility" Value="Collapsed"/>
-              <Setter TargetName="ExpandCollapseIcon" Property="Visibility" Value="Visible"/>
+              <Setter TargetName="border" Property="Background" Value="Transparent"/>
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

@@ -3,29 +3,39 @@ using System.Windows.Media;
 
 namespace Heimdallr.ToolKit.Indicators;
 
-// EscaladeHelper 클래스: Path 개체의 StrokeDashArray 속성을
-// 제어하는 도우미 클래스
-
+/// <summary>
+/// EscaladeHelper 클래스: Path 개체의 StrokeDashArray 속성을 제어하는 도우미 클래스
+/// </summary>
 public class EscaladeHelper
 {
-  // StrokeDashArrayValue라는 Attached Property를 정의
-  // (Path 개체에 적용됨)
-  // StrokeDashArrayValue는 Path의 StrokeDashArray
-  // 값을 제어하기 위한 속성입니다.
+  /// <summary>
+  /// StrokeDashArrayValue라는 Attached Property를 정의
+  /// (Path 개체에 적용됨)
+  /// StrokeDashArrayValue는 Path의 StrokeDashArray
+  /// 값을 제어하기 위한 속성입니다.
+  /// </summary>
   public static readonly DependencyProperty StrokeDashArrayValueProperty =
       DependencyProperty.RegisterAttached("StrokeDashArrayValue",
           typeof(double), typeof(EscaladeHelper),
 
           new PropertyMetadata(0.0, OnStrokeDashArrayValueChanged));
 
-  // Path 객체에서 StrokeDashArrayValue 속성 값을 가져오는 메서드
+  /// <summary>
+  /// Path 객체에서 StrokeDashArrayValue 속성 값을 가져오는 메서드
+  /// </summary>
+  /// <param name="path"></param>
+  /// <returns></returns>
   public static double GetStrokeDashArrayValue(System.Windows.Shapes.Path path)
   {
     // GetValue 메서드를 통해 Path 객체에 설정된 StrokeDashArrayValue 값을 반환
     return (double)path.GetValue(StrokeDashArrayValueProperty);
   }
 
-  // Path 객체에 StrokeDashArrayValue 속성 값을 설정하는 메서드
+  /// <summary>
+  /// Path 객체에 StrokeDashArrayValue 속성 값을 설정하는 메서드
+  /// </summary>
+  /// <param name="path"></param>
+  /// <param name="value"></param>
   public static void SetStrokeDashArrayValue
     (System.Windows.Shapes.Path path, double value)
   {

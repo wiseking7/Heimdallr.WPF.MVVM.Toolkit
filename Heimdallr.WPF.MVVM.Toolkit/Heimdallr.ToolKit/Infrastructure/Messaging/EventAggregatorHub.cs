@@ -13,6 +13,11 @@ public class EventAggregatorHub : IEventHub
 {
   private IEventAggregator _eventAggregator;
 
+  /// <summary>
+  /// EventAggregatorHub 생성자(매개변수)
+  /// </summary>
+  /// <param name="eventAggregator"></param>
+  /// <exception cref="ArgumentNullException"></exception>
   public EventAggregatorHub(IEventAggregator eventAggregator)
   {
     Debug.WriteLine("new EventAggregator");

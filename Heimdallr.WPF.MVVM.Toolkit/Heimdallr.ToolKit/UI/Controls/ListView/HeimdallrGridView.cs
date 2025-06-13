@@ -2,6 +2,9 @@
 
 namespace Heimdallr.ToolKit.UI.Controls;
 
+/// <summary>
+/// 기본 커스터마이징
+/// </summary>
 public class HeimdallrGridView : GridView
 {
   /*

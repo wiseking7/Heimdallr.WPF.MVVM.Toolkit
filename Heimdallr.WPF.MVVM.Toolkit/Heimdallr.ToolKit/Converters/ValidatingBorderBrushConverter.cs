@@ -3,48 +3,65 @@ using System.Windows.Data;
 using System.Windows.Media;
 
 namespace Heimdallr.ToolKit.Converters;
+/// <summary>
+/// 다중 바인딩에서 유효성 검사 결과와 기본 색상 문자열을 받아
+/// 유효하지 않을 경우 빨간색 테두리를, 그렇지 않으면 기본 색상을 반환하는 컨버터입니다.
+/// </summary>
 public class ValidatingBorderBrushConverter : IMultiValueConverter
 {
+  /// <summary>
+  /// values 배열에서 첫 번째 값은 유효성 검사 결과(bool),
+  /// 두 번째 값은 기본 테두리 색상(Hex 문자열)입니다.
+  /// </summary>
+  /// <param name="values">[0]: bool isValid, [1]: string hexColor</param>
+  /// <param name="targetType">바인딩 대상 타입 (Brush)</param>
+  /// <param name="parameter">옵션 파라미터 (미사용)</param>
+  /// <param name="culture">문화권 정보</param>
+  /// <returns>유효하지 않으면 빨간색 브러시, 유효하면 기본 색상 브러시</returns>
   public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
   {
-    // 유효성 검사 및 기본 색상 값이 정상적으로 전달되었는지 확인
+    // 입력값이 null이거나 2개 미만이면 예외 발생
     if (values == null || values.Length < 2)
     {
-      throw new ArgumentException("Invalid number of values provided to the converter.");
+      throw new ArgumentException("Converter 에 제공된 값의 수가 잘못되었습니다.");
     }
 
-    // 첫 번째 값이 bool 타입인지 체크
+    // 첫 번째 값이 bool 타입이고 true인지 확인 (유효성 검사 결과)
     bool isValid = values[0] is bool valid && valid;
 
-    // 두 번째 값이 Hex 색상 코드인지 받기
+    // 두 번째 값은 기본 색상으로 쓰일 Hex 문자열 (예: "#FF00FF")
     string? hexColor = values[1] as string;
 
-    // Hex 색상 코드가 유효하다면 SolidColorBrush로 변환
+    // 기본 브러시 초기값 (투명색)
     Brush defaultBrush = Brushes.Transparent;
+
+    // 유효한 Hex 색상 문자열이면 SolidColorBrush로 변환 시도
     if (!string.IsNullOrEmpty(hexColor))
     {
       try
       {
-        // Hex 색상 코드가 유효하면 SolidColorBrush로 변환
         defaultBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString(hexColor));
       }
       catch
       {
-        // 예외가 발생하면 기본값을 사용
+        // 변환 실패 시 기본값 유지 (투명색)
         defaultBrush = Brushes.Transparent;
       }
     }
 
-    // 유효성 검사 실패 시 빨간색 테두리, 아니면 기본 색상
-    return isValid ? Brushes.Red : defaultBrush;
+    // 유효성 검사 결과가 false면 빨간색 테두리 반환, true면 기본 브러시 반환
+    return isValid ? defaultBrush : Brushes.Red;
   }
 
-  // ConvertBack은 구현되지 않음
+  /// <summary>
+  /// ConvertBack은 구현하지 않음 (단방향 변환)
+  /// </summary>
   public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
   {
     throw new NotImplementedException();
   }
 }
+
 /* 사용예제
    <TextBox>
     <TextBox.BorderBrush>

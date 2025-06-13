@@ -3,6 +3,9 @@ using System.Windows.Controls;
 
 namespace Heimdallr.ToolKit.UI.Controls;
 
+/// <summary>
+/// Button Close
+/// </summary>
 public class CloseButton : Button
 {
   static CloseButton()

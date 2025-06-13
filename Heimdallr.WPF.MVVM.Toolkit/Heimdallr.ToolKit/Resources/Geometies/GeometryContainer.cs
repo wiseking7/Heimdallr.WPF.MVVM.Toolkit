@@ -69,7 +69,9 @@ public static class GeometryContainer
     return reader.ReadToEnd();
   }
 
-  // 외부에서 GeometryItem 딕셔너리에 접근할 수 있도록 제공
+  /// <summary>
+  /// 외부에서 GeometryItem 딕셔너리에 접근할 수 있도록 제공
+  /// </summary>
   public static IReadOnlyDictionary<string, GeometryItem> Items => _items;
 }
 

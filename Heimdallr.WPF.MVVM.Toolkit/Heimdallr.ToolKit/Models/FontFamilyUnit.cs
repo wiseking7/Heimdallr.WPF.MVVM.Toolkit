@@ -20,6 +20,17 @@ public class FontFamilyUnit
   [YamlMember(Alias = "light")]
   public string? Light { get; set; }
 
+  /// <summary>
+  /// 주어진 문자열(item)에 따라 내부에 정의된 색상 문자열 값을 반환합니다.
+  /// 입력 문자열을 대문자로 변환한 후 조건에 맞는 값을 반환하며,
+  /// "BLACK"이면 Black 프로퍼티 값을, "LIGHT"이면 Light 프로퍼티 값을 반환합니다.
+  /// 그 외의 값에 대해서는 빈 문자열("")을 반환합니다.
+  /// </summary>
+  /// <param name="item">검색할 문자열 (예: "BLACK", "LIGHT")</param>
+  /// <returns>
+  /// 해당하는 문자열이 있으면 대응하는 색상 문자열을 반환하고,
+  /// 없으면 빈 문자열을 반환합니다.
+  /// </returns>
   public string? Get(string item)
   {
     switch (item.ToUpper())

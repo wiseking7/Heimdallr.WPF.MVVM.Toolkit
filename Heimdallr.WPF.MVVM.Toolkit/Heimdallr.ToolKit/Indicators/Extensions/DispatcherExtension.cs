@@ -2,6 +2,9 @@
 
 namespace Heimdallr.ToolKit.Indicators;
 
+/// <summary>
+/// Dispatcher 확장
+/// </summary>
 public static class DispatcherExtension
 {
   /// <summary>

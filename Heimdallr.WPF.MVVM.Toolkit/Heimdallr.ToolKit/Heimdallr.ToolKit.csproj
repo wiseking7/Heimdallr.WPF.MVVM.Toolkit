@@ -8,7 +8,7 @@
     <UseWPF>true</UseWPF>
 
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <ApplicationIcon>Resources\Data\heimdall.ico</ApplicationIcon>
+    <ApplicationIcon>Resources/Data/heimdall.ico</ApplicationIcon>
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
@@ -22,7 +22,6 @@
     <Product>Heimdallr.WPF.MVVM.ToolKit</Product>
 	<PackageTags>WPF, MVVM, Prism, Toolkit</PackageTags>
     <Description>WPF 필수(Prism, Community.Toolkit.Mvvm, AutoGrid 를 사용하는 필수 유틸리티</Description>
-    <PackageIcon></PackageIcon>
 	<Copyright>Copyright 2025 Heimdallr Team</Copyright>
 	
 	<!-- 출처 URL 추가 -->
@@ -39,16 +38,11 @@
 
 	<License>MIT</License>
 	<!-- 직접 라이선스 이름을 입력하거나 URL을 입력 -->
+
+	<!-- 📘 XML 문서 파일(.xml) 생성: IntelliSense 설명 표시용 -->
+	<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	  
   </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Resources\Data\geometries.json" />
-    <None Remove="Resources\Data\images.yaml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Include="Resources\Data\heimdall.ico" />
-  </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Data\geometries.json">
@@ -76,7 +70,7 @@
   <ItemGroup>
     <None Update="Resources\Data\heimdall.ico">
       <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
+      <PackagePath></PackagePath>
     </None>
   </ItemGroup>
 

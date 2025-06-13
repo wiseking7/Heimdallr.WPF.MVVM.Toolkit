@@ -14,7 +14,7 @@ public class SolidColorBrushUnit
   public string? Black { get; set; }
 
   /// <summary>
-  /// 
+  /// 라이트
   /// </summary>
   [YamlMember(Alias = "light")]
   public string? Light { get; set; }

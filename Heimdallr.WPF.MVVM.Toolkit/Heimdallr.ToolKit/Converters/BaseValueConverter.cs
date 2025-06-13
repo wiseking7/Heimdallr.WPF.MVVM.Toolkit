@@ -4,20 +4,17 @@ using System.Windows.Markup;
 
 namespace Heimdallr.ToolKit.Converters;
 
+
 /// <summary>
-/// BaseValueConverter<T> 제네릭 클래스 이며 T 는 클래스이며 생성자를 가져야 합니다.
-/// MarkupExtension 은 XAML에서 사용할 수 있도록 확장 기능을 제공하는 기본 클래스입니다. 
-/// 이를 통해 XAML 내에서 변환기를 인스턴스화할 수 있습니다
-/// IValueConverter 인터페이스로, 데이터 바인딩 시 데이터를 변환하는 데 필요한 메서드를 정의합니다.
+/// MarkupExtension 은 XAML에서 사용할 수 있도록 확장 기능을 제공하는 기본 클래스입니다
 /// </summary>
-/// <typeparam name="T"></typeparam>
+/// <typeparam name="T">class, new()</typeparam>
 public abstract class BaseValueConverter<T> : MarkupExtension, IValueConverter where T : class, new()
 {
-  /// <summary>
+
   // Converter 는 정적 필드로, 생성된 변환기 인스턴스를 저장합니다. 
   // 클래스가 처음 호출될 때 인스턴스가 생성되고 이후에는 같은 인스턴스를 재사용합니다.
   // T?: C# 8.0부터 지원되는 null 허용 타입을 사용하여, 이 필드는 null일 수도 있습니다
-  /// </summary>
   private static T? Converter = null;
 
   /// <summary>

@@ -12,8 +12,10 @@ namespace Heimdallr.ToolKit.Converters;
 /// </summary>
 public class HelperConverter : MarkupExtension, IMultiValueConverter
 {
-  // HelperConverter 클래스의 싱글턴(static instance) 역할을 합니다.
-  // 어딘가에서 인스턴스를 생성하지 않고도 HelperConverter.Current로 접근할 수 있어 XAML에서 쉽게 바인딩에 사용 가능합니다.
+  /// <summary>
+  /// HelperConverter 클래스의 싱글턴(static instance) 역할을 합니다.
+  /// 어딘가에서 인스턴스를 생성하지 않고도 HelperConverter.Current로 접근할 수 있어 XAML에서 쉽게 바인딩에 사용 가능합니다
+  /// </summary>
   public static readonly HelperConverter Current = new HelperConverter();
 
   /// <summary>
@@ -45,6 +47,11 @@ public class HelperConverter : MarkupExtension, IMultiValueConverter
     throw new NotImplementedException();
   }
 
+  /// <summary>
+  /// HelperConverter
+  /// </summary>
+  /// <param name="serviceProvider"></param>
+  /// <returns></returns>
   public override object ProvideValue(IServiceProvider serviceProvider)
   {
     return this;

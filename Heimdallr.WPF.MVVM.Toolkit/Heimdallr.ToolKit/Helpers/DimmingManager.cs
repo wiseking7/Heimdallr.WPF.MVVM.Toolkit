@@ -9,7 +9,9 @@ namespace Heimdallr.ToolKit.Helpers;
 /// </summary>
 public class DimmingManager
 {
-  // 생성자: DimmingManager 인스턴스를 생성합니다.
+  /// <summary>
+  /// 생성자: DimmingManager 인스턴스를 생성합니다.
+  /// </summary>
   public DimmingManager() { }
 
   /// <summary>

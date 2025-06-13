@@ -1,14 +1,22 @@
 ﻿namespace Heimdallr.ToolKit.Indicators;
 
-//[01]
+/// <summary>
+/// [01] VisualStates
+/// </summary>
 public class VisualStates
 {
-  // 그룹 이름: Visibility 관련 상태들
+  /// <summary>
+  /// 그룹 이름: Visibility 관련 상태들
+  /// </summary>
   public const string GroupVisibility = "VisibilityStates";
 
-  // 보이는 상태
+  /// <summary>
+  /// 보이는 상태
+  /// </summary>
   public const string StateVisible = "Visible";
 
-  // 숨겨진 상태
+  /// <summary>
+  /// 숨겨진 상태
+  /// </summary>
   public const string StateHidden = "Hidden";
 }
