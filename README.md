@@ -165,6 +165,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
 - **Controls [Folder]**
   - **Button [Folder]**
     - [x] CloseButton.xaml [닫기 Button]
+    - [x] HeimdallrPulseEllipse.cs [3개의 원을 포함한 Icon 버튼]
+    - [x] HeimdallrPulseRectButton.cs [Icon, 문자열 버튼 (둘중 하나만 사용 가능)] 
     - [x] HeimdallrFlatButton.xaml [평면 Button]
     - [x] HoldSubmitButton.xaml [애니메이션 버튼 Ellipse]
     - [x] MaximizeButton.xaml [크게 Button]
@@ -187,9 +189,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - **ListBox [Folder]**
     - [x] MagicBar.xaml [수평 Menu 컨트롤]
   - **ListView [Folder]**
-    - [x] HeimdallrGridView.xaml [GridViewColumnHeader Style]
-    - [x] HeimdallrListView.xaml [ListView Style]
-    - [x] HeimdallrListViewItem.xaml [ListViewItem Style]
+    - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.xaml [UserControl Ligin View]
   - **PassowrdBox [Folder]**
@@ -228,6 +228,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] DraggableBar.cs [Border Drag]
   - **Button [Folder]**
     - [x] CloseButton.cs [닫기 Button]
+    - [x] HeimdallrPulseEllipse.cs [3개의 원을 포함한 Icon 버튼]
+    - [x] HeimdallrPulseRectButton.cs [Icon, 문자열 버튼 (둘중 하나만 사용 가능)] 
     - [x] HoldSubmitButton.cs [애니메이션 버튼 EllipseFill, BgEllipseFill, HoldEllipseFill 색상구현 및 HoldDuration 구현]
     - [x] HeimdallrFlatButton.cs [평면 Button]
     - [x] MaximizeButton.cs [크게 Button]
@@ -251,15 +253,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] HeimdallrListBoxItem.cs [미완성]
     - [x] MagicBar.cs [ListView 상속으로 확인]
   - **ListView [Folder]**
-    - [x] HeimdallrGridView.cs [HeimdallrGridView 클래스는 ListView를 확장하여 그리드 형식의 항목 표시를 지원하는 사용자 지정 ListView 컨트롤입니다.]
-    - [x] HeimdallrGridViewColumnHeader.cs [HeimdallrGridViewColumnHeader 클래스는 GridViewColumnHeader를 확장]
-    - [x] HeimdallrGridViewHeaderItem.cs [HeimdallrGridViewHeaderItem 클래스는 Heimdallr UI 스타일에 맞춘 GridView 헤더 항목 컨트롤입니다]
-    - [x] HeimdallrGridViewItem.cs [HeimdallrGridViewItem 클래스는 HeimdallrListViewBaseItem을 확장하여 GridView 형식의 항목을 표시하는 사용자 지정 ListView 컨트롤입니다]
-    - [x] HeimdallrListView.cs [ListView 상속받아 컬럼, 헤더 클릭시 자동으로 컬렉션을 정렬하는 기능]
-    - [x] HeimdallrListViewBase.cs [HeimdallrListViewBase 클래스는 ListView를 확장하여 멀티 선택 기능과 항목 클릭 이벤트를 지원하는 사용자 지정 ListView 컨트롤입니다]
-    - [x] HeimdallrListViewBaseHeaderItem.cs [HeimdallrListViewBaseHeaderItem 클래스는 ListView의 헤더 아이템을 나타내는 사용자 지정 컨트롤입니다]
-    - [x] HeimdallrListViewBaseItem.cs [Heimdallr UI 스타일에 맞춘 사용자 지정 ListView/ListBox 항목 컨트롤입니다]
-    - [x] HeimdallrListViewItem.cs [ListViewItem 을 상속하여 확장한 HeimdallrListViewItem 클래스. 커스텀 스타일 및 MVVM 방식 더블 클릭 명령 처리를 지원]
+    - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.cs [Login View (UserControl)]
   - **PassowrdBox [Folder]**
