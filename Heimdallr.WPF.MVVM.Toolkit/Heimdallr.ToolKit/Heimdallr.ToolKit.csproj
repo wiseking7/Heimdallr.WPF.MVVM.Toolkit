@@ -63,8 +63,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Themes\Controls\ListView\" />
     <Folder Include="Themes\Controls\StackPanel\" />
     <Folder Include="UI\Controls\DatePicker\" />
+    <Folder Include="UI\Controls\ListView\" />
   </ItemGroup>
 
   <ItemGroup>

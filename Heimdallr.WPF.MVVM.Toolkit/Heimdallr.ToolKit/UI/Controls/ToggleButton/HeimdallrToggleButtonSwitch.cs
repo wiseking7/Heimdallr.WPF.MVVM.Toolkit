@@ -56,7 +56,9 @@ public class HeimdallrToggleButtonSwitch : ToggleButton
     double thumbWidth = _thumb.ActualWidth;
 
     double toX = IsChecked == true
-        ? Math.Max(0, trackWidth - thumbWidth - ThumbPadding)
+        // 오른쪽이 깔금하게 맞춰지지 않음
+        //? Math.Max(0, trackWidth - thumbWidth - ThumbPadding)
+        ? Math.Max(0, trackWidth - thumbWidth)
         : 0;
 
     AnimateThumb(toX);

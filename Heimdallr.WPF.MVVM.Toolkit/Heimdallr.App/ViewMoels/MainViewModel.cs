@@ -13,11 +13,11 @@ public partial class MainViewModel : ObservableBase
 {
   public string? TextMessage { get; set; }
 
-  public DelegateCommand? HoldSubmitButtonCommamd => new DelegateCommand(ExecuteHoldSubmit);
+  public DelegateCommand? ButtonTextCommamd => new DelegateCommand(ExecuteHoldSubmit);
 
   private void ExecuteHoldSubmit()
   {
-    MessageBox.Show("Hold Button");
+    MessageBox.Show("Button Test Command");
   }
 
   public MainViewModel()

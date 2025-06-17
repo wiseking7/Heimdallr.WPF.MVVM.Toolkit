@@ -19,12 +19,17 @@
         <Border Background="Transparent" Padding="20">
           <Grid>
             <Grid.RowDefinitions>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
+              <RowDefinition Height="Auto"/>
               <RowDefinition />
               <RowDefinition />
               <RowDefinition />
               <RowDefinition />
               <RowDefinition />
-
+              <RowDefinition />
+              <RowDefinition />
+              <RowDefinition />
             </Grid.RowDefinitions>
 
 
@@ -33,7 +38,7 @@
                                   Background="Gray" Cursor="SizeNS"/>-->
 
             <!--#region HeimdallTreeView Row0-->
-            <ctrls:HeimdallrTreeView Grid.Row="0"  Background="Transparent">
+            <ctrls:HeimdallrTreeView Grid.Row="1"  Background="Transparent">
               <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
                                            ExpandIcon="ChevronDownEllipse"
                                            CollapseIcon="ChevronUpEllipse"
@@ -41,7 +46,7 @@
                                            CollapseIconFill="CornflowerBlue"
                                            IconWidth="40" IconHeight="40"
                                            PathIconFill="Black"
-                                           SelectedCommand="{Binding HoldSubmitButtonCommamd}"
+                                           SelectedCommand="{Binding ButtonTextCommamd}"
                                            FontSize="40" Foreground="Red">
 
                 <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
@@ -64,20 +69,11 @@
             <!--#endregion-->
              
             <!-- HeimdallrListView Row1-->
-            <ctrls:HeimdallrListView Grid.Row="1" Background="{StaticResource DarkBlueGray}" ItemsSource="{Binding People}">
-              <ctrls:HeimdallrListView.View>
-                <GridView>
-                  <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
-                  <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}" Width="150"/>
-                  <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="150"/>
-                  <GridViewColumn Header="BirthDay" DisplayMemberBinding="{Binding BirthDay}" Width="150"/>
-                </GridView>
-              </ctrls:HeimdallrListView.View>
-            </ctrls:HeimdallrListView>
+            
             <!--#endregion-->
             
             <!--#region Button Demo row 2-->
-            <ctrls:HeimdallrComboBox Grid.Row="2" Width="150" Height="40" Background="BlanchedAlmond"
+            <ctrls:HeimdallrComboBox Grid.Row="3" Width="150" Height="40" Background="BlanchedAlmond"
                                      PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" IconWidth="30"
                                      CheckedBackground="#FFBA55D3" CornerRadius="10" MouseOverBackground="{StaticResource DarkCharcoal}"
                                      BorderThickness="3" FontSize="20" Foreground="Black"
@@ -90,6 +86,28 @@
                                                  Width="200" Height="40" AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
                                                  TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
                                                  WaterMarkForeground="{StaticResource DarkWine}"/>
+
+            <ctrls:HeimdallrPulseEllipse Grid.Row="5" Width="40" Height="40" PathIcon="Cache" Ellipse1Brush="Yellow"
+                                        Ellipse2Brush="Black" Ellipse3Brush="Green" Command="{Binding ButtonTextCommamd}" 
+                                        HorizontalAlignment="Center" VerticalAlignment="Center" IconFill="Violet"/>
+
+            <ctrls:HeimdallrPulseRectButton Grid.Row="6" Width="20" Height="40" PathIcon="Barcode" IconFill="Black"
+                                            CornerRadius="7" ButtonText="바코드"
+                                            Command="{Binding ButtonTextCommamd}"/>
+
+
+            <ctrls:HeimdallrIconRadioButton Grid.Row="7" Content="Setting" 
+                                            PathIcon="Setting" Background="Transparent"
+                                            CheckedForeground="Yellow" MouseOverForeground="Blue"
+                                            GroupName="MenuGroup" Width="120" Height="40"
+                                            IconFill="AliceBlue" />
+
+            <ctrls:HeimdallrIconRadioButton Grid.Row="8" Content="HOme"
+                                Background="Transparent"
+                                CheckedForeground="Yellow" MouseOverForeground="Blue"
+                                GroupName="MenuGroup" Width="120" Height="40"
+                                />
+
           </Grid>
         </Border>
 

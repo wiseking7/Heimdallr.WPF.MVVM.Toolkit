@@ -5,91 +5,59 @@
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <!-- 이 섹션에는 공통적으로 사용하는 기본 테마 리소스와 컨트롤 스타일을 배치합니다. 순서 -->
+
   <ResourceDictionary.MergedDictionaries>
-    <!-- 1. 기본 테마 및 UI 요소들 -->
 
-    <!-- 기본 툴팁 스타일 (Tooltip) -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToolTip/HeimdallrToolTip.xaml" />
+    <!-- 1. 공통 색상 및 아이콘 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
 
-    <!-- 기본 ComboBox 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
-
-    <!-- 기본 FlatButton 스타일 -->
+    <!-- 2. 버튼 및 인터랙션 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/RadioButton/HeimdallrIconRadioButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrFlatButton.xaml" />
-
-    <!-- 기본 드롭다운 콘텐츠 메뉴 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentControl/HeimdallrDropdownContentMenu.xaml" />
-
-    <!-- 기본 PasswordBox 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
-
-    <!-- 기본 TextBox 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
-
-    <!-- 기본 HoldSubmitButton 스타일 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HoldSubmitButton.xaml" />
-
-    <!-- 기본 Spinner 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
-
-    <!-- 기본 체크박스 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
-
-    <!-- 기본 TreeView 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
-
-    <!-- 기본 ListView 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
-
-    <!-- 기본 슬라이더 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
-
-    <!-- 기본 ListBox 스타일 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListBox/MagicBar.xaml" />
-    
-    <!-- 2. UserControl 스타일 -->
-    <!-- 이 섹션에는 UserControl에 특화된 스타일을 배치합니다. -->
-    <!-- 'MyUserControlStyle.xaml'은 UserControl 스타일을 정의한 파일로, 일반적으로 UI 구성요소를 특화시킬 때 사용됩니다. -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentMenu/AnimatedSlideMenu.xaml" />
-
-    <!-- 3. Spinner와 관련된 리소스  -->
-    <!-- 이 섹션에는 스피너와 로딩 애니메이션 관련 리소스를 배치합니다. -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingSpinner.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicator.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicatorResources.xaml" />
-
-    <!-- 4. 특수한 테마와 UI 요소들 -->
-    <!-- 이 섹션에는 테마와 관련된 리소스 및 기타 UI 요소들이 들어갑니다. -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkThemeWindow.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Region/HeimdallrRegion.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrPulseRectButton.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrPulseEllipse.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MinimizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MaximizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/CloseButton.xaml" />
 
-    <!-- 5. 색상 관련 리소스 -->
-    <!-- 이 섹션에는 색상 관련 리소스를 배치합니다. (애플리케이션 전체 색상에 관련된 리소스) -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
+    <!-- 3. 입력 컨트롤 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/HeimdallrToggleButtonSwitch.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
 
-    <!--  6. 아이콘 관련 리소스 -->
-    <!-- 이 섹션에는 아이콘 및 정보 윈도우와 관련된 리소스를 배치합니다. -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
+    <!-- 4. List, TreeView 및 ItemControl 컨트롤 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
+
+    <!-- 5. 슬라이더, 썸, 패널 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
+
+    <!-- 6. 스피너 및 인디케이터 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingSpinner.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicator.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicatorResources.xaml" />
+
+    <!-- 7. 툴팁 및 정보창 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToolTip/HeimdallrToolTip.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Information/InformationWindow.xaml" />
 
-    <!-- 7. 최종적으로 테마 관련 리소스 -->
-    <!-- 이 섹션은 전체 테마와 관련된 최종 리소스를 배치합니다. -->
-    <!-- 후속 리소스는 이전의 스타일을 덮어쓸 수 있기 때문에, 이 부분에 테마를 배치하여 전체 UI가 최종적으로 적용되도록 합니다. -->
+    <!-- 8. 레이아웃 및 영역 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentControl/HeimdallrDropdownContentMenu.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentMenu/AnimatedSlideMenu.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Region/HeimdallrRegion.xaml" />
+
+    <!-- 9. 윈도우 및 테마 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkThemeWindow.xaml" />
 
-    <!-- 8. 기타 테마 및 커스텀 리소스 -->
-    <!-- 이 섹션에는 나머지 커스텀 리소스를 배치합니다. -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrGridViewColumnHeader.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListViewItem.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
-
 </ResourceDictionary>
 
 <!-- 마지막 순서 배치

@@ -81,15 +81,17 @@
                     Foreground="{TemplateBinding Foreground}"
                     IsHitTestVisible="False" />
 
-                <!-- 메뉴 토글 버튼 -->
-                <ctrls:HeimdallrToggleButtonSwitch 
+                <!-- 메뉴 토글 버튼  -->
+                <!--<ctrls:HeimdallrSwitchCheckBox Grid.Column="2"
+                                                   Margin="100 0 0 0" />-->
+                <ctrls:HeimdallrToggleButtonSwitch  
+                    x:Name="cbToogleMenu"
                     Grid.Column="2"
-                    Margin="100,5,0,0"
+                    Margin="100 5 0 0"
+                    Visibility="{Binding IsMenuVisibility}" 
                     IsChecked="{Binding IsMenuOpen, Mode=TwoWay}"
                     VerticalAlignment="Center"
-                    Visibility="{Binding IsMenuVisibility}"
-                    HorizontalAlignment="Left" 
-                    x:Name="cbToogleMenu">
+                    HorizontalAlignment="Left" >
                   <ctrls:HeimdallrToggleButtonSwitch.ToolTip>
                     <ctrls:HeimdallrToolTip Content="MENU" />
                   </ctrls:HeimdallrToggleButtonSwitch.ToolTip>

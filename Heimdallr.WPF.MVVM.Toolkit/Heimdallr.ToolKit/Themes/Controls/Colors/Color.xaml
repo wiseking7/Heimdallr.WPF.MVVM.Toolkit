@@ -96,4 +96,20 @@
   <!-- 기타 / 혼합 -->
   <SolidColorBrush x:Key="DarkSlateBrown" Color="#483D8B" />
   <SolidColorBrush x:Key="DarkBlueViolet" Color="#6A5ACD" />
+
+  <Color x:Key="PrimaryColorLight">#FF2C3E50</Color>
+  <Color x:Key="PrimaryColorDark">#FFECF0F1</Color>
+  <Color x:Key="AccentColor">#FF2980B9</Color>
+  <Color x:Key="HoverColor">#FFE1E8F7</Color>
+  <Color x:Key="SelectedColor">#FF3498DB</Color>
+  <Color x:Key="BorderColor">#FFBDC3C7</Color>
+  
+  <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColorLight}" />
+  <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
+  <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource HoverColor}" />
+  <SolidColorBrush x:Key="SelectedBrush" Color="{StaticResource SelectedColor}" />
+  <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+
+
+
 </ResourceDictionary>
