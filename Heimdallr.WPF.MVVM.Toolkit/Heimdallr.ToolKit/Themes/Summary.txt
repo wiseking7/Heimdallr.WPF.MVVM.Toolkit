@@ -1,0 +1,18 @@
+﻿왜 VisualStateManager를 사용하는가?
+* VisualStateManager 는 WPF에서 컨트롤의 시각 상태(Visual State)를 선언적으로 관리할 수 있는 기능입니다.
+
+* 기존 트리거(Trigger) 방식의 한계:
+  IsPressed, IsMouseOver, IsEnabled 등을 Trigger로 처리하면 단순한 상태 전환은 가능하지만,
+  애니메이션 처리, 시간 지연, 복잡한 전환 로직은 구현이 불가능하거나 매우 복잡합니다.
+
+* VisualStateManager의 장점:
+      기능	                                      설명
+   애니메이션 가능	    상태 전환 시 Storyboard를 사용해 자연스러운 전환이 가능
+   여러 상태 관리	        상태 그룹(VisualStateGroup)으로 컨트롤의 여러 상태(Normal, MouseOver, Pressed, Disabled)를 분리 관리
+    선언적 구성	        XAML 내에서 시각 상태를 깔끔하고 모듈화된 방식으로 구성 가능
+      확장성	            커스텀 컨트롤에서도 VisualStateManager.GoToState()를 통해 동적으로 상태 전환 가능
+
+* VisualState는 전체 컨트롤에서 사용 가능한가? -> 예, 사용 가능합니다.
+  모든 WPF 컨트롤(Button, ListBoxItem, ToggleButton, TextBox, ComboBox 등)에서 ControlTemplate 내부에 VisualStateManager를 사용해 시각 상태를 정의할 수 있습니다.
+
+  특히 Custom Control을 설계할 때는 사실상 필수입니다. 기본 ControlTemplate을 재정의할 때 VisualStateManager는 구조적이고 유지보수에 강합니다.

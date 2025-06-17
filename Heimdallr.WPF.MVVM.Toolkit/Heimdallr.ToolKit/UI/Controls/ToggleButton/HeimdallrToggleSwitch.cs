@@ -4,7 +4,7 @@ using System.Windows.Controls.Primitives;
 namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
-/// Togglebutton Switch
+/// HeimdallrToggleSwitch는 ToggleButton을 상속받아 스위치 스타일의 토글 스위치를 구현합니다.
 /// </summary>
 public class HeimdallrToggleSwitch : ToggleButton
 {

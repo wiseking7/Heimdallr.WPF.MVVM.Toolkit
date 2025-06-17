@@ -9,7 +9,6 @@
     <Setter Property="Height" Value="35" />
     <Setter Property="Margin" Value="0 0 10 0" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="ToolTip" Value="CLOSE" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:CloseButton}">
@@ -17,12 +16,16 @@
             <ctrls:HeimdallrIcon Width="20"
                                  Height="20"
                                  Fill="{TemplateBinding Foreground}"
-                                 Icon="Power" />
+                                 Icon="Power" >
+              <ctrls:HeimdallrIcon.ToolTip>
+                <ctrls:HeimdallrToolTip Content="닫기" />
+              </ctrls:HeimdallrIcon.ToolTip>
+            </ctrls:HeimdallrIcon>
           </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
               <Setter Property="Background" Value="Transparent" />
-              <Setter Property="Foreground" Value="#FFFFF8E1" />
+              <Setter Property="Foreground" Value="#FF872341" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
               <Setter Property="Background" Value="Transparent" />

@@ -94,5 +94,95 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
         new PropertyMetadata(Brushes.Gray));
   #endregion
+
+  #region
+  /// <summary>
+  /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
+  /// </summary>
+  public CornerRadius CornerRadius
+  {
+    get => (CornerRadius)GetValue(CornerRadiusProperty);
+    set => SetValue(CornerRadiusProperty, value);
+  }
+  /// <summary>
+  /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty CornerRadiusProperty =
+    DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(HeimdallrIconWaterMarkTextBox),
+      new PropertyMetadata(new CornerRadius(0)));
+  #endregion
+
+  #region
+  /// <summary>
+  /// AutoGrow 속성은 텍스트 박스가 입력된 내용에 따라 자동으로 크기를 조절할지 여부를 결정합니다.
+  /// </summary>
+  public static readonly DependencyProperty AutoGrowProperty =
+    DependencyProperty.Register(nameof(AutoGrow), typeof(bool), typeof(HeimdallrIconWaterMarkTextBox),
+        new PropertyMetadata(false));
+  /// <summary>
+  /// AutoGrow 속성은 텍스트 박스가 입력된 내용에 따라 자동으로 크기를 조절할지 여부를 결정합니다.
+  /// </summary>
+  public bool AutoGrow
+  {
+    get => (bool)GetValue(AutoGrowProperty);
+    set => SetValue(AutoGrowProperty, value);
+  }
+  #endregion
+
+  #region
+  /// <summary>
+  /// FocusFill 속성은 텍스트 박스가 포커스를 받을 때 적용되는 배경색을 지정합니다.
+  /// </summary>
+  public Brush FocusFill
+  {
+    get => (Brush)GetValue(FocusFillProperty);
+    set => SetValue(FocusFillProperty, value);
+  }
+  /// <summary>
+  /// FocusFill 속성은 텍스트 박스가 포커스를 받을 때 적용되는 배경색을 지정합니다.
+  /// </summary>
+  public static readonly DependencyProperty FocusFillProperty =
+      DependencyProperty.Register(nameof(FocusFill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
+          new PropertyMetadata(Brushes.White)); // 기본 포커스 색상 지정 가능
+  #endregion
+
+
+  /// <summary>
+  /// 텍스트가 변경될 때 자동으로 높이를 조정합니다.
+  /// </summary>
+  /// <param name="e"></param>
+  protected override void OnTextChanged(TextChangedEventArgs e)
+  {
+    base.OnTextChanged(e);
+
+    if (AutoGrow)
+    {
+      UpdateHeightByText();
+    }
+  }
+  /// <summary>
+  /// 텍스트가 변경될 때 자동으로 높이를 조정합니다.
+  /// </summary>
+  private void UpdateHeightByText()
+  {
+    var formattedText = new FormattedText(
+        this.Text + " ", // 공백 추가해서 마지막 줄 포함
+        System.Globalization.CultureInfo.CurrentCulture,
+        FlowDirection.LeftToRight,
+        new Typeface(this.FontFamily, this.FontStyle, this.FontWeight, this.FontStretch),
+        this.FontSize,
+        Brushes.Black,
+        VisualTreeHelper.GetDpi(this).PixelsPerDip);
+
+    formattedText.MaxTextWidth = this.ActualWidth - this.Padding.Left - this.Padding.Right - 10;
+
+    double newHeight = formattedText.Height + this.Padding.Top + this.Padding.Bottom + 10;
+
+    // 높이 제한 고려 (MinHeight ~ MaxHeight)
+    newHeight = Math.Max(this.MinHeight, newHeight);
+    if (this.MaxHeight > 0) newHeight = Math.Min(this.MaxHeight, newHeight);
+
+    this.Height = newHeight;
+  }
 }
 

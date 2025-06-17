@@ -55,6 +55,7 @@
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Prism.DryIoc" Version="9.0.537" />
     <PackageReference Include="WpfAutoGrid.Core" Version="1.5.1" />
@@ -63,7 +64,6 @@
 
   <ItemGroup>
     <Folder Include="Themes\Controls\StackPanel\" />
-    <Folder Include="Themes\Controls\Windows\" />
     <Folder Include="UI\Controls\DatePicker\" />
   </ItemGroup>
 

@@ -9,7 +9,6 @@
     <Setter Property="Height" Value="35" />
     <Setter Property="Margin" Value="0" />
     <Setter Property="Cursor" Value="Hand" />
-    <Setter Property="ToolTip" Value="MIN" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:MinimizeButton}">
@@ -17,12 +16,16 @@
             <ctrls:HeimdallrIcon Width="16"
                                  Height="16"
                                  Fill="{TemplateBinding Foreground}"
-                                 Icon="Minimize" />
+                                 Icon="Minimize" >
+              <ctrls:HeimdallrIcon.ToolTip>
+                <ctrls:HeimdallrToolTip Content="숨기기" />
+              </ctrls:HeimdallrIcon.ToolTip>
+            </ctrls:HeimdallrIcon>
           </Border>
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
               <Setter Property="Background" Value="Transparent" />
-              <Setter Property="Foreground" Value="#FFFFFFFF" />
+              <Setter Property="Foreground" Value="#FF6EACDA" />
             </Trigger>
             <Trigger Property="IsPressed" Value="True">
               <Setter Property="Background" Value="Transparent" />

@@ -1,0 +1,162 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  
+  
+  <Style TargetType="{x:Type ctrls:InformationWindow}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:InformationWindow}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Padding="10"
+                  SnapsToDevicePixels="True">
+
+            <Grid>
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition />
+              </Grid.RowDefinitions>
+
+              <!-- 닫기 버튼 -->
+              <Button x:Name="PART_CloseButton"
+                      Grid.Column="1"
+                      Content="✖"
+                      FontSize="14"
+                      ToolTip="닫기"
+                      Foreground="#FF750E21"
+                      Background="Transparent"
+                      BorderThickness="0"
+                      HorizontalAlignment="Right"
+                      VerticalAlignment="Top"
+                      Margin="0,10,10,0"
+                      Cursor="Hand" />
+
+              <TextBlock x:Name="TextBlockTitle" Grid.Row="1"
+                         Text="HEIMDALLR SYSTEM INFORMATION"
+                         FontSize="20"
+                         Foreground="#FFFFFFFF"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Top"
+                         Margin="0,5,0,0" />
+
+              <StackPanel Grid.Row="2" Margin="20,20,20,20">
+                <TextBlock x:Name="TextBlockVersion" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="버전: " FontWeight="Bold"/>
+                            <Run Text="1.0.0"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockStatus" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="상태: " FontWeight="Bold"/>
+                            <Run Text="원활한 상태"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockLastUpdate" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="마지막 업데이트: " FontWeight="Bold"/>
+                            <Run Text="2025-06-16 13:45"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockSoftware" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="소프트 이름: " FontWeight="Bold"/>
+                            <Run Text="HEIMDALLR"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockOS" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="OS: " FontWeight="Bold"/>
+                            <Run Text="Windows 10 Pro"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockFramework" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="Framework: " FontWeight="Bold"/>
+                            <Run Text=".NET 8.0"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockUptime" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="App 실행 후 경과시간: " FontWeight="Bold"/>
+                            <Run Text="01:23:45"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockDatabaseStatus" FontSize="14" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="Database 상태: " FontWeight="Bold"/>
+                            <Run Text="Connected (MY Server)"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockCurrentTime" FontSize="14" Margin="0 5">
+                            ● <Run Text="현재 시간: " Foreground="#FF940B92" FontWeight="Bold"/>
+                            <Run Text="00:00:00"/>
+                </TextBlock>
+
+                <TextBlock x:Name="TextBlockCurrentDate" FontSize="14" Margin="0 5">
+                            ● <Run Text="오늘 날짜: " Foreground="#FF940B92" FontWeight="Bold"/>
+                            <Run Text="0000-00-00 (월)"/>
+                </TextBlock>
+              </StackPanel>
+            </Grid>
+          </Border>
+          <!-- 애니메이션 트리거 -->
+          <ControlTemplate.Triggers>
+            <EventTrigger RoutedEvent="FrameworkElement.Loaded">
+              <BeginStoryboard>
+                <Storyboard>
+                  <ColorAnimation Storyboard.TargetName="TextBlockVersion"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FFFF0000" Duration="0:0:1"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockStatus"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FFFF7F00" Duration="0:0:1.2"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockLastUpdate"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FFFFFF00" Duration="0:0:1.4"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockSoftware"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FF00FF00" Duration="0:0:1.6"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockOS"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FF0000FF" Duration="0:0:1.8"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockFramework"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FF4B0082" Duration="0:0:2"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockUptime"
+                   Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                   From="#FF940B92" To="#FF8B00FF" Duration="0:0:2.2"
+                   AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockDatabaseStatus"
+                    Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                    From="#FF940B92" To="#FF00FFFF" Duration="0:0:2.4"
+                    AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockCurrentTime"
+                    Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                    From="#FF818FB4" To="#FFF5E8C7" Duration="0:0:2.2"
+                    AutoReverse="True" RepeatBehavior="Forever"/>
+
+                  <ColorAnimation Storyboard.TargetName="TextBlockCurrentDate"
+                    Storyboard.TargetProperty="(TextBlock.Foreground).(SolidColorBrush.Color)"
+                    From="#FF4477CE" To="#FF8CABFF" Duration="0:0:2.4"
+                    AutoReverse="True" RepeatBehavior="Forever"/>
+                </Storyboard>
+              </BeginStoryboard>
+            </EventTrigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

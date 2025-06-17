@@ -118,6 +118,7 @@ public class HeimdallrSwitchCheckBox : CheckBox
     // Thumb의 X 위치 애니메이션 시작
     _thumbTranslate.BeginAnimation(TranslateTransform.XProperty, animation);
   }
+
 }
 
 

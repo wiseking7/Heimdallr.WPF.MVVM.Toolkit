@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
@@ -246,6 +247,7 @@ public class HeimdallrIcon : ContentControl
     }
   }
 
+  #region 생성자
   /// <summary>
   /// 정적 생성자: HeimdallrIcon의 기본 스타일 키를 설정
   /// </summary>
@@ -254,4 +256,61 @@ public class HeimdallrIcon : ContentControl
     DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrIcon),
       new FrameworkPropertyMetadata(typeof(HeimdallrIcon)));
   }
+  /// <summary>
+  /// HeimdallrIcon 생성자: 기본 생성자
+  /// </summary>
+  public HeimdallrIcon()
+  {
+    MouseLeftButtonUp += (sender, e) =>
+    {
+      // 마우스 왼쪽 버튼 클릭 시 Command 실행
+      if (Command != null && Command.CanExecute(CommandParameter))
+      {
+        Command.Execute(CommandParameter);
+        e.Handled = true; // 이벤트 처리 완료 표시
+      }
+    };
+
+    Cursor = Cursors.Hand; // 마우스 커서를 손 모양으로 변경
+  }
+
+  private void HeimdallrIcon_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+  {
+    throw new NotImplementedException();
+  }
+  #endregion
+
+  #region Command
+  /// <summary>
+  /// 
+  /// </summary>
+  public ICommand? Command
+  {
+    get { return (ICommand?)GetValue(CommandProperty); }
+    set { SetValue(CommandProperty, value); }
+  }
+
+  /// <summary>
+  /// Command 속성은 ICommand 인터페이스를 구현하는 명령을 나타냅니다.
+  /// </summary>
+  public static readonly DependencyProperty CommandProperty =
+      DependencyProperty.Register(nameof(Command), typeof(ICommand),
+          typeof(HeimdallrIcon), new PropertyMetadata(null));
+
+  /// <summary>
+  /// CommandParameter 속성은 명령에 전달할 추가 매개변수를 나타냅니다.
+  /// </summary>
+  public object? CommandParameter
+  {
+    get { return GetValue(CommandParameterProperty); }
+    set { SetValue(CommandParameterProperty, value); }
+  }
+
+  /// <summary>
+  /// CommandParameter 속성은 ICommand에 전달할 매개변수를 나타냅니다.
+  /// </summary>
+  public static readonly DependencyProperty CommandParameterProperty =
+      DependencyProperty.Register(nameof(CommandParameter), typeof(object),
+          typeof(HeimdallrIcon), new PropertyMetadata(null));
+  #endregion
 }

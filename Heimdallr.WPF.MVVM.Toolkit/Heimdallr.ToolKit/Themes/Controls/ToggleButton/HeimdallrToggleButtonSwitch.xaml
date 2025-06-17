@@ -1,0 +1,92 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls"
+                    xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters">
+
+
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <!-- Thumb 스타일 [Thumb은 스위치의 움직이는 동그란 부분입니다 Thumb 위치는 Margin="-8,0,0,0"으로 왼쪽으로 살짝 튀어나오게 설정.
+     HorizontalAlignment="Left"로 초기 위치를 왼쪽에 고정 -->
+  <Style x:Key="SwitchThumbStyle" TargetType="Border">
+    <Setter Property="BorderBrush" Value="#EEEEEE"/>
+    <Setter Property="Background" Value="{StaticResource DarkViolet}"/>
+    <Setter Property="Width" Value="26"/>
+    <Setter Property="Height" Value="26"/>
+    <Setter Property="BorderThickness" Value="2"/>
+    <Setter Property="CornerRadius" Value="20"/>
+    <!-- 원형이므로 절반으로 변경 -->
+    <Setter Property="HorizontalAlignment" Value="Left"/>
+    <Setter Property="VerticalAlignment" Value="Center"/>
+    <Setter Property="Margin" Value="0"/>
+    <!-- 음수 마진 제거 -->
+    <Setter Property="UseLayoutRounding" Value="True"/>
+  </Style>
+
+
+  <Style TargetType="{x:Type ctrls:HeimdallrToggleButtonSwitch}">
+    <Setter Property="Width" Value="80"/>
+    <Setter Property="Height" Value="30"/>
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrToggleButtonSwitch}">
+          <Grid>
+            <!-- 배경 트랙 -->
+            <Border x:Name="PART_Track"
+                    CornerRadius="15"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="Transparent"
+                    ToolTip="MENU"
+                    Cursor="Hand"
+                    BorderThickness="1"/>
+
+            <!-- Thumb -->
+            <Border x:Name="PART_Thumb"
+                    Style="{StaticResource SwitchThumbStyle}">
+              <ctrls:HeimdallrIcon x:Name="ThumbIcon"
+                            PathIcon="HeimdallrLogo"
+                            Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                            Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Center"/>
+            </Border>
+
+            <!-- ON/OFF 텍스트 -->
+            <TextBlock x:Name="PART_Label"
+                       Text="{TemplateBinding Content}"
+                       VerticalAlignment="Center"
+                       Margin="0,0,10,0"
+                       Foreground="White"
+                       FontWeight="Bold"/>
+
+          </Grid>
+
+          <!-- VisualStates -->
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter TargetName="PART_Track" Property="Background" Value="#FF5C8374"/>
+              <Setter TargetName="PART_Label" Property="Text" Value="ON"/>
+              <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
+              <!-- ON일 때 텍스트 오른쪽 정렬, 썸 왼쪽에 붙이기 -->
+              <Setter TargetName="PART_Label" Property="HorizontalAlignment" Value="Left"/>
+              <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
+              <Setter TargetName="PART_Label" Property="Margin" Value="15,0,0,0"/>
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="False">
+              <Setter TargetName="PART_Track" Property="Background" Value="#FF5C5470"/>
+              <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
+              <Setter TargetName="PART_Label" Property="Text" Value="OFF"/>
+              <!-- OFF일 때 텍스트 오른쪽 끝 정렬 -->
+              <Setter TargetName="PART_Label" Property="HorizontalAlignment" Value="Right"/>
+              <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
+              <Setter TargetName="PART_Label" Property="Margin" Value="0,0,15,0"/>
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

@@ -9,24 +9,28 @@
   </Style>
 
   <Style TargetType="{x:Type ctrls:DarkThemeWindow}">
-    <Setter Property="Background" Value="#FF252525" />
-    <Setter Property="BorderThickness" Value="0.5" />
+    <Setter Property="Background" Value="#FF344C64" />
+    <Setter Property="AllowsTransparency" Value="True" />
+    <Setter Property="WindowStyle" Value="None" />
+    <Setter Property="BorderThickness" Value="0" />
     <Setter Property="MinWidth" Value="200" />
     <Setter Property="MinHeight" Value="200" />
     <Setter Property="Foreground" Value="#FFFFFF" />
     <Setter Property="DimmingColor" Value="Bisque" />
-    <Setter Property="BorderBrush" Value="#FF141414" />
+    <Setter Property="BorderBrush" Value="#FF2B373D" />
     <Setter Property="SnapsToDevicePixels" Value="True" />
     <Setter Property="UseLayoutRounding" Value="True" />
+    <Setter Property="FontSize" Value="14" />
     <Setter Property="MinWidth" Value="200" />
     <Setter Property="MinHeight" Value="200" />
+    <Setter Property="CornerRadius" Value="9" />
     <Setter Property="DimmingOpacity" Value="4" />
 
     <!-- WindowChrome 아래 자세히 설명 -->
     <Setter Property="WindowChrome.WindowChrome">
       <Setter.Value>
         <WindowChrome CaptionHeight="0"
-                      CornerRadius="0"
+                      CornerRadius="9 9 0 0"
                       GlassFrameThickness="0"
                       NonClientFrameEdges="None"
                       ResizeBorderThickness="5"
@@ -37,35 +41,139 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:DarkThemeWindow}">
           <Border
-            Padding="0"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-            UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+              Padding="5"
+              Background="{TemplateBinding Background}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
+            
             <ctrls:HeimdallrGrid Columns="*" Rows="Auto, *">
-              <!-- 윈도우 타이틀 바 색상변경 -->
+              <!-- 윈도우 타이틀 바 색상변경 비하인드에서 지정 -->
               <ctrls:HeimdallrGrid
-                Grid.Row="0"
-                Background="{Binding TitleHeaderBackground, RelativeSource={RelativeSource TemplatedParent}}"
-                Columns="*, Auto, Auto, Auto, Auto"
-                Rows="Auto">
+                  Grid.Row="0"
+                  Background="{Binding TitleHeaderBackground, RelativeSource={RelativeSource TemplatedParent}}"
+                  Columns="Auto, Auto, Auto, *, Auto, Auto"
+                  Rows="Auto">
+
+                <!-- 드래그 영역 (아이콘과 라벨 뒤쪽만 커버) -->
                 <ctrls:DraggableBar
-                  x:Name="PART_DragBar"
-                  Grid.Column="0"
-                  Style="{StaticResource BAR.DRAGGABLE}" />
+                    x:Name="PART_DragBar"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="6"
+                    Style="{StaticResource BAR.DRAGGABLE}" />
+
+                <!-- Heimdallr 아이콘 -->
+                <ctrls:HeimdallrIcon 
+                      x:Name="PART_Heimdallr"
+                      Image="Heimdallr"
+                      Grid.Column="0" Margin="15 5 0 0 "
+                      Cursor="Hand"/>
+
+                <!-- 타이틀 텍스트 -->
                 <Label
-                  Grid.Column="0"
-                  Margin="10,0,0,0"
-                  VerticalAlignment="Center"
-                  HorizontalContentAlignment="Stretch"
-                  Content="{TemplateBinding Title}"
-                  Foreground="{TemplateBinding Foreground}"
-                  IsHitTestVisible="False" />
-                <ctrls:HeimdallrSwitchCheckBox x:Name="cbToogleMenu" ToolTip="MENU" Grid.Column="1" />
-                <ctrls:MinimizeButton x:Name="PART_MinButton" Grid.Column="2" />
-                <ctrls:MaximizeButton x:Name="PART_MaxButton" Grid.Column="3" />
-                <ctrls:CloseButton x:Name="PART_CloseButton" Grid.Column="4" />
+                    Grid.Column="1"
+                    Margin="15 5 0 0"
+                    VerticalAlignment="Center"
+                    HorizontalContentAlignment="Stretch"
+                    Content="HEIMALLR SYSTEM"
+                    Foreground="{TemplateBinding Foreground}"
+                    IsHitTestVisible="False" />
+
+                <!-- 메뉴 토글 버튼 -->
+                <ctrls:HeimdallrToggleButtonSwitch 
+                    Grid.Column="2"
+                    Margin="100,5,0,0"
+                    IsChecked="{Binding IsMenuOpen, Mode=TwoWay}"
+                    VerticalAlignment="Center"
+                    Visibility="{Binding IsMenuVisibility}"
+                    HorizontalAlignment="Left" 
+                    x:Name="cbToogleMenu">
+                  <ctrls:HeimdallrToggleButtonSwitch.ToolTip>
+                    <ctrls:HeimdallrToolTip Content="MENU" />
+                  </ctrls:HeimdallrToggleButtonSwitch.ToolTip>
+                </ctrls:HeimdallrToggleButtonSwitch>
+
+                <!-- Title Bar -->
+                <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 100 0">
+                  
+                  <!-- 로그인 정보-->
+                  <StackPanel Orientation="Horizontal" >
+                    <ctrls:HeimdallrIcon 
+                        x:Name="cbLogin"
+                        PathIcon="User"
+                        Fill="#FFB9B4C7"
+                        Cursor="Hand"
+                        Width="24" Height="24"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="0 0 5 0" >
+                      <ctrls:HeimdallrIcon.ToolTip>
+                        <ctrls:HeimdallrToolTip Content="USERNAME" />
+                      </ctrls:HeimdallrIcon.ToolTip>
+                    </ctrls:HeimdallrIcon>
+                    <Label 
+                        x:Name="LoginLabelText"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Content="{Binding Username}"
+                        FontSize="12"
+                        Foreground="{TemplateBinding Foreground}"
+                        Margin="5 0 10 0" />
+                  </StackPanel>
+                  
+                  <!-- 로그인 아이콘 --> 
+                    <ctrls:HeimdallrIcon 
+                        x:Name="LoginButtonCommand"  
+                        PathIcon="Login"
+                        Fill="#FFE19898"
+                        Command="{Binding LoginCommand}">
+                      <ctrls:HeimdallrIcon.ToolTip>
+                        <ctrls:HeimdallrToolTip Content="LOGIN PLEASE" />
+                      </ctrls:HeimdallrIcon.ToolTip>
+                    </ctrls:HeimdallrIcon>
+   
+                  <!-- 정보 아이콘 -->
+                  <ctrls:HeimdallrIcon 
+                     x:Name="cbInformation" 
+                     Icon="Information"
+                     Fill="#FF4477CE"
+                     Command="{Binding InformationCommand}"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Right" 
+                     HorizontalContentAlignment="Stretch"
+                     Margin="20 0 0 0">
+                    <ctrls:HeimdallrIcon.ToolTip>
+                      <ctrls:HeimdallrToolTip Content="INFORMATION" />
+                    </ctrls:HeimdallrIcon.ToolTip>
+                  </ctrls:HeimdallrIcon>
+
+                  <!-- 정보 아이콘 -->
+                  <ctrls:HeimdallrIcon 
+                     x:Name="cbTheme" 
+                     PathIcon="Notification"
+                     Fill="#FF662549"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Right" 
+                     HorizontalContentAlignment="Stretch"
+                     Margin="20 0 0 0">
+                    <ctrls:HeimdallrIcon.ToolTip>
+                      <ctrls:HeimdallrToolTip Content="알림" />
+                    </ctrls:HeimdallrIcon.ToolTip>
+                  </ctrls:HeimdallrIcon>
+                </StackPanel>
+
+
+                <!-- 윈도우 버튼 영역 -->
+                <StackPanel Orientation="Horizontal" Grid.Column="5" HorizontalAlignment="Right" Margin="0">
+                  <ctrls:MinimizeButton 
+                    x:Name="PART_MinButton" />
+                  <ctrls:MaximizeButton 
+                    x:Name="PART_MaxButton" />
+                  <ctrls:CloseButton 
+                    x:Name="PART_CloseButton" />
+                </StackPanel>
               </ctrls:HeimdallrGrid>
 
               <!-- ClipToBounds="False" 콘텐츠가 영역을 넘어도 잘리지 않음.  -->

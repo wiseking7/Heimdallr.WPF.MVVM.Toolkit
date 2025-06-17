@@ -6,8 +6,13 @@
     xmlns:spinn="clr-namespace:Heimdallr.ToolKit.Indicators;assembly=Heimdallr.ToolKit"
     xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
 
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+  
   <Style TargetType="{x:Type views:MainWindow}"
           BasedOn="{StaticResource {x:Type ctrls:DarkThemeWindow}}">
+
     <Setter Property="Content">
       <Setter.Value>
 
@@ -24,11 +29,11 @@
 
 
             <!-- 레이아웃의 어딘가에 사용자 지정 엄지 컨트롤을 적용합니다(예: 열 크기 조정) -->
-            <ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="20" HorizontalAlignment="Right" 
-                                  Background="Gray" Cursor="SizeNS"/>
+            <!--<ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="50" HorizontalAlignment="Right" 
+                                  Background="Gray" Cursor="SizeNS"/>-->
 
-            <!--#region -->
-            <ctrls:HeimdallrTreeView Grid.Row="2"  Background="Transparent">
+            <!--#region HeimdallTreeView Row0-->
+            <ctrls:HeimdallrTreeView Grid.Row="0"  Background="Transparent">
               <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
                                            ExpandIcon="ChevronDownEllipse"
                                            CollapseIcon="ChevronUpEllipse"
@@ -56,6 +61,35 @@
               </ctrls:HeimdallrTreeViewItem>
               <ctrls:HeimdallrThumb />
             </ctrls:HeimdallrTreeView>
+            <!--#endregion-->
+             
+            <!-- HeimdallrListView Row1-->
+            <ctrls:HeimdallrListView Grid.Row="1" Background="{StaticResource DarkBlueGray}" ItemsSource="{Binding People}">
+              <ctrls:HeimdallrListView.View>
+                <GridView>
+                  <GridViewColumn Header="Name" DisplayMemberBinding="{Binding Name}" Width="150"/>
+                  <GridViewColumn Header="Age" DisplayMemberBinding="{Binding Age}" Width="150"/>
+                  <GridViewColumn Header="Address" DisplayMemberBinding="{Binding Address}" Width="150"/>
+                  <GridViewColumn Header="BirthDay" DisplayMemberBinding="{Binding BirthDay}" Width="150"/>
+                </GridView>
+              </ctrls:HeimdallrListView.View>
+            </ctrls:HeimdallrListView>
+            <!--#endregion-->
+            
+            <!--#region Button Demo row 2-->
+            <ctrls:HeimdallrComboBox Grid.Row="2" Width="150" Height="40" Background="BlanchedAlmond"
+                                     PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" IconWidth="30"
+                                     CheckedBackground="#FFBA55D3" CornerRadius="10" MouseOverBackground="{StaticResource DarkCharcoal}"
+                                     BorderThickness="3" FontSize="20" Foreground="Black"
+                                     ItemsSource="{Binding ProductUnitOptions}" DropDownBackground="#DCD7C9"
+                                     DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedUnit}"/>
+            <!--#endregion-->
+
+            <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
+                                                 Background="{StaticResource DarkBlueGray}" FontSize="14" Foreground="White"
+                                                 Width="200" Height="40" AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
+                                                 TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
+                                                 WaterMarkForeground="{StaticResource DarkWine}"/>
           </Grid>
         </Border>
 

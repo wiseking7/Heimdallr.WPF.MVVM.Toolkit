@@ -8,12 +8,12 @@ namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
 /// HeimdallrWindow 클래스는 WPF의 기본 Window를 상속하여,
-/// MVVM 패턴에서 View와 ViewModel을 자동으로 연결해주는 기능과,
-/// UI 조작에 도움이 되는 유틸리티 메서드를 포함하는 사용자 정의 윈도우입니다.
+/// MVVM 패턴에서 View와 ViewModel을 자동으로 연결해주는 기능과, IViewable 구현(ViwModel 과 View 접근 가능 인터페이스를 구현합니다.
+/// UI 조작에 도움이 되는 유틸리티(AddChild(), CenterAlignContent(), ApplyThemeColors() 등 편의성 기능) 메서드를 포함하는 사용자 정의 윈도우입니다.
 /// </summary>
 public class HeimdallrWindow : Window, IViewable
 {
-  // 내부에서 View와 ViewModel 자동 연결을 관리하는 매니저 객체
+  // 내부에서 View와 ViewModel 자동 연결을 관리하는 매니저 개체 (DataContext 설정을 개발자가 일일이 할 필요가 업음)
   // AutoWireManager는 View와 ViewModel을 DI(Dependency Injection) 혹은 네이밍 규칙 등으로 연결해주는 역할을 한다고 추정
   private readonly AutoWireManager? _autoWireManager;
 
@@ -43,7 +43,7 @@ public class HeimdallrWindow : Window, IViewable
   }
 
   /// <summary>
-  /// 윈도우의 Content 프로퍼티에 지정한 FrameworkElement를 설정한다.
+  /// 윈도우의 Content 프로퍼티에 지정한 FrameworkElement를 설정한다. Window 에 자식 UI를 동적으로 추가
   /// 이 메서드는 체이닝 메서드 스타일을 지원하여 연속 호출 가능하다.
   /// </summary>
   /// <param name="frameworkElement">윈도우에 표시할 UI 요소</param>
@@ -75,7 +75,7 @@ public class HeimdallrWindow : Window, IViewable
   /// 문자열 형태의 색상 코드 또는 색상 이름 (예: "#FFFFFF", "Red")를 받아
   /// WPF의 Color 타입으로 변환한 후, SolidColorBrush로 감싸서
   /// 윈도우의 Background, BorderBrush, Foreground 색상을 각각 지정한다.
-  /// 
+  /// 배경/테두리/글자색을 문자열 색상 코드로 설정
   /// 이를 통해 쉽게 테마 색상 세트를 적용할 수 있다.
   /// </summary>
   /// <param name="background">배경색 문자열</param>

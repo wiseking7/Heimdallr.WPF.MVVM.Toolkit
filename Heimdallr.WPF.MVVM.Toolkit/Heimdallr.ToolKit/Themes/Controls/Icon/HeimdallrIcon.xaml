@@ -10,6 +10,7 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIcon}">
           <Grid Background="{TemplateBinding Background}">
+           
             <Viewbox x:Name="viewbox" Visibility="Collapsed"
                      Stretch="Uniform" StretchDirection="Both">
               <Path HorizontalAlignment="Center"
@@ -17,6 +18,7 @@
                     Data="{TemplateBinding Data}"
                     Fill="{TemplateBinding Fill}" />
             </Viewbox>
+
             <Image x:Name="image"
                    RenderOptions.BitmapScalingMode="HighQuality"
                    SnapsToDevicePixels="True"

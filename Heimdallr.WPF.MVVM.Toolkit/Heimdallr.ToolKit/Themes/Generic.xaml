@@ -4,48 +4,108 @@
     xmlns:spins="clr-namespace:Heimdallr.ToolKit.Indicators"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
-  <!-- 순서가 중요함 (나중에 선언된 리소스가 앞의 리소스를 오버라이드(덮어쓰기)때문에 -->
+  <!-- 이 섹션에는 공통적으로 사용하는 기본 테마 리소스와 컨트롤 스타일을 배치합니다. 순서 -->
   <ResourceDictionary.MergedDictionaries>
+    <!-- 1. 기본 테마 및 UI 요소들 -->
 
-    <!-- Custom Control (Toggle, Button, TextBox, ListView 등 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentConttrol/HeimdallrDropdownContentMenu.xaml" />
+    <!-- 기본 툴팁 스타일 (Tooltip) -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToolTip/HeimdallrToolTip.xaml" />
+
+    <!-- 기본 ComboBox 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
+
+    <!-- 기본 FlatButton 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrFlatButton.xaml" />
+
+    <!-- 기본 드롭다운 콘텐츠 메뉴 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentControl/HeimdallrDropdownContentMenu.xaml" />
+
+    <!-- 기본 PasswordBox 스타일 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HoldSubmitButton.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentConttrol/SliderContentMenu.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ChevronSwith.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrGridView.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListViewItem.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListBox/MagicBar.xaml" />
 
-    <!-- Spiner 등록 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicatorResources.xaml" />
+    <!-- 기본 TextBox 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
+
+    <!-- 기본 HoldSubmitButton 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HoldSubmitButton.xaml" />
+
+    <!-- 기본 Spinner 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
+
+    <!-- 기본 체크박스 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
+
+    <!-- 기본 TreeView 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
+
+    <!-- 기본 ListView 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
+
+    <!-- 기본 슬라이더 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
+
+    <!-- 기본 ListBox 스타일 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListBox/MagicBar.xaml" />
+    
+    <!-- 2. UserControl 스타일 -->
+    <!-- 이 섹션에는 UserControl에 특화된 스타일을 배치합니다. -->
+    <!-- 'MyUserControlStyle.xaml'은 UserControl 스타일을 정의한 파일로, 일반적으로 UI 구성요소를 특화시킬 때 사용됩니다. -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentMenu/AnimatedSlideMenu.xaml" />
+
+    <!-- 3. Spinner와 관련된 리소스  -->
+    <!-- 이 섹션에는 스피너와 로딩 애니메이션 관련 리소스를 배치합니다. -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingSpinner.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicator.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicatorResources.xaml" />
 
-    <!-- Panel & Region -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
+    <!-- 4. 특수한 테마와 UI 요소들 -->
+    <!-- 이 섹션에는 테마와 관련된 리소스 및 기타 UI 요소들이 들어갑니다. -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkThemeWindow.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Region/HeimdallrRegion.xaml" />
-
-    <!-- Window control buttons -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MinimizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MaximizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/CloseButton.xaml" />
 
-    <!-- Color -->
+    <!-- 5. 색상 관련 리소스 -->
+    <!-- 이 섹션에는 색상 관련 리소스를 배치합니다. (애플리케이션 전체 색상에 관련된 리소스) -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
 
-    <!-- Icons & Window -->
+    <!--  6. 아이콘 관련 리소스 -->
+    <!-- 이 섹션에는 아이콘 및 정보 윈도우와 관련된 리소스를 배치합니다. -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Information/InformationWindow.xaml" />
+
+    <!-- 7. 최종적으로 테마 관련 리소스 -->
+    <!-- 이 섹션은 전체 테마와 관련된 최종 리소스를 배치합니다. -->
+    <!-- 후속 리소스는 이전의 스타일을 덮어쓸 수 있기 때문에, 이 부분에 테마를 배치하여 전체 UI가 최종적으로 적용되도록 합니다. -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Windows/DarkThemeWindow.xaml" />
 
+    <!-- 8. 기타 테마 및 커스텀 리소스 -->
+    <!-- 이 섹션에는 나머지 커스텀 리소스를 배치합니다. -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrGridViewColumnHeader.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListViewItem.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
+
 </ResourceDictionary>
+
+<!-- 마지막 순서 배치
+  ItemsControl이 마지막에 배치되는 이유
+  1. 동적 콘텐츠 및 바인딩의 특성:
+ItemsControl은 데이터 바인딩을 통해 아이템을 동적으로 표시하는 컨트롤입니다. 보통은 리스트, 컬렉션 또는 다른 데이터를 바인딩하여 아이템들을 생성하는데, 이때 바인딩된 데이터에 따라 템플릿이나 스타일이 동적으로 적용됩니다.
+
+따라서, 이와 관련된 스타일이나 리소스는 다른 UI 요소들이 스타일링된 후에 마지막으로 적용되어야 합니다. 예를 들어, ItemsControl의 아이템 스타일이나 템플릿은 기존 UI 구성 요소들의 스타일에 영향을 받지 않고 최종적으로 적용되어야 하므로, 마지막에 배치하는 것이 적합합니다.
+
+2. 템플릿과 스타일의 우선순위:
+ItemsControl에는 아이템 템플릿이나 아이템 스타일을 지정할 수 있습니다. 이와 관련된 리소스는 다른 UI 요소들이 이미 적용된 후에 덧붙여져야 하는데, 그렇지 않으면 다른 스타일들이 ItemsControl에 예상치 못한 영향을 줄 수 있습니다. 따라서, ItemsControl의 스타일이나 템플릿은 마지막에 선언하여 다른 스타일에 의한 영향을 피하고, 최종적인 시각적 요소가 반영되도록 합니다.
+
+3. UI의 동적 업데이트:
+ItemsControl이 포함된 컨트롤은 데이터를 바인딩하거나 동적으로 아이템을 생성하는 경우가 많기 때문에, UI가 변경될 때마다 스타일이나 템플릿이 업데이트될 수 있습니다. 이 경우 최종 리소스가 적용된 후에 스타일이나 템플릿을 설정해야 UI 변경에 따라 자연스럽게 반영됩니다.
+
+4. 애플리케이션에서의 일관성:
+ItemsControl을 포함하는 컨트롤은 사용자가 상호작용하는 동안 동적으로 콘텐츠를 추가하거나 제거할 수 있는 특성이 있습니다. 따라서, 이러한 동적 요소를 마지막에 적용하여 UI의 일관성을 유지하고, 스타일이 데이터의 변화에 영향을 받지 않도록 합니다.
+  
+  -->

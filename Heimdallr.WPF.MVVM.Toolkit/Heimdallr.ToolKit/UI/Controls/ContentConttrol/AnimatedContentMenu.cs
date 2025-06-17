@@ -1,5 +1,4 @@
-﻿using Heimdallr.ToolKit.Enums;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
 
@@ -9,7 +8,7 @@ namespace Heimdallr.ToolKit.UI.Controls;
 /// 좌우 슬라이드로 열리고 닫히는 메뉴 컨트롤입니다.
 /// 내부 콘텐츠의 너비에 따라 열림/닫힘 애니메이션을 적용합니다.
 /// </summary>
-public class SliderContentMenu : ContentControl
+public class AnimatedContentMenu : ContentControl
 {
   #region IsOpen 속성 (슬라이드 메뉴가 열려있는지 여부를 결정)
 
@@ -27,7 +26,7 @@ public class SliderContentMenu : ContentControl
   /// 종속성 주입
   /// </summary>
   public static readonly DependencyProperty IsOpenProperty =
-      DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(SliderContentMenu),
+      DependencyProperty.Register(nameof(IsOpen), typeof(bool), typeof(AnimatedContentMenu),
           new PropertyMetadata(false, OnIsOpenPropertyChanged)); // 상태가 바뀌면 애니메이션 실행
 
   #endregion
@@ -48,7 +47,7 @@ public class SliderContentMenu : ContentControl
   /// 종속성 주입
   /// </summary>
   public static readonly DependencyProperty OpenCloseDurationProperty =
-      DependencyProperty.Register(nameof(OpenCloseDuration), typeof(Duration), typeof(SliderContentMenu),
+      DependencyProperty.Register(nameof(OpenCloseDuration), typeof(Duration), typeof(AnimatedContentMenu),
           new PropertyMetadata(Duration.Automatic));
 
   #endregion
@@ -68,7 +67,7 @@ public class SliderContentMenu : ContentControl
   /// 종속성 주입 기본값 100
   /// </summary>
   public static readonly DependencyProperty FallbackOpenWidthProperty =
-      DependencyProperty.Register(nameof(FallbackOpenWidth), typeof(double), typeof(SliderContentMenu),
+      DependencyProperty.Register(nameof(FallbackOpenWidth), typeof(double), typeof(AnimatedContentMenu),
           new PropertyMetadata(100.0));
 
   #endregion
@@ -89,24 +88,24 @@ public class SliderContentMenu : ContentControl
   /// 종속성 주입
   /// </summary>
   public new static readonly DependencyProperty ContentProperty =
-      DependencyProperty.Register(nameof(Content), typeof(FrameworkElement), typeof(SliderContentMenu),
+      DependencyProperty.Register(nameof(Content), typeof(FrameworkElement), typeof(AnimatedContentMenu),
           new PropertyMetadata(null));
 
   #endregion
 
   #region 생성자
 
-  static SliderContentMenu()
+  static AnimatedContentMenu()
   {
     // 스타일을 Generic.xaml에서 찾을 수 있도록 설정
-    DefaultStyleKeyProperty.OverrideMetadata(typeof(SliderContentMenu),
-      new FrameworkPropertyMetadata(typeof(SliderContentMenu)));
+    DefaultStyleKeyProperty.OverrideMetadata(typeof(AnimatedContentMenu),
+      new FrameworkPropertyMetadata(typeof(AnimatedContentMenu)));
   }
 
   /// <summary>
   /// 생성자에서 초기 너비를 0으로 설정하여 메뉴가 기본적으로 닫힌 상태로 시작합니다.
   /// </summary>
-  public SliderContentMenu()
+  public AnimatedContentMenu()
   {
     Width = 0;
   }
@@ -120,7 +119,7 @@ public class SliderContentMenu : ContentControl
   /// </summary>
   private static void OnIsOpenPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
-    if (d is SliderContentMenu menu)
+    if (d is AnimatedContentMenu menu)
     {
       menu.OnIsOpenPropertyChanged();
     }
@@ -174,112 +173,4 @@ public class SliderContentMenu : ContentControl
   #endregion
 }
 
-
-/// <summary>
-/// 슬라이더 메뉴 내부에서 사용하는 전용 라디오 버튼입니다.
-/// 별도 스타일을 적용할 수 있도록 기본 스타일 키를 재정의합니다.
-/// </summary>
-public class SlideContentMenuItemRadio : RadioButton
-{
-  static SlideContentMenuItemRadio()
-  {
-    DefaultStyleKeyProperty.OverrideMetadata(typeof(SlideContentMenuItemRadio),
-      new FrameworkPropertyMetadata(typeof(SlideContentMenuItemRadio)));
-  }
-}
-
-
-/// <summary>
-/// 슬라이드 메뉴 항목으로, Header와 자식 항목(Items)을 가질 수 있는 컨트롤입니다.
-/// 펼침 여부, 아이콘 종류를 설정할 수 있습니다.
-/// </summary>
-public class SlideContentMenuItem : HeaderedItemsControl
-{
-  static SlideContentMenuItem()
-  {
-    DefaultStyleKeyProperty.OverrideMetadata(typeof(SlideContentMenuItem),
-        new FrameworkPropertyMetadata(typeof(SlideContentMenuItem)));
-  }
-
-  #region IsExpanded (자식 항목 펼침 상태)
-
-  /// <summary>
-  /// 자식 항목이 펼쳐져 있는지 여부를 나타냅니다.
-  /// </summary>
-  public bool IsExpanded
-  {
-    get => (bool)GetValue(IsExpandedProperty);
-    set => SetValue(IsExpandedProperty, value);
-  }
-
-  /// <summary>
-  /// 종속성 주입
-  /// </summary>
-  public static readonly DependencyProperty IsExpandedProperty =
-      DependencyProperty.Register(nameof(IsExpanded), typeof(bool), typeof(SlideContentMenuItem),
-          new PropertyMetadata(false));
-
-  #endregion
-
-  #region PathIcon (벡터 아이콘)
-
-  /// <summary>
-  /// HeimdallrIcon에 사용할 Path 기반 벡터 아이콘입니다.
-  /// </summary>
-  public PathIconType PathIcon
-  {
-    get => (PathIconType)GetValue(PathIconProperty);
-    set => SetValue(PathIconProperty, value);
-  }
-
-  /// <summary>
-  /// 종속성주입
-  /// </summary>
-  public static readonly DependencyProperty PathIconProperty =
-      DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(SlideContentMenuItem),
-          new PropertyMetadata(PathIconType.None));
-
-  #endregion
-
-  #region Image (이미지 아이콘)
-
-  /// <summary>
-  /// 이미지 타입 아이콘을 설정합니다.
-  /// </summary>
-  public ImageType Image
-  {
-    get => (ImageType)GetValue(ImageProperty);
-    set => SetValue(ImageProperty, value);
-  }
-
-  /// <summary>
-  /// 종속성주입
-  /// </summary>
-  public static readonly DependencyProperty ImageProperty =
-      DependencyProperty.Register(nameof(Image), typeof(ImageType), typeof(SlideContentMenuItem),
-          new PropertyMetadata(ImageType.None));
-
-  #endregion
-
-  #region Icon (IconType - 공통 아이콘 열거형)
-
-  /// <summary>
-  /// 아이콘 열거형을 사용하여 아이콘을 지정합니다.
-  /// (Path 또는 Image로 변환 가능한 값)
-  /// </summary>
-  public IconType Icon
-  {
-    get => (IconType)GetValue(IconProperty);
-    set => SetValue(IconProperty, value);
-  }
-
-  /// <summary>
-  /// 종속성 주입
-  /// </summary>
-  public static readonly DependencyProperty IconProperty =
-      DependencyProperty.Register(nameof(Icon), typeof(IconType), typeof(SlideContentMenuItem),
-          new PropertyMetadata(IconType.None));
-
-  #endregion
-}
 

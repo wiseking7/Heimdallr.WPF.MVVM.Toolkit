@@ -8,13 +8,35 @@ namespace Heimdallr.ToolKit.UI.Controls;
 /// <summary>
 /// ListView 상속받아 컬럼, 헤더 클릭시 자동으로 컬렉션을 정렬하는 기능
 /// </summary>
-public class HeimdallrListView : ListView
+public class HeimdallrListView : HeimdallrListViewBase
 {
+  /// <summary>
+  /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
+  /// </summary>
+  public CornerRadius CornerRadius
+  {
+    get => (CornerRadius)GetValue(CornerRadiusProperty);
+    set => SetValue(CornerRadiusProperty, value);
+  }
+  /// <summary>
+  /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty CornerRadiusProperty =
+    DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(HeimdallrGridView),
+      new PropertyMetadata(new CornerRadius(0)));
+
   static HeimdallrListView()
   {
     DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrListView),
       new FrameworkPropertyMetadata(typeof(HeimdallrListView)));
   }
+
+  /// <summary>
+  /// 오버라이드해서 아이템 컨테이너로 HeimdallrListViewItem을 반환하도록 구현
+  /// </summary>
+  /// <returns></returns>
+  protected override DependencyObject GetContainerForItemOverride()
+    => new HeimdallrListViewItem();
 
   /// <summary>
   /// 컨트롤이 초기화 될 때 호출됩니다.

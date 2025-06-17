@@ -10,8 +10,8 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIconWaterMarkTextBox}">
           <Border x:Name="textBorder"
-                  CornerRadius="5"
-                  BorderThickness="2"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
                   BorderBrush="{TemplateBinding Background}"
                   Background="{TemplateBinding Background}">
             <Grid Margin="{TemplateBinding Padding}">
@@ -21,6 +21,7 @@
               </Grid.ColumnDefinitions>
 
               <ctrls:HeimdallrIcon 
+                  x:Name="PART_Icon"
                   PathIcon="{TemplateBinding PathIcon}"
                   Fill="{TemplateBinding Fill}"
                   Width="25" Height="25"
@@ -49,13 +50,18 @@
             </Grid>
           </Border>
           <ControlTemplate.Triggers>
+            
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFF58F84"/>
+              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFFFFFFF"/>
             </Trigger>
+            
             <Trigger Property="IsKeyboardFocused" Value="True">
-              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFF58F84"/>
+              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFFF6347"/>
               <Setter TargetName="textBorder" Property="BorderThickness" Value="0.5 0.5 0.5 3"/>
+              <!-- 아이콘 Fill 색상 변경 -->
+              <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding FocusFill, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
+            
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="Text" Value=""/>

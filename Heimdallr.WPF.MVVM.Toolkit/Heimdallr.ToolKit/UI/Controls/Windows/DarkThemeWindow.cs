@@ -140,6 +140,23 @@ public class DarkThemeWindow : HeimdallrWindow
   }
   #endregion
 
+  /// <summary>
+  /// 창 모서리의 둥근 정도를 설정하는 속성입니다.
+  /// </summary>
+  #region CornerRadius
+  public static readonly DependencyProperty CornerRadiusProperty =
+       DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(DarkThemeWindow),
+           new PropertyMetadata(new CornerRadius(0)));
+  /// <summary>
+  /// 창 모서리의 둥근 정도를 설정하는 속성입니다.
+  /// </summary>
+  public CornerRadius CornerRadius
+  {
+    get => (CornerRadius)GetValue(CornerRadiusProperty);
+    set => SetValue(CornerRadiusProperty, value);
+  }
+  #endregion
+
   // 최대화 버튼 참조 (템플릿에서 찾음)
   private MaximizeButton? maximBtn;
 
@@ -161,7 +178,7 @@ public class DarkThemeWindow : HeimdallrWindow
       new UIPropertyMetadata(null));
 
     TitleHeaderBackgroundProperty = DependencyProperty.Register(nameof(TitleHeaderBackground), typeof(Brush), typeof(DarkThemeWindow),
-      new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#252525"))));
+      new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF344C64"))));
 
     DimmingProperty = DependencyProperty.Register(nameof(Dimming), typeof(bool), typeof(DarkThemeWindow),
       new PropertyMetadata(false, (d, e) =>
@@ -184,6 +201,7 @@ public class DarkThemeWindow : HeimdallrWindow
 
     PopupOpenProperty = DependencyProperty.Register(nameof(PopupOpen), typeof(bool), typeof(DarkThemeWindow),
       new PropertyMetadata(false, OnPopupOpenChanged));
+
   }
 
   /// <summary>
@@ -256,6 +274,23 @@ public class DarkThemeWindow : HeimdallrWindow
   /// </summary>
   public override void OnApplyTemplate()
   {
+    // 아이콘 클리시 시스템 메뉴표시
+    if (GetTemplateChild("PART_Heimdallr") is UIElement icon)
+    {
+      icon.MouseLeftButtonDown += (s, e) =>
+      {
+        if (e.ClickCount == 2)
+        {
+          // 아이콘 기준 상대 좌표 → 스크린 기준 절대 좌표로 변환
+          Point screenPoint = icon.PointToScreen(new Point(0, icon.RenderSize.Height));
+
+          // 시스템 메뉴 표시
+          SystemCommands.ShowSystemMenu(this, screenPoint);
+        }
+      };
+    }
+
+
     // 닫기 버튼 찾고 클릭 이벤트 등록 (CloseCommand 실행 또는 기본 Close 호출)
     if (GetTemplateChild("PART_CloseButton") is CloseButton btn)
     {
@@ -330,6 +365,24 @@ public class DarkThemeWindow : HeimdallrWindow
   private void MaxHeightSet()
   {
     this.MaxHeight = IsShowTaskBar ? SystemParameters.MaximizedPrimaryScreenHeight : Double.PositiveInfinity;
+  }
+
+  /// <summary>
+  /// 창 상태가 변경될 때마다 호출되는 이벤트 핸들러
+  /// </summary>
+  /// <param name="e"></param>
+  protected override void OnStateChanged(EventArgs e)
+  {
+    base.OnStateChanged(e);
+
+    if (WindowState == WindowState.Maximized)
+    {
+      Padding = new Thickness(0); // 최대화 시 패딩 제거
+    }
+    else if (WindowState == WindowState.Normal)
+    {
+      Padding = new Thickness(10); // 일반 상태에서는 패딩 적용
+    }
   }
 }
 
