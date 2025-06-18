@@ -21,6 +21,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정))]
 
 **■ Attributes [Folder]**
+  - [x] UnitInfoExtensions.cs [제품 단위에 대한 정보를 제공하는 어트리뷰트입니다, Description(stirng), Quantity(int) 2개의 어트리뷰터]
   - [x] UseDimmingAttribute.cs [특정 클래스에 대해 "디밍(Dimming) 효과를 사용할지 여부"를 지정, 뷰(View)나 윈도우(Window) 클래스에 적용하여, 해당 UI가 표시될 때 배경을 어둡게 처리할지 결정]
 
 **■ Commons [Folder]** [공유]
@@ -90,7 +91,7 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
   - [x] AnimationExtensions.cs [Background, Foreground, BorderBrush, Fill 애니메이션]
   - [x] DependencyExtensions.cs [유틸리티 확장 메서드를 제공하는 매우 실용적인 도우미 클래스]
   - [x] EnumExtensions.cs [Enum 값에 정의된 Attribute를 가져옵니다]
-  - [x] ProductUnitExtensions.cs [제품 단위(ProductUnit) 열거형에 대한 확장 메서드를 제공합니다 (영어 -> 한글]
+  - [x] ProductUnitExtensions.cs [제품 단위(ProductUnit) 열거형에 대한 확장 메서드를 제공합니다 (ProductUnit 에서 Description, Quantity 가져옵니다)]
 
 **■ Helpers [Folder]**
   - [x] DimmingManager.cs [전역적으로 ViewModel 또는 다른 코드에서 UI와의 의존성 없이 디밍 상태를 변경]
@@ -192,6 +193,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.xaml [UserControl Ligin View]
+   - **NumericUpDown [Folder]**
+    - [x] HeimdallrNumericUpDown.xaml [숫자 증감 유틸리티]
   - **PassowrdBox [Folder]**
     - [x] HeimdallrIconWaterMarkPasswordBox.xaml [Icon & WaterMark]
   - **RadioButton [Folder]**
@@ -258,6 +261,8 @@ Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하
     - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.cs [Login View (UserControl)]
+   - **NumericUpDown [Folder]**
+    - [x] HeimdallrNumericUpDown.cs [숫자 증감 유틸리티]
   - **PassowrdBox [Folder]**
     - [x] HeimdallrIconWaterMarkPasswordBox.cs [Icon & WaterMark]
   - **RadioButton [Folder]**
