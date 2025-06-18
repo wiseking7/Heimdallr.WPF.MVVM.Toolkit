@@ -1,6 +1,6 @@
 # Heimdallr.WPF.MVVM.Toolkit
-Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하는 WPF 및 MVVM Toolkit
-이 프로젝트는 [Jamesnet.WPF](https://github.com/JamesnetGroup/jamesnet.wpf)를 참고하여 작성되었습니다.
+ - [x] Prism.DryIco, CommunityToolkit.Mvvm, WpfAutoGrid.Core  필수 Utility  지원하는 WPF 및 MVVM Toolkit 사용
+ - [x] 이 프로젝트는 [Jamesnet.WPF](https://github.com/JamesnetGroup/jamesnet.wpf)를 참고하여 작성되었습니다.
 ## Heimdallr.App [실행프로젝트]
 - [x] 01 App.cs
 - [x] 02 Starter.cs
