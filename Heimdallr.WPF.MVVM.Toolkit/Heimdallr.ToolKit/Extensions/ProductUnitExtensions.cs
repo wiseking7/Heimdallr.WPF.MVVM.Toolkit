@@ -1,10 +1,35 @@
-﻿using Heimdallr.ToolKit.Enums;
+﻿using Heimdallr.ToolKit.Attributes;
+using Heimdallr.ToolKit.Enums;
 
 namespace Heimdallr.ToolKit.Extensions;
 
 /// <summary>
 /// 제품 단위(ProductUnit) 열거형에 대한 확장 메서드를 제공합니다.
 /// </summary>
+public static class ProductUnitExtensions
+{
+  /// <summary>
+  /// 단위에 해당하는 수량(Quantity)을 가져옵니다.
+  /// </summary>
+  public static double GetQuantity(this ProductUnit unit)
+  {
+    var member = typeof(ProductUnit).GetMember(unit.ToString()).FirstOrDefault();
+    var attr = member?.GetCustomAttributes(typeof(UnitInfoAttribute), false).FirstOrDefault() as UnitInfoAttribute;
+    return attr?.Quantity ?? 1;
+  }
+
+  /// <summary>
+  /// 단위에 대한 설명(표시 이름)을 가져옵니다.
+  /// </summary>
+  public static string GetDescription(this ProductUnit unit)
+  {
+    var member = typeof(ProductUnit).GetMember(unit.ToString()).FirstOrDefault();
+    var attr = member?.GetCustomAttributes(typeof(UnitInfoAttribute), false).FirstOrDefault() as UnitInfoAttribute;
+    return attr?.Description ?? unit.ToString();
+  }
+}
+
+/*
 public static class ProductUnitExtensions
 {
   private static readonly Dictionary<ProductUnit, string> _displayNames = new()
@@ -92,3 +117,4 @@ public static class ProductUnitExtensions
     return _displayNames;
   }
 }
+*/

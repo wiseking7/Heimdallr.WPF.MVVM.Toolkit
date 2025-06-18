@@ -82,13 +82,11 @@
                     IsHitTestVisible="False" />
 
                 <!-- 메뉴 토글 버튼  -->
-                <!--<ctrls:HeimdallrSwitchCheckBox Grid.Column="2"
-                                                   Margin="100 0 0 0" />-->
+                <!-- 추후 Menu 연결시 Visibility="{Binding IsMenuVisibility}" 추가-->
                 <ctrls:HeimdallrToggleButtonSwitch  
                     x:Name="cbToogleMenu"
                     Grid.Column="2"
-                    Margin="100 5 0 0"
-                    Visibility="{Binding IsMenuVisibility}" 
+                    Margin="100 5 0 0"                 
                     IsChecked="{Binding IsMenuOpen, Mode=TwoWay}"
                     VerticalAlignment="Center"
                     HorizontalAlignment="Left" >

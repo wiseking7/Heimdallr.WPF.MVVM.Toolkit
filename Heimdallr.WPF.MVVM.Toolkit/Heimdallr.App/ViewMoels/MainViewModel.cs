@@ -20,6 +20,9 @@ public partial class MainViewModel : ObservableBase
     MessageBox.Show("Button Test Command");
   }
 
+  // 단위 선택지: Key = ProductUnit enum, Value = 표시 이름
+  public ObservableCollection<KeyValuePair<ProductUnit, string>> ProductUnitOptions { get; }
+
   public MainViewModel()
   {
     _selectedCountry = string.Empty; // Initialize the non-nullable field to avoid CS8618  
@@ -39,6 +42,17 @@ public partial class MainViewModel : ObservableBase
              Name = "왕건", Address="고려", Age=543, BirthDay=new DateTime(2003,02,28)
          }
      };
+
+    #region ComboBox, NumericUpDown Demo
+    // 단위 옵션 초기화 (enum 전체를 순회하여 KeyValuePair 컬렉션 생성)
+    ProductUnitOptions = new ObservableCollection<KeyValuePair<ProductUnit, string>>(
+        Enum.GetValues(typeof(ProductUnit))
+        .Cast<ProductUnit>()
+        .Select(u => new KeyValuePair<ProductUnit, string>(u, u.GetDescription()))
+    );
+
+    SelectedUnit = ProductUnit.Dozen; // 초기 선택 단위 (Step=12) 
+    #endregion
   }
 
   #region ListView Demo
@@ -82,15 +96,6 @@ public partial class MainViewModel : ObservableBase
 
   #region ComboBox Demo
   // ComboBox에 바인딩할 열거형 값 목록 확장(변경) 영문 -> 한글
-  public IEnumerable<KeyValuePair<ProductUnit, string>> ProductUnitOptions =>
-      ProductUnitExtensions.GetUnitPairs();
-
-  private ProductUnit _selectedUnit;
-  public ProductUnit SelectedUnit
-  {
-    get => _selectedUnit;
-    set => SetProperty(ref _selectedUnit, value);
-  }
   #endregion
 
   #region Dimming
@@ -176,5 +181,46 @@ public partial class MainViewModel : ObservableBase
   }
   #endregion
 
+
+  #region NumbericUpDown
+
+  public string SelectedUnitDisplayName => SelectedUnit.GetDescription();
+  /// <summary>
+  private ProductUnit _selectedUnit = ProductUnit.Dozen;  // 초기값 설정
+
+  public ProductUnit SelectedUnit
+  {
+    get => _selectedUnit;
+    set
+    {
+      if (_selectedUnit != value)
+      {
+        _selectedUnit = value;
+        OnPropertyChanged(nameof(SelectedUnit));
+        UpdateStep();  // SelectedUnit 변경 시 Step 자동 업데이트
+        OnPropertyChanged(nameof(SelectedUnitDisplayName)); // 표시명도 같이 갱신 가능
+      }
+    }
+  }
+
+  private double _step = 1;
+  public double Step
+  {
+    get => _step;
+    private set
+    {
+      if (_step != value)
+      {
+        _step = value;
+        OnPropertyChanged(nameof(Step));
+      }
+    }
+  }
+
+  private void UpdateStep()
+  {
+    Step = SelectedUnit.GetQuantity();
+  }
+  #endregion
 }
 

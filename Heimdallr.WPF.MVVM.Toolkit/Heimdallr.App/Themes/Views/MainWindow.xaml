@@ -73,12 +73,16 @@
             <!--#endregion-->
             
             <!--#region Button Demo row 2-->
-            <ctrls:HeimdallrComboBox Grid.Row="3" Width="150" Height="40" Background="BlanchedAlmond"
-                                     PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" IconWidth="30"
-                                     CheckedBackground="#FFBA55D3" CornerRadius="10" MouseOverBackground="{StaticResource DarkCharcoal}"
-                                     BorderThickness="3" FontSize="20" Foreground="Black"
-                                     ItemsSource="{Binding ProductUnitOptions}" DropDownBackground="#DCD7C9"
-                                     DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedUnit}"/>
+            <ctrls:HeimdallrComboBox 
+                Grid.Row="3" Width="150" Height="40" Background="BlanchedAlmond" 
+                CornerRadius="10" BorderThickness="3" FontSize="20" Foreground="Black"
+                PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" 
+                IconWidth="30" CheckedBackground="#FFBA55D3"  
+                MouseOverBackground="{StaticResource DarkCharcoal}" 
+                DropDownBackground="#DCD7C9"
+                ItemsSource="{Binding ProductUnitOptions}" 
+                DisplayMemberPath="Value" SelectedValuePath="Key" 
+                SelectedValue="{Binding SelectedUnit, Mode=TwoWay}"/>
             <!--#endregion-->
 
             <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
@@ -107,6 +111,13 @@
                                 CheckedForeground="Yellow" MouseOverForeground="Blue"
                                 GroupName="MenuGroup" Width="120" Height="40"
                                 />
+
+            <ctrls:HeimdallrNumericUpDown 
+                Grid.Row="9" Min="0" Max="1000" Step="{Binding Step}" Height="30" Width="100"
+                Foreground="Black" FontSize="16" 
+                UpIconFill="#FF3DC2EC" DownIconFill="#FFD95F59" 
+                DownButtonIcon="ChevronDownEllipse" UpButtonIcon="ChevronUpEllipse"
+                Value="{Binding SomeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
 
           </Grid>
         </Border>
