@@ -149,7 +149,7 @@
    - [x] PathGeometryStore.cs.cs  [정적으로 PathGeometry Data 값 입력]
  
 **■ Themes [Folder]**
-- **Controls [Folder]**
+ - **Controls [Folder]**
   - **Button [Folder]**
     - [x] CloseButton.xaml [닫기 Button]
     - [x] HeimdallrPulseEllipse.cs [3개의 원을 포함한 Icon 버튼]
