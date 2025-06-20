@@ -1,0 +1,112 @@
+﻿<ResourceDictionary
+xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+xmlns:fr="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+xmlns:sys="clr-namespace:System;assembly=mscorlib"
+xmlns:ctlrs="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <!-- 기본 스케일 설정 -->
+  <sys:Double x:Key="IndicatorScaleX" fr:Freeze="True">1.0</sys:Double>
+  <sys:Double x:Key="IndicatorScaleY" fr:Freeze="True">1.0</sys:Double>
+
+  <!-- 백그라운드-->
+  <SolidColorBrush x:Key="IndicatorBackground" fr:Freeze="True" Color="#DDDDDD" />
+
+  <!-- ControlTemplate: BI:Indicator 컨트롤을 위한 템플릿 정의 -->
+  <ControlTemplate x:Key="BouncingDot" TargetType="{x:Type ctlrs:Indicator}">
+
+    <!-- 메인 그리드: 애니메이션이 포함된 컨텐츠를 가운데에 배치 -->
+    <Grid x:Name="MainGrid" HorizontalAlignment="Center"
+          VerticalAlignment="Center"
+          SnapsToDevicePixels="True"
+          UseLayoutRounding="True">
+
+      <!-- 내부 그리드의 변환 (ScaleTransform) - Indicator 크기를 동적으로 조정 -->
+      <Grid RenderTransformOrigin="0.5 0.5">
+        <Grid.RenderTransform>
+
+          <!-- 크기 조정을 위한 ScaleTransform (X, Y 방향으로 크기 조정) -->
+          <ScaleTransform 
+          ScaleX="{DynamicResource IndicatorScaleX}"
+          ScaleY="{DynamicResource IndicatorScaleY}"/>
+        </Grid.RenderTransform>
+
+        <!-- Border 요소: 배경을 나타내며 BouncingDot 효과를 포함 -->
+        <Border Width="200" Height="15" Margin="5" CornerRadius="7.5"
+            Background="{DynamicResource IndicatorBackground}">
+
+          <!-- Bouncing 애니메이션이 적용될 원 (Rectangle) -->
+          <Rectangle x:Name="Bouncer" Width="15" Height="15"
+                  HorizontalAlignment="Left" RadiusX="7.5" RadiusY="7.5"
+                  Fill="{TemplateBinding Foreground}">
+
+            <!-- 원에 대한 TranslateTransform (X, Y축 이동) -->
+            <Rectangle.RenderTransform>
+              <TranslateTransform />
+            </Rectangle.RenderTransform>
+          </Rectangle>
+        </Border>
+      </Grid>
+
+      <!-- VisualStateManager: 애니메이션 상태 그룹 정의 -->
+      <VisualStateManager.VisualStateGroups>
+        <VisualStateGroup x:Name="ActiveStates">
+
+          <!-- "Active" 상태: 활성화 상태에서 BouncingDot 애니메이션 설정 -->
+          <VisualState x:Name="Active">
+            <Storyboard
+            AutoReverse="True"
+            BeginTime="00:00:00"
+            RepeatBehavior="Forever">
+
+              <!-- Bouncer 원의 X축 애니메이션 (왼쪽에서 오른쪽으로 이동) -->
+              <DoubleAnimationUsingKeyFrames
+              BeginTime="00:00:00"
+              Storyboard.TargetName="Bouncer"
+              Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.X)">
+
+                <!-- 첫 번째 키프레임: 1초 후 X축 값이 185로 변경 
+                  (애니메이션 속도 설정) -->
+                <EasingDoubleKeyFrame KeyTime="00:00:01.00" Value="185">
+                  <EasingDoubleKeyFrame.EasingFunction>
+                    <!-- PowerEase로 EaseInOut 적용 
+                      (애니메이션의 시작과 끝을 부드럽게) -->
+                    <PowerEase EasingMode="EaseInOut" Power="2.5" />
+                  </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+              </DoubleAnimationUsingKeyFrames>
+
+              <!-- Bouncer 원의 Width 애니메이션 (원 크기 변경) -->
+              <DoubleAnimationUsingKeyFrames
+              BeginTime="00:00:00"
+              Storyboard.TargetName="Bouncer"
+              Storyboard.TargetProperty="Width">
+
+                <!-- 첫 번째 키프레임: 0.5초 후 Width가 45로 변경 
+                (원 크기 확장) -->
+                <EasingDoubleKeyFrame KeyTime="00:00:00.50" Value="45">
+                  <EasingDoubleKeyFrame.EasingFunction>
+
+                    <!-- PowerEase로 EaseInOut 적용 -->
+                    <PowerEase EasingMode="EaseInOut" Power="2.5" />
+                  </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+
+                <!-- 두 번째 키프레임: 1초 후 Width가 다시 15로 축소 
+                  (원 크기 원래대로 복귀) -->
+                <EasingDoubleKeyFrame KeyTime="00:00:01.00" Value="15">
+                  <EasingDoubleKeyFrame.EasingFunction>
+                    <PowerEase EasingMode="EaseInOut" Power="2.5" />
+                  </EasingDoubleKeyFrame.EasingFunction>
+                </EasingDoubleKeyFrame>
+              </DoubleAnimationUsingKeyFrames>
+            </Storyboard>
+          </VisualState>
+
+          <!-- "Inactive" 상태: 비활성 상태 (애니메이션이 없거나 다른 상태로 유지) -->
+          <VisualState x:Name="Inactive" />
+        </VisualStateGroup>
+      </VisualStateManager.VisualStateGroups>
+    </Grid>
+  </ControlTemplate>
+</ResourceDictionary>

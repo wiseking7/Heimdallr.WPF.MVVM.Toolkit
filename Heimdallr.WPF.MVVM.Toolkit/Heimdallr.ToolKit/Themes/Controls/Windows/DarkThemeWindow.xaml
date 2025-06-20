@@ -78,6 +78,7 @@
                     VerticalAlignment="Center"
                     HorizontalContentAlignment="Stretch"
                     Content="HEIMALLR SYSTEM"
+                    FontWeight="Medium"
                     Foreground="{TemplateBinding Foreground}"
                     IsHitTestVisible="False" />
 

@@ -222,5 +222,94 @@ public partial class MainViewModel : ObservableBase
     Step = SelectedUnit.GetQuantity();
   }
   #endregion
+
+  #region PropressBar Test
+  private DelegateCommand? _progressBarCommand;
+  public DelegateCommand? ProgressBarCommand => _progressBarCommand ??= new DelegateCommand(async () => await StartProgressAsync(), () => true);
+
+  private double _progressValue;
+  public double ProgressValue
+  {
+    get => _progressValue;
+    set
+    {
+      if (_progressValue != value)
+      {
+        _progressValue = value;
+        OnPropertyChanged();
+      }
+    }
+  }
+
+  private bool _isRunning = false;
+
+  /// <summary>
+  /// 20초 동안 0 → 100 진행시키는 비동기 메서드
+  /// </summary>
+  public async Task StartProgressAsync()
+  {
+    if (_isRunning) return; // 중복 실행 방지
+    _isRunning = true;
+
+    int durationMs = 2_000;  // 총 20초
+    int steps = 1;          // 0.1초 단위 (200번)
+    double increment = 100.0 / steps;
+    int delayMs = durationMs / steps;
+
+    ProgressValue = 0;
+
+    var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+    for (int i = 0; i <= steps; i++)
+    {
+      if (!_isRunning) break; // 외부에서 중단 요청 시
+
+      var elapsed = stopwatch.ElapsedMilliseconds;
+
+      if (elapsed >= durationMs)
+      {
+        ProgressValue = 100;
+        break;
+      }
+
+      ProgressValue = increment * i;
+
+      // 남은 시간과 delay 보정
+      int remainingMs = (int)(durationMs - elapsed);
+      await Task.Delay(Math.Min(delayMs, remainingMs));
+    }
+
+    stopwatch.Stop();
+
+    ProgressValue = 100;  // 루프 종료 후 100% 고정
+    _isRunning = false;
+
+    OnProgressCompleted();
+  }
+
+  /// <summary>
+  /// 진행 완료 이벤트
+  /// </summary>
+  public event Action? ProgressCompleted;
+
+  /// <summary>
+  /// 완료 시 이벤트 호출
+  /// </summary>
+  private void OnProgressCompleted()
+  {
+    ProgressCompleted?.Invoke();
+  }
+
+  /// <summary>
+  /// 외부에서 강제 중단 요청
+  /// </summary>
+  public void StopProgress()
+  {
+    _isRunning = false;
+  }
+  #endregion
+
 }
+
+
 

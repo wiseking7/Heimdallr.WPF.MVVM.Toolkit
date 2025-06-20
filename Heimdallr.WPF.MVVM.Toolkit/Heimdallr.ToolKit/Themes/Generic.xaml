@@ -1,7 +1,6 @@
 <ResourceDictionary
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:spins="clr-namespace:Heimdallr.ToolKit.Indicators"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <!-- 이 섹션에는 공통적으로 사용하는 기본 테마 리소스와 컨트롤 스타일을 배치합니다. 순서 -->
@@ -24,6 +23,7 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/CloseButton.xaml" />
 
     <!-- 3. 입력 컨트롤 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ProgressBar/HeimdallrProgressBar.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
@@ -40,11 +40,9 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
 
-    <!-- 6. 스피너 및 인디케이터 -->
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Spinner/HeimdallrRingSpinner.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingSpinner.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicator.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Indicators/Resources/LoadingIndicatorResources.xaml" />
+    <!-- 6. Indicator 표시기 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/Indicator.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/LoadingOverlay.xaml"/>
 
     <!-- 7. 툴팁 및 정보창 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToolTip/HeimdallrToolTip.xaml" />

@@ -24,45 +24,49 @@
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 
-                <!-- 정상 상태 -->
+                <!-- 기본상태 (특별한 애니메이션 없음) -->
                 <VisualState x:Name="Normal" />
 
-                <!-- 마우스 오버 상태 -->
+                <!-- 마우스가 버튼 위에 올라갔을 때, 배경색을 빨간톤(#FFAE445A)으로 부드럽게 변경 -->
                 <VisualState x:Name="MouseOver">
                   <Storyboard>
-                    <ColorAnimation To="#FFAE445A"
-                                  Duration="0:0:0.1"
-                                  Storyboard.TargetName="border"
-                                  Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
+                    <ColorAnimation 
+                        To="#FFAE445A"
+                        Duration="0:0:0.1"
+                        Storyboard.TargetName="border"
+                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
                   </Storyboard>
                 </VisualState>
 
-                <!-- 클릭(눌림)상태 -->
+                <!-- 클릭(눌림) 상태일 때 배경색을 밝은 보라톤(#FFEBD3F8)으로 변경했다가 0.5초 후 다시 원래 색으로 되돌아감 (AutoReverse) -->
                 <VisualState x:Name="Pressed">
                   <Storyboard>
-                    <ColorAnimation To="#FFEBD3F8"
-                                  Duration="0:0:0.5"
-                                  AutoReverse="True"
-                                  Storyboard.TargetName="border"
-                                  Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
+                    <ColorAnimation 
+                        To="#FFEBD3F8"
+                        Duration="0:0:0.5"
+                        AutoReverse="True"
+                        Storyboard.TargetName="border"
+                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
                   </Storyboard>
                 </VisualState>
 
-                <!-- 비활성화 상태 -->
+                <!-- 비활성화 되었을 때 배경색을 어두운 보라톤(#FF4B4376)으로 변경 -->
                 <VisualState x:Name="Disabled">
                   <Storyboard>
-                    <ColorAnimation To="#FF4B4376"
-                                  Duration="0:0:0.1"
-                                  Storyboard.TargetName="border"
-                                  Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
+                    <ColorAnimation 
+                        To="#FF4B4376"
+                        Duration="0:0:0.1"
+                        Storyboard.TargetName="border"
+                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)" />
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
 
-            <ContentPresenter HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            RecognizesAccessKey="True" />
+            <ContentPresenter 
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                RecognizesAccessKey="True" />
           </Border>
         </ControlTemplate>
       </Setter.Value>

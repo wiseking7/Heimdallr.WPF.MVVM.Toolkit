@@ -68,6 +68,7 @@
             <Trigger Property="IsChecked" Value="True">
               <Setter TargetName="PART_Track" Property="Background" Value="#FF5C8374"/>
               <Setter TargetName="PART_Label" Property="Text" Value="ON"/>
+              <Setter TargetName="PART_Label" Property="FontWeight" Value="Light" />
               <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
               <!-- ON일 때 텍스트 오른쪽 정렬, 썸 왼쪽에 붙이기 -->
               <Setter TargetName="PART_Label" Property="HorizontalAlignment" Value="Left"/>
@@ -79,6 +80,7 @@
               <Setter TargetName="PART_Track" Property="Background" Value="#FF5C5470"/>
               <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />
               <Setter TargetName="PART_Label" Property="Text" Value="OFF"/>
+              <Setter TargetName="PART_Label" Property="FontWeight" Value="Light" />
               <!-- OFF일 때 텍스트 오른쪽 끝 정렬 -->
               <Setter TargetName="PART_Label" Property="HorizontalAlignment" Value="Right"/>
               <Setter TargetName="PART_Label" Property="VerticalAlignment" Value="Center" />

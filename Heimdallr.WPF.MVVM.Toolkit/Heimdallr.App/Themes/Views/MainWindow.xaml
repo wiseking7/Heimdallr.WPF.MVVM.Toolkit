@@ -3,7 +3,6 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls;assembly=Heimdallr.ToolKit"
     xmlns:views="clr-namespace:Heimdallr.App"
-    xmlns:spinn="clr-namespace:Heimdallr.ToolKit.Indicators;assembly=Heimdallr.ToolKit"
     xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
 
   <ResourceDictionary.MergedDictionaries>
@@ -19,16 +18,19 @@
         <Border Background="Transparent" Padding="20">
           <Grid>
             <Grid.RowDefinitions>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition Height="Auto"/>
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
-              <RowDefinition />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
               <RowDefinition />
             </Grid.RowDefinitions>
 
@@ -85,11 +87,12 @@
                 SelectedValue="{Binding SelectedUnit, Mode=TwoWay}"/>
             <!--#endregion-->
 
-            <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
-                                                 Background="{StaticResource DarkBlueGray}" FontSize="14" Foreground="White"
-                                                 Width="200" Height="40" AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
-                                                 TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
-                                                 WaterMarkForeground="{StaticResource DarkWine}"/>
+            <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" Width="200" Height="40"
+              CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
+              Background="{StaticResource DarkBlueGray}" FontSize="14" Foreground="White"
+              AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
+              TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
+              WaterMarkForeground="{StaticResource DarkWine}"/>
 
             <ctrls:HeimdallrPulseEllipse Grid.Row="5" Width="40" Height="40" PathIcon="Cache" Ellipse1Brush="Yellow"
                                         Ellipse2Brush="Black" Ellipse3Brush="Green" Command="{Binding ButtonTextCommamd}" 
@@ -104,7 +107,7 @@
                                             PathIcon="Setting" Background="Transparent"
                                             CheckedForeground="Yellow" MouseOverForeground="Blue"
                                             GroupName="MenuGroup" Width="120" Height="40"
-                                            IconFill="AliceBlue" />
+                                            IconFill="AliceBlue" Command="{Binding ProgressBarCommand}"/>
 
             <ctrls:HeimdallrIconRadioButton Grid.Row="8" Content="HOme"
                                 Background="Transparent"
@@ -112,13 +115,23 @@
                                 GroupName="MenuGroup" Width="120" Height="40"
                                 />
 
+            <!-- Value="{Binding SomeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
             <ctrls:HeimdallrNumericUpDown 
                 Grid.Row="9" Min="0" Max="1000" Step="{Binding Step}" Height="30" Width="100"
                 Foreground="Black" FontSize="16" 
                 UpIconFill="#FF3DC2EC" DownIconFill="#FFD95F59" 
                 DownButtonIcon="ChevronDownEllipse" UpButtonIcon="ChevronUpEllipse"
-                Value="{Binding SomeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                 />
 
+            <ctrls:LoadingOverlay
+              Grid.Row="10" Foreground="#FFFFCC00" IsLoading="True" IndicatorType="Cupertino"
+              LoadingText="진행중..." VerticalAlignment="Center" HorizontalAlignment="Center" />
+
+            <ctrls:HeimdallrProgressBar 
+              Minimum="0" Maximum="100" Height="20" Width="200"
+              IndicatorBrush="Red" TrackBrush="AliceBlue"
+              Value="{Binding ProgressValue, Mode=OneWay}"/>
+            
           </Grid>
         </Border>
 

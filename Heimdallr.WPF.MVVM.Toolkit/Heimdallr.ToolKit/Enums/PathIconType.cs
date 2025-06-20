@@ -243,6 +243,11 @@ public enum PathIconType
   HeimdallrLogo,
 
   /// <summary>
+  /// HEIMDALLR 문자열(Heimdallr String) 아이콘
+  /// </summary>
+  HEIMDALLR_STRING,
+
+  /// <summary>
   /// 홈(Home) 아이콘
   /// </summary>
   Home,

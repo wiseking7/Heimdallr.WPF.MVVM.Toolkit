@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <!--
+  여러개의 별도 XAML 리소스 파일(템플릿)을 병합하여 설정
+  각각의 파일(Bar.xaml, Blcoks.xaml 등)은 Indicator 의 특정 애니메이션과 스타일과
+  ControlTemplate 을 정의 
+  이렇게 분리하면 관리가 쉽고, 재사용성, 유지보수성 향상
+  -->
+  <ResourceDictionary.MergedDictionaries>
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Bar.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Blocks.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/BouncingDot.xaml"/>
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Cogs.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Cupertino.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Dashes.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/DotCircle.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/DoubleBounce.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Ellipse.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Escalade.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/FourDots.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Grid.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Piston.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Pulse.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Ring.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Swirl.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/ThreeDots.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Twist.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/XAML/Wave.xaml" />
+  </ResourceDictionary.MergedDictionaries>
+
+  <!-- Indicator 컨트롤에 전체에 적용할 스타일 정의 
+     조건에 따라 다른 템플릿을 선택하는 트리거를 스타일 안에 작성
+     Style.Triggers -><indct:IndicatorType 프로퍼티에 따른 템플릿 변경 
+     IndicatorType이라는 열거형 속성 값에 따라 다르게 동작 
+     예를 들어 IndicatorType이 "Bar"일 때는 Bar.xaml에 정의된 Bar라는 ControlTemplate을 사용 
+     Blocks 타입일 때는 Blocks.xaml에서 정의한 템플릿을 사용 
+     이런 식으로 다양한 시각 스타일(모양, 애니메이션 등)을 하나의 컨트롤에서 동적으로 변경 가능
+     -->
+  <Style TargetType="{x:Type ctrls:Indicator}">
+    <Style.Triggers>
+      <Trigger Property="IndicatorType" Value="Bar">
+        <Setter Property="Template" Value="{StaticResource Bar}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Blocks">
+        <Setter Property="Template" Value="{StaticResource Blocks}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="BouncingDot">
+        <Setter Property="Template" Value="{StaticResource BouncingDot}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Cogs">
+        <Setter Property="Template" Value="{StaticResource Cogs}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Cupertino">
+        <Setter Property="Template" Value="{StaticResource Cupertino}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Dashes">
+        <Setter Property="Template" Value="{StaticResource Dashes}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="DotCircle">
+        <Setter Property="Template" Value="{StaticResource DotCircle}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="DoubleBounce">
+        <Setter Property="Template" Value="{StaticResource DoubleBounce}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Ellipse">
+        <Setter Property="Template" Value="{StaticResource Ellipse}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Escalade">
+        <Setter Property="Template" Value="{StaticResource Escalade}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="FourDots">
+        <Setter Property="Template" Value="{StaticResource FourDots}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Grid">
+        <Setter Property="Template" Value="{StaticResource Grid}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Piston">
+        <Setter Property="Template" Value="{StaticResource Piston}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Pules">
+        <Setter Property="Template" Value="{StaticResource Pulse}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Ring">
+        <Setter Property="Template" Value="{StaticResource Ring}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Swirl">
+        <Setter Property="Template" Value="{StaticResource Swirl}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="ThreeDots">
+        <Setter Property="Template" Value="{StaticResource ThreeDots}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Twist">
+        <Setter Property="Template" Value="{StaticResource Twist}"></Setter>
+      </Trigger>
+      <Trigger Property="IndicatorType" Value="Wave">
+        <Setter Property="Template" Value="{StaticResource Wave}"></Setter>
+      </Trigger>
+    </Style.Triggers>
+  </Style>
+</ResourceDictionary>
+
+<!-- 
+  스타일 분리의 장점
+  * 각 애니메이션 스타일을 독립된 XAML 파일에 분리해 관리 
+  * 컨트롤 내부에서는 IndicatorType 프로퍼티 하나만 바꿔서 스타일 전환 가능
+  * 스타일 파일 추가 시 컨트롤 코드는 수정 없이 확장 가능
+  * MVVM과 XAML 스타일 시스템의 강력한 결합
+  
+  * 열거형으로 기본, Red, Blue 을 만들어서 버튼을 추가로 등록해도 됨 
+  
+  -->

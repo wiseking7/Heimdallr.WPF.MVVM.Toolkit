@@ -2,8 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
-  
-  
+  <PathGeometry x:Key="Hiemdallr" Figures="M191.32227,442.12305L191.32227,457.43946L194.20508,457.43946L194.20508,450.77149L199.40821,450.77149L199.40821,457.43946L202.29102,457.43946L202.29102,442.12305L199.40821,442.12305L199.40821,448.2754L194.20508,448.2754L194.20508,442.12305L191.32227,442.12305zM205.56055,442.12305L205.56055,457.43946L214.78321,457.43946L214.78321,455.00196L208.49024,455.00196L208.49024,450.74805L214.49024,450.74805L214.49024,448.36915L208.49024,448.36915L208.49024,444.56055L214.78321,444.56055L214.78321,442.12305L205.56055,442.12305zM218.35742,442.12305L218.35742,444.47852L221.73242,444.47852L221.73242,455.06055L218.35742,455.06055L218.35742,457.43946L228.03711,457.43946L228.03711,455.06055L224.66211,455.06055L224.66211,444.47852L228.03711,444.47852L228.03711,442.12305L218.35742,442.12305zM231.07227,442.12305L230.32227,457.43946L232.77149,457.43946L233.0293,448.70899L233.11133,445.32227L233.75586,447.66602L235.29102,452.88087L237.09571,452.88087L238.79492,447.66602L239.53321,445.32227L239.63867,448.7793L239.91992,457.43946L242.46289,457.43946L241.70117,442.12305L238.38477,442.12305L236.9668,446.61133L236.32227,448.91993L235.67774,446.47071L234.33008,442.12305L231.07227,442.12305zM243.99805,442.12305L243.99805,457.43946L247.88867,457.43946C249.24024,457.43946,250.4004,457.25586,251.36914,456.88868C252.3379,456.51368,253.13086,455.98633,253.74805,455.30665C254.37305,454.61915,254.83008,453.79102,255.11914,452.82227C255.41602,451.85352,255.56446,450.7754,255.56446,449.5879C255.56446,448.29102,255.41602,447.17383,255.11914,446.23633C254.83008,445.29883,254.39258,444.52539,253.80664,443.91602C253.2207,443.30664,252.48632,442.85742,251.60352,442.56836C250.72852,442.27149,249.70509,442.12305,248.53321,442.12305L243.99805,442.12305zM260.76758,442.12305L256.23243,457.43946L259.0918,457.43946L259.95899,454.41602L265.30274,454.41602L266.14649,457.43946L269.33399,457.43946L264.79883,442.12305L260.76758,442.12305zM271.68946,442.12305L271.68946,457.43946L281.08789,457.43946L281.08789,454.9668L274.61914,454.9668L274.61914,442.12305L271.68946,442.12305zM284.88477,442.12305L284.88477,457.43946L294.28321,457.43946L294.28321,454.9668L287.81446,454.9668L287.81446,442.12305L284.88477,442.12305zM297.28321,442.12305L297.28321,457.43946L300.16602,457.43946L300.16602,451.09962L300.7168,451.09962C301.20899,451.09962,301.63477,451.22071,301.99414,451.4629C302.36133,451.69727,302.64649,452.04883,302.84961,452.51758L305.00586,457.43946L308.39258,457.43946L305.94336,452.30665C305.63086,451.6504,305.31836,451.1504,305.00586,450.80665C304.69336,450.45509,304.34961,450.24024,303.97461,450.16212C304.45899,450.08399,304.9043,449.94727,305.31055,449.75196C305.72461,449.55665,306.08008,449.30274,306.37696,448.99024C306.67384,448.66993,306.9043,448.29102,307.06836,447.85352C307.23242,447.41602,307.31446,446.91602,307.31446,446.35352C307.31446,445.57227,307.18164,444.91211,306.91602,444.37305C306.65821,443.83399,306.28712,443.39649,305.80274,443.06055C305.31837,442.72461,304.73243,442.48634,304.04493,442.34571C303.35743,442.19728,302.5918,442.12305,301.74805,442.12305L297.28321,442.12305zM300.16602,444.5254L301.43164,444.5254C302.38477,444.5254,303.09962,444.68946,303.57618,445.01758C304.05274,445.34571,304.29102,445.88477,304.29102,446.63477C304.29102,446.99414,304.22071,447.31446,304.08008,447.59571C303.93946,447.86915,303.74024,448.09962,303.48243,448.28712C303.22461,448.47461,302.91211,448.61524,302.54493,448.70899C302.18555,448.80274,301.78321,448.84962,301.33789,448.84962L300.16602,448.84962L300.16602,444.5254zM246.88086,444.53711L248.34571,444.53711C249.13477,444.53711,249.79493,444.6543,250.32618,444.88868C250.85743,445.12305,251.2793,445.4668,251.5918,445.91993C251.91211,446.36524,252.13868,446.91211,252.27149,447.56055C252.4043,448.20899,252.47071,448.94727,252.47071,449.7754C252.47071,451.58789,252.10352,452.91602,251.36914,453.75977C250.63477,454.60352,249.56055,455.0254,248.14649,455.0254L246.88086,455.0254L246.88086,444.53711zM262.66602,444.93555L264.65821,452.06055L260.65039,452.06055L262.66602,444.93555z" />
+
   <Style TargetType="{x:Type ctrls:InformationWindow}">
     <Setter Property="Template">
       <Setter.Value>
@@ -18,12 +18,12 @@
               <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
-                <RowDefinition />
+                <RowDefinition Height="*"/>
               </Grid.RowDefinitions>
 
               <!-- 닫기 버튼 -->
               <Button x:Name="PART_CloseButton"
-                      Grid.Column="1"
+                      Grid.Row="0"
                       Content="✖"
                       FontSize="14"
                       ToolTip="닫기"
@@ -32,65 +32,106 @@
                       BorderThickness="0"
                       HorizontalAlignment="Right"
                       VerticalAlignment="Top"
-                      Margin="0,10,10,0"
+                      Margin="0,5,5,0"
                       Cursor="Hand" />
 
-              <TextBlock x:Name="TextBlockTitle" Grid.Row="1"
+              <Grid Grid.Row="1" Margin="0 5 0 5">
+                <Path Data="{StaticResource Hiemdallr}"
+                      Height="118"
+                      Width="300"
+                      StrokeDashOffset="0"
+                      StrokeThickness="5"
+                      Stretch="Fill"
+                      StrokeStartLineCap="Triangle"
+                      StrokeEndLineCap="Triangle"
+                      StrokeDashArray="500"
+                      x:Name="MyPath"
+                      Margin="0 10 0 10"
+                      SnapsToDevicePixels="True">
+                  <Path.Stroke>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                      <GradientStop x:Name="B1" Color="Purple" Offset="0.0"/>
+                      <GradientStop x:Name="B2" Color="Beige" Offset="0.5"/>
+                    </LinearGradientBrush>
+                  </Path.Stroke>
+
+                  <Path.Triggers>
+                    <EventTrigger RoutedEvent="Path.Loaded">
+                      <BeginStoryboard>
+                        <Storyboard RepeatBehavior="Forever">
+                          <DoubleAnimation Storyboard.TargetName="MyPath"
+                           Storyboard.TargetProperty="StrokeDashOffset"
+                           From="500" To="0"
+                           Duration="0:0:11"
+                           BeginTime="0:0:0"/>
+                          <DoubleAnimation Storyboard.TargetName="B1"
+                           Storyboard.TargetProperty="Offset"
+                           From="0.0" To="1.1"
+                           BeginTime="0:0:0"
+                           Duration="0:0:11"/>
+                        </Storyboard>
+                      </BeginStoryboard>
+                    </EventTrigger>
+                  </Path.Triggers>
+                </Path>
+              </Grid>
+              <!--<TextBlock x:Name="TextBlockTitle" Grid.Row="1"
                          Text="HEIMDALLR SYSTEM INFORMATION"
                          FontSize="20"
                          Foreground="#FFFFFFFF"
                          HorizontalAlignment="Center"
                          VerticalAlignment="Top"
-                         Margin="0,5,0,0" />
+                         Margin="0,5,0,0" />-->
 
-              <StackPanel Grid.Row="2" Margin="20,20,20,20">
-                <TextBlock x:Name="TextBlockVersion" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="버전: " FontWeight="Bold"/>
+              <StackPanel Grid.Row="2" Margin="10 5 10 10" >
+                <TextBlock x:Name="TextBlockVersion" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="VERSION : " FontWeight="Bold"/>
                             <Run Text="1.0.0"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockStatus" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="상태: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockStatus" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="STATE : " FontWeight="Bold"/>
                             <Run Text="원활한 상태"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockLastUpdate" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="마지막 업데이트: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockLastUpdate" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="LAST UPDATE : " FontWeight="Bold"/>
                             <Run Text="2025-06-16 13:45"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockSoftware" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="소프트 이름: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockSoftware" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="SOFTNAME : " FontWeight="Bold"/>
                             <Run Text="HEIMDALLR"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockOS" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="OS: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockOS" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="OS : " FontWeight="Bold"/>
                             <Run Text="Windows 10 Pro"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockFramework" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="Framework: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockFramework" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="FRAMEWORK : " FontWeight="Bold"/>
                             <Run Text=".NET 8.0"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockUptime" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="App 실행 후 경과시간: " FontWeight="Bold"/>
-                            <Run Text="01:23:45"/>
+                <!-- APP 실행후 경과시간 추가 계산 -->
+                <TextBlock x:Name="TextBlockUptime" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="TIME ELAPSED SINCE APP EXECUTION : " FontWeight="Bold"/>
+                            <Run Text="APP 실행 경과 시간"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockDatabaseStatus" FontSize="14" Margin="0 5" Foreground="#FF940B92">
-                            ● <Run Text="Database 상태: " FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockDatabaseStatus" FontSize="20" Margin="0 5" Foreground="#FF940B92">
+                            ● <Run Text="DATABASE STATE : " FontWeight="Bold"/>
                             <Run Text="Connected (MY Server)"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockCurrentTime" FontSize="14" Margin="0 5">
-                            ● <Run Text="현재 시간: " Foreground="#FF940B92" FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockCurrentTime" FontSize="20" Margin="0 5">
+                            ● <Run Text="CURRENT TIME : " Foreground="#FF940B92" FontWeight="Bold"/>
                             <Run Text="00:00:00"/>
                 </TextBlock>
 
-                <TextBlock x:Name="TextBlockCurrentDate" FontSize="14" Margin="0 5">
-                            ● <Run Text="오늘 날짜: " Foreground="#FF940B92" FontWeight="Bold"/>
+                <TextBlock x:Name="TextBlockCurrentDate" FontSize="20" Margin="0 5">
+                            ● <Run Text="TODAY'S DATE: " Foreground="#FF940B92" FontWeight="Bold"/>
                             <Run Text="0000-00-00 (월)"/>
                 </TextBlock>
               </StackPanel>

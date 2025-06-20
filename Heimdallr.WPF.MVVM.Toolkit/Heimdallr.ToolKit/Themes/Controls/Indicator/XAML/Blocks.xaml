@@ -1,0 +1,231 @@
+﻿<ResourceDictionary
+  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+  xmlns:fr="http://schemas.microsoft.com/winfx/2006/xaml/presentation/options"
+  xmlns:sys="clr-namespace:System;assembly=mscorlib"
+  xmlns:ctlrs="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+<!-- 기본 스케일 설정 -->
+<sys:Double x:Key="IndicatorScaleX" fr:Freeze="True">1.0</sys:Double>
+<sys:Double x:Key="IndicatorScaleY" fr:Freeze="True">1.0</sys:Double>
+
+<!-- 백그라운드-->
+<SolidColorBrush x:Key="IndicatorBackground" fr:Freeze="True" Color="#DDDDDD" />
+
+<!-- ControlTemplate: BI:Indicator 컨트롤을 위한 템플릿 정의 -->
+  <ControlTemplate x:Key="Blocks" TargetType="{x:Type ctlrs:Indicator}">
+
+  <!-- 메인 그리드 정의: 중앙에 배치 -->
+  <Grid x:Name="MainGrid" HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        SnapsToDevicePixels="True"
+        UseLayoutRounding="True">
+
+    <!-- 내부 그리드: 요소들을 배치하기 위한 행과 열 정의 -->
+    <Grid RenderTransformOrigin="0.5 0.5">
+      <Grid.RenderTransform>
+          
+        <!-- 크기 변환을 위한 ScaleTransform (Indicator의 크기 조정) -->
+        <ScaleTransform 
+            ScaleX="{DynamicResource IndicatorScaleX}"
+            ScaleY="{DynamicResource IndicatorScaleY}"/>
+      </Grid.RenderTransform>
+
+      <!-- 그리드 행과 열 정의 -->
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition />
+        <ColumnDefinition />
+        <ColumnDefinition />
+      </Grid.ColumnDefinitions>
+
+      <!-- 각 사각형 블록 정의 -->
+      <Rectangle x:Name="Rectangle01" Grid.Row="0" Opacity="0"
+                  Grid.Column="0" Width="20" Height="20" Margin="1.5"
+                  Fill="{TemplateBinding Foreground}" />
+
+      <Rectangle x:Name="Rectangle02" Grid.Row="0" Opacity="0"
+                  Grid.Column="1" Width="20" Height="20" Margin="1.5"
+                  Fill="{TemplateBinding Foreground}" />
+
+      <Rectangle x:Name="Rectangle03" Grid.Row="0" Opacity="0"
+                  Grid.Column="2" Width="20" Height="20" Margin="1.5"
+                  Fill="{TemplateBinding Foreground}" />
+        
+      <Rectangle x:Name="Rectangle04" Grid.Row="1" Grid.Column="0"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+        
+      <Rectangle x:Name="Rectangle05" Grid.Row="1" Grid.Column="1"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+        
+      <Rectangle x:Name="Rectangle06" Grid.Row="1" Grid.Column="2"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+       
+      <Rectangle x:Name="Rectangle07" Grid.Row="2" Grid.Column="0"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+        
+      <Rectangle x:Name="Rectangle08" Grid.Row="2" Grid.Column="1"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+
+      <Rectangle x:Name="Rectangle09" Grid.Row="2" Grid.Column="1"
+                  Width="20" Height="20" Margin="1.5" Opacity="0"
+                  Fill="{TemplateBinding Foreground}" />
+    </Grid>
+
+    <!-- VisualStateManager: 애니메이션 상태 그룹 정의 -->
+    <VisualStateManager.VisualStateGroups>
+      <VisualStateGroup>
+        <!-- "Active" 상태: 활성화 상태에서 사각형들의 애니메이션을 설정 -->
+        <VisualState x:Name="Active">
+          <Storyboard
+              BeginTime="00:00:00"
+              RepeatBehavior="Forever"
+              Duration="00:00:02">
+
+            <!-- Rectangle01부터 Rectangle09까지 각 사각형의 Opacity(투명도) 애니메이션 -->
+            <!-- 애니메이션이 점차적으로 0에서 1로 변하며 나타남 -->
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.065"
+                Storyboard.TargetName="Rectangle01"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.13"
+                Storyboard.TargetName="Rectangle02"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                            BeginTime="00:00:00.195"
+                            Storyboard.TargetName="Rectangle03"
+                            Storyboard.TargetProperty="(UIElement.Opacity)"
+                            >
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.325"
+                Storyboard.TargetName="Rectangle04"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.13"
+                Storyboard.TargetName="Rectangle05"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.455"
+                Storyboard.TargetName="Rectangle06"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.39"
+                Storyboard.TargetName="Rectangle07"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00.26"
+                Storyboard.TargetName="Rectangle08"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:00"
+                Storyboard.TargetName="Rectangle09"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="1" />
+            </DoubleAnimationUsingKeyFrames>
+              
+            <!-- 애니메이션을 반대로 실행 (Reverse) -->
+            <!-- 각 사각형들의 Opacity(투명도)가 1에서 0으로 변하며 사라짐 -->
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.065"
+                Storyboard.TargetName="Rectangle01"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.13"
+                Storyboard.TargetName="Rectangle02"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.195"
+                Storyboard.TargetName="Rectangle03"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.325"
+                Storyboard.TargetName="Rectangle04"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.13"
+                Storyboard.TargetName="Rectangle05"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.455"
+                Storyboard.TargetName="Rectangle06"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.39"
+                Storyboard.TargetName="Rectangle07"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01.26"
+                Storyboard.TargetName="Rectangle08"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+
+            <DoubleAnimationUsingKeyFrames
+                BeginTime="00:00:01"
+                Storyboard.TargetName="Rectangle09"
+                Storyboard.TargetProperty="(UIElement.Opacity)">
+              <LinearDoubleKeyFrame KeyTime="00:00:00.22" Value="0" />
+            </DoubleAnimationUsingKeyFrames>
+          </Storyboard>
+        </VisualState>
+        <VisualState x:Name="Inactive" />
+      </VisualStateGroup>
+    </VisualStateManager.VisualStateGroups>
+  </Grid>
+</ControlTemplate>
+</ResourceDictionary>

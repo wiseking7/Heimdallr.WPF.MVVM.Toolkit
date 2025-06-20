@@ -76,4 +76,20 @@
     </None>
   </ItemGroup>
 
+  <!-- 파일저장 -->
+  <ItemGroup>
+		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\README.md">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\커스텀컨트롤사용방법.pdf">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
+
 </Project>
