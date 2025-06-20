@@ -172,7 +172,7 @@
   - **Icon [Folder]**
     - [x] HeimdallrIcon.xaml [Heimdallr Icon]
   - **Indicator [Folder](화면표시기 애니메이션)**
-    - **XAML [Folder]**
+   - **XAML [Folder]**
      - [x] Bar, Blocks, BouncingDot, Cogs, Cupertino, Dashes, DotCircel, CoubleBounce, Ellipse, Escalade, FourDots, Grid, Piston, Pulse, Ring, Swirl, ThreeDots, Twist, Wave 의 XAML 파일
      - [x] Indicator.xaml (위 19개의 파일 등록)
      - [x] LoadingOverlay.xaml (Indicator 기반으로 사용하는 Xaml) 
