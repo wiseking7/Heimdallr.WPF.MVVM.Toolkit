@@ -97,21 +97,6 @@
 **■ Helpers [Folder]**
   - [x] DimmingManager.cs [전역적으로 ViewModel 또는 다른 코드에서 UI와의 의존성 없이 디밍 상태를 변경]
   - [x] ThemeManager.cs [테마의 색상변경]
-
-**■ Indicators [Folder -> Spinner Type]**
- - **Extensions [Folder]**
-   - [x] DispatcherExtension.cs [지정된 시간 이후에 UI 스레드에서 작업을 실행합니다.]
-   - [x] EscaladeHelper.cs [Path 개체의 StrokeDashArray 속성을 제어하는 도우미 클래스] 
- - **Helpers [Folder]**
-   - [x] EllipseHelper.cs [Ellipse 컨트롤의 StrokeDashArray 속성을 제어하는 제어하는 도우미 클래스] 
- - **Models [Folder]**
-   - [x] LoadingIndicator.cs [Indicator(표기시) 의 형식을 지정 예:Twist, Bar, Ring...]
-   - [x] LoadingSpinnerType.cs [열거형]
- - **Resources [Folder]**
-   - [x] Bar, Blocks, BouncingDot, Cogs, Cupertino, Dashes, DotCircle, DoubleBounce, Ellipse, Escalade, FourDots, Grid, None, Piston, Pulse, Ring, Swirl, ThreeDots, Teist, Wave XAML 파일
- - **Views [Folder]**
-   - [x] LoadingSpinner.cs [LoadingSpinner 컨트롤 정의 (로딩 중 표시하는 스피너)]
-   - [x] VisualStates.cs [Visibility 관련 상태들] 
    
 **■ Infrastructure [Folder]** [기본구조]
  - **AutoWiring [Folder]** [자동연결]
@@ -179,13 +164,18 @@
     - [x] Color.xam [Color 항목]
   - **ComboBox [Folder]**
     - [x] HeimdallrComboBox.xaml [이미지/백그라운드 변경]
-  - **ContentConttrol [Folder]**
+  - **ContentControl [Folder]**
     - [x] AnimatedContentMenu.xaml [슬라이드 메뉴(햄버거메뉴 ContentControl -> Contrl 이둉(예, 버튼, 라디오버튼)]
     - [x] HeimdallrDropdownContentMenu.xaml [DropDown Menu]
   - **ContentMenu [Folder]**
     - [x] AnimatedSlideMenu.xaml [AnimatedContentMenu.xaml을 이용한 Side 메뉴 애니메이션]
   - **Icon [Folder]**
     - [x] HeimdallrIcon.xaml [Heimdallr Icon]
+  - **Indicator [Folder](화면표시기 애니메이션)**
+   - **XAML [Folder]**
+    - [x] Bar, Blocks, BouncingDot, Cogs, Cupertino, Dashes, DotCircel, CoubleBounce, Ellipse, Escalade, FourDots, Grid, Piston, Pulse, Ring, Swirl, ThreeDots, Twist, Wave 의 XAML 파일
+    - [x] Indicator.xaml (위 19개의 파일 등록)
+    - [x] LoadingOverlay.xaml (Indicator 기반으로 사용하는 Xaml) 
   - **Information [Folder]**
     - [x] InformationWindow.xaml [Information View(윈도우)]
   - **ListBox [Folder]**
@@ -254,6 +244,11 @@
     - [x] HeimdallrGrid.cs [AutoGrid 를 확장]
   - **Icon [Folder]**
     - [x] HeimdallrIcon.cs [XAML 에서 사용가능한 Icon]
+  - **Indicator(표시기) [Folder]**
+    - [x] EllipseHelper.cs (Ellipse.xaml 사용)
+    - [x] EscaladeHelper.cs (Escalade.xaml 사용)
+    - [x] Indicator.cs (Control 상속으로 xaml(19개)의 커스텀)
+    - [x] LoadingOverlay.cs (Indicator 의 기반으로 화면표기시) 
   - **ListBox [Folder]**
     - [x] HeimdallrListBox.cs [미완성]
     - [x] HeimdallrListBoxItem.cs [미완성]
