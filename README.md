@@ -311,15 +311,16 @@
 
 **■ NeGut 패키지 관리**
  - [x] 여러 네임스페이스를 하나의 URI로 묶어서 정의
-[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit")]
 
-[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Animations")]
+ [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit")]
 
-[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Attributes")]
+ [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Animations")]
 
-[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Commons")]
+ [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Attributes")]
 
-[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Contracts")]
+ [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Commons")]
+
+ [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Contracts")]
 
 [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Converters")]
 
