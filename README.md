@@ -27,6 +27,7 @@
 
 **■ Commons [Folder]** [공유]
   - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
+  - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager]
 
 **■ Contracts [Folder]** [계약]
   - **Viewing [Folder]** [보기]
@@ -298,9 +299,6 @@
   - **Window [Folder]**
     - [x] DarkThemeWindow.cs [WPF 기반의 커스텀 창을 정의하며, 일반적인 기능(닫기, 최소화, 최대화, 드래그, 코너라디우스)과함께 다크 테마, 디밍 처리(어두워짐), 태스크바 표시 여부 제어 같은 기능들을 포함 ]
     - [x] HeimdallrWindow.cs [WPF 애플리케이션에서 MVVM 아키텍처에 맞춰 View와 ViewModel을 자동 연결하고, UI 조작에 유틸리티 기능을 제공하는 사용자 정의 Window입니다 IViewable (View 와 ViewModel 에 대한 참조 제공)] 
-
-**■ ViewModels [Folder]**
- - [x] ViewModelBase.cs [Prism BindableBase 상속]
 
 **■ 기타**
  왜 Release로 빌드하나요?
