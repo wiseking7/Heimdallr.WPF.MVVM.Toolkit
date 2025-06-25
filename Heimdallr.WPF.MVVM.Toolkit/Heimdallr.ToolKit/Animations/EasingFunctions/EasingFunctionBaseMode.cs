@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Animations.EasingFunctions;
+﻿namespace Heimdallr.ToolKit.Animations;
 
 /// <summary>
 /// 이징 함수(easing function)의 다양한 모드를 정의하는 열거형(enum)입니다.

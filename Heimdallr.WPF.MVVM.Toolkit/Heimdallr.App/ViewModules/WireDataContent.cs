@@ -1,5 +1,5 @@
 ﻿using Heimdallr.App.ViewMoels;
-using Heimdallr.ToolKit.Infrastructure.AutoWiring;
+using Heimdallr.ToolKit.Infrastructure;
 
 namespace Heimdallr.App;
 

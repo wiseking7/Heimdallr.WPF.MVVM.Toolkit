@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Infrastructure.AutoWiring;
+﻿namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// View와 ViewModel 간의 연결 관계를 정의하는 단일 매핑 항목을 나타냅니다. 

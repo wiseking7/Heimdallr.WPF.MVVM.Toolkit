@@ -3,7 +3,7 @@ using Heimdallr.ToolKit.Attributes;
 using Heimdallr.ToolKit.Helpers;
 using System.Reflection;
 
-namespace Heimdallr.ToolKit.Dialogs.Base;
+namespace Heimdallr.ToolKit.Dialogs;
 
 /// <summary>
 /// 다이얼로그 ViewModel의 베이스 클래스.

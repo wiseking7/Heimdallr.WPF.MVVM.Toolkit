@@ -1,8 +1,8 @@
-﻿using Heimdallr.ToolKit.Contracts.Viewing;
+﻿using Heimdallr.ToolKit.Contracts;
 using System.ComponentModel;
 using System.Windows;
 
-namespace Heimdallr.ToolKit.Infrastructure.AutoWiring;
+namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// MVVM 패턴을 사용하는 WPF 애플리케이션에서

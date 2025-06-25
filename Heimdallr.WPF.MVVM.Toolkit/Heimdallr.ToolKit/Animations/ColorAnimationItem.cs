@@ -1,5 +1,4 @@
-﻿using Heimdallr.ToolKit.Animations.EasingFunctions;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Media.Animation;
 
 namespace Heimdallr.ToolKit.Animations;

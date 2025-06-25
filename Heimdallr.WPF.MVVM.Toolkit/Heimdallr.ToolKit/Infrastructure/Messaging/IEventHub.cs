@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Heimdallr.ToolKit.Infrastructure.Messaging;
+namespace Heimdallr.ToolKit.Infrastructure;
 
 
 /// <summary>

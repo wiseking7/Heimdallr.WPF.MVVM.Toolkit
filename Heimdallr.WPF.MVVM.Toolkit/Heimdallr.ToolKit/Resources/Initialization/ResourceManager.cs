@@ -1,6 +1,6 @@
 ﻿using Heimdallr.ToolKit.Applications;
 using Heimdallr.ToolKit.Events;
-using Heimdallr.ToolKit.Infrastructure.Messaging;
+using Heimdallr.ToolKit.Infrastructure;
 using Heimdallr.ToolKit.Interfaces;
 using Heimdallr.ToolKit.Models;
 using Heimdallr.ToolKit.Resources.Initialization;

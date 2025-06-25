@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Infrastructure.AutoWiring;
+﻿namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// MVVM 패턴에서 ViewModel을 View에 연결하기 위한 시나리오 정의의 추상 베이스 클래스입니다. 

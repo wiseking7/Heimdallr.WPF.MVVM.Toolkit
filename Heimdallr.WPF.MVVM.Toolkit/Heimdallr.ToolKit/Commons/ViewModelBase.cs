@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.ViewModels;
+﻿namespace Heimdallr.ToolKit.Commons;
 
 /// <summary>
 /// Prism 프레임워크를 기반으로 하는 기본 ViewModel 클래스입니다.

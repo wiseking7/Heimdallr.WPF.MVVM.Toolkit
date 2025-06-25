@@ -1,5 +1,5 @@
-﻿using Heimdallr.ToolKit.Contracts.Viewing;
-using Heimdallr.ToolKit.Infrastructure.AutoWiring;
+﻿using Heimdallr.ToolKit.Contracts;
+using Heimdallr.ToolKit.Infrastructure;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Media;

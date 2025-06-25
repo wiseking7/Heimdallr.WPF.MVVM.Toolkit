@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Contracts.Viewing;
+﻿namespace Heimdallr.ToolKit.Contracts;
 
 /// <summary>
 /// MVVM 아키텍처에서 ViewModel이 View에 연결되었을 때 실행되는 

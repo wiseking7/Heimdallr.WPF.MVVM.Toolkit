@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows;
 
-namespace Heimdallr.ToolKit.Contracts.Viewing;
+namespace Heimdallr.ToolKit.Contracts;
 
 /// <summary>
 /// View와 ViewModel에 대한 참조를 제공하는 인터페이스입니다.

@@ -1,6 +1,4 @@
-﻿using Heimdallr.ToolKit.Infrastructure.AutoWiring;
-using Heimdallr.ToolKit.Infrastructure.Messaging;
-using Heimdallr.ToolKit.Infrastructure.Navigation;
+﻿using Heimdallr.ToolKit.Infrastructure;
 using Heimdallr.ToolKit.Resources.Initialization;
 using Heimdallr.ToolKit.Resources.Initializationl;
 using System.Diagnostics;

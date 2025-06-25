@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 
-namespace Heimdallr.ToolKit.Infrastructure.Messaging;
+namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// Prism의 IEventAggregator를 감싸는 유틸리티 클래스입니다.

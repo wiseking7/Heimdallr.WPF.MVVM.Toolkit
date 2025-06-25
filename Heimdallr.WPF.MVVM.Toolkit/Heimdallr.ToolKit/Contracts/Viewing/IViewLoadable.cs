@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Contracts.Viewing;
+﻿namespace Heimdallr.ToolKit.Contracts;
 
 /// <summary>
 /// WPF MVVM 아키텍처에서 View의 Loaded 이벤트가 발생했을 때,

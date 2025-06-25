@@ -1,6 +1,7 @@
-﻿using Heimdallr.ToolKit.Contracts.Viewing;
+﻿
+using Heimdallr.ToolKit.Contracts;
 
-namespace Heimdallr.ToolKit.Infrastructure.Navigation;
+namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// Region 기반의 View 전환을 간결하게 처리하기 위한 헬퍼 유틸리티 클래스입니다.

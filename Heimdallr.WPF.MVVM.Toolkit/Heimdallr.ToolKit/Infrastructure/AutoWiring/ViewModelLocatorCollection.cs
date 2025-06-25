@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Infrastructure.AutoWiring;
+﻿namespace Heimdallr.ToolKit.Infrastructure;
 
 /// <summary>
 /// MVVM 패턴의 View와 ViewModel 간의 자동 연결(Locator) 등록을 도와주는 컬렉션 클래스입니다. 
