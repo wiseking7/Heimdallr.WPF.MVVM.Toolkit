@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Heimdallr.ToolKit.Resources.Geometies;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// Geometry 위치

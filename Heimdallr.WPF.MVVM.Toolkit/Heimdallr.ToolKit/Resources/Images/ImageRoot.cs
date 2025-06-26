@@ -1,6 +1,6 @@
 ﻿using Newtonsoft.Json;
 
-namespace Heimdallr.ToolKit.Resources.Images;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// 이미지 위치

@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Heimdallr.ToolKit.Resources.Geometies;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// Geometry 변환기

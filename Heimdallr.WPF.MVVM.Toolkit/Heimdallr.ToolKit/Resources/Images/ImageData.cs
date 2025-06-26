@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Resources.Images;
+﻿namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// 다양한 Image 에 대한 데이터를 제공하는 정적 클래스입니다.

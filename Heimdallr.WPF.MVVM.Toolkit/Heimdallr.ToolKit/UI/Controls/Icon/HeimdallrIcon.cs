@@ -1,5 +1,5 @@
 ﻿using Heimdallr.ToolKit.Enums;
-using Heimdallr.ToolKit.Resources.PathDataStore;
+using Heimdallr.ToolKit.Resources;
 using System.Diagnostics;
 using System.IO;
 using System.Windows;
@@ -64,7 +64,7 @@ public class HeimdallrIcon : ContentControl
     HeimdallrIcon heimdallrIcon = (HeimdallrIcon)d;
 
     // ToolKit에서 아이콘 이름에 해당하는 Path 데이터 문자열 가져오기
-    string geometryData = ToolKit.Resources.Geometies.GeometryConverter
+    string geometryData = ToolKit.Resources.GeometryConverter
       .GetData(heimdallrIcon.Icon.ToString());
 
     // 문자열을 Geometry로 파싱하여 Data 속성에 할당
@@ -105,7 +105,7 @@ public class HeimdallrIcon : ContentControl
     try
     {
       // 이미지 이름에 해당하는 Base64 문자열 가져오기
-      string base64 = ToolKit.Resources.Images.ImageConverter
+      string base64 = ToolKit.Resources.ImageConverter
         .GetData(heimdallrIcon.Image.ToString());
 
       // Base64 → byte[]

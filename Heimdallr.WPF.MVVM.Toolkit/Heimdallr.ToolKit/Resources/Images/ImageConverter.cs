@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace Heimdallr.ToolKit.Resources.Images;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// ImageContainer 에서 특정 이름의 ImageItem 을 조회하고,

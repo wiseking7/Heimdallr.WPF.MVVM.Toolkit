@@ -1,4 +1,4 @@
-﻿namespace Heimdallr.ToolKit.Resources.Initialization;
+﻿namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// WPF 또는 .NET 애플리케이션에서 테마 및 로케일(언어/문화 설정) 관련 리소스 경로를 초기화하기 위한 추상 클래스입니다.

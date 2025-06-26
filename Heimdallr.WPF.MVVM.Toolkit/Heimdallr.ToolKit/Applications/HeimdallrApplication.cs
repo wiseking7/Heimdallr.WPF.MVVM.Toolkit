@@ -1,6 +1,5 @@
 ﻿using Heimdallr.ToolKit.Infrastructure;
-using Heimdallr.ToolKit.Resources.Initialization;
-using Heimdallr.ToolKit.Resources.Initializationl;
+using Heimdallr.ToolKit.Resources;
 using System.Diagnostics;
 using System.Reflection;
 using System.Windows;

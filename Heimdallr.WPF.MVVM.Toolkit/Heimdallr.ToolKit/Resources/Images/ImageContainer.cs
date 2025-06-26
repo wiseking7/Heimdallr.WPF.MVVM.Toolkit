@@ -4,7 +4,7 @@ using System.IO;
 using System.Reflection;
 using YamlDotNet.Serialization;
 
-namespace Heimdallr.ToolKit.Resources.Images;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// YAML 형식의 이미지 데이터를 JSON으로 변환하고 ImageItem 컬렉션으로 변환하는 정적 클래스입니다.

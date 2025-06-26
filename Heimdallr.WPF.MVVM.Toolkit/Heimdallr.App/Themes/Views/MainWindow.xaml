@@ -130,11 +130,13 @@
               LoadingText="진행중..." VerticalAlignment="Center" HorizontalAlignment="Center"
               Margin="0 10 0 0"/>
 
-            <ctrls:HeimdallrProgressBar 
+            <ctrls:HeimdallrProgressBar  Grid.Row="11"
               Minimum="0" Maximum="100" Height="20" Width="200"
               IndicatorBrush="Red" TrackBrush="AliceBlue"
               Value="{Binding ProgressValue, Mode=OneWay}" Margin="0 10 0 0"/>
-            
+
+            <ctrls:HeimdallrIcon Grid.Row="12" PathIcon="Barcode" Fill="Cornsilk" />
+
           </Grid>
         </Border>
 

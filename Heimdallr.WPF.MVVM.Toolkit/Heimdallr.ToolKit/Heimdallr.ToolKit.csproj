@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.6.10</Version>
+	<Version>1.7.02</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
@@ -45,9 +45,16 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Resources\Data\geometries.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Data\geometries.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Data\images.yaml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -73,6 +80,9 @@
     <None Update="Resources\Data\heimdall.ico">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
+    </None>
+    <None Update="Resources\Data\Summary.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

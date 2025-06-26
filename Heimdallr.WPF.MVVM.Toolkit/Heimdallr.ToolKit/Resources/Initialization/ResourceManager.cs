@@ -3,14 +3,13 @@ using Heimdallr.ToolKit.Events;
 using Heimdallr.ToolKit.Infrastructure;
 using Heimdallr.ToolKit.Interfaces;
 using Heimdallr.ToolKit.Models;
-using Heimdallr.ToolKit.Resources.Initialization;
 using System.IO;
 using System.Reflection;
 using System.Windows;
 using System.Windows.Media;
 using YamlDotNet.Serialization;
 
-namespace Heimdallr.ToolKit.Resources.Initializationl;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// Prism 프레임워크 기반 WPF 애플리케이션에서 테마 및 언어 리소스를 로딩, 전환 및 관리하는 역할을 합니다.

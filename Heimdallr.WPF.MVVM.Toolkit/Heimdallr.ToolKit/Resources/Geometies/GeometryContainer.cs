@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Reflection;
 
-namespace Heimdallr.ToolKit.Resources.Geometies;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// GeometryItem 개체들을 관리하는 정적 클래스입니다. JSON 파일을 로드하고, 

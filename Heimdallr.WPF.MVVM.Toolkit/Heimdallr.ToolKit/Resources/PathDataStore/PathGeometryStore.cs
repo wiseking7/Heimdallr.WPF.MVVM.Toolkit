@@ -1,7 +1,7 @@
 ﻿using Heimdallr.ToolKit.Enums;
 using System.Windows.Media;
 
-namespace Heimdallr.ToolKit.Resources.PathDataStore;
+namespace Heimdallr.ToolKit.Resources;
 
 /// <summary>
 /// PathGeometryStore 는 PathIconType 열거형에 해당하는 PathGeometry 데이터를 관리하는 정적 클래스입니다.
