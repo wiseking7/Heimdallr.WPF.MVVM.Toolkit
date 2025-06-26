@@ -97,7 +97,7 @@
 
 **■ Helpers [Folder]**
   - [x] DimmingManager.cs [전역적으로 ViewModel 또는 다른 코드에서 UI와의 의존성 없이 디밍 상태를 변경]
-  - [x] PasswordHasher.cs [비밀번호 해시(암호) 복호화 불가능
+  - [x] PasswordHasher.cs [비밀번호 해시(암호) 복호화 불가능]
   - [x] ThemeManager.cs [테마의 색상변경]
    
 **■ Infrastructure [Folder]** [기본구조]
