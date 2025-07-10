@@ -8,6 +8,8 @@ public class App : HeimdallrApplication
   protected override Window CreateShell()
   {
     //return Container.Resolve<ExploreerWindow>(); 사용안됨
+    // 보통 MainWindow, 혹은 로그인 창, 초기 로딩 창 등을 반환합니다. 
+    // 현재는 MainWindwo 인스턴스를 생성하여 반환하고 있음
     return new MainWindow();
   }
 }

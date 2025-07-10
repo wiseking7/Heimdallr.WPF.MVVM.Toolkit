@@ -8,7 +8,8 @@ namespace Heimdallr.ToolKit.Applications;
 
 /// <summary>
 /// PrismApplication 을 상속받는 추상 클래스
-/// Prism 의 MVVM 및 DI 기능을 기반으로, 테마 리소스와 ViewModel, IoC 모듈 설정을 포함하여 앱 전반을 초기화합니다.
+/// Prism 의 MVVM 및 DI 기능을 기반으로, 테마 리소스와 ViewModel,
+/// IoC 모듈 설정을 포함하여 앱 전반을 초기화합니다.
 /// </summary>
 
 public abstract class HeimdallrApplication : PrismApplication
@@ -120,10 +121,12 @@ public abstract class HeimdallrApplication : PrismApplication
   /// <summary>
   /// ViewModelLocationScenario 는 View-ViewModel 매핑 설정하는 클래스 (체이닝 지원)
   /// ViewModel 을 prism 의 ViewModelLocator 에 등록
-  /// 이 메서드는 ViewModelLocationScenario 타입의 ViewModel을 생성하고, ViewModelLocator 에 등록하는 작업을 수행
+  /// 이 메서드는 ViewModelLocationScenario 타입의 ViewModel을 생성하고, 
+  /// ViewModelLocator 에 등록하는 작업을 수행
   /// </summary>
   /// <typeparam name="T">
-  /// 등록할 iewModelLocationScenario 타입. 이 타입은 ViewModelLocator에 ViewModel을 등독할 때 필요한 로직을 구현해야 합니다. 
+  /// 등록할 iewModelLocationScenario 타입. 이 타입은 ViewModelLocator에 
+  /// ViewModel을 등독할 때 필요한 로직을 구현해야 합니다. 
   /// </typeparam>
   /// <returns>
   /// 현재 HeimdallrApplication 인스턴스를 반환하여 메서드 체이닝을 지원합니다.</returns>

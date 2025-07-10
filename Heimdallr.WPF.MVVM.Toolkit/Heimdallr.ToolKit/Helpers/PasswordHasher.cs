@@ -3,7 +3,7 @@ using System.Text;
 
 namespace Heimdallr.ToolKit.Helpers;
 /// <summary>
-/// 비밀번호 해시(암호가) 복호화 불가능
+/// 비밀번호 해시(암호) 복호화 불가능
 /// </summary>
 public static class PasswordHasher
 {

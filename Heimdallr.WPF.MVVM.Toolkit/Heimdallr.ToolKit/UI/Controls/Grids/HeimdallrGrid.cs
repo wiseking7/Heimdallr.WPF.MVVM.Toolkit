@@ -33,3 +33,5 @@ public class HeimdallrGrid : AutoGrid
 // 이 방식은 멀티 타겟 프레임워크 프로젝트에서 동일 코드를 프레임워크별로 구분하여 작성할 때 유용합니다.
 // 이 코드는 AutoGrid라는 UI 컨트롤을 기반으로 한 공통 사용자 정의 컨트롤 JamesGrid를 정의하며,
 // 서로 다른 .NET 런타임 (.NET Framework vs .NET 5+)에서도 호환되도록 조건부 분기를 구성해 둔 것입니다.
+// ColumnCount: 열의 개수를 설정합니다, RowCount: 행의 개수를 설정합니다
+// 

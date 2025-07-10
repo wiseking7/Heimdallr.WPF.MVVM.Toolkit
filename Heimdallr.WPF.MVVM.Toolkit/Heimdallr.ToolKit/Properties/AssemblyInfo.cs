@@ -47,8 +47,6 @@ using System.Windows.Markup;
 
 [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Resources")]
 
-//[assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.Themes.Controls")]
-
 [assembly: XmlnsDefinition("https://Heimdallr.WPF.MVVM.ToolKit/xaml", "Heimdallr.ToolKit.UI.Controls")]
 
 // 하나의 접두사로 묶기

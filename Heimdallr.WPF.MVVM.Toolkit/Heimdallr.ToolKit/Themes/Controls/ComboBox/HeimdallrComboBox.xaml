@@ -18,12 +18,12 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrComboBox}">
           <Border
-            x:Name="border"
-            Background="{TemplateBinding Background}"
-            CornerRadius="{TemplateBinding CornerRadius}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            SnapsToDevicePixels="True">
+              x:Name="border"
+              Background="{TemplateBinding Background}"
+              CornerRadius="{TemplateBinding CornerRadius}"
+              BorderBrush="{TemplateBinding BorderBrush}"
+              BorderThickness="{TemplateBinding BorderThickness}"
+              SnapsToDevicePixels="True">
             <Grid ClipToBounds="True">
 
               <ctrls:HeimdallrComboBoxToggleButton
@@ -40,18 +40,18 @@
                 />
 
               <ContentPresenter 
-                x:Name="ContentSite"  Margin="10 3 23 3"
-                IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Center"
-                Content="{TemplateBinding SelectedItem}"
-                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+                  x:Name="ContentSite"  Margin="10 3 23 3"
+                  IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Center"
+                  Content="{TemplateBinding SelectedItem}"
+                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
 
               <TextBox 
-                x:Name="PART_EditableTextBox" Margin="3 3 23 3"
-                IsReadOnly="{TemplateBinding IsReadOnly}"
-                Visibility="Hidden" Background="Transparent"
-                HorizontalAlignment="Left" VerticalAlignment="Center"
-                Focusable="True">
+                  x:Name="PART_EditableTextBox" Margin="3 3 23 3"
+                  IsReadOnly="{TemplateBinding IsReadOnly}"
+                  Visibility="Hidden" Background="Transparent"
+                  HorizontalAlignment="Left" VerticalAlignment="Center"
+                  Focusable="True">
 
                 <TextBox.Template>
                   <ControlTemplate TargetType="TextBox" >

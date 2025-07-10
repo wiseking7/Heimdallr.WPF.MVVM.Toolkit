@@ -215,8 +215,11 @@
   WindowChrome을 설정해주는 것이 일반적입니다 (따라서 Linux, macOS에선 사용할 수 없습니다.).
  
   CaptionHeight="0" -> 시스템 타이틀바의 높이를 0으로 설정하여 숨깁니다. → 직접 만든 UI로 타이틀 영역을 대체 가능
+                       타이틀 바(캡션 바)를 없애고
   CornerRadius="0" -> 창의 모서리를 둥글게 하지 않음 (기본적으로 직각). 커스텀 둥근 창을 만들고 싶다면 이 값을 조정
+                      모서리를 둥글게 만드며,
   GlassFrameThickness="0" -> Windows Aero의 유리 효과를 위한 프레임 두께. 0으로 설정하면 투명/반투명 영역 없음 
+                             리사이즈 가능한 테두리의 두께를 설정하고,
   NonClientFrameEdges="None" -> 시스템이 관리하는 비클라이언트 테두리를 모두 제거
   ResizeBorderThickness="5" -> 창 테두리에서 사용자가 마우스로 크기를 조정할 수 있는 여백(px). 커스텀 창에서도 사이즈 조절 가능
   UseAeroCaptionButtons="False" -> 기본 최소화/최대화/닫기 버튼을 숨깁니다. → 직접 만든 버튼을 사용 가능하게 함
