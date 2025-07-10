@@ -107,7 +107,7 @@
    - [x] ViewModelLocationScenario.cs [ViewModel을 View에 연결하기 위한 시나리오 정의의 추상클래스]
    - [x] ViewModelLocatorCollection.cs [View와 ViewModel 간의 자동 연결(Locator) 등록을 도와주는 컬렉션]
    - [x] ViewModelLocatorItem.cs [View와 ViewModel 간의 연결 관계를 정의하는 단일 매핑 항목]
-  - **Data [Folder]** 
+ - **Data [Folder]** 
    - [x] InMemoryRepository.cs [제네릭 인터페이스 <c>IRepository&lt;T&gt;</c> 를 구현한 메모리 기반 저장소 클래스입니다]
    - [x] IRepository.cs [제네릭 인터패스 레포지토리 인터페이스]
    - [x] Repository.cs [제네릭 타입 매개변수 <c>T</c>에 대한 제약 조건을 설명합니다]
