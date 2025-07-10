@@ -77,6 +77,7 @@
   - [x] IconType.cs [Geometry 에서 사용할 Icon Name]
   - [x] ImageType.cs [Image 에서 사용할 Image Name]
   - [x] JustifyEnum.cs [수평 레이아웃 배치에서 자식 요소들 사이의 간격을 어떻게 분배할지를 설정할 때 사용]
+  - [x] IndicatorType.cs [표시기 열거형 20개(막대, 블록, 튕기는 점, 기어, 쿠퍼티노, 대시, 점원, ...]
   - [x] Language.cs [언어를 나타내는 열거형입니다]
   - [x] LogLevel.cs [로그 레벨을 나타내는 열거형입니다]
   - [x] PathIconType.cs [PathGeometry Data 열거형]
@@ -106,6 +107,10 @@
    - [x] ViewModelLocationScenario.cs [ViewModel을 View에 연결하기 위한 시나리오 정의의 추상클래스]
    - [x] ViewModelLocatorCollection.cs [View와 ViewModel 간의 자동 연결(Locator) 등록을 도와주는 컬렉션]
    - [x] ViewModelLocatorItem.cs [View와 ViewModel 간의 연결 관계를 정의하는 단일 매핑 항목]
+  - **Data [Folder]** 
+   - [x] InMemoryRepository.cs [제네릭 인터페이스 <c>IRepository&lt;T&gt;</c> 를 구현한 메모리 기반 저장소 클래스입니다]
+   - [x] IRepository.cs [제네릭 인터패스 레포지토리 인터페이스]
+   - [x] Repository.cs [제네릭 타입 매개변수 <c>T</c>에 대한 제약 조건을 설명합니다]
  - **Messaging [Folder]** 
    - [x] EventAggregatorHub.cs [ViewModel 간 이벤트 기반 통신]
    - [x] IEventHub.cs [Prism PubSubEvent 시스템의 추상화 컴포넌트 간 강한 결합 없이 메시지를 주고받기 위해 활용]
