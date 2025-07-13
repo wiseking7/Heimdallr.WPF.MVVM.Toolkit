@@ -207,7 +207,7 @@
     - [x] HeimdallrRingSpinner.xaml [Spinner Style] 
   - **StackPanel [Folder]**
   - **TextBox [Folder]**
-    - [x] HeimdallrIconPlaceholderTextBox.xaml [Icon & WaterMark, BorderThickness 표기]
+    - [x] HeimdallrIconPlaceholderTextBox.xaml [Icon & Placeholder, BorderThickness 표기]
     - [x] HeimdallrIconWaterMarkTextBox.xaml [Icon & WaterMark, BorderThickness 미표기]
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.xaml [Thumb Style]
@@ -290,6 +290,7 @@
     - [x] HeimdallrStack.cs [Stack Control]
     - [x] MagicStackPanel.cs [TreeView 에서 사용하는 StackPanel]
   - **TextBox [Folder]**
+    - [x] HeimdallrIconPlaceholderTextBox.cs [Icon & Placeholder, BorderThickness 표기]
     - [x] HeimdallrIconWaterMarkTextBox.cs [Icon & WaterMark] 
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.cs [Thumb Contrl] 
