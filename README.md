@@ -107,10 +107,10 @@
    - [x] ViewModelLocationScenario.cs [ViewModel을 View에 연결하기 위한 시나리오 정의의 추상클래스]
    - [x] ViewModelLocatorCollection.cs [View와 ViewModel 간의 자동 연결(Locator) 등록을 도와주는 컬렉션]
    - [x] ViewModelLocatorItem.cs [View와 ViewModel 간의 연결 관계를 정의하는 단일 매핑 항목]
- - **Data [Folder]** 
-   - [x] InMemoryRepository.cs [제네릭 인터페이스 <c>IRepository&lt;T&gt;</c> 를 구현한 메모리 기반 저장소 클래스입니다]
-   - [x] IRepository.cs [제네릭 인터패스 레포지토리 인터페이스]
-   - [x] Repository.cs [제네릭 타입 매개변수 <c>T</c>에 대한 제약 조건을 설명합니다]
+ - **Data [Folder] [PDF 파일로 대체]** 
+   - [] InMemoryRepository.cs [제네릭 인터페이스 <c>IRepository&lt;T&gt;</c> 를 구현한 메모리 기반 저장소 클래스입니다]
+   - [] IRepository.cs [제네릭 인터패스 레포지토리 인터페이스]
+   - [] Repository.cs [제네릭 타입 매개변수 <c>T</c>에 대한 제약 조건을 설명합니다]
  - **Messaging [Folder]** 
    - [x] EventAggregatorHub.cs [ViewModel 간 이벤트 기반 통신]
    - [x] IEventHub.cs [Prism PubSubEvent 시스템의 추상화 컴포넌트 간 강한 결합 없이 메시지를 주고받기 위해 활용]
@@ -207,7 +207,8 @@
     - [x] HeimdallrRingSpinner.xaml [Spinner Style] 
   - **StackPanel [Folder]**
   - **TextBox [Folder]**
-    - [x] HeimdallrIconWaterMarkTextBox.xaml [Icon & WaterMark] 
+    - [x] HeimdallrIconPlaceholderTextBox.xaml [Icon & WaterMark, BorderThickness 표기]
+    - [x] HeimdallrIconWaterMarkTextBox.xaml [Icon & WaterMark, BorderThickness 미표기]
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.xaml [Thumb Style]
   - **ToggleButton [Folder]**
