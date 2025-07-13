@@ -95,7 +95,7 @@
               WaterMarkForeground="{StaticResource DarkWine}" Margin="0 10 0 0"/>
 
             <ctrls:HeimdallrPulseEllipse 
-                Grid.Row="5" Width="40" Height="40" PathIcon="Cache" Ellipse1Brush="Yellow"
+                Grid.Row="5" Width="80" Height="80" PathIcon="Cart" Ellipse1Brush="Yellow"
                 Ellipse2Brush="Black" Ellipse3Brush="Green" Command="{Binding ButtonTextCommamd}" 
                 HorizontalAlignment="Center" VerticalAlignment="Center" IconFill="Violet" Margin="0 10 0 0"/>
 
@@ -107,7 +107,7 @@
 
             <ctrls:HeimdallrIconRadioButton Grid.Row="7" Content="Setting" Margin="0 10 0 0"
                                             PathIcon="Setting" Background="Transparent"
-                                            CheckedForeground="Yellow" MouseOverForeground="Blue"
+                                            CheckedForeground="Orange" MouseOverForeground="Blue"
                                             GroupName="MenuGroup" Width="120" Height="40"
                                             IconFill="AliceBlue" Command="{Binding ProgressBarCommand}"/>
 
