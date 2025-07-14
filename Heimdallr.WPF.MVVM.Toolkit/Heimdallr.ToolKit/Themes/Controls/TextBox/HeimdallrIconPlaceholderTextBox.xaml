@@ -5,6 +5,7 @@
   <Style TargetType="{x:Type ctrls:HeimdallrIconPlaceholderTextBox}">
     <Setter Property="Padding" Value="5" />
     <Setter Property="Background" Value="White" />
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIconPlaceholderTextBox}">
@@ -33,6 +34,8 @@
                        Grid.Column="1"
                        Background="Transparent"
                        BorderThickness="0"
+                       Foreground="{TemplateBinding Foreground}"
+                       CaretBrush="{TemplateBinding CaretBrush}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Stretch"
                        Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />

@@ -12,7 +12,7 @@ namespace Heimdallr.ToolKit.UI.Controls;
 public class HeimdallrIconPlaceholderTextBox : Control
 {
   /// <summary>
-  /// 실제 사용자 입력을 담당하는 내부 TextBox
+  /// 내부에서 실제 입력을 처리하는 TextBox
   /// </summary>
   private TextBox? _textBox;
 
@@ -176,4 +176,20 @@ public class HeimdallrIconPlaceholderTextBox : Control
   public static readonly DependencyProperty FillProperty =
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
           new PropertyMetadata(Brushes.Gray));
+
+  /// <summary>
+  /// 커서 색상
+  /// </summary>
+  public Brush CaretBrush
+  {
+    get => (Brush)GetValue(CaretBrushProperty);
+    set => SetValue(CaretBrushProperty, value);
+  }
+
+  /// <summary>
+  /// 기본값: 검은색
+  /// </summary>
+  public static readonly DependencyProperty CaretBrushProperty =
+      DependencyProperty.Register(nameof(CaretBrush), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
+          new PropertyMetadata(Brushes.Black));
 }

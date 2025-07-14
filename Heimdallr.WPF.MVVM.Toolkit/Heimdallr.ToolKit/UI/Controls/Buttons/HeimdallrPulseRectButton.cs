@@ -64,7 +64,7 @@ public class HeimdallrPulseRectButton : Button
   /// </summary>
   public static readonly DependencyProperty CornerRadiusProperty =
       DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius),
-        typeof(HeimdallrPulseRectButton), new PropertyMetadata(null));
+        typeof(HeimdallrPulseRectButton), new PropertyMetadata(new CornerRadius(0)));
   #endregion
 
   #region IconFill
@@ -82,6 +82,108 @@ public class HeimdallrPulseRectButton : Button
   public static readonly DependencyProperty IconFillProperty =
       DependencyProperty.Register(nameof(IconFill), typeof(Brush), typeof(HeimdallrPulseRectButton),
         new PropertyMetadata(Brushes.Black));
+  #endregion
+
+  #region MouseOverBackground
+  /// <summary>
+  /// 
+  /// </summary>
+  public Brush MouseOverBackground
+  {
+    get => (Brush)GetValue(MouseOverBackgroundProperty);
+    set => SetValue(MouseOverBackgroundProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty MouseOverBackgroundProperty =
+      DependencyProperty.Register(nameof(MouseOverBackground), typeof(Brush),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x39, 0x3E, 0x46))));
+  #endregion
+
+  #region MouseOverBorderBrush
+  /// <summary>
+  /// 
+  /// </summary>
+  public Brush MouseOverBorderBrush
+  {
+    get => (Brush)GetValue(MouseOverBorderBrushProperty);
+    set => SetValue(MouseOverBorderBrushProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty MouseOverBorderBrushProperty =
+      DependencyProperty.Register(nameof(MouseOverBorderBrush), typeof(Brush),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x88, 0x88, 0x88))));
+  #endregion
+
+  #region PressedBackground
+  /// <summary>
+  /// 
+  /// </summary>
+  public Brush PressedBackground
+  {
+    get => (Brush)GetValue(PressedBackgroundProperty);
+    set => SetValue(PressedBackgroundProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty PressedBackgroundProperty =
+      DependencyProperty.Register(nameof(PressedBackground), typeof(Brush),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xAD, 0x49, 0xE1))));
+  #endregion
+
+  #region PressedBorderBrush
+  /// <summary>
+  /// 
+  /// </summary>
+  public Brush PressedBorderBrush
+  {
+    get => (Brush)GetValue(PressedBorderBrushProperty);
+    set => SetValue(PressedBorderBrushProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty PressedBorderBrushProperty =
+      DependencyProperty.Register(nameof(PressedBorderBrush), typeof(Brush),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x66, 0x66, 0x66))));
+  #endregion
+
+  #region FocusedBorderBrush
+  /// <summary>
+  /// 
+  /// </summary>
+  public Brush FocusedBorderBrush
+  {
+    get => (Brush)GetValue(FocusedBorderBrushProperty);
+    set => SetValue(FocusedBorderBrushProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty FocusedBorderBrushProperty =
+      DependencyProperty.Register(nameof(FocusedBorderBrush), typeof(Brush),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0x6E, 0xAC, 0xDA))));
+  #endregion
+
+  /// <summary>
+  /// 
+  /// </summary>
+  #region FocusedBorderThickness
+  public Thickness FocusedBorderThickness
+  {
+    get => (Thickness)GetValue(FocusedBorderThicknessProperty);
+    set => SetValue(FocusedBorderThicknessProperty, value);
+  }
+  /// <summary>
+  /// 
+  /// </summary>
+  public static readonly DependencyProperty FocusedBorderThicknessProperty =
+      DependencyProperty.Register(nameof(FocusedBorderThickness), typeof(Thickness),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(new Thickness(2)));
   #endregion
 }
 

@@ -12,6 +12,7 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
 
     <!-- 2. 버튼 및 인터랙션 -->
+
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/NumericUpDown/HeimdallrNumericUpDown.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/RadioButton/HeimdallrIconRadioButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrFlatButton.xaml" />
@@ -24,6 +25,7 @@
 
     <!-- 3. 입력 컨트롤 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ProgressBar/HeimdallrProgressBar.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconPlaceholderTextBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />

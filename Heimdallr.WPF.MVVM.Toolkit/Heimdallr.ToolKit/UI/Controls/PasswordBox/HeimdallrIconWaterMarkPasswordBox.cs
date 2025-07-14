@@ -217,5 +217,21 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
       };
     }
   }
+
+  /// <summary>
+  /// 커서 색상
+  /// </summary>
+  public Brush CaretBrush
+  {
+    get => (Brush)GetValue(CaretBrushProperty);
+    set => SetValue(CaretBrushProperty, value);
+  }
+
+  /// <summary>
+  /// 기본값: 검은색
+  /// </summary>
+  public static readonly DependencyProperty CaretBrushProperty =
+      DependencyProperty.Register(nameof(CaretBrush), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
+          new PropertyMetadata(Brushes.Black));
 }
 

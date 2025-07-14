@@ -8,6 +8,7 @@
 
   <!-- HeimdallrComboBoxToggleButton 스타일 정의 -->
   <Style TargetType="{x:Type ctrls:HeimdallrComboBoxToggleButton}">
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrComboBoxToggleButton}">

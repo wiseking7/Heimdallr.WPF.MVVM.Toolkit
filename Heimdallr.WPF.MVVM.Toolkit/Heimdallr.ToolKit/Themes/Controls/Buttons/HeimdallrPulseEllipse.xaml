@@ -25,13 +25,16 @@
                      Fill="{TemplateBinding Ellipse3Brush}"
                      Margin="10" />
 
-            <!-- 아이콘 -->
-            <ctrls:HeimdallrIcon x:Name="icon"
-                                 Width="20" Height="20"
-                                 PathIcon="{TemplateBinding PathIcon}"
-                                 Fill="{TemplateBinding IconFill}"
-                                 HorizontalAlignment="Center"
-                                 VerticalAlignment="Center" />
+            <!-- 아이콘 (자동 크기 조절) -->
+            <ctrls:HeimdallrIcon
+                    x:Name="icon"
+                    Width="{TemplateBinding IconSize}"
+                    Height="{TemplateBinding IconSize}"
+                    PathIcon="{TemplateBinding PathIcon}"
+                    Fill="{TemplateBinding IconFill}" 
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"/>
+   
           </Grid>
 
           <!-- 리소스: 클릭 애니메이션 -->

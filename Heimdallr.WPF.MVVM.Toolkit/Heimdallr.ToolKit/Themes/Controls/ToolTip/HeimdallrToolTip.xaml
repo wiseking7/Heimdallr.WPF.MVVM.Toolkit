@@ -8,6 +8,7 @@
     <Setter Property="Background" Value="#FF818FB4"/>
     <Setter Property="BorderBrush" Value="Transparent"/>
     <Setter Property="Foreground" Value="#FFFAF0E6"/>
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="FontSize" Value="12"/>
 
     <!-- ToolTip이 나타날 기준 사각형을 지정합니다.-->

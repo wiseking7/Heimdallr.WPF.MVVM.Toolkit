@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.7.13</Version>
+	<Version>1.7.17</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
@@ -88,21 +88,21 @@
 
   <!-- 파일저장 -->
   <ItemGroup>
-		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\README.md">
+		<None Include="..\..\README.md">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\LICENSE">
+		<None Include="..\..\LICENSE">
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
-		<None Include="G:\Heimdallr.WPF.MVVM.Toolkit\커스텀컨트롤사용방법.pdf">
+		<None Include="..\..\커스텀컨트롤사용방법.pdf">
 			<Pack>True</Pack>
-			<PackagePath></PackagePath>
+			<PackagePath>docs\</PackagePath>
 		</None>
-	  <None Include="G:\Heimdallr.WPF.MVVM.Toolkit\Repository.pdf">
+	  <None Include="..\..\Repository.pdf">
 		  <Pack>True</Pack>
-		  <PackagePath></PackagePath>
+		  <PackagePath>docs\</PackagePath>
 	  </None>
 	</ItemGroup>
 

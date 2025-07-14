@@ -4,6 +4,7 @@
                     xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters">
 
   <Style TargetType="{x:Type ctrls:HoldSubmitButton}">
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HoldSubmitButton}">

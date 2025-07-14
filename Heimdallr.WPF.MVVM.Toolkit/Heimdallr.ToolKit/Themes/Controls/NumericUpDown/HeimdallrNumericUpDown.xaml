@@ -11,6 +11,7 @@
   </ControlTemplate>
 
   <Style TargetType="{x:Type ctrls:HeimdallrNumericUpDown}">
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Focusable" Value="True"/>
     <Setter Property="Foreground" Value="#FF222831" />
     <Setter Property="Background" Value="#FFDCD7C9" />

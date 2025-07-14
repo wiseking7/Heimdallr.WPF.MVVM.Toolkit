@@ -96,5 +96,22 @@ public class HeimdallrPulseEllipse : Button
         DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrPulseEllipse), new PropertyMetadata(PathIconType.None));
 
   #endregion
+
+  #region Heimdallr PathIcon Size 지정
+  /// <summary>
+  /// Heimdallr 아이콘의 사이즈 지정
+  /// </summary>
+  public double IconSize
+  {
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
+  }
+  /// <summary>
+  /// 기본값 사이즈 24
+  /// </summary>
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double), typeof(HeimdallrPulseEllipse), new PropertyMetadata(24.0));
+
+  #endregion
 }
 

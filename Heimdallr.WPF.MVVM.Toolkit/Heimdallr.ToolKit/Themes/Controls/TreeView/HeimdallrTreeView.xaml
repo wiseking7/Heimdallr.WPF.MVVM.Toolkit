@@ -10,8 +10,7 @@
     <!-- TreeView Boder 배경색(투명처리) -->
     <Setter Property="Background" Value="Transparent" />
 
-    <!-- TreeView Boder 기본 마진 -->
-
+    <Setter Property="Cursor" Value="Hand" />
     <!-- TreeView ControlTemplate 정의 -->
     <Setter Property="Template">
       <Setter.Value>

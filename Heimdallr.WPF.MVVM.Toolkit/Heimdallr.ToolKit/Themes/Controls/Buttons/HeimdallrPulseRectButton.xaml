@@ -50,20 +50,20 @@
           <ControlTemplate.Triggers>
             <!-- 마우스 오버 시 배경 및 테두리 변경 -->
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="border" Property="Background" Value="#FF393E46" />
-              <Setter TargetName="border" Property="BorderBrush" Value="#FF888888" />
+              <Setter TargetName="border" Property="Background" Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Setter TargetName="border" Property="BorderBrush" Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
 
             <!-- 클릭 시 배경 변경 -->
             <Trigger Property="IsPressed" Value="True">
-              <Setter TargetName="border" Property="Background" Value="#FFAD49E1" />
-              <Setter TargetName="border" Property="BorderBrush" Value="#FF666666" />
+              <Setter TargetName="border" Property="Background" Value="{Binding PressedBackground, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Setter TargetName="border" Property="BorderBrush" Value="{Binding PressedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
 
             <!-- 포커스 시 테두리 강조 -->
             <Trigger Property="IsFocused" Value="True">
-              <Setter TargetName="border" Property="BorderBrush" Value="#FF6EACDA" />
-              <Setter TargetName="border" Property="BorderThickness" Value="2" />
+              <Setter TargetName="border" Property="BorderBrush" Value="{Binding FocusedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}" />
+              <Setter TargetName="border" Property="BorderThickness" Value="{Binding FocusedBorderThickness, RelativeSource={RelativeSource TemplatedParent}}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

@@ -3,6 +3,7 @@
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <Style TargetType="{x:Type ctrls:HeimdallrIconRadioButton}">
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Foreground" Value="#FFFFFFFF" />
     <Setter Property="Template">
       <Setter.Value>

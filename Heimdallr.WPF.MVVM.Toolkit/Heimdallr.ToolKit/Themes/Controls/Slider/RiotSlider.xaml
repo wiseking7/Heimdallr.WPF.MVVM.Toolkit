@@ -80,6 +80,7 @@
     <Setter Property="SelectionStart" Value="0" />
     <Setter Property="SelectionEnd" Value="{Binding RelativeSource={RelativeSource Self}, Path=Value}" />
     <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:RiotSlider}">

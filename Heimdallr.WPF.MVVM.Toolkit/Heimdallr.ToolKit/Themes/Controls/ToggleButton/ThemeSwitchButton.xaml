@@ -131,6 +131,7 @@
   
   <!--#region ThemeSwitchButton ToggleButton -->
   <Style TargetType="{x:Type ctrls:ThemeSwitchButton}">
+    <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:ThemeSwitchButton}">
