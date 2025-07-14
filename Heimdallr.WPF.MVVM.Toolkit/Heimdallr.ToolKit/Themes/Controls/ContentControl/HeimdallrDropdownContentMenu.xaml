@@ -3,6 +3,11 @@
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <Style TargetType="{x:Type ctrls:HeimdallrDropdownContentMenu}">
+    <Setter Property="Background" Value="#FFFFFFFF" />
+    <Setter Property="BorderBrush" Value="#FF0C0C0C" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Foreground" Value="#FF0C0C0C" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrDropdownContentMenu}">
@@ -11,27 +16,52 @@
                       IsChecked="{Binding IsOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}">
               <CheckBox.Template>
                 <ControlTemplate TargetType="CheckBox">
-                  <Grid Background="Transparent">
-                    <Viewbox >
-                      <!-- ContentPresenter 대신 HeimdallrIcon 컨트롤을 직접 배치하고 
-                           PathIcon과 Fill을 템플릿 바인딩해서 아이콘 표시 -->
-                      <ctrls:HeimdallrIcon 
+                  <!-- ▶ 아이콘 + 텍스트 -->
+                  <Border Background="Transparent" Padding="4">
+                    <StackPanel Orientation="Horizontal" 
+                                Background="{Binding ToggleBackground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}"                                
+                                VerticalAlignment="Center" >
+                      <!-- 왼쪽: 메인 아이콘 -->
+                      <Viewbox>
+                        <!-- ContentPresenter 대신 HeimdallrIcon 컨트롤을 직접 배치하고 
+                             PathIcon과 Fill을 템플릿 바인딩해서 아이콘 표시 -->
+                        <ctrls:HeimdallrIcon 
+                            Width="16" Height="16"
                             PathIcon="{Binding PathIcon, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}"
-                            Fill="{Binding Fill, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}"
-                            Width="16" Height="16" />
-                    </Viewbox>
-                  </Grid>
+                            Fill="{Binding Fill, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}" />
+                      </Viewbox>
+
+                      <!-- 가운데: 텍스트 -->
+                      <TextBlock Text="{Binding Label, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}" 
+                                 Margin="6,0,4,0"
+                                 VerticalAlignment="Center"
+                                 Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}" />
+                    </StackPanel>
+                  </Border>
                 </ControlTemplate>
               </CheckBox.Template>
             </CheckBox>
 
             <Popup x:Name="PART_Popup"
-                 AllowsTransparency="True"
-                 IsOpen="{TemplateBinding IsOpen}"
-                 Placement="Bottom"
-                 PlacementTarget="{Binding ElementName=PART_Toggle}"
-                 StaysOpen="False">
-              <ContentControl Content="{TemplateBinding Content}" />
+                   AllowsTransparency="True"
+                   IsOpen="{TemplateBinding IsOpen}"
+                   PlacementTarget="{Binding ElementName=PART_Toggle}"
+                   Placement="{TemplateBinding Placement}"
+                   StaysOpen="False">
+
+              <Border Background="{TemplateBinding Background}"
+                      BorderBrush="{TemplateBinding BorderBrush}"
+                      BorderThickness="{TemplateBinding BorderThickness}"
+                      Padding="4"
+                      MaxHeight="300"
+                      MinWidth="160">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                  <!-- 핵심: ContentTemplate 바인딩 추가 -->
+                  <ContentPresenter
+                      Content="{TemplateBinding Content}"
+                      ContentTemplate="{TemplateBinding ContentTemplate}" />
+                </ScrollViewer>
+              </Border>
             </Popup>
           </Grid>
         </ControlTemplate>

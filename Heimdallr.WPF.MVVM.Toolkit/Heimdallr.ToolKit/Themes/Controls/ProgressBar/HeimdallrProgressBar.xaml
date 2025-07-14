@@ -2,100 +2,67 @@
                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                   xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters"
                   xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls" >
-
-  <cnvts:ProgressWidthConverter x:Key="ProgressWidthConverter" />
-  <cnvts:MoveDistanceConverter x:Key="MoveDistanceConverter" />
+  
+  <cnvts:ProgressConverter x:Key="ProgressConverter" />
+  <cnvts:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
 
   <Style TargetType="{x:Type ctrls:HeimdallrProgressBar}">
-    <Setter Property="Cursor" Value="Hand" />
+    <Setter Property="Height" Value="30"/>
+    <Setter Property="Background" Value="#FFE5E5E5"/>
+    <Setter Property="BorderBrush" Value="#FFCCCCCC"/>
+    <Setter Property="BorderThickness" Value="1"/>
+    <Setter Property="Fill" Value="DeepSkyBlue"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrProgressBar}">
-          <Grid>
-            <!-- 트랙 (전체 배경) -->
-            <Border 
-              x:Name="PART_Track"
-              Background="{TemplateBinding TrackBrush}"
-              CornerRadius="4"
-              SnapsToDevicePixels="True" />
+          <Border x:Name="MainBorder"
+                  Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  CornerRadius="5"
+                  SnapsToDevicePixels="True"
+                  UseLayoutRounding="True">
 
-            <!-- 인디케이터: 진행률에 따라 너비 조절 -->
-            <Border 
-              x:Name="PART_Indicator"
-              Background="{TemplateBinding IndicatorBrush}"
-              CornerRadius="4"
-              HorizontalAlignment="Left"
-              SnapsToDevicePixels="True">
-
-              <Border.Width>
-                <MultiBinding Converter="{StaticResource ProgressWidthConverter}">
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Value" />
-                  <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Maximum" />
-                </MultiBinding>
-              </Border.Width>
-
-              <!-- 작은 빨간 막대 -->
-              <Rectangle Width="20" Height="{Binding ActualHeight, RelativeSource={RelativeSource AncestorType=Border}}"
-                        Fill="Red" RadiusX="2" RadiusY="2">
-                <Rectangle.RenderTransform>
-                  <TranslateTransform x:Name="MovingBarTransform" />
-                </Rectangle.RenderTransform>
+            <Grid ClipToBounds="True" Margin="2">
+              <!-- 진행률 영역 -->
+              <Rectangle x:Name="PART_ProgressBar"
+                         RadiusX="5" RadiusY="5"
+                         Fill="{TemplateBinding Fill}"
+                         HorizontalAlignment="Left"
+                         SnapsToDevicePixels="True">
+                <Rectangle.Width>
+                  <MultiBinding Converter="{StaticResource ProgressConverter}">
+                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="ActualWidth"/>
+                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Value"/>
+                    <Binding RelativeSource="{RelativeSource Mode=TemplatedParent}" Path="Maximum"/>
+                  </MultiBinding>
+                </Rectangle.Width>
               </Rectangle>
 
-              <!-- VisualStateManager 애니메이션 정의 -->
-              <VisualStateManager.VisualStateGroups>
-                <VisualStateGroup x:Name="IndicatorStates">
-                  <VisualState x:Name="IndicatorNormal">
-                    <Storyboard>
-                      <DoubleAnimation
-                        Storyboard.TargetName="MovingBarTransform"
-                        Storyboard.TargetProperty="X"
-                        From="0"
-                        Duration="0:0:1"
-                        RepeatBehavior="Forever"
-                        AutoReverse="True"
-                        />
-                    </Storyboard>
-                  </VisualState>
+              <!-- 진행률 텍스트 -->
+              <TextBlock Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, StringFormat={}{0:0}%}"
+                         HorizontalAlignment="Center" VerticalAlignment="Center"
+                         Foreground="{TemplateBinding ProgressTextForeground}" 
+                         FontWeight="Bold" IsHitTestVisible="False"
+                         Visibility="{Binding ShowProgressText, RelativeSource={RelativeSource TemplatedParent},
+                                      Converter={StaticResource BooleanToVisibilityConverter}}"/>
 
-                  <VisualState x:Name="IndicatorPaused">
-                    <Storyboard>
-                      <DoubleAnimation
-                        Storyboard.TargetName="MovingBarTransform"
-                        Storyboard.TargetProperty="X"
-                        To="0"
-                        Duration="0:0:0" />
+              <!-- 인디터미넌트 상태 애니메이션 -->
+              <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="ProgressStates">
+                  <VisualState x:Name="Determinate"/>
+                  <VisualState x:Name="Indeterminate">
+                    <Storyboard RepeatBehavior="Forever">
+                      <DoubleAnimation Storyboard.TargetName="PART_ProgressBar"
+                                        Storyboard.TargetProperty="(Canvas.Left)"
+                                        From="-100" To="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                        Duration="0:0:2" AutoReverse="False"/>
                     </Storyboard>
                   </VisualState>
                 </VisualStateGroup>
               </VisualStateManager.VisualStateGroups>
-            </Border>
-
-            <!-- 기존 CommonStates -->
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="CommonStates">
-                <VisualState x:Name="Normal" />
-                <VisualState x:Name="Paused">
-                  <Storyboard>
-                    <ColorAnimation
-                      Storyboard.TargetName="PART_Indicator"
-                      Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                      To="Orange" Duration="0:0:0.3" AutoReverse="True" RepeatBehavior="Forever" />
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
-
-          </Grid>
-
-          <ControlTemplate.Triggers>
-            <Trigger Property="IsIndeterminate" Value="True">
-              <Setter TargetName="PART_Indicator" Property="HorizontalAlignment" Value="Stretch" />
-              <Setter TargetName="PART_Indicator" Property="Width" Value="Auto" />
-              <Setter TargetName="PART_Indicator" Property="Background" Value="YellowGreen" />
-            </Trigger>
-          </ControlTemplate.Triggers>
+            </Grid>
+          </Border>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
