@@ -6,14 +6,14 @@ using System.Windows.Media;
 namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
-/// HeimdallrComboBoxToggleButton은 Heimdallr 스타일의 커스텀 콤보박스 토글 버튼입니다.
+/// HeimdallrIconToggleButton Heimdallr 스타일의 커스텀 콤보박스 토글 버튼입니다.
 /// </summary>
-public class HeimdallrComboBoxToggleButton : ToggleButton
+public class HeimdallrIconToggleButton : ToggleButton
 {
-  static HeimdallrComboBoxToggleButton()
+  static HeimdallrIconToggleButton()
   {
-    DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrComboBoxToggleButton),
-      new FrameworkPropertyMetadata(typeof(HeimdallrComboBoxToggleButton)));
+    DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrIconToggleButton),
+      new FrameworkPropertyMetadata(typeof(HeimdallrIconToggleButton)));
   }
   /// <summary>
   /// 마우스 오버 시 배경색을 설정하는 종속성 속성입니다.
@@ -22,7 +22,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
         DependencyProperty.Register(
             nameof(MouseOverBackground),
             typeof(Brush),
-            typeof(HeimdallrComboBoxToggleButton),
+            typeof(HeimdallrIconToggleButton),
             new PropertyMetadata(Brushes.Transparent));
   /// <summary>
   /// 마우스 오버 시 배경색을 설정하는 종속성 속성입니다.
@@ -45,7 +45,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
   /// </summary>
   public static readonly DependencyProperty CornerRadiusProperty =
-    DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(HeimdallrComboBoxToggleButton),
+    DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(HeimdallrIconToggleButton),
       new PropertyMetadata(new CornerRadius(0)));
 
   /// <summary>
@@ -61,7 +61,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 종속성주입
   /// </summary>
   public static readonly DependencyProperty IconWidthProperty =
-    DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(HeimdallrComboBoxToggleButton),
+    DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(HeimdallrIconToggleButton),
       new PropertyMetadata(16.0)); // 기본값 16
 
   /// <summary>
@@ -77,7 +77,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 종속성주입
   /// </summary>
   public static readonly DependencyProperty IconHeightProperty =
-    DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(HeimdallrComboBoxToggleButton),
+    DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(HeimdallrIconToggleButton),
       new PropertyMetadata(16.0)); // 기본값 16
 
   /// <summary>
@@ -93,7 +93,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 종속성주입
   /// </summary>
   public static readonly DependencyProperty PathIconFillProperty =
-      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrComboBoxToggleButton), new PropertyMetadata(Brushes.Gray));
+      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrIconToggleButton), new PropertyMetadata(Brushes.Gray));
 
   /// <summary>
   /// IsChecked=True일 때 배경에 적용할 색상
@@ -107,7 +107,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 종속성 주입
   /// </summary>
   public static readonly DependencyProperty CheckedBackgroundProperty =
-      DependencyProperty.Register(nameof(CheckedBackground), typeof(Brush), typeof(HeimdallrComboBoxToggleButton),
+      DependencyProperty.Register(nameof(CheckedBackground), typeof(Brush), typeof(HeimdallrIconToggleButton),
           new PropertyMetadata(Brushes.DarkCyan)); // 기본값
 
   /// <summary>
@@ -122,7 +122,7 @@ public class HeimdallrComboBoxToggleButton : ToggleButton
   /// 종속성주입
   /// </summary>
   public static readonly DependencyProperty PathIconProperty =
-      DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrComboBoxToggleButton),
+      DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrIconToggleButton),
         new PropertyMetadata(PathIconType.None));
 
 }

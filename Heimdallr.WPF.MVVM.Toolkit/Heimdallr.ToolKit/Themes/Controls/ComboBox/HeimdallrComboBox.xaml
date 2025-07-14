@@ -4,7 +4,6 @@
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/HeimdallrComboBoxToggleButton.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
   <Style TargetType="{x:Type ctrls:HeimdallrComboBox}">
@@ -27,7 +26,7 @@
               SnapsToDevicePixels="True">
             <Grid ClipToBounds="True">
 
-              <ctrls:HeimdallrComboBoxToggleButton
+              <ctrls:HeimdallrIconToggleButton
                 x:Name="ToggleButton" Grid.Column="2"
                 CornerRadius="{TemplateBinding CornerRadius}"
                 MouseOverBackground="{TemplateBinding MouseOverBackground}"

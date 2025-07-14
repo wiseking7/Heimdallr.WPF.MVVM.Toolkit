@@ -40,8 +40,12 @@
                                   Background="Gray" Cursor="SizeNS"/>-->
 
             <!--#region HeimdallTreeView Row0-->
-            <ctrls:HeimdallrTreeView Grid.Row="1"  Background="Transparent">
-              <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
+            <!--<ctrls:AnimatedContentMenu IsOpen="{Binding OpenMenu, Mode=TwoWay}"
+                                       FallbackOpenWidth="200"
+                                       OpenCloseDuration="0:0:0.5">
+              <ctrls:AnimatedContentMenu.Content>-->
+                <ctrls:HeimdallrTreeView Grid.Row="1"  Background="Transparent">
+                  <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
                                            ExpandIcon="ChevronDownEllipse"
                                            CollapseIcon="ChevronUpEllipse"
                                            ExpandIconFill="Yellow"
@@ -51,7 +55,7 @@
                                            SelectedCommand="{Binding ButtonTextCommamd}"
                                            FontSize="40" Foreground="Red">
 
-                <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
+                    <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
                               ExpandIcon="ChevronDownEllipse"
                               CollapseIcon="ChevronUpEllipse"
                               IconWidth="30" IconHeight="30"
@@ -59,23 +63,23 @@
                               CollapseIconFill="Bisque"
                               FontSize="30" Foreground="AliceBlue">
 
-                  <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
+                      <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
                               IconWidth="20" IconHeight="20"
                               PathIconFill="AliceBlue"
                               FontSize="20" Foreground="Green">
+                      </ctrls:HeimdallrTreeViewItem>
+                    </ctrls:HeimdallrTreeViewItem>
                   </ctrls:HeimdallrTreeViewItem>
-                </ctrls:HeimdallrTreeViewItem>
-              </ctrls:HeimdallrTreeViewItem>
-              <ctrls:HeimdallrThumb />
-            </ctrls:HeimdallrTreeView>
+                  <ctrls:HeimdallrThumb />
+                </ctrls:HeimdallrTreeView>
+              <!--</ctrls:AnimatedContentMenu.Content>
+            </ctrls:AnimatedContentMenu>-->
             <!--#endregion-->
              
             <!-- HeimdallrListView Row1-->
-            
-            <!--#endregion-->
-            
+                 
             <!--#region Button Demo row 2-->
-            <!--<ctrls:HeimdallrComboBox Margin="0 10 0 0"
+            <ctrls:HeimdallrComboBox Margin="0 10 0 0"
                 Grid.Row="3" Width="150" Height="40" Background="BlanchedAlmond" 
                 CornerRadius="10" BorderThickness="3" FontSize="20" Foreground="Black"
                 PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" 
@@ -84,17 +88,16 @@
                 DropDownBackground="#DCD7C9"
                 ItemsSource="{Binding ProductUnitOptions}" 
                 DisplayMemberPath="Value" SelectedValuePath="Key" 
-                SelectedValue="{Binding SelectedUnit, Mode=TwoWay}"/>-->
-            <!--#endregion-->
-
-            <!--<ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" Width="200" Height="40"
+                SelectedValue="{Binding SelectedUnit, Mode=TwoWay}"/>
+           
+            <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" Width="200" Height="40"
               CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
               Background="{StaticResource DarkBlueGray}" FontSize="14" Foreground="White"
               AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
               TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
-              WaterMarkForeground="{StaticResource DarkWine}" Margin="0 10 0 0"/>-->
+              WaterMarkForeground="{StaticResource DarkWine}" Margin="0 10 0 0"/>
 
-            <!--<ctrls:HeimdallrPulseEllipse 
+            <ctrls:HeimdallrPulseEllipse 
                 Grid.Row="5" Width="80" Height="80" 
                 PathIcon="Cart" 
                 IconSize="35"
@@ -103,12 +106,12 @@
                 Ellipse2Brush="#A78295" 
                 Ellipse3Brush="#03C988"
                 Command="{Binding ButtonTextCommamd}" 
-                Margin="0 10 0 0"/>-->
+                Margin="0 10 0 0"/>
 
-            <!--<ctrls:HeimdallrPulseRectButton 
+            <ctrls:HeimdallrPulseRectButton 
                 Grid.Row="6" Width="120" Height="40" PathIcon="Barcode" IconFill="Black"
                 CornerRadius="7" ButtonText="바코드" Margin="0 10 0 0"
-                Command="{Binding ButtonTextCommamd}"/>-->
+                Command="{Binding ButtonTextCommamd}"/>
 
 
             <ctrls:HeimdallrIconRadioButton Grid.Row="7" Content="Setting" Margin="0 10 0 0"
@@ -136,22 +139,9 @@
               LoadingText="진행중..." VerticalAlignment="Center" HorizontalAlignment="Center"
               Margin="0 10 0 0"/>
 
-            <StackPanel Margin="20" Grid.Row="11" >
-              <Button Content="Start"
-                      Command="{Binding StartProgressCommand}"
-                      Width="100" Height="30" />
-
-              <ctrls:HeimdallrProgressBar Height="30" Width="200"
-                      FontSize="20" 
-                      Minimum="0" Margin="0 20 0 0"
-                      Maximum="100"
-                      Value="{Binding Progress}"
-                      IsIndeterminate="{Binding IsIndeterminate}"
-                      Fill="#500073"
-                      ShowProgressText="True"
-                      ProgressTextForeground="#E8BCB9"/>
-            </StackPanel>
-
+            <Grid Grid.Row="11" Margin="0 10 0 0">
+              
+            </Grid>
           </Grid>
         </Border>
 

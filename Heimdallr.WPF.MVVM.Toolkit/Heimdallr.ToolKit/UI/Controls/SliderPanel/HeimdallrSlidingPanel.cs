@@ -165,6 +165,6 @@ public class HeimdallrSlidingPanel : Control
   /// </summary>
   public HeimdallrSlidingPanel()
   {
-    Width = 200; // 초깃값. 열림 시 기준 너비로 사용됨.
+    Width = 0; // 초깃값. 열림 시 기준 너비로 사용됨.
   }
 }

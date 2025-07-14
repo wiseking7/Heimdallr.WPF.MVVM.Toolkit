@@ -13,7 +13,6 @@ namespace Heimdallr.ToolKit.UI.Controls;
 public class HeimdallrTreeViewItem : TreeViewItem
 {
   #region 확장 속성 정의 (CornerRadius, ExpandIcon, CollapseIcon, IconWidth, IconHeight, Fill, PathIcon, Text, SelectedCommand)
-
   /// <summary>
   /// 트리뷰 아이템의 테두리 둥글기 정도를 지정하는 속성입니다.
   /// 예를 들어 "4,4,4,4"와 같이 지정하면 테두리가 둥글게 렌더링됩니다.

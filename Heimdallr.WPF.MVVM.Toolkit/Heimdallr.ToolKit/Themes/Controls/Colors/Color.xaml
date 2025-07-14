@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-  <!-- Gray / Black 계열 -->
+  <!-- ========== Gray / Black 계열 ========== -->
   <SolidColorBrush x:Key="DarkBlack" Color="#000000" />
   <SolidColorBrush x:Key="DarkAnthracite" Color="#1C1C1C" />
   <SolidColorBrush x:Key="DarkGraphite" Color="#2D2D2D" />
@@ -9,12 +9,9 @@
   <SolidColorBrush x:Key="DarkOnyx" Color="#353839" />
   <SolidColorBrush x:Key="DarkCharcoal" Color="#2C3E50" />
   <SolidColorBrush x:Key="DarkCharcoalGray" Color="#36454F" />
-  <SolidColorBrush x:Key="DarkCharcoalGray2" Color="#232B2B" />
   <SolidColorBrush x:Key="DarkGunmetal" Color="#22313F" />
   <SolidColorBrush x:Key="DarkGunmetal2" Color="#2A3439" />
-  <SolidColorBrush x:Key="DarkGunmetal3" Color="#36454F" />
   <SolidColorBrush x:Key="DarkGunmetalGray" Color="#39434D" />
-  <SolidColorBrush x:Key="DarkGunmetalGray2" Color="#2C3539" />
   <SolidColorBrush x:Key="DarkGunmetalBlue2" Color="#223344" />
   <SolidColorBrush x:Key="DarkJet" Color="#343434" />
   <SolidColorBrush x:Key="DarkLicorice" Color="#1A1110" />
@@ -29,7 +26,7 @@
   <SolidColorBrush x:Key="DarkSteelGray" Color="#262F4F" />
   <SolidColorBrush x:Key="DarkSteelBlue" Color="#4682B4" />
 
-  <!-- Blue / Navy / Teal 계열 -->
+  <!-- ========== Blue / Navy / Teal 계열 ========== -->
   <SolidColorBrush x:Key="DarkSlateBlue" Color="#2C3E50" />
   <SolidColorBrush x:Key="DarkSlateBlue2" Color="#374785" />
   <SolidColorBrush x:Key="DarkGunmetalBlue" Color="#2B3856" />
@@ -51,7 +48,7 @@
   <SolidColorBrush x:Key="DarkOuterSpace" Color="#2B3A42" />
   <SolidColorBrush x:Key="DarkSeaweed" Color="#354F52" />
 
-  <!-- Green / Olive 계열 -->
+  <!-- ========== Green / Olive 계열 ========== -->
   <SolidColorBrush x:Key="DarkDarkJungleGreen" Color="#1A2421" />
   <SolidColorBrush x:Key="DarkDarkSlateGray" Color="#222D2D" />
   <SolidColorBrush x:Key="DarkMidnightGreen" Color="#004953" />
@@ -68,21 +65,19 @@
   <SolidColorBrush x:Key="DarkFernGreen" Color="#4F7942" />
   <SolidColorBrush x:Key="DarkHunterGreen" Color="#355E3B" />
 
-  <!-- Purple / Violet 계열 -->
+  <!-- ========== Purple / Violet 계열 ========== -->
   <SolidColorBrush x:Key="DarkMaroon" Color="#3B0A45" />
   <SolidColorBrush x:Key="DarkPurple" Color="#5E2A79" />
   <SolidColorBrush x:Key="DarkPlum" Color="#6A0DAD" />
   <SolidColorBrush x:Key="DarkViolet" Color="#9400D3" />
   <SolidColorBrush x:Key="DarkMagenta" Color="#8B008B" />
   <SolidColorBrush x:Key="DarkMulberry" Color="#70193D" />
-  <SolidColorBrush x:Key="DarkMulberry2" Color="#70193D" />
-  <SolidColorBrush x:Key="DarkAubergine" Color="#3B0A45" />
   <SolidColorBrush x:Key="DarkRoyalPurple" Color="#4B0082" />
   <SolidColorBrush x:Key="DarkEggplant" Color="#311432" />
   <SolidColorBrush x:Key="DarkWine" Color="#4B0C29" />
   <SolidColorBrush x:Key="DarkBurgundy" Color="#581845" />
 
-  <!-- Red / Orange / Brown 계열 -->
+  <!-- ========== Red / Orange / Brown 계열 ========== -->
   <SolidColorBrush x:Key="DarkBloodRed" Color="#7E0A0A" />
   <SolidColorBrush x:Key="DarkCrimson" Color="#DC143C" />
   <SolidColorBrush x:Key="DarkFireBrick" Color="#B22222" />
@@ -93,23 +88,54 @@
   <SolidColorBrush x:Key="DarkBronze" Color="#4C3B31" />
   <SolidColorBrush x:Key="DarkForestBrown" Color="#3E2C23" />
 
-  <!-- 기타 / 혼합 -->
+  <!-- ========== 기타 / 혼합 ========== -->
   <SolidColorBrush x:Key="DarkSlateBrown" Color="#483D8B" />
   <SolidColorBrush x:Key="DarkBlueViolet" Color="#6A5ACD" />
 
-  <Color x:Key="PrimaryColorLight">#FF2C3E50</Color>
-  <Color x:Key="PrimaryColorDark">#FFECF0F1</Color>
-  <Color x:Key="AccentColor">#FF2980B9</Color>
-  <Color x:Key="HoverColor">#FFE1E8F7</Color>
-  <Color x:Key="SelectedColor">#FF3498DB</Color>
-  <Color x:Key="BorderColor">#FFBDC3C7</Color>
-  
-  <SolidColorBrush x:Key="PrimaryBrush" Color="{StaticResource PrimaryColorLight}" />
-  <SolidColorBrush x:Key="AccentBrush" Color="{StaticResource AccentColor}" />
-  <SolidColorBrush x:Key="HoverBrush" Color="{StaticResource HoverColor}" />
-  <SolidColorBrush x:Key="SelectedBrush" Color="{StaticResource SelectedColor}" />
-  <SolidColorBrush x:Key="BorderBrush" Color="{StaticResource BorderColor}" />
+  <!-- ========== 기본 색상 정의 ========== -->
+  <SolidColorBrush x:Key="PrimaryBrush" Color="#FF2C3E50" />
+  <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#FFECF0F1" />
+  <SolidColorBrush x:Key="AccentBrush" Color="#FF2980B9" />
+  <SolidColorBrush x:Key="HoverBrush" Color="#FFE1E8F7" />
+  <SolidColorBrush x:Key="SelectedBrush" Color="#FF3498DB" />
+  <SolidColorBrush x:Key="BorderBrush" Color="#FFBDC3C7" />
 
+  <!-- ========== Gradient Brushes 정의 ========== -->
+  <LinearGradientBrush x:Key="GoldenBronzeGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FFB79248" Offset="0" />
+    <GradientStop Color="#FF997530" Offset="0.5" />
+    <GradientStop Color="#FF74592B" Offset="1" />
+  </LinearGradientBrush>
 
+  <LinearGradientBrush x:Key="SandGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FFEDE1C8" Offset="0" />
+    <GradientStop Color="#FFDCC088" Offset="0.5" />
+    <GradientStop Color="#FFCBA14A" Offset="1" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="EarthBrownGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FF473814" Offset="0" />
+    <GradientStop Color="#FF57421B" Offset="0.5" />
+    <GradientStop Color="#FF684E23" Offset="1" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="TanGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FF795B28" Offset="0" />
+    <GradientStop Color="#FFC1963B" Offset="0.5" />
+    <GradientStop Color="#FFC8AA6D" Offset="1" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="DarkWoodGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FF463714" Offset="0" />
+    <GradientStop Color="#FF58471D" Offset="0.5" />
+    <GradientStop Color="#FF695625" Offset="1" />
+  </LinearGradientBrush>
+
+  <LinearGradientBrush x:Key="ChocolateBrownGradient" StartPoint="0,0" EndPoint="1,0">
+    <GradientStop Color="#FF685524" Offset="0" />
+    <GradientStop Color="#FF55441B" Offset="0.5" />
+    <GradientStop Color="#FF463714" Offset="1" />
+  </LinearGradientBrush>
 
 </ResourceDictionary>
+

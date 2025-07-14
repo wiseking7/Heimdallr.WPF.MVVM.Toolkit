@@ -30,6 +30,7 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/HeimdallrIconToggleButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/HeimdallrToggleButtonSwitch.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
 
@@ -37,8 +38,9 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
 
-    <!-- 5. 슬라이더, 썸, 패널 -->
+    <!-- 5. 슬라이더, Thumb, 패널 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/HeimdallrSlider.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
 

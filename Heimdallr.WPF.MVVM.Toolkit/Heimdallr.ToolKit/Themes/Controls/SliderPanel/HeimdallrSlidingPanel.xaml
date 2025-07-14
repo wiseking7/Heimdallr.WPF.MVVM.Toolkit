@@ -9,9 +9,13 @@
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrSlidingPanel}">
           <Border Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
-                  BorderThickness="{TemplateBinding BorderThickness}">
-            
-            <ContentControl Content="{TemplateBinding PanelContent}" />
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  UseLayoutRounding="True"
+                  SnapsToDevicePixels="True">
+
+            <ContentControl Content="{Binding PanelContent, RelativeSource={RelativeSource TemplatedParent}}" 
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"/>
           </Border>
         </ControlTemplate>
       </Setter.Value>
