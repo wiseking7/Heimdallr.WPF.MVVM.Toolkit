@@ -49,6 +49,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="Themes\Controls\Colors\Color.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <EmbeddedResource Include="Resources\Data\geometries.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -105,5 +109,8 @@
 		  <PackagePath>docs\</PackagePath>
 	  </None>
 	</ItemGroup>
+  <ItemGroup>
+    <Resource Include="Themes\Controls\Colors\Color.xaml" />
+  </ItemGroup>
 
 </Project>

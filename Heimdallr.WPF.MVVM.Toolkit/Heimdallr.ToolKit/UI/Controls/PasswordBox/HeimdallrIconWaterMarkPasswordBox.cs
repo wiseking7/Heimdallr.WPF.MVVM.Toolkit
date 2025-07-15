@@ -82,6 +82,7 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
 
   /// <summary>
   /// 현재 입력된 비밀번호가 있는지 여부 (워터마크 표시 조건으로 사용됨)
+  /// 현재 비밀번호가 비어있지 않으면 true, 비어있으면 false.
   /// </summary>
   public bool HasPassword
   {
@@ -169,7 +170,7 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
   //======================= 비밀번호 보기/숨기기 토글 =======================//
 
   /// <summary>
-  /// 비밀번호 보기 상태 여부 (true일 경우 일반 텍스트로 표시)
+  /// 눈 아이콘을 누르면 비밀번호 보기 상태 여부 (true일 경우 일반 텍스트로 표시)
   /// </summary>
   public bool ShowPassword
   {
@@ -231,7 +232,7 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
   /// 기본값: 검은색
   /// </summary>
   public static readonly DependencyProperty CaretBrushProperty =
-      DependencyProperty.Register(nameof(CaretBrush), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
+      DependencyProperty.Register(nameof(CaretBrush), typeof(Brush), typeof(HeimdallrIconWaterMarkPasswordBox),
           new PropertyMetadata(Brushes.Black));
 }
 

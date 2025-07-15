@@ -9,6 +9,7 @@ public class Starter
 {
   // WPF 앱에서 반드시 필요한 특성입니다. 
   // STA(Single Threaded Apartment)는 UI 요소가 단일 스레드에서 실행되어야 함을 명시합니다
+
   [STAThread]
   // 애플리케이션의 시작 지점입니다.
   // 여기서 App 개체를 생성하고 여러 설정 메서드를 체이닝으로 호출한 후 실행합니다
@@ -19,9 +20,10 @@ public class Starter
     // _ = 반환값이 있지만 사용하지 않겠다는 의미
     // AddWireDataContext 메서드를 사용하여 View 와 ViewModel 을 연결시줌
     _ = new App() // 인스턴스를 생성
-     .AddWireDataContext<WireDataContent>() // View 와 ViewModel 을 자동 연결
-                                            //.AddInversionModule<HelperModules>() // 종속성(Help)을 관리하는 모듈클래스
-                                            //.AddInversionModule<ViewModules>() // View를 관리
+     .AddWireDataContext<WireDataContent>()
+     // View 와 ViewModel 을 자동 연결
+     //.AddInversionModule<HelperModules>() // 종속성(Help)을 관리하는 모듈클래스
+     //.AddInversionModule<ViewModules>() // View를 관리
 
      // PrismApplication.Run을 호출하여 애플리케이션 실행 
      .Run();

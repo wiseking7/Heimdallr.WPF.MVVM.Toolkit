@@ -8,7 +8,9 @@
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
   </ResourceDictionary.MergedDictionaries>
-  
+
+  <conve:InverseBooleanConverter x:Key="InverseBooleanConverter" />
+
   <Style TargetType="{x:Type views:MainWindow}"
           BasedOn="{StaticResource {x:Type ctrls:DarkThemeWindow}}">
 
@@ -34,113 +36,38 @@
               <RowDefinition />
             </Grid.RowDefinitions>
 
-
-            <!-- 레이아웃의 어딘가에 사용자 지정 엄지 컨트롤을 적용합니다(예: 열 크기 조정) -->
-            <!--<ctrls:HeimdallrThumb Grid.Row="1" Width="20" Height="50" HorizontalAlignment="Right" 
-                                  Background="Gray" Cursor="SizeNS"/>-->
-
-            <!--#region HeimdallTreeView Row0-->
-            <!--<ctrls:AnimatedContentMenu IsOpen="{Binding OpenMenu, Mode=TwoWay}"
-                                       FallbackOpenWidth="200"
-                                       OpenCloseDuration="0:0:0.5">
-              <ctrls:AnimatedContentMenu.Content>-->
-                <ctrls:HeimdallrTreeView Grid.Row="1"  Background="Transparent">
-                  <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
-                                           ExpandIcon="ChevronDownEllipse"
-                                           CollapseIcon="ChevronUpEllipse"
-                                           ExpandIconFill="Yellow"
-                                           CollapseIconFill="CornflowerBlue"
-                                           IconWidth="40" IconHeight="40"
-                                           PathIconFill="Black"
-                                           SelectedCommand="{Binding ButtonTextCommamd}"
-                                           FontSize="40" Foreground="Red">
-
-                    <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
-                              ExpandIcon="ChevronDownEllipse"
-                              CollapseIcon="ChevronUpEllipse"
-                              IconWidth="30" IconHeight="30"
-                              ExpandIconFill="AliceBlue"
-                              CollapseIconFill="Bisque"
-                              FontSize="30" Foreground="AliceBlue">
-
-                      <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
-                              IconWidth="20" IconHeight="20"
-                              PathIconFill="AliceBlue"
-                              FontSize="20" Foreground="Green">
-                      </ctrls:HeimdallrTreeViewItem>
-                    </ctrls:HeimdallrTreeViewItem>
-                  </ctrls:HeimdallrTreeViewItem>
-                  <ctrls:HeimdallrThumb />
-                </ctrls:HeimdallrTreeView>
-              <!--</ctrls:AnimatedContentMenu.Content>
-            </ctrls:AnimatedContentMenu>-->
-            <!--#endregion-->
-             
-            <!-- HeimdallrListView Row1-->
-                 
-            <!--#region Button Demo row 2-->
-            <ctrls:HeimdallrComboBox Margin="0 10 0 0"
-                Grid.Row="3" Width="150" Height="40" Background="BlanchedAlmond" 
-                CornerRadius="10" BorderThickness="3" FontSize="20" Foreground="Black"
-                PathIcon="Account" PathIconFill="{StaticResource DarkViolet}" IconHeight="30" 
-                IconWidth="30" CheckedBackground="#FFBA55D3"  
-                MouseOverBackground="{StaticResource DarkCharcoal}" 
-                DropDownBackground="#DCD7C9"
-                ItemsSource="{Binding ProductUnitOptions}" 
-                DisplayMemberPath="Value" SelectedValuePath="Key" 
-                SelectedValue="{Binding SelectedUnit, Mode=TwoWay}"/>
-           
-            <ctrls:HeimdallrIconWaterMarkTextBox Grid.Row="4" Width="200" Height="40"
-              CornerRadius="10" PathIcon="Account" Fill="{StaticResource DarkBurntSienna}"
-              Background="{StaticResource DarkBlueGray}" FontSize="14" Foreground="White"
-              AcceptsReturn="True" AutoGrow="True" BorderThickness="3"
-              TextWrapping="Wrap" WaterMark="아주좋아" FocusFill="{StaticResource DarkOlive}"
-              WaterMarkForeground="{StaticResource DarkWine}" Margin="0 10 0 0"/>
-
-            <ctrls:HeimdallrPulseEllipse 
-                Grid.Row="5" Width="80" Height="80" 
-                PathIcon="Cart" 
-                IconSize="35"
-                IconFill="Violet"
-                Ellipse1Brush="#4477CE"
-                Ellipse2Brush="#A78295" 
-                Ellipse3Brush="#03C988"
-                Command="{Binding ButtonTextCommamd}" 
-                Margin="0 10 0 0"/>
-
-            <ctrls:HeimdallrPulseRectButton 
-                Grid.Row="6" Width="120" Height="40" PathIcon="Barcode" IconFill="Black"
-                CornerRadius="7" ButtonText="바코드" Margin="0 10 0 0"
-                Command="{Binding ButtonTextCommamd}"/>
-
-
-            <ctrls:HeimdallrIconRadioButton Grid.Row="7" Content="Setting" Margin="0 10 0 0"
-                                            PathIcon="Setting" Background="Transparent"
-                                            CheckedForeground="Orange" MouseOverForeground="Blue"
-                                            GroupName="MenuGroup" Width="120" Height="40"
-                                            IconFill="AliceBlue" Command="{Binding ProgressBarCommand}"/>
-
-            <ctrls:HeimdallrIconRadioButton Grid.Row="8" Content="HOme"
-                                Background="Transparent"
-                                CheckedForeground="Yellow" MouseOverForeground="Blue"
-                                GroupName="MenuGroup" Width="120" Height="40"
-                                Margin="0 10 0 0"/>
-
-            <!-- Value="{Binding SomeValue, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"-->
-            <ctrls:HeimdallrNumericUpDown 
-                Grid.Row="9" Min="0" Max="1000" Step="{Binding Step}" Height="30" Width="100"
-                Foreground="Black" FontSize="16" 
-                UpIconFill="#FF3DC2EC" DownIconFill="#FFD95F59" 
-                DownButtonIcon="ChevronDownEllipse" UpButtonIcon="ChevronUpEllipse"
-                Margin="0 10 0 0" />
-
-            <ctrls:LoadingOverlay
-              Grid.Row="10" Foreground="#FFFFCC00" IsLoading="True" IndicatorType="Cupertino"
-              LoadingText="진행중..." VerticalAlignment="Center" HorizontalAlignment="Center"
-              Margin="0 10 0 0"/>
-
             <Grid Grid.Row="11" Margin="0 10 0 0">
-              
+              <StackPanel Margin="10">
+                <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10" />
+
+                <Button Content="사용자 불러오기"
+                    Command="{Binding LoadUsersCommand}"
+                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
+                
+                <!-- IsEnabled="{Binding IsBusy}" 삭제 -->
+                <!-- ViewModel과 View 연결 (ViewModelLocator 또는 Region 등록 시) -->
+                <ctrls:LoadingOverlay
+                    IsLoading="{Binding IsBusy}"
+                    LoadingText="{Binding BusyMessage}"
+                    IndicatorType="Cupertino"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="0 10 0 0" />
+
+                <ListBox ItemsSource="{Binding People}">
+                  <ListBox.ItemTemplate>
+                    <DataTemplate>
+                      <StackPanel Margin="5">
+                        <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding Name}" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding Age}" FontWeight="Bold"/>
+                        <TextBlock Text="{Binding BirthDay}" FontStyle="Italic"/>
+                        <TextBlock Text="{Binding Address}" FontWeight="Bold"/>
+                      </StackPanel>
+                    </DataTemplate>
+                  </ListBox.ItemTemplate>
+                </ListBox>
+              </StackPanel>
             </Grid>
           </Grid>
         </Border>

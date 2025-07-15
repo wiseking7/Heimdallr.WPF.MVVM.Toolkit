@@ -1,162 +1,39 @@
 ﻿using Heimdallr.App.Model;
 using Heimdallr.ToolKit.Commons;
-using Heimdallr.ToolKit.Enums;
-using Heimdallr.ToolKit.Extensions;
 using Heimdallr.ToolKit.UI.Controls;
 using System.Collections.ObjectModel;
 using System.Windows;
-using System.Windows.Media;
 
 namespace Heimdallr.App.ViewMoels;
 
-public partial class MainViewModel : ObservableBase
+public class MainViewModel : ViewModelBase
 {
-  public string? TextMessage { get; set; }
-
-  public DelegateCommand? ButtonTextCommamd => new DelegateCommand(ExecuteHoldSubmit);
-  private void ExecuteHoldSubmit()
-  {
-    MessageBox.Show("Button Test Command");
-  }
-
-  // 단위 선택지: Key = ProductUnit enum, Value = 표시 이름
-  public ObservableCollection<KeyValuePair<ProductUnit, string>> ProductUnitOptions { get; }
-
-  public MainViewModel()
-  {
-    _selectedCountry = string.Empty; // Initialize the non-nullable field to avoid CS8618  
-
-    People = new ObservableCollection<Person>()
-     {
-         new Person
-         {
-             Name = "이순신", Address="조선 종로", Age=543, BirthDay=new DateTime(2005,02,28)
-         },
-         new Person
-         {
-             Name = "을지문덕", Address="고려", Age=543, BirthDay=new DateTime(2004,02,28)
-         },
-         new Person
-         {
-             Name = "왕건", Address="고려", Age=543, BirthDay=new DateTime(2003,02,28)
-         }
-     };
-
-    #region ComboBox, NumericUpDown Demo
-    // 단위 옵션 초기화 (enum 전체를 순회하여 KeyValuePair 컬렉션 생성)
-    ProductUnitOptions = new ObservableCollection<KeyValuePair<ProductUnit, string>>(
-        Enum.GetValues(typeof(ProductUnit))
-        .Cast<ProductUnit>()
-        .Select(u => new KeyValuePair<ProductUnit, string>(u, u.GetDescription()))
-    );
-
-    SelectedUnit = ProductUnit.Dozen; // 초기 선택 단위 (Step=12) 
-    #endregion
-
-    #region HeimdallrProgressBar Test
-
-    #endregion
-
-  }
-
-  #region ListView Demo
-  public ObservableCollection<Person>? People { get; set; }
-
-
-
-  public DelegateCommand<string>? ColumnHeaderClickCommand => new DelegateCommand<string>(OnColumnHeaderClicked);
-  public DelegateCommand<Person>? PersonItemDoubleClickCommand => new DelegateCommand<Person>(OnPersonItemDoubleClicked);
-
-  private void OnPersonItemDoubleClicked(Person person)
-  {
-    if (person != null)
-    {
-      MessageBox.Show($"[MainViewModel] Double clicked: {person.Name}");
-    }
-  }
-
-  private void OnColumnHeaderClicked(string header)
-  {
-    // 예: 헤더 이름에 따라 정렬 로직 실행
-    MessageBox.Show($"Clicked Column Header: {header}");
-  }
-
-  #endregion
-
-  #region ComboBox Demo
-  public ObservableCollection<string> PeopleNames { get; } = new()
-  {
-      "Alice", "Bob", "Charlie"
-  };
-
-
-  private string _selectedCountry;
-  public string SelectedCountry
-  {
-    get => _selectedCountry;
-    set { _selectedCountry = value; OnPropertyChanged(); }
-  }
-  #endregion
-
-  #region ComboBox Demo
-  // ComboBox에 바인딩할 열거형 값 목록 확장(변경) 영문 -> 한글
-  #endregion
-
-  #region Dimming
-  private bool _dimming;
-  public bool Dimming
-  {
-    get => _dimming;
-    set => SetProperty(ref _dimming, value);
-  }
-
-  private double _dimmingOpacity = 6.0;
-  public double DimmingOpacity
-  {
-    get => _dimmingOpacity;
-    set => SetProperty(ref _dimmingOpacity, value);
-  }
-
-  private Brush _dimmingColor = new SolidColorBrush(Color.FromArgb(128, 0, 0, 0)); // 반투명 블랙
-  public Brush DimmingColor
-  {
-    get => _dimmingColor;
-    set => SetProperty(ref _dimmingColor, value);
-  }
-  #endregion
-
-  #region ToggleButton
+  #region 필수 속성 패턴
   private bool _isMenuOpen;
   public bool IsMenuOpen
   {
     get => _isMenuOpen;
     set => SetProperty(ref _isMenuOpen, value);
   }
-
-  private bool _isLoggedIn;
-
-  public bool IsLoggedIn
+  private string? _username;
+  public string? Username
   {
-    get => _isLoggedIn;
-    set
-    {
-      if (_isLoggedIn != value)
-      {
-        _isLoggedIn = value;
-        OnPropertyChanged(nameof(IsLoggedIn));
-        OnPropertyChanged(nameof(IsMenuVisibility));
-      }
-    }
+    get => _username;
+    set => SetProperty(ref _username, value);
   }
+  #endregion
 
-  public Visibility IsMenuVisibility => IsLoggedIn ? Visibility.Visible : Visibility.Hidden;
-
+  #region 필수 Commands
   private DelegateCommand? _loginCommand;
   public DelegateCommand? LoginCommand => _loginCommand ??= new DelegateCommand(ExecuteLogin);
 
-
   private DelegateCommand? _informationCommand;
   public DelegateCommand? InformationCommand => _informationCommand ??= new DelegateCommand(ExecuteOepnInformationView);
+
+  private void ExecuteLogin()
+  {
+    Username = "로그인시 사용자이름표기"; // 로그인 후 사용자 이름 설정  
+  }
 
   private void ExecuteOepnInformationView()
   {
@@ -171,103 +48,68 @@ public partial class MainViewModel : ObservableBase
     window.ShowDialog(); // 또는 Show()로 비모달
   }
 
-  private void ExecuteLogin()
-  {
-    IsLoggedIn = true;
-    Username = "로그인시 사용자이름표기"; // 로그인 후 사용자 이름 설정  
-  }
 
-  private string? _username;
-  public string? Username
-  {
-    get => _username;
-    set => SetProperty(ref _username, value);
-  }
   #endregion
+  public ObservableCollection<Person> People { get; } = new();
 
+  private DelegateCommand? _loadUsersCommand;
+  public DelegateCommand LoadUsersCommand =>
+      _loadUsersCommand ??= new DelegateCommand(async () => await LoadUsersAsync(), () => !IsBusy)
+          .ObservesProperty(() => IsBusy);
 
-  #region NumbericUpDown
-
-  public string SelectedUnitDisplayName => SelectedUnit.GetDescription();
-  /// <summary>
-  private ProductUnit _selectedUnit = ProductUnit.Dozen;  // 초기값 설정
-
-  public ProductUnit SelectedUnit
+  public MainViewModel(IContainerProvider container) : base(container)
   {
-    get => _selectedUnit;
-    set
+    Title = "사용자 목록";
+  }
+
+  private async Task LoadUsersAsync()
+  {
+    // 기본작업 취소
+    CancelCurrentTask();
+
+    IsBusy = true;
+
+    BusyMessage = "사용자 목록을 불러오는 중...";
+
+    try
     {
-      if (_selectedUnit != value)
+      // 실제 API 호출이나 데이터베이스 쿼리 등 비동기 작업을 시뮬레이션합니다.
+      await Task.Delay(2000, CancellationToken);
+
+      // 예시 데이터 생성
+      var dummyUsers = new List<Person>
       {
-        _selectedUnit = value;
-        OnPropertyChanged(nameof(SelectedUnit));
-        UpdateStep();  // SelectedUnit 변경 시 Step 자동 업데이트
-        OnPropertyChanged(nameof(SelectedUnitDisplayName)); // 표시명도 같이 갱신 가능
-      }
+        new Person { Id = 1, Name = "홍길동", Age = 25, BirthDay = DateTime.Now, Address ="조선" },
+        new Person { Id = 2, Name = "김철수", Age = 45, BirthDay = DateTime.Now, Address ="한국" }
+      };
+
+      await RunOnUiThread(async () =>
+      {
+        // UI 스레드에서 ObservableCollection에 데이터 추가
+        People.Clear();
+        foreach (var user in dummyUsers)
+        {
+          People.Add(user);
+        }
+
+        // UI 스레드에서 비동기 작업을 실행하기 위해 await 사용
+        await Task.CompletedTask;
+      });
+
+      // BusyMessage 완료메세지 설정
+      BusyMessage = "사용자 목록 불러오기가 완료되었습니다.";
+    }
+    catch (OperationCanceledException)
+    {
+      BusyMessage = "사용자 목록 불러오기가 취소되었습니다.";
+    }
+    finally
+    {
+      IsBusy = false;
     }
   }
-
-  private double _step = 1;
-  public double Step
-  {
-    get => _step;
-    private set
-    {
-      if (_step != value)
-      {
-        _step = value;
-        OnPropertyChanged(nameof(Step));
-      }
-    }
-  }
-
-  private void UpdateStep()
-  {
-    Step = SelectedUnit.GetQuantity();
-  }
-  #endregion
-
-
-  #region HeimdallrProgressBar Test
-  private double _progress;
-  public double Progress
-  {
-    get => _progress;
-    set => SetProperty(ref _progress, value);
-  }
-  private bool _isIndeterminate;
-  public bool IsIndeterminate
-  {
-    get => _isIndeterminate;
-    set
-    {
-      if (_isIndeterminate != value)
-      {
-        _isIndeterminate = value;
-        OnPropertyChanged();
-      }
-    }
-  }
-  public DelegateCommand? StartProgressCommand =>
-    new DelegateCommand(StartProgress);
-
-  private void StartProgress()
-  {
-    IsIndeterminate = false;
-    ThreadPool.QueueUserWorkItem(_ =>
-    {
-      for (int i = 0; i <= 100; i++)
-      {
-        Thread.Sleep(50);
-        Application.Current.Dispatcher.Invoke(() => Progress = i);
-      }
-    });
-  }
-  #endregion
-
-
-
 }
+
 
 
 

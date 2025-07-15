@@ -14,7 +14,10 @@
                   CornerRadius="{TemplateBinding CornerRadius}"
                   BorderThickness="{TemplateBinding BorderThickness}"
                   BorderBrush="{TemplateBinding Background}"
-                  Background="{TemplateBinding Background}">
+                  Background="{TemplateBinding Background}"
+                  UseLayoutRounding="True"
+                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}">
+            
             <Grid Margin="{TemplateBinding Padding}">
               <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="30" />
@@ -31,11 +34,19 @@
                   Opacity="0.8"
                   Grid.Column="0" />
 
-              <!-- Text 입력 -->
-              <ScrollViewer x:Name="PART_ContentHost"
-                            Grid.Column="1"
-                            HorizontalScrollBarVisibility="Hidden"
-                            VerticalScrollBarVisibility="Hidden"/>
+              <!-- 실제 입력되는 TextBox -->
+              <TextBox x:Name="PART_TextBox"
+                     Grid.Column="1"
+                     BorderThickness="0"
+                     Background="Transparent"
+                     Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                     Foreground="{TemplateBinding Foreground}"
+                     CaretBrush="{TemplateBinding CaretBrush}"
+                     AcceptsReturn="{TemplateBinding AcceptsReturn}"
+                     TextWrapping="{TemplateBinding TextWrapping}"
+                     Padding="0"
+                     VerticalAlignment="Stretch"
+                     HorizontalAlignment="Stretch" />
 
               <!-- Watermark -->
               <TextBlock
@@ -50,23 +61,26 @@
                   Grid.Column="1"/>
             </Grid>
           </Border>
+          
+          <!-- 트리거 설정 -->
           <ControlTemplate.Triggers>
-            
             <Trigger Property="IsMouseOver" Value="True">
               <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFFFFFFF"/>
             </Trigger>
             
-            <Trigger Property="IsKeyboardFocused" Value="True">
+            <Trigger SourceName="PART_TextBox" Property="IsKeyboardFocused" Value="True">
               <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFFF6347"/>
               <Setter TargetName="textBorder" Property="BorderThickness" Value="0.5 0.5 0.5 3"/>
               <!-- 아이콘 Fill 색상 변경 -->
-              <Setter TargetName="PART_Icon" Property="Fill" Value="{Binding FocusFill, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Setter TargetName="PART_Icon" Property="Fill" 
+                      Value="{Binding FocusFill, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             
+            <!-- 워터마크 표시 -->
             <MultiTrigger>
               <MultiTrigger.Conditions>
                 <Condition Property="Text" Value=""/>
-                <Condition Property="IsKeyboardFocused" Value="False"/>
+                <Condition SourceName="PART_TextBox" Property="IsKeyboardFocused" Value="False"/>
               </MultiTrigger.Conditions>
               <Setter TargetName="Watermark" Property="Visibility" Value="Visible"/>
             </MultiTrigger>

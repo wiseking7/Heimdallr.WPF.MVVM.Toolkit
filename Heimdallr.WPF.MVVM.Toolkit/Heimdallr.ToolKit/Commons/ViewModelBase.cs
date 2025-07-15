@@ -1,12 +1,15 @@
-﻿namespace Heimdallr.ToolKit.Commons;
+﻿using System.Windows;
+
+namespace Heimdallr.ToolKit.Commons;
 
 /// <summary>
 /// Prism 프레임워크를 기반으로 하는 기본 ViewModel 클래스입니다.
 /// BindableBase를 상속하여 INotifyPropertyChanged 구현과
 /// 속성 변경 알림(SetProperty 메서드)을 지원합니다.
 /// </summary>
-public abstract class ViewModelBase : BindableBase
+public abstract class ViewModelBase : BindableBase, IDestructible
 {
+  #region Title 속성
   private string _title = string.Empty;
 
   /// <summary>
@@ -18,16 +21,41 @@ public abstract class ViewModelBase : BindableBase
     get => _title;
     set => SetProperty(ref _title, value);
   }
+  #endregion
 
+  #region View에서 표시하기 위한 필수 패턴
+  private bool _isBusy;
+
+  /// <summary>
+  /// API 호출, Navigation 중 로딩 상태를 View에서 표시하기 위한 필수 패턴입니다
+  /// </summary>
+  public bool IsBusy
+  {
+    get => _isBusy;
+    set => SetProperty(ref _isBusy, value);
+  }
+
+  private string _busyMessage = string.Empty;
+  /// <summary>
+  /// View에서 로딩 중 메시지를 표시하기 위한 필수 패턴입니다.
+  /// </summary>
+  public string BusyMessage
+  {
+    get => _busyMessage;
+    set => SetProperty(ref _busyMessage, value);
+  }
+  #endregion
+
+  #region IContainerProvider
   /// <summary>
   /// Prism의 DI 컨테이너 인터페이스(컨테이너프로바이더)를 저장하는 필드, protected로 선언하여 상속받은 ViewModel에서 직접 접근 가능 런타임에 필요한 서비스,
   /// 개체를 리솔브제네릭 메서드로 꺼낼 수 있다.
   /// </summary>
   protected IContainerProvider Container { get; private set; }
+  #endregion
 
-
+  #region IEventAggregator
   private IEventAggregator? _eventAggregator;
-
   /// <summary>
   /// Prism의 이벤트 집합체인 이벤트에그리에터 인스턴스 (느슨한 결합을 위한 Pub/Sub 이벤트 통신)
   /// 여러 ViewModel 간 메시지 전달 및 구독에 활용
@@ -39,7 +67,9 @@ public abstract class ViewModelBase : BindableBase
     get => _eventAggregator ?? throw new ArgumentNullException(nameof(_eventAggregator));
     private set => SetProperty(ref _eventAggregator, value);
   }
+  #endregion
 
+  #region IRegionManager
   private IRegionManager? _regionManager;
 
   /// <summary>
@@ -53,6 +83,7 @@ public abstract class ViewModelBase : BindableBase
     get => _regionManager ?? throw new ArgumentNullException(nameof(_regionManager));
     private set => SetProperty(ref _regionManager, value);
   }
+  #endregion
 
   /// <summary>
   /// 생성자: Prism의 DI 컨테이너 IContainerProvider를 인자로 받음
@@ -73,6 +104,67 @@ public abstract class ViewModelBase : BindableBase
     // EventAggregator를 DI 컨테이너에서 해석(Resolve)하고 null이면 예외 발생
     EventAggregator = Container.Resolve<IEventAggregator>() ?? throw new ArgumentNullException(nameof(IEventAggregator));
   }
+
+  #region Lazy<T>
+  /// <summary>
+  /// DI 컨테이너에서 지연 초기화(Lazy) 객체를 쉽게 생성할 수 있는 헬퍼 메서드입니다.
+  /// </summary>
+  /// <typeparam name="T">해당 서비스 타입</typeparam>
+  /// <returns>Lazy로 감싼 서비스 인스턴스</returns>
+  protected Lazy<T> ResolveLazy<T>() where T : class
+  {
+    // DI 컨테이너에서 T 타입의 인스턴스를 Lazy로 해석하여 반환
+    return new Lazy<T>(() => Container.Resolve<T>());
+  }
+  #endregion
+
+  #region RunOnUiThread
+  /// <summary>
+  /// 비동기 작업을 UI 스레드에서 실행하기 위한 헬퍼 메서드입니다.
+  /// 비동기 콜백 등에서 UI 스레드 접근 시 유용합니다 (예: ObservableCollection 갱신).
+  /// </summary>
+  /// <param name="action"></param>
+  protected async Task RunOnUiThread(Func<Task> action)
+  {
+    if (Application.Current.Dispatcher.CheckAccess())
+      await action();
+    else
+      await Application.Current.Dispatcher.InvokeAsync(action);
+  }
+  #endregion
+
+  #region CancellationTokenSource
+  private CancellationTokenSource _cts = new();
+
+  /// <summary>
+  /// 현재 ViewModel에 연결된 취소 토큰입니다.
+  /// </summary>
+  protected CancellationToken CancellationToken => _cts.Token;
+
+  /// <summary>
+  /// 현재 실행 중인 비동기 작업을 취소합니다.
+  /// </summary>
+  protected void CancelCurrentTask()
+  {
+    if (_cts.IsCancellationRequested)
+      return;
+
+    _cts.Cancel();
+    _cts.Dispose();
+    _cts = new CancellationTokenSource();
+  }
+
+  /// <summary>
+  /// Disposable 패턴을 구현하여 ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
+  /// </summary>
+  /// <exception cref="NotImplementedException"></exception>
+  public void Destroy()
+  {
+    // ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
+    CancelCurrentTask();
+  }
+  #endregion
 }
+
 
 

@@ -6,7 +6,8 @@ using System.Windows.Media;
 namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
-/// HeimdallrIconToggleButton Heimdallr 스타일의 커스텀 콤보박스 토글 버튼입니다.
+/// HeimdallrIconToggleButton 스타일 정의 (팝업창이나 ContentMenu 외부 UI 열기)
+/// 콤보박스 토글 버튼, 팝업창, ContentMenu 등에 사용
 /// </summary>
 public class HeimdallrIconToggleButton : ToggleButton
 {

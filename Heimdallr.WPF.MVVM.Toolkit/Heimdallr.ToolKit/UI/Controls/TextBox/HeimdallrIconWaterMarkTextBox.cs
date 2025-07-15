@@ -5,7 +5,6 @@ using System.Windows.Media;
 
 namespace Heimdallr.ToolKit.UI.Controls;
 
-
 /// <summary>
 /// 아이콘과 워터마크(Placeholder)를 지원하는 커스텀 TextBox 컨트롤입니다.
 /// 기본 TextBox를 상속하며, PathIcon 타입 아이콘과 워터마크 텍스트, 색상 등의 속성을 제공합니다.
@@ -24,8 +23,8 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
 
   #region PathIcon
   /// <summary>
-  /// PathIconType 아이콘을 지정하는 의존성 속성.
-  /// 이 속성에 따라 XAML 스타일에서 PathIcon을 그려서 표시 가능.
+  /// PathIconType 아이콘을 지정하는 종속성 속성.
+  /// XAML 스타일에서 PathIcon을 그려서 표시 가능.
   /// </summary>
   public PathIconType PathIcon
   {
@@ -34,7 +33,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
   }
 
   /// <summary>
-  /// 종속성주입
+  /// 기본값은 PathIconType.None이며, 아이콘이 없는 상태입니다.
   /// </summary>
   public static readonly DependencyProperty PathIconProperty =
       DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType),
@@ -52,7 +51,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
     set { SetValue(WaterMarkProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값은 빈 문자열이며, 워터마크가 표시되지 않습니다.
   /// </summary>
   public static readonly DependencyProperty WaterMarkProperty =
       DependencyProperty.Register(nameof(WaterMark), typeof(string), typeof(HeimdallrIconWaterMarkTextBox),
@@ -70,7 +69,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
     set { SetValue(WaterMarkForegroundProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값은 회색(Gray)이며, 워터마크 텍스트의 색상을 지정합니다.
   /// </summary>
   public static readonly DependencyProperty WaterMarkForegroundProperty =
       DependencyProperty.Register(nameof(WaterMarkForeground), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
@@ -88,7 +87,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
     set { SetValue(FillProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값은 회색(Gray)이며, 아이콘의 채우기 색상을 지정합니다.
   /// </summary>
   public static readonly DependencyProperty FillProperty =
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
@@ -105,31 +104,31 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
     set => SetValue(CornerRadiusProperty, value);
   }
   /// <summary>
-  /// 그리드 항목의 모서리 반경을 설정하는 종속성 속성입니다.
+  /// 기본값은 CornerRadius(0)이며, 모서리 반경을 설정합니다.
   /// </summary>
   public static readonly DependencyProperty CornerRadiusProperty =
     DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius), typeof(HeimdallrIconWaterMarkTextBox),
       new PropertyMetadata(new CornerRadius(0)));
   #endregion
 
-  #region
+  #region AutoGrow (자동 크기 조절 여부)
   /// <summary>
-  /// AutoGrow 속성은 텍스트 박스가 입력된 내용에 따라 자동으로 크기를 조절할지 여부를 결정합니다.
-  /// </summary>
-  public static readonly DependencyProperty AutoGrowProperty =
-    DependencyProperty.Register(nameof(AutoGrow), typeof(bool), typeof(HeimdallrIconWaterMarkTextBox),
-        new PropertyMetadata(false));
-  /// <summary>
-  /// AutoGrow 속성은 텍스트 박스가 입력된 내용에 따라 자동으로 크기를 조절할지 여부를 결정합니다.
+  /// 텍스트 내용에 따라 자동으로 높이를 조절할지 여부를 결정하는 종속성 속성.
   /// </summary>
   public bool AutoGrow
   {
     get => (bool)GetValue(AutoGrowProperty);
     set => SetValue(AutoGrowProperty, value);
   }
+  /// <summary>
+  /// 기본값은 false이며, 텍스트 내용에 따라 높이를 자동으로 조절하지 않습니다.
+  /// </summary>
+  public static readonly DependencyProperty AutoGrowProperty =
+    DependencyProperty.Register(nameof(AutoGrow), typeof(bool), typeof(HeimdallrIconWaterMarkTextBox),
+        new PropertyMetadata(false));
   #endregion
 
-  #region
+  #region FocusFill (포커스 시 배경색)
   /// <summary>
   /// FocusFill 속성은 텍스트 박스가 포커스를 받을 때 적용되는 배경색을 지정합니다.
   /// </summary>
@@ -139,50 +138,61 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
     set => SetValue(FocusFillProperty, value);
   }
   /// <summary>
-  /// FocusFill 속성은 텍스트 박스가 포커스를 받을 때 적용되는 배경색을 지정합니다.
+  /// 기본값은 흰색(White)이며, 포커스가 있을 때 텍스트 박스의 배경색을 지정합니다.
   /// </summary>
   public static readonly DependencyProperty FocusFillProperty =
       DependencyProperty.Register(nameof(FocusFill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
-          new PropertyMetadata(Brushes.White)); // 기본 포커스 색상 지정 가능
+          new PropertyMetadata(Brushes.White));
   #endregion
 
+  private TextBox? _innerTextBox;
 
   /// <summary>
-  /// 텍스트가 변경될 때 자동으로 높이를 조정합니다.
+  /// 템플릿이 적용될 때 내부 TextBox (PART_TextBox)를 찾아서 AutoGrow 처리를 위한 TextChanged 이벤트 등록
   /// </summary>
-  /// <param name="e"></param>
-  protected override void OnTextChanged(TextChangedEventArgs e)
+  public override void OnApplyTemplate()
   {
-    base.OnTextChanged(e);
+    base.OnApplyTemplate();
 
-    if (AutoGrow)
+    _innerTextBox = GetTemplateChild("PART_TextBox") as TextBox;
+
+    if (_innerTextBox != null)
     {
-      UpdateHeightByText();
+      // AutoGrow가 true일 때만 텍스트 변경 시 높이 계산 수행
+      _innerTextBox.TextChanged += (s, e) =>
+      {
+        if (AutoGrow)
+          UpdateHeightByInnerText();
+      };
     }
   }
+
   /// <summary>
-  /// 텍스트가 변경될 때 자동으로 높이를 조정합니다.
+  /// 내부 TextBox 기준으로 텍스트 높이를 계산해 외부 컨트롤 높이를 늘림
   /// </summary>
-  private void UpdateHeightByText()
+  private void UpdateHeightByInnerText()
   {
-    var formattedText = new FormattedText(
-        this.Text + " ", // 공백 추가해서 마지막 줄 포함
-        System.Globalization.CultureInfo.CurrentCulture,
-        FlowDirection.LeftToRight,
-        new Typeface(this.FontFamily, this.FontStyle, this.FontWeight, this.FontStretch),
-        this.FontSize,
-        Brushes.Black,
-        VisualTreeHelper.GetDpi(this).PixelsPerDip);
+    if (_innerTextBox == null)
+      return;
 
-    formattedText.MaxTextWidth = this.ActualWidth - this.Padding.Left - this.Padding.Right - 10;
+    // 가로 폭이 아직 0일 경우 측정 보류
+    if (_innerTextBox.ActualWidth <= 0)
+      return;
 
-    double newHeight = formattedText.Height + this.Padding.Top + this.Padding.Bottom + 10;
+    // 내부 TextBox의 원하는 크기 측정
+    _innerTextBox.Measure(new Size(_innerTextBox.ActualWidth, double.PositiveInfinity));
 
-    // 높이 제한 고려 (MinHeight ~ MaxHeight)
-    newHeight = Math.Max(this.MinHeight, newHeight);
-    if (this.MaxHeight > 0) newHeight = Math.Min(this.MaxHeight, newHeight);
+    // 원하는 높이를 계산 (Padding 포함)
+    double desiredHeight = _innerTextBox.DesiredSize.Height + this.Padding.Top + this.Padding.Bottom;
 
-    this.Height = newHeight;
+    // 기존 MinHeight와 비교하여 더 큰 값으로 설정
+    double newMinHeight = Math.Max(this.MinHeight, desiredHeight);
+
+    // MaxHeight가 설정되어 있다면 그보다 크지 않도록 제한
+    if (this.MaxHeight > 0)
+      newMinHeight = Math.Min(this.MaxHeight, newMinHeight);
+
+    this.MinHeight = newMinHeight;
   }
 }
 
