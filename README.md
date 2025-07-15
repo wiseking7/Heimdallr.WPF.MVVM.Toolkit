@@ -192,20 +192,21 @@
     - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.xaml [UserControl Ligin View]
-   - **NumericUpDown [Folder]**
+  - **NumericUpDown [Folder]**
     - [x] HeimdallrNumericUpDown.xaml [숫자 증감 유틸리티]
   - **PassowrdBox [Folder]**
     - [x] HeimdallrIconWaterMarkPasswordBox.xaml [Icon & WaterMark]
+  - **ProgressBar [Folder]**
+    - [x] HeimdallrProgressBar.xaml [진행률을 표기하는 ProgressBar]
   - **RadioButton [Folder]**
     - [x] HeimdallrIconRadioButton.xaml.xaml [Icon & 문자열 두개중 하나만 사용가능 (체크, 마우스 오버시 색상변경] 
   - **Region [Folder]**
     - [x] HeimdallrRegion.xaml [Region Style]
   - **Slider [Folder]**
+    - [x] HeimdallrSlider.xaml [Thumb 아이콘 및 색상 지정, 왼쪽/오른쪽 트랙 구간 색상 분리]
     - [x] RiotSlider.xaml [Slider Style]
   - **SliderPanel [Folder]**
     - [x] HeimdallrSlidingPanel.xaml [Slider Style]
-  - **Spinner [Folder]**
-    - [x] HeimdallrRingSpinner.xaml [Spinner Style] 
   - **StackPanel [Folder]**
   - **TextBox [Folder]**
     - [x] HeimdallrIconPlaceholderTextBox.xaml [Icon & Placeholder, BorderThickness 표기]
@@ -243,7 +244,7 @@
     - [x] HeimdallrSwitchCheckBox.cs [Check Button 양옆으로 이동 Control]
   - **ComboBox [Folder]**
     - [x] HeimdallrComboBox.cs [Heimdallr 스타일의 커스텀 ComboBox 컨트롤입니다]
-   - **ContentConttrol [Folder]**
+  - **ContentConttrol [Folder]**
     - [x] AnimatedContentMenu.cs [좌우 슬라이드로 열리고 닫히는 메뉴 컨트롤입니다]
     - [x] HeimdallrDropdownContentMenu.cs.cs [DropDown]
   - **ContentMenu [Folder]**
@@ -257,35 +258,42 @@
     - [x] EllipseHelper.cs (Ellipse.xaml 사용)
     - [x] EscaladeHelper.cs (Escalade.xaml 사용)
     - [x] Indicator.cs (Control 상속으로 xaml(19개)의 커스텀)
-    - [x] LoadingOverlay.cs (Indicator 의 기반으로 화면표기시) 
+    - [x] LoadingOverlay.cs (Indicator 의 기반으로 화면표기시)
+  - **Indicator(표시기) [Folder]**
+    - [x] EllipseHelper.cs (Ellipse.xaml 사용)
+  - **Information [Folder]**
+    - [x] InformationWindow.cs [정보윈도우 창, 애니메이션]
   - **ListBox [Folder]**
-    - [x] HeimdallrListBox.cs [미완성]
-    - [x] HeimdallrListBoxItem.cs [미완성]
-    - [x] MagicBar.cs [ListView 상속으로 확인]
+    - [x] HeimdallrListBox.cs [작업중]
+    - [x] HeimdallrListBoxItem.cs [작업중] 
+    - [x] MagicBar.xaml [수평 Menu 컨트롤]
   - **ListView [Folder]**
     - [x] 작업중
   - **Login [Folder]**
     - [x] HeimdallrLogin.cs [Login View (UserControl)]
-   - **NumericUpDown [Folder]**
+  - **NumericUpDown [Folder]**
     - [x] HeimdallrNumericUpDown.cs [숫자 증감 유틸리티]
   - **PassowrdBox [Folder]**
     - [x] HeimdallrIconWaterMarkPasswordBox.cs [Icon & WaterMark]
-  - **RadioButton [Folder]**
-    - [x] HeimdallrIconRadioButton.xaml.cs [Icon & 문자열 두개중 하나만 사용가능 (체크, 마우스 오버시 색상변경] 
   - **Primitives(원시) [Folder]**
-    - [x] ControlHelper.cs [ControlHelper 클래스는 WPF 컨트롤에 대한 다양한 유틸리티 메서드와 속성을 제공] 
-    - [x] FocusVisualHelper.cs [ 외곽선 색상 및 두께, 내부 테두리 색상 및 두께, 여백(Margin) 설정]
+    - [x] ControlHelper.cs [ControlHelper 클래스는 WPF 컨트롤에 대한 다양한 유틸리티 메서드와 속성을 제공합니다]
+    - [x] FocusVisualHelper.cs [이 클래스는 WPF에서 사용자 정의 포커스 시각 요소(Focus Visual)를 구현하기 위한 헬퍼 클래스, 외곽선 색상 및 두께, 내부 테두리 색상 및 두께, 여백(Margin) 설정]
     - [x] Helper.cs [다양한 WPF 관련 보조 기능을 제공]
     - [x] ItemClickEventArgs.cs [항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다]
-    - [x] ItemClickEventHandler.cs [항목이 클릭되었을 때 발생하는 이벤트를 처리하기 위한 델리게이트] 
+    - [x] ItemClickEventArgs.cs [항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다] 
+  - **ProgressBar [Folder]**
+    - [x] HeimdallrProgressBar.cs [진행률 표시용 커스텀 프로그레스바 컨트롤, 최소값/최대값 지원, 인디터미넌트 모드, 진행률 텍스트 표시, 색상 커스터마이징 포함]
+  - **RadioButton [Folder]**
+    - [x] HeimdallrIconRadioButton.cs [Icon & 문자열 두개중 하나만 사용가능 (체크, 마우스 오버시 색상변경] 
   - **Region [Folder]**
     - [x] HeimdallrRegion.cs [Region Control]
+  - **ScrollViewer [Folder]**
+    - [x] ScrollViewerEx.cs [ScrollViewer 의 확장 클래스입니다]  
   - **Slider [Folder]**
+    - [x] HeimdallrSlider.cs [Thumb 아이콘 및 색상 지정, 왼쪽/오른쪽 트랙 구간 색상 분리]
     - [x] RiotSlider.cs [Slider Control] 
   - **SliderPanel [Folder]**
     - [x] HeimdallrSlidingPanel.cs [SlidingPanel Control]
-  - **Spinner [Folder]**
-    - [x] HeimdallrRingSpinner.cs [Spinner Style] 
   - **StackPanel [Folder]**
     - [x] HeimdallrPanel.cs [Panel Contrl]
     - [x] HeimdallrStack.cs [Stack Control]
@@ -296,15 +304,14 @@
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.cs [Thumb Contrl] 
   - **ToggleButton [Folder]**
-    - [x] HeimdallrComboBoxToggleButton.cs [HeimdallrComboBoxToggleButton은 Heimdallr 스타일의 커스텀 콤보박스 토글 버튼입니다]
+    - [x] HeimdallrIconToggleButton.cs [HeimdallrIconToggleButton 스타일 정의 (팝업창이나 ContentMenu 외부 UI 열기), HeimdallrComboBox]
     - [x] HeimdallrToggleButtonSwitch.cs [HeimdallrToggleButtonSwitch는 ToggleButton을 상속받아 스위치 스타일의 토글 버튼을 구현합니다]
-    - [x] HeimdallrToggleSwitch.cs [HeimdallrToggleSwitch는 ToggleButton을 상속받아 스위치 스타일의 토글 스위치를 구현합니다]
     - [x] ThemeSwitchButton.cs [테마스위치 Buton]
   - **ToolTip [Folder]**
     - [x] HeimdallrToolTip.cs [HeimdallrToolTip은 사용자 정의 ToolTip 클래스로, Heimdallr UI에서 사용되는 툴팁을 나타냅니다]  
   - **TreeView [Folder]**
-    - [x] HeimdallrTreeView.cs []
-    - [x] HeimdallrTreeViewItem.cs []  
+    - [x] HeimdallrTreeView.cs [선택된 항목이 변경될 때 커맨드를 실행할 수 있도록 설계되었습니다, 각 TreeViewItem은 HeimdallrTreeViewItem으로 대체하여 사용자 정의 스타일이나 동작을 적용할 수 있습니다]
+    - [x] HeimdallrTreeViewItem.cs [HeimdallrTreeViewItem은 사용자 정의 속성(아이콘, 색상, CornerRadius 등)을 지원하는 TreeViewItem입니다, MVVM 패턴에서 명령 바인딩, 아이콘 및 스타일 확장을 지원합니다]  
   - **Window [Folder]**
     - [x] DarkThemeWindow.cs [WPF 기반의 커스텀 창을 정의하며, 일반적인 기능(닫기, 최소화, 최대화, 드래그, 코너라디우스)과함께 다크 테마, 디밍 처리(어두워짐), 태스크바 표시 여부 제어 같은 기능들을 포함 ]
     - [x] HeimdallrWindow.cs [WPF 애플리케이션에서 MVVM 아키텍처에 맞춰 View와 ViewModel을 자동 연결하고, UI 조작에 유틸리티 기능을 제공하는 사용자 정의 Window입니다 IViewable (View 와 ViewModel 에 대한 참조 제공)] 
