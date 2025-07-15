@@ -14,20 +14,20 @@
 **■ Animations [Folder]**
  - **EasingFunctions [Folder]**
     - [x] EasingFunctionBaseMode.cs [이징 함수(easing function) 의 다양한 모드를 정의하는데 사용(Enum)]
-  - [x] ColorAnimationItem.cs [WPF에서 색상 애니메이션을 제어하는 ColorAnimation을 상속(적용할 대상과 속성, 이징 모드 등을 설정)]
-  - [x] DoubleAnimationItem.cs [Storyboard에서 사용할 수 있도록 대상 속성, 대상 이름, 이징 함수 등을 설]
-  - [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness 등의 Thickness 속성에 애니메이션을 적용(타겟 요소 및 속성)]
+ - [x] ColorAnimationItem.cs [WPF에서 색상 애니메이션을 제어하는 ColorAnimation을 상속(적용할 대상과 속성, 이징 모드 등을 설정)]
+ - [x] DoubleAnimationItem.cs [Storyboard에서 사용할 수 있도록 대상 속성, 대상 이름, 이징 함수 등을 설]
+ - [x] ThicknessAnimationItem.cs [Margin, Padding, BorderThickness 등의 Thickness 속성에 애니메이션을 적용(타겟 요소 및 속성)]
 
 **■ Applications [Folder]**
-  - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정))]
+   - [x] HeimdallrApplication.cs [PrismApplication 을 상속받는 추상 클래스 (AddInversionModule[IoC 모듈을 애플리케이션에 추가], AddWireDataContext(ViewModelLocationScenario 는 View-ViewModel 매핑 설정))]
 
 **■ Attributes [Folder]**
-  - [x] UnitInfoExtensions.cs [제품 단위에 대한 정보를 제공하는 어트리뷰트입니다, Description(stirng), Quantity(int) 2개의 어트리뷰터]
-  - [x] UseDimmingAttribute.cs [특정 클래스에 대해 "디밍(Dimming) 효과를 사용할지 여부"를 지정, 뷰(View)나 윈도우(Window) 클래스에 적용하여, 해당 UI가 표시될 때 배경을 어둡게 처리할지 결정]
+   - [x] UnitInfoExtensions.cs [제품 단위에 대한 정보를 제공하는 어트리뷰트입니다, Description(stirng), Quantity(int) 2개의 어트리뷰터]
+   - [x] UseDimmingAttribute.cs [특정 클래스에 대해 "디밍(Dimming) 효과를 사용할지 여부"를 지정, 뷰(View)나 윈도우(Window) 클래스에 적용하여, 해당 UI가 표시될 때 배경을 어둡게 처리할지 결정]
 
 **■ Commons [Folder]** [공유]
-  - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
-  - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager]
+   - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
+   - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager]
 
 **■ Contracts [Folder]** [계약]
   - **Viewing [Folder]** [보기]
@@ -58,6 +58,7 @@
   - [x] NullableIntConverter.cs [TextBox 에 Int 기본값 0 을 빈공간으로 처리]
   - [x] NumberCommaConverter.cs [숫자를 콤마 표기 천단위]
   - [x] PasswordToVisibilityConverter.cs [비밀번호 입력이나 특정 값의 상태에 따라 Visibility 값을 반환]
+  - [x] ProgressConverter.cs [HeimdallrProgressBar 진행률 계산용 컨버터 (전체 너비, 진행률 값을 받아 진행 영역 너비를 계산)] 
   - [x] ResourceBinding.cs [사용시점은 -> "리소스를 동적으로 바인딩하고 싶을 때]
   - [x] SizeConverter.cs [파일 크기 등의 숫자 값을 사람이 읽기 쉬운 형식(B, KB 등)으로 변환하는 ValueConverter]
   - [x] StringToVisibilityConverter.cs [문자열이 비어 있는지 여부에 따라 Visibility를 반환]
