@@ -27,7 +27,7 @@
 
 **■ Commons [Folder]** [공유]
    - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
-   - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager]
+   - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager, Title, IsBusy 속성, Lazy<T>, RunOnUiThread 메서드, IDestructible, INavigationAware 인터페이스 구현]
 
 **■ Contracts [Folder]** [계약]
   - **Viewing [Folder]** [보기]
@@ -50,6 +50,7 @@
    - [x] HelperConverter.cs [여러 개의 소스 값을 변환해 하나의 타겟 값으로 바꾸거나 그 반대도 처리]
    - [x] IconSizeConverter.cs [HeimdallrTreeViewItem 의 Icon 의 크기 조정]
    - [x] IndexToNumberConverter.cs [ItmsContrl 상속(ListView, ListBox, ComboBox, WrapPanel 등에서 특정 아이템의 1-based 인덱스 번호를 반환(Number)]
+   - [x] InverseBooleanConverter.cs [true → false, false → true, IsEnabled, IsChecked 등 bool 타입 속성의 값을 반전시켜 UI에 바인딩할 때 사용]
    - [x] InverseComparisonConverter.cs [value != parameter일 때 true 반환하는 반전]
    - [x] IsGridViewConverter.cs [GridView 여부를 확인하는 ValueConverter (True, False 반환)입니다.]
    - [x] MobileNumberConverter.cs [휴대전화번호 예-> 01012345678 → 010-1234-5678]
