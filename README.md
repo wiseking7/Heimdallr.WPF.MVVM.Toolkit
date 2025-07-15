@@ -214,16 +214,16 @@
   - **Thumb [Folder]**
     - [x] HeimdallrThumb.xaml [Thumb Style]
   - **ToggleButton [Folder]**
-   - [x] HeimdallrComboBoxToggleButton.xaml [HeimdallrComboBox.xaml 사용하는 ToggleButton]
-   - [x] HeimdallrToggleButtonSwitch.xaml [ToggleButton 을 사용하는 Switch]
-   - [x] ThemeSwitchButton.xaml [Theme Switch Style]
-   - **ToolTip [Folder]**
-   - [x] HeimdallrToolTip.xaml [Contrl 사용하는 ToolTip]
+    - [x] HeimdallrComboBoxToggleButton.xaml [HeimdallrComboBox.xaml 사용하는 ToggleButton]
+    - [x] HeimdallrToggleButtonSwitch.xaml [ToggleButton 을 사용하는 Switch]
+    - [x] ThemeSwitchButton.xaml [Theme Switch Style]
+  - **ToolTip [Folder]**
+    - [x] HeimdallrToolTip.xaml [Contrl 사용하는 ToolTip]
   - **TreeView [Folder]**
-   - [x] HeimdallrTreeView.xaml [TreeView Style]
-   - [x] HeimdallrTreeViewItem.xaml [TreeViewItem Style]  
+    - [x] HeimdallrTreeView.xaml [TreeView Style]
+    - [x] HeimdallrTreeViewItem.xaml [TreeViewItem Style]  
   - **Window [Folder]**
-   - [x] DarkThemeWindow.xaml [Window Style]
+    - [x] DarkThemeWindow.xaml [Window Style]
   - [x] Generic.xaml [위 Xaml 등록 미등록시 사용불가 (입력순서 중요)
 
 **■ UI [Folder]**
