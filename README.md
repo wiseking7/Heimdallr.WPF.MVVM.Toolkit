@@ -279,8 +279,8 @@
     - [x] ControlHelper.cs [ControlHelper 클래스는 WPF 컨트롤에 대한 다양한 유틸리티 메서드와 속성을 제공합니다]
     - [x] FocusVisualHelper.cs [이 클래스는 WPF에서 사용자 정의 포커스 시각 요소(Focus Visual)를 구현하기 위한 헬퍼 클래스, 외곽선 색상 및 두께, 내부 테두리 색상 및 두께, 여백(Margin) 설정]
     - [x] Helper.cs [다양한 WPF 관련 보조 기능을 제공]
-    - [x] ItemClickEventArgs.cs [항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다]
-    - [x] ItemClickEventArgs.cs [항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다] 
+    - [x] ItemClickEventHandler.cs [항목이 클릭되었을 때 발생하는 이벤트를 처리하기 위한 델리게이트입니다]
+    - [x] ItemClickEventArgs.cs [항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다.] 
   - **ProgressBar [Folder]**
     - [x] HeimdallrProgressBar.cs [진행률 표시용 커스텀 프로그레스바 컨트롤, 최소값/최대값 지원, 인디터미넌트 모드, 진행률 텍스트 표시, 색상 커스터마이징 포함]
   - **RadioButton [Folder]**
