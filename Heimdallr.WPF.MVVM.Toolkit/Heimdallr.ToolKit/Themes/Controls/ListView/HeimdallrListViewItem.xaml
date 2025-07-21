@@ -1,0 +1,56 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <!--
+    HeimdallrListViewItem의 기본 스타일 정의
+    - 마우스 오버 시 배경색 변경
+    - 선택 시 배경 및 전경색 변경
+    - 비활성화 시 전경색 변경
+    - 외곽선 및 여백, 패딩 조절로 깔끔한 레이아웃 제공
+  -->
+  <Style TargetType="{x:Type ctrls:HeimdallrListViewItem}">
+    <!-- 픽셀 정렬 활성화 -->
+    <Setter Property="SnapsToDevicePixels" Value="True" />
+    <Setter Property="UseLayoutRounding" Value="True" />
+    <!-- 기본 배경은 투명 -->
+    <Setter Property="Background" Value="Transparent" />
+    <!-- 내부 여백 -->
+    <Setter Property="Padding" Value="8" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrListViewItem}">
+          <Border x:Name="Bd"
+                  Background="{TemplateBinding Background}"
+                  SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                  UseLayoutRounding="{TemplateBinding UseLayoutRounding}"
+                  CornerRadius="6"
+                  Padding="8"
+                  Margin="2">
+            <ContentPresenter HorizontalAlignment="Stretch"
+                              VerticalAlignment="Center"
+                              Content="{TemplateBinding Content}"
+                              ContentTemplate="{TemplateBinding ContentTemplate}"
+                              TextElement.Foreground="{TemplateBinding Foreground}"/>
+          </Border>
+          <ControlTemplate.Triggers>
+            <!-- 마우스 오버 시 배경색 변경 -->
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="Bd" Property="Background" Value="#2C2C2C" />
+            </Trigger>
+            <!-- 선택 시 배경 및 글자색 변경 -->
+            <Trigger Property="IsSelected" Value="True">
+              <Setter TargetName="Bd" Property="Background"
+                      Value="{Binding SelectedBackground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrListView}}" />
+              <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <!-- 비활성화 상태일 때 글자색 변경 -->
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Foreground" Value="#777" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>

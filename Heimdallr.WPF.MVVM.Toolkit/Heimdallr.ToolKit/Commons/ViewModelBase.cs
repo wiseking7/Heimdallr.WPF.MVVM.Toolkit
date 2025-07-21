@@ -7,7 +7,7 @@ namespace Heimdallr.ToolKit.Commons;
 /// BindableBase를 상속하여 INotifyPropertyChanged 구현과
 /// 속성 변경 알림(SetProperty 메서드)을 지원합니다.
 /// </summary>
-public abstract class ViewModelBase : BindableBase, IDestructible
+public abstract class ViewModelBase : BindableBase, IDestructible, INavigationAware
 {
   #region Title 속성
   private string _title = string.Empty;
@@ -121,14 +121,17 @@ public abstract class ViewModelBase : BindableBase, IDestructible
   #region RunOnUiThread
   /// <summary>
   /// 비동기 작업을 UI 스레드에서 실행하기 위한 헬퍼 메서드입니다.
-  /// 비동기 콜백 등에서 UI 스레드 접근 시 유용합니다 (예: ObservableCollection 갱신).
+  /// 비동기 콜백 등에서 UI 스레드 접근 시 유용합니다 
+  /// UI 요소(예: ObservableCollection, Text, ListView.Items 등)**는 UI 스레드에서만 접근 가능합니다.
   /// </summary>
   /// <param name="action"></param>
   protected async Task RunOnUiThread(Func<Task> action)
   {
     if (Application.Current.Dispatcher.CheckAccess())
+      // 현재 스레드가 UI 스레드이면 바로 실행
       await action();
     else
+      // UI 스레드가 아니면 Dispatcher를 통해 실행
       await Application.Current.Dispatcher.InvokeAsync(action);
   }
   #endregion
@@ -143,6 +146,7 @@ public abstract class ViewModelBase : BindableBase, IDestructible
 
   /// <summary>
   /// 현재 실행 중인 비동기 작업을 취소합니다.
+  ///  _cts.Cancel(); 작업취소, _cts.Dispose(); 자원해제,  _cts = new CancellationTokenSource(); 새로운 토큰 생성 
   /// </summary>
   protected void CancelCurrentTask()
   {
@@ -153,7 +157,9 @@ public abstract class ViewModelBase : BindableBase, IDestructible
     _cts.Dispose();
     _cts = new CancellationTokenSource();
   }
+  #endregion
 
+  #region 메모리정리
   /// <summary>
   /// Disposable 패턴을 구현하여 ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
   /// </summary>
@@ -161,6 +167,41 @@ public abstract class ViewModelBase : BindableBase, IDestructible
   public void Destroy()
   {
     // ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
+    CancelCurrentTask();
+    OnDestroying();
+  }
+
+  /// <summary>
+  /// 자식 ViewModel 에서 필요한 경우 overrid
+  /// EventAggregator 구독해제, 타이머 중단, IDisposable 자원해제, 내부 연결 또는 참조정리
+  /// </summary>
+  protected virtual void OnDestroying()
+  {
+    // 자식 ViewModel 에서 필요한 리소스 해제 등 처리
+  }
+  #endregion
+
+  #region INavigationAware 기본 구현
+  /// <summary>
+  /// 이 View로 Navigation 되었을 때 호출됨, virtual로 선언하여 필요시 override 가능
+  /// </summary>
+  public virtual void OnNavigatedTo(NavigationContext navigationContext)
+  {
+    // 필요시 override하여 NavigationContext를 처리할 수 있습니다.
+  }
+
+  /// <summary>
+  /// Navigation이 발생했을 때, View가 이 ViewModel을 재사용할지 여부 결정
+  /// 기본값: true (재사용), virtual로 선언하여 필요시 override 가능
+  /// </summary>
+  public virtual bool IsNavigationTarget(NavigationContext navigationContext) => true;
+
+  /// <summary>
+  /// 다른 View로 이동되기 전 호출됨, virtual로 선언하여 필요시 override 가능
+  /// </summary>
+  public virtual void OnNavigatedFrom(NavigationContext navigationContext)
+  {
+    // 기본적으로 비동기 작업 취소
     CancelCurrentTask();
   }
   #endregion

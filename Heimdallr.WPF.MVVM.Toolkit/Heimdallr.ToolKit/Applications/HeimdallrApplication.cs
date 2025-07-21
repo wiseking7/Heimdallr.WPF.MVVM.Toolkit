@@ -60,42 +60,49 @@ public abstract class HeimdallrApplication : PrismApplication
 
   /// <summary>
   /// 테마 리소스를 애플리케이션 리소스에 동적으로 추가하는 메서드
+  /// Generic.xaml 의 리소스를 가져옴
   /// </summary>
   private void AddDefaultThemeResource()
   {
-    // 실행 어셈블리 (앱 진입점 어셈블리) 참조
+    // 현재 실행 중인 애플리케이션의 진입 어셈블리를 가져옵니다.
     Assembly? entryAssembly = Assembly.GetEntryAssembly();
     if (entryAssembly == null)
     {
       Debug.WriteLine("Error: entryAssembly 를 가져올 수 없습니다.");
-      return;
+      return; // 진입 어셈블리를 가져오지 못한 경우 테마 로딩 중단
     }
-    // 참조된 모든 어셈블리 목록을 가져옴
+
+    // 진입 어셈블리가 참조하는 모든 어셈블리 목록을 가져옵니다.
     AssemblyName[] referencedAssemblies = entryAssembly.GetReferencedAssemblies();
     AssemblyName[] array = referencedAssemblies;
 
+    // 각 참조 어셈블리를 순회하며 Themes/Default.xaml 리소스를 찾습니다.
     foreach (AssemblyName assemblyName in array)
     {
       try
       {
-        // 테마 리소스의 경로 생성 (예: AssemblyName;component/Themes/Default.xaml)
+        // /[어셈블리명];component/Themes/Default.xaml 형식으로 XAML 리소스를 지정합니다.
         string text = assemblyName.Name + ";component/Themes/Default.xaml";
+
+        // 위의 리소스를 URI로 만듭니다 (Pack URI 형식, relative or absolute 가능)
         Uri source = new Uri("/" + text, UriKind.RelativeOrAbsolute);
 
-        // 리소스 딕셔너리를 생성하여 Source 설정
+        // 해당 URI를 가진 ResourceDictionary를 생성합니다.
         ResourceDictionary item = new ResourceDictionary
         {
           Source = source
         };
 
-        // 애플리케이션 리소스에 병합
+        // 애플리케이션 전체 리소스에 테마를 병합합니다.
         base.Resources.MergedDictionaries.Add(item);
 
+        // 첫 번째 테마만 로딩하도록 break (다른 테마는 무시)
         return;
       }
 
       catch (Exception ex)
       {
+        // 특정 어셈블리에 Themes/Default.xaml 이 없거나 오류 발생 시 로그만 출력
         Console.WriteLine("Themes/Default.xaml 로드할 수 없습니다" +
                                        assemblyName.Name + ": " + ex.Message);
       }

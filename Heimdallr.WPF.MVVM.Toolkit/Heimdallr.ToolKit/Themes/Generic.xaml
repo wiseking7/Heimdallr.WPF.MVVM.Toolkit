@@ -35,6 +35,8 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
 
     <!-- 4. List, TreeView 및 ItemControl 컨트롤 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListViewItem.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml"/>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
 

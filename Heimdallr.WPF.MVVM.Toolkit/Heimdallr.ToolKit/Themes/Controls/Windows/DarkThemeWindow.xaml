@@ -9,6 +9,8 @@
   </Style>
 
   <Style TargetType="{x:Type ctrls:DarkThemeWindow}">
+
+    <!--#region 윈도우 기본속성 -->
     <Setter Property="Background" Value="#FF344C64" />
     <Setter Property="AllowsTransparency" Value="True" />
     <Setter Property="WindowStyle" Value="None" />
@@ -25,8 +27,9 @@
     <Setter Property="MinHeight" Value="200" />
     <Setter Property="CornerRadius" Value="9" />
     <Setter Property="DimmingOpacity" Value="4" />
-
-    <!-- WindowChrome 아래 자세히 설명 -->
+    <!--#endregion-->
+  
+    <!--#region WindowChrome  -->
     <Setter Property="WindowChrome.WindowChrome">
       <Setter.Value>
         <WindowChrome CaptionHeight="0"
@@ -37,6 +40,8 @@
                       UseAeroCaptionButtons="False" />
       </Setter.Value>
     </Setter>
+    <!--#endregion-->
+    
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:DarkThemeWindow}">
@@ -48,30 +53,34 @@
               SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
               CornerRadius="{TemplateBinding CornerRadius}"
               UseLayoutRounding="{TemplateBinding UseLayoutRounding}">
-            
+
+            <!--#region Row 2, Column 2-->
             <ctrls:HeimdallrGrid Columns="*" Rows="Auto, *">
-              <!-- 윈도우 타이틀 바 색상변경 비하인드에서 지정 -->
+             
+              <!--#region Row 0, Column 6 -->
               <ctrls:HeimdallrGrid
                   Grid.Row="0"
                   Background="{Binding TitleHeaderBackground, RelativeSource={RelativeSource TemplatedParent}}"
                   Columns="Auto, Auto, Auto, *, Auto, Auto"
                   Rows="Auto">
 
-                <!-- 드래그 영역 (아이콘과 라벨 뒤쪽만 커버) -->
+                <!--#region DragBar 영역 Row 0 전체 -->
                 <ctrls:DraggableBar
                     x:Name="PART_DragBar"
                     Grid.Column="0"
                     Grid.ColumnSpan="6"
                     Style="{StaticResource BAR.DRAGGABLE}" />
+                <!--#endregion-->
 
-                <!-- Heimdallr 아이콘 -->
+                <!--#region Row 0, Column 0 Heimdallr 아이콘 -->
                 <ctrls:HeimdallrIcon 
                       x:Name="PART_Heimdallr"
                       Image="Heimdallr"
                       Grid.Column="0" Margin="15 5 0 0 "
                       Cursor="Hand"/>
+                <!--#endregion-->
 
-                <!-- 타이틀 텍스트 -->
+                <!--#region Row 0, Column 1 Title 문자열 -->
                 <Label
                     Grid.Column="1"
                     Margin="15 5 0 0"
@@ -81,9 +90,9 @@
                     FontWeight="Medium"
                     Foreground="{TemplateBinding Foreground}"
                     IsHitTestVisible="False" />
+                <!--#endregion-->
 
-                <!-- 메뉴 토글 버튼  -->
-                <!-- 추후 Menu 연결시 Visibility="{Binding IsMenuVisibility}" 추가-->
+                <!--#region Row 0, Column 2 ToggleButton (메뉴연결)-->
                 <ctrls:HeimdallrToggleButtonSwitch  
                     x:Name="cbToogleMenu"
                     Grid.Column="2"
@@ -95,12 +104,13 @@
                     <ctrls:HeimdallrToolTip Content="MENU" />
                   </ctrls:HeimdallrToggleButtonSwitch.ToolTip>
                 </ctrls:HeimdallrToggleButtonSwitch>
+                <!--#endregion-->
 
+                <!--#region Row 0 Column 4 (UsrerIcon, 로그인라벨, 로그인아이콘, 정보아이콘, 알림아이콘 -->
                 <!-- Title Bar -->
                 <StackPanel Grid.Column="4" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 5 100 0">
-                  
-                  <!-- 로그인 정보-->
                   <StackPanel Orientation="Horizontal" >
+                    <!-- UserIcon -->
                     <ctrls:HeimdallrIcon 
                         x:Name="cbLogin"
                         PathIcon="User"
@@ -114,6 +124,8 @@
                         <ctrls:HeimdallrToolTip Content="USERNAME" />
                       </ctrls:HeimdallrIcon.ToolTip>
                     </ctrls:HeimdallrIcon>
+
+                    <!-- 로그인 라벨 -->
                     <Label 
                         x:Name="LoginLabelText"
                         VerticalAlignment="Center"
@@ -150,7 +162,7 @@
                     </ctrls:HeimdallrIcon.ToolTip>
                   </ctrls:HeimdallrIcon>
 
-                  <!-- 정보 아이콘 -->
+                  <!-- 알림 아이콘 -->
                   <ctrls:HeimdallrIcon 
                      x:Name="cbTheme" 
                      PathIcon="Notification"
@@ -164,9 +176,9 @@
                     </ctrls:HeimdallrIcon.ToolTip>
                   </ctrls:HeimdallrIcon>
                 </StackPanel>
+                <!--#endregion-->
 
-
-                <!-- 윈도우 버튼 영역 -->
+                <!--#region 윈도우 버튼 영역(작게,크게,닫기) -->
                 <StackPanel Orientation="Horizontal" Grid.Column="5" HorizontalAlignment="Right" Margin="0">
                   <ctrls:MinimizeButton 
                     x:Name="PART_MinButton" />
@@ -175,8 +187,11 @@
                   <ctrls:CloseButton 
                     x:Name="PART_CloseButton" />
                 </StackPanel>
+                <!--#endregion-->
               </ctrls:HeimdallrGrid>
+              <!--#endregion-->
 
+              <!--#region Content 영역 -->
               <!-- ClipToBounds="False" 콘텐츠가 영역을 넘어도 잘리지 않음.  -->
               <ContentPresenter
                 x:Name="content"
@@ -190,6 +205,7 @@
                 Background="{TemplateBinding DimmingColor}"
                 Opacity="{TemplateBinding DimmingOpacity}"
                 Visibility="Collapsed" />
+              <!--#endregion-->
             </ctrls:HeimdallrGrid>
 
           </Border>

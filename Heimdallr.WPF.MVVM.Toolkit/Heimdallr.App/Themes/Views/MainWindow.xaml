@@ -54,21 +54,27 @@
                     HorizontalAlignment="Center"
                     Margin="0 10 0 0" />
 
-                <ListBox ItemsSource="{Binding People}">
-                  <ListBox.ItemTemplate>
-                    <DataTemplate>
-                      <StackPanel Margin="5">
-                        <TextBlock Text="{Binding Id}" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding Name}" FontStyle="Italic"/>
-                        <TextBlock Text="{Binding Age}" FontWeight="Bold"/>
-                        <TextBlock Text="{Binding BirthDay}" FontStyle="Italic"/>
-                        <TextBlock Text="{Binding Address}" FontWeight="Bold"/>
-                      </StackPanel>
-                    </DataTemplate>
-                  </ListBox.ItemTemplate>
-                </ListBox>
+                <ctrls:HeimdallrListView ItemsSource="{Binding People}"
+                                         Margin="0 10 0 0"
+                                         SelectedBackground="red"
+                                         SelectionMode="Single">
+                  <ctrls:HeimdallrListView.View>
+                    <GridView>
+                      <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="60"/>
+                      <GridViewColumn Header="이름" DisplayMemberBinding="{Binding Name}" Width="120"/>
+                      <GridViewColumn Header="나이" DisplayMemberBinding="{Binding Age}" Width="80"/>
+                      <GridViewColumn Header="생일" DisplayMemberBinding="{Binding BirthDay, StringFormat='yyyy-MM-dd'}" Width="130"/>
+                      <GridViewColumn Header="주소" DisplayMemberBinding="{Binding Address}" Width="200" />
+                    </GridView>
+                  </ctrls:HeimdallrListView.View>
+                </ctrls:HeimdallrListView>
               </StackPanel>
             </Grid>
+
+            <Button Grid.Row="12" Content="비동기"
+                    Width="100" Height="30"
+                    Command="{Binding LoadDataCommand}" />
+
           </Grid>
         </Border>
 

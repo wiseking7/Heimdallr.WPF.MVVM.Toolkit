@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.7.17</Version>
+	<Version>1.8.01</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
@@ -74,10 +74,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Themes\Controls\ListView\" />
     <Folder Include="Themes\Controls\StackPanel\" />
     <Folder Include="UI\Controls\DatePicker\" />
-    <Folder Include="UI\Controls\ListView\" />
   </ItemGroup>
 
   <ItemGroup>
@@ -105,6 +103,10 @@
 			<PackagePath>docs\</PackagePath>
 		</None>
 	  <None Include="..\..\Repository.pdf">
+		  <Pack>True</Pack>
+		  <PackagePath>docs\</PackagePath>
+	  </None>
+	  <None Include="..\..\ViewModelBase사용방법.pdf">
 		  <Pack>True</Pack>
 		  <PackagePath>docs\</PackagePath>
 	  </None>

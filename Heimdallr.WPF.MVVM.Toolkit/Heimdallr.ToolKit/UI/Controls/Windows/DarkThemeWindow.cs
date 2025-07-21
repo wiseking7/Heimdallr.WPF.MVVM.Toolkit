@@ -94,7 +94,9 @@ public class DarkThemeWindow : HeimdallrWindow
   }
 
   /// <summary>
-  /// 최대화 시 태스크바 포함 여부를 지정 (true: 포함, false: 태스크바 영역 무한 확장)
+  /// 최대화 시 태스크바 포함 여부를 지정
+  /// true: 최대화해도 작업표시줄을 침범하지 않음 (기본 동작)
+  /// false: 작업표시줄 영역까지 완전하게 풀스크린으로 창을 확장
   /// </summary>
   public bool IsShowTaskBar
   {
@@ -103,8 +105,8 @@ public class DarkThemeWindow : HeimdallrWindow
   }
 
   /// <summary>
-  /// 팝업 열기/닫기 상태 (bool)
-  /// 팝업 UI의 상태를 바인딩하여 제어하는데 사용
+  /// 팝업 또는 패널 등의 UI 요소가 열려 있는 상태인지 여부를 제어
+  /// bool 타입 → true면 팝업 UI를 보여주고, false면 닫음
   /// </summary>
   public bool PopupOpen
   {
@@ -113,7 +115,8 @@ public class DarkThemeWindow : HeimdallrWindow
   }
 
   /// <summary>
-  /// 디밍 효과 활성화 여부
+  /// 화면에 어두운 오버레이(디밍)를 적용할지 여부
+  /// 예: 백그라운드 흐림 처리, 모달 대기 상태 등
   /// </summary>
   public bool Dimming
   {
@@ -122,7 +125,8 @@ public class DarkThemeWindow : HeimdallrWindow
   }
 
   /// <summary>
-  /// 디밍 배경색 Brush
+  /// 디밍 효과에 사용하는 오버레이 배경색 지정
+  /// 기본값: #141414 (매우 어두운 색)
   /// </summary>
   public Brush DimmingColor
   {
@@ -131,7 +135,8 @@ public class DarkThemeWindow : HeimdallrWindow
   }
 
   /// <summary>
-  /// 디밍 효과 투명도 (0.0 ~ 1.0)
+  /// 디밍 오버레이의 투명도 조절 (0.0 ~ 1.0)
+  /// 기본값: 0.8
   /// </summary>
   public double DimmingOpacity
   {

@@ -1,0 +1,53 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <!-- HeimdallrListView 스타일 -->
+  <Style TargetType="{x:Type ctrls:HeimdallrListView}">
+    <!-- ListViewItem 대신 HeimdallrListViewItem 스타일 적용 -->
+    <Setter Property="ItemContainerStyle" Value="{StaticResource {x:Type ctrls:HeimdallrListViewItem}}" />
+
+    <!-- 배경색 -->
+    <Setter Property="Background" Value="#1E1E1E" />
+
+    <!-- 테두리 색상 -->
+    <Setter Property="BorderBrush" Value="#444" />
+
+    <!-- 테두리 두께 -->
+    <Setter Property="BorderThickness" Value="1" />
+
+    <!-- 템플릿 정의 -->
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrListView}">
+          <Border Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}">
+            <ScrollViewer x:Name="ScrollViewer"
+                        Focusable="false"
+                        Padding="0"
+                        VerticalScrollBarVisibility="Auto"
+                        HorizontalScrollBarVisibility="Disabled">
+
+              <!-- 아이템들을 표시하는 부분 -->
+              <ItemsPresenter />
+
+            </ScrollViewer>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+
+    <!--
+    [주의] 열 너비 변경 시 자동 저장이나 UI 갱신이 필요할 경우 아래 항목들을 고려하세요:
+    1) GridViewColumn의 Width 변경 이벤트를 직접 구독하는 방법은 없으므로,
+       마우스 버튼 릴리즈 이벤트(예: PreviewMouseLeftButtonUp)를 ListView에서 처리해 열 너비 저장을 구현하는 것을 권장합니다.
+    2) 사용자가 컬럼 크기 조절 시 ColumnWidths 딕셔너리를 갱신하고, 필요 시 설정 파일 등 외부 저장소에 저장하세요.
+    3) 열 숨김(ColumnVisibility) 기능 구현 시, GridViewColumn 자체에 Visibility 속성이 없으므로 Width = 0으로 숨김 처리합니다.
+       따라서 열 너비 저장/복원 로직에서 이 점을 반드시 고려해야 합니다.
+    4) 만약 열 너비 조절을 동적으로 감지하려면 별도의 UI 동작 후크(hook)나 커스텀 Thumb 조작 코드 추가가 필요할 수 있습니다.
+  -->
+  </Style>
+
+
+</ResourceDictionary>

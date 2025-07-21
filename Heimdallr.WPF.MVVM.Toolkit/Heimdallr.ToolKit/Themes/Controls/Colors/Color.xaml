@@ -1,141 +1,244 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
-  <!-- ========== Gray / Black 계열 ========== -->
+                  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                  xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+  <!--#region Gray / Black 계열  -->
+  <!-- 어두운 검정색 -->
   <SolidColorBrush x:Key="DarkBlack" Color="#000000" />
+  <!-- 다크 안트러사이트 (짙은 회색) -->
   <SolidColorBrush x:Key="DarkAnthracite" Color="#1C1C1C" />
+  <!-- 다크 그래파이트 (어두운 회색) -->
   <SolidColorBrush x:Key="DarkGraphite" Color="#2D2D2D" />
+  <!-- 다크 레이즌 블랙 (어두운 자주색 회색) -->
   <SolidColorBrush x:Key="DarkRaisinBlack" Color="#242124" />
+  <!-- 다크 오닉스 (어두운 회색) -->
   <SolidColorBrush x:Key="DarkOnyx" Color="#353839" />
+  <!-- 다크 차콜 (어두운 차콜 색상) -->
   <SolidColorBrush x:Key="DarkCharcoal" Color="#2C3E50" />
+  <!-- 다크 차콜 그레이 (어두운 회색 톤) -->
   <SolidColorBrush x:Key="DarkCharcoalGray" Color="#36454F" />
+  <!-- 다크 건메탈 (어두운 금속 느낌) -->
   <SolidColorBrush x:Key="DarkGunmetal" Color="#22313F" />
+  <!-- 다크 건메탈2 (다크 건메탈2) -->
   <SolidColorBrush x:Key="DarkGunmetal2" Color="#2A3439" />
+  <!-- 다크 건메탈 그레이 (어두운 금속 회색) -->
   <SolidColorBrush x:Key="DarkGunmetalGray" Color="#39434D" />
+  <!-- 다크 건메탈 블루2 (어두운 건메탈 블루) -->
   <SolidColorBrush x:Key="DarkGunmetalBlue2" Color="#223344" />
+  <!-- 다크 제트 (어두운 짙은 회색) -->
   <SolidColorBrush x:Key="DarkJet" Color="#343434" />
+  <!-- 다크 리커리스 (어두운 검정색) -->
   <SolidColorBrush x:Key="DarkLicorice" Color="#1A1110" />
+  <!-- 다크 그라나이트 (어두운 회색 그라나이트) -->
   <SolidColorBrush x:Key="DarkGranite" Color="#676767" />
+  <!-- 다크 섀도우 (어두운 그림자 회색) -->
   <SolidColorBrush x:Key="DarkShadow" Color="#4A4A4A" />
+  <!-- 다크 슬레이트 그레이 (어두운 청회색) -->
   <SolidColorBrush x:Key="DarkSlateGray" Color="#34495E" />
+  <!-- 다크 슬레이트 그레이2 (어두운 청회색) -->
   <SolidColorBrush x:Key="DarkSlateGray2" Color="#2F4F4F" />
+  <!-- 다크 슬레이트 그레이3 (어두운 청회색) -->
   <SolidColorBrush x:Key="DarkSlateGray3" Color="#1E272C" />
+  <!-- 다크 쿨 그레이 (차가운 어두운 회색) -->
   <SolidColorBrush x:Key="DarkCoolGray" Color="#2C3539" />
+  <!-- 다크 에보니 (어두운 나무 색상) -->
   <SolidColorBrush x:Key="DarkEbony" Color="#555D50" />
+  <!-- 다크 스톰 클라우드 (어두운 회색 클라우드) -->
   <SolidColorBrush x:Key="DarkStormCloud" Color="#4A6D8C" />
+  <!-- 다크 스틸 그레이 (어두운 강철 색상) -->
   <SolidColorBrush x:Key="DarkSteelGray" Color="#262F4F" />
+  <!-- 다크 스틸 블루 (어두운 강철 블루) -->
   <SolidColorBrush x:Key="DarkSteelBlue" Color="#4682B4" />
+  <!--#endregion-->
 
-  <!-- ========== Blue / Navy / Teal 계열 ========== -->
+  <!--#region Blue / Navy / Teal 계열 -->
+  <!-- 다크 슬레이트 블루 (어두운 청록색 블루) -->
   <SolidColorBrush x:Key="DarkSlateBlue" Color="#2C3E50" />
+  <!-- 다크 슬레이트 블루2 (어두운 청록색 블루) -->
   <SolidColorBrush x:Key="DarkSlateBlue2" Color="#374785" />
+  <!-- 다크 건메탈 블루 (어두운 금속 블루) -->
   <SolidColorBrush x:Key="DarkGunmetalBlue" Color="#2B3856" />
+  <!-- 다크 프러시안 블루 (어두운 프러시안 블루) -->
   <SolidColorBrush x:Key="DarkPrussianBlue" Color="#003153" />
+  <!-- 다크 프러시안 블루2 (어두운 프러시안 블루2) -->
   <SolidColorBrush x:Key="DarkPrussianBlue2" Color="#001F3F" />
+  <!-- 다크 스페이스 카데트 (어두운 우주색) -->
   <SolidColorBrush x:Key="DarkSpaceCadet" Color="#2B3D53" />
+  <!-- 다크 인디고 (어두운 남색) -->
   <SolidColorBrush x:Key="DarkIndigo" Color="#264348" />
+  <!-- 다크 인디고2 (어두운 남색) -->
   <SolidColorBrush x:Key="DarkIndigo2" Color="#281E5D" />
+  <!-- 다크 차콜 블루 (어두운 차콜 블루) -->
   <SolidColorBrush x:Key="DarkCharcoalBlue" Color="#283845" />
+  <!-- 다크 블루 그레이 (어두운 파랑 회색) -->
   <SolidColorBrush x:Key="DarkBlueGray" Color="#526D82" />
+  <!-- 다크 블루 (어두운 파란색) -->
   <SolidColorBrush x:Key="DarkBlue" Color="#0A2F50" />
+  <!-- 다크 틸 (어두운 청록색) -->
   <SolidColorBrush x:Key="DarkTeal" Color="#004B49" />
+  <!-- 다크 틸2 (어두운 청록색2) -->
   <SolidColorBrush x:Key="DarkTeal2" Color="#003B46" />
+  <!-- 다크 코발트 블루 (어두운 코발트 블루) -->
   <SolidColorBrush x:Key="DarkCobaltBlue" Color="#0047AB" />
+  <!-- 다크 로열 블루 (어두운 왕실 블루) -->
   <SolidColorBrush x:Key="DarkRoyalBlue" Color="#4169E1" />
+  <!-- 다크 다크 블루 (어두운 어두운 파란색) -->
   <SolidColorBrush x:Key="DarkDarkBlue" Color="#00008B" />
+  <!-- 다크 딥 씨 (어두운 깊은 바다) -->
   <SolidColorBrush x:Key="DarkDeepSea" Color="#014F86" />
+  <!-- 다크 미드나잇 블루 (어두운 미드나잇 블루) -->
   <SolidColorBrush x:Key="DarkMidnightBlue" Color="#191970" />
+  <!-- 다크 아우터 스페이스 (어두운 외계 우주) -->
   <SolidColorBrush x:Key="DarkOuterSpace" Color="#2B3A42" />
+  <!-- 다크 시위드 (어두운 해초색) -->
   <SolidColorBrush x:Key="DarkSeaweed" Color="#354F52" />
+  <!--#endregion-->
 
-  <!-- ========== Green / Olive 계열 ========== -->
+  <!--#region Green / Olive 계열 -->
+  <!-- 다크 다크 정글 그린 (어두운 정글 녹색) -->
   <SolidColorBrush x:Key="DarkDarkJungleGreen" Color="#1A2421" />
+  <!-- 다크 다크 슬레이트 그레이 (어두운 청회색) -->
   <SolidColorBrush x:Key="DarkDarkSlateGray" Color="#222D2D" />
+  <!-- 다크 미드나잇 그린 (어두운 미드나잇 그린) -->
   <SolidColorBrush x:Key="DarkMidnightGreen" Color="#004953" />
+  <!-- 다크 올리브 (어두운 올리브색) -->
   <SolidColorBrush x:Key="DarkOlive" Color="#556B2F" />
+  <!-- 다크 포레스트 그린 (어두운 숲 녹색) -->
   <SolidColorBrush x:Key="DarkForestGreen" Color="#228B22" />
+  <!-- 다크 시그린 (어두운 바다 녹색) -->
   <SolidColorBrush x:Key="DarkSeaGreen" Color="#2E8B57" />
+  <!-- 다크 미디엄 시그린 (어두운 중간 바다 녹색) -->
   <SolidColorBrush x:Key="DarkMediumSeaGreen" Color="#3CB371" />
+  <!-- 다크 라이트 시그린 (어두운 밝은 바다 녹색) -->
   <SolidColorBrush x:Key="DarkLightSeaGreen" Color="#20B2AA" />
+  <!-- 다크 파인 그린 (어두운 소나무 녹색) -->
   <SolidColorBrush x:Key="DarkPineGreen" Color="#01796F" />
+  <!-- 다크 틸 그린 (어두운 청록 녹색) -->
   <SolidColorBrush x:Key="DarkTealGreen" Color="#014D4D" />
+  <!-- 다크 페르시안 그린 (어두운 페르시안 녹색) -->
   <SolidColorBrush x:Key="DarkPersianGreen" Color="#006A4E" />
+  <!-- 다크 올리브 드랩 (어두운 올리브 드랩 색상) -->
   <SolidColorBrush x:Key="DarkOliveDrab" Color="#3B5323" />
+  <!-- 다크 모스 그린 (어두운 이끼 녹색) -->
   <SolidColorBrush x:Key="DarkMossGreen" Color="#4A5D23" />
+  <!-- 다크 펀 그린 (어두운 펀 그린) -->
   <SolidColorBrush x:Key="DarkFernGreen" Color="#4F7942" />
+  <!-- 다크 헌터 그린 (어두운 사냥꾼 그린) -->
   <SolidColorBrush x:Key="DarkHunterGreen" Color="#355E3B" />
+  <!--#endregion-->
 
-  <!-- ========== Purple / Violet 계열 ========== -->
+  <!--#region Purple / Violet 계열 -->
+  <!-- 다크 마룬 (어두운 자주색) -->
   <SolidColorBrush x:Key="DarkMaroon" Color="#3B0A45" />
+  <!-- 다크 퍼플 (어두운 퍼플) -->
   <SolidColorBrush x:Key="DarkPurple" Color="#5E2A79" />
+  <!-- 다크 플럼 (어두운 플럼) -->
   <SolidColorBrush x:Key="DarkPlum" Color="#6A0DAD" />
+  <!-- 다크 바이올렛 (어두운 보라색) -->
   <SolidColorBrush x:Key="DarkViolet" Color="#9400D3" />
+  <!-- 다크 마젠타 (어두운 자홍색) -->
   <SolidColorBrush x:Key="DarkMagenta" Color="#8B008B" />
+  <!-- 다크 멀베리 (어두운 자두색) -->
   <SolidColorBrush x:Key="DarkMulberry" Color="#70193D" />
+  <!-- 다크 로열 퍼플 (어두운 왕실 보라색) -->
   <SolidColorBrush x:Key="DarkRoyalPurple" Color="#4B0082" />
+  <!-- 다크 에그플랜트 (어두운 가지색) -->
   <SolidColorBrush x:Key="DarkEggplant" Color="#311432" />
+  <!-- 다크 와인 (어두운 와인색) -->
   <SolidColorBrush x:Key="DarkWine" Color="#4B0C29" />
+  <!-- 다크 버건디 (어두운 붉은 보라색) -->
   <SolidColorBrush x:Key="DarkBurgundy" Color="#581845" />
+  <!--#endregion-->
 
-  <!-- ========== Red / Orange / Brown 계열 ========== -->
-  <SolidColorBrush x:Key="DarkBloodRed" Color="#7E0A0A" />
-  <SolidColorBrush x:Key="DarkCrimson" Color="#DC143C" />
-  <SolidColorBrush x:Key="DarkFireBrick" Color="#B22222" />
-  <SolidColorBrush x:Key="DarkIndianRed" Color="#CD5C5C" />
-  <SolidColorBrush x:Key="DarkTomato" Color="#FF6347" />
-  <SolidColorBrush x:Key="DarkBurntSienna" Color="#8A3B12" />
+  <!--#region Red 계열 -->
+  <!-- 다크 크림슨 (어두운 짙은 붉은색) -->
+  <SolidColorBrush x:Key="DarkCrimson" Color="#58101A" />
+  <!-- 다크 스칼렛 (어두운 선홍색) -->
+  <SolidColorBrush x:Key="DarkScarlet" Color="#560319" />
+  <!-- 다크 버건디 레드 (어두운 붉은 자주색) -->
+  <SolidColorBrush x:Key="DarkBurgundyRed" Color="#4A0E23" />
+  <!-- 다크 루비 레드 (어두운 보석 루비색) -->
+  <SolidColorBrush x:Key="DarkRubyRed" Color="#73172D" />
+  <!-- 다크 파이어브릭 (짙은 벽돌 붉은색) -->
+  <SolidColorBrush x:Key="DarkFirebrick" Color="#B22222" />
+  <!-- 다크 블러드 레드 (어두운 피색) -->
+  <SolidColorBrush x:Key="DarkBloodRed" Color="#660000" />
+  <!-- 다크 체리 레드 (어두운 체리색) -->
+  <SolidColorBrush x:Key="DarkCherryRed" Color="#4E1E27" />
+  <!-- 다크 마룬 레드 (어두운 자주색 계열 빨강) -->
+  <SolidColorBrush x:Key="DarkMaroonRed" Color="#800000" />
+  <!--#endregion-->
+
+  <!--#region Yellow / Gold 계열 -->
+  <!-- 다크 골든로드 (어두운 황금색) -->
+  <SolidColorBrush x:Key="DarkGoldenrod" Color="#B8860B" />
+  <!-- 다크 카키 (어두운 노란 회색) -->
+  <SolidColorBrush x:Key="DarkKhaki" Color="#BDB76B" />
+  <!-- 다크 앰버 (어두운 호박색) -->
+  <SolidColorBrush x:Key="DarkAmber" Color="#886511" />
+  <!-- 다크 머스타드 (어두운 겨자색) -->
+  <SolidColorBrush x:Key="DarkMustard" Color="#7E5924" />
+  <!-- 다크 브론즈 (어두운 청동색) -->
+  <SolidColorBrush x:Key="DarkBronze" Color="#4F3A1C" />
+  <!-- 다크 골드 (어두운 금색) -->
+  <SolidColorBrush x:Key="DarkGold" Color="#A67C00" />
+  <!-- 다크 옐로 오커 (어두운 황토색) -->
+  <SolidColorBrush x:Key="DarkYellowOchre" Color="#CCAA33" />
+  <!-- 다크 올리브 옐로우 (어두운 올리브 노랑색) -->
+  <SolidColorBrush x:Key="DarkOliveYellow" Color="#6B5B2B" />
+  <!--#endregion-->
+
+  <!--#region Orange 계열 -->
+  <!-- 다크 오렌지 레드 (어두운 붉은 주황색) -->
+  <SolidColorBrush x:Key="DarkOrangeRed" Color="#8B2500" />
+  <!-- 다크 번트 오렌지 (어두운 구운 주황색) -->
+  <SolidColorBrush x:Key="DarkBurntOrange" Color="#CC5500" />
+  <!-- 다크 러스트 (어두운 녹슨 오렌지색) -->
+  <SolidColorBrush x:Key="DarkRust" Color="#8B4000" />
+  <!-- 다크 펌프킨 (어두운 호박색) -->
+  <SolidColorBrush x:Key="DarkPumpkin" Color="#7C3E0A" />
+  <!-- 다크 코퍼 (어두운 구리색) -->
   <SolidColorBrush x:Key="DarkCopper" Color="#7C482B" />
-  <SolidColorBrush x:Key="DarkBronze" Color="#4C3B31" />
-  <SolidColorBrush x:Key="DarkForestBrown" Color="#3E2C23" />
+  <!-- 다크 탠저린 (어두운 귤색) -->
+  <SolidColorBrush x:Key="DarkTangerine" Color="#D2691E" />
+  <!--#endregion-->
 
-  <!-- ========== 기타 / 혼합 ========== -->
-  <SolidColorBrush x:Key="DarkSlateBrown" Color="#483D8B" />
-  <SolidColorBrush x:Key="DarkBlueViolet" Color="#6A5ACD" />
+  <!--#region Brown / Earth 계열 -->
+  <!-- 다크 새들 브라운 (어두운 갈색) -->
+  <SolidColorBrush x:Key="DarkSaddleBrown" Color="#4B2E2B" />
+  <!-- 다크 초콜릿 (짙은 초콜릿색) -->
+  <SolidColorBrush x:Key="DarkChocolate" Color="#3D1F00" />
+  <!-- 다크 커피 (어두운 커피색) -->
+  <SolidColorBrush x:Key="DarkCoffee" Color="#3B2F2F" />
+  <!-- 다크 월넛 (어두운 호두나무색) -->
+  <SolidColorBrush x:Key="DarkWalnut" Color="#5D473A" />
+  <!-- 다크 토프 (어두운 회갈색) -->
+  <SolidColorBrush x:Key="DarkTaupe" Color="#483C32" />
+  <!-- 다크 세피아 (어두운 갈색 잉크색) -->
+  <SolidColorBrush x:Key="DarkSepia" Color="#704214" />
+  <!-- 다크 엄버 (어두운 갈회색) -->
+  <SolidColorBrush x:Key="DarkUmber" Color="#635147" />
+  <!-- 다크 어스 브라운 (어두운 흙빛 갈색) -->
+  <SolidColorBrush x:Key="DarkEarthBrown" Color="#4E3629" />
+  <!--#endregion-->
 
-  <!-- ========== 기본 색상 정의 ========== -->
-  <SolidColorBrush x:Key="PrimaryBrush" Color="#FF2C3E50" />
-  <SolidColorBrush x:Key="PrimaryDarkBrush" Color="#FFECF0F1" />
-  <SolidColorBrush x:Key="AccentBrush" Color="#FF2980B9" />
-  <SolidColorBrush x:Key="HoverBrush" Color="#FFE1E8F7" />
-  <SolidColorBrush x:Key="SelectedBrush" Color="#FF3498DB" />
-  <SolidColorBrush x:Key="BorderBrush" Color="#FFBDC3C7" />
-
-  <!-- ========== Gradient Brushes 정의 ========== -->
-  <LinearGradientBrush x:Key="GoldenBronzeGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FFB79248" Offset="0" />
-    <GradientStop Color="#FF997530" Offset="0.5" />
-    <GradientStop Color="#FF74592B" Offset="1" />
-  </LinearGradientBrush>
-
-  <LinearGradientBrush x:Key="SandGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FFEDE1C8" Offset="0" />
-    <GradientStop Color="#FFDCC088" Offset="0.5" />
-    <GradientStop Color="#FFCBA14A" Offset="1" />
-  </LinearGradientBrush>
-
-  <LinearGradientBrush x:Key="EarthBrownGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FF473814" Offset="0" />
-    <GradientStop Color="#FF57421B" Offset="0.5" />
-    <GradientStop Color="#FF684E23" Offset="1" />
-  </LinearGradientBrush>
-
-  <LinearGradientBrush x:Key="TanGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FF795B28" Offset="0" />
-    <GradientStop Color="#FFC1963B" Offset="0.5" />
-    <GradientStop Color="#FFC8AA6D" Offset="1" />
-  </LinearGradientBrush>
-
-  <LinearGradientBrush x:Key="DarkWoodGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FF463714" Offset="0" />
-    <GradientStop Color="#FF58471D" Offset="0.5" />
-    <GradientStop Color="#FF695625" Offset="1" />
-  </LinearGradientBrush>
-
-  <LinearGradientBrush x:Key="ChocolateBrownGradient" StartPoint="0,0" EndPoint="1,0">
-    <GradientStop Color="#FF685524" Offset="0" />
-    <GradientStop Color="#FF55441B" Offset="0.5" />
-    <GradientStop Color="#FF463714" Offset="1" />
-  </LinearGradientBrush>
-
+  <!--#region White / GrayWhite 계열 -->
+  <!-- 다크 화이트 스모크 (어두운 흰 연기색) -->
+  <SolidColorBrush x:Key="DarkWhiteSmoke" Color="#F5F5F5" />
+  <!-- 다크 게인즈보로 (어두운 연회색) -->
+  <SolidColorBrush x:Key="DarkGainsboro" Color="#DCDCDC" />
+  <!-- 다크 아이보리 (어두운 상아색) -->
+  <SolidColorBrush x:Key="DarkIvory" Color="#E5E5C9" />
+  <!-- 다크 크림 (어두운 크림색) -->
+  <SolidColorBrush x:Key="DarkCream" Color="#F3E5AB" />
+  <!-- 다크 스노우 (어두운 눈색) -->
+  <SolidColorBrush x:Key="DarkSnow" Color="#FFFAFA" />
+  <!-- 다크 고스트 화이트 (어두운 유령 흰색) -->
+  <SolidColorBrush x:Key="DarkGhostWhite" Color="#F8F8FF" />
+  <!-- 다크 오프 화이트 (어두운 미색) -->
+  <SolidColorBrush x:Key="DarkOffWhite" Color="#F0F0F0" />
+  <!-- 다크 화이트 (어두운 흰색) -->
+  <SolidColorBrush x:Key="DarkWhite" Color="#EDEDED" />
+  <!--#endregion-->
 </ResourceDictionary>
 
