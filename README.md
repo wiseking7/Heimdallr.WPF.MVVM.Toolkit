@@ -29,6 +29,9 @@
    - [x] ObservableBase.cs [CommunityToolkit.Mvvm.ComponentModel 의 ObservableObject 상속]
    - [x] ViewModelBase.cs [Prism BindableBase 상속, Title, IContainerProvider, IEventAggregateor, IRegionManager, Title, IsBusy 속성, Lazy<T>, RunOnUiThread 메서드, IDestructible, INavigationAware 인터페이스 구현]
 
+**■ Behaviors [Folder]** [행동]
+   - [x] DataGridRowNumberBehavior.cs [DataGrid RowHeader 에 행 번호를 표시하는 Behavior 파일아래 사용방법 표기]
+
 **■ Contracts [Folder]** [계약]
   - **Viewing [Folder]** [보기]
      - [x] IViewable.cs [View와 ViewModel에 대한 참조를 제공]
@@ -40,6 +43,7 @@
    - [x] BooleanToVisibilityConverter.cs [bool 값을 Visibility로 변환]
    - [x] BoolToColorConverter.cs [True/False 값에 따라 색상을 반환]
    - [x] ComparisonConverter.cs [CheckBox, RadioButton, ComboBox, ListBox 등 선택 상태를 비교 기반으로 관리]
+   - [x] DataGridRowIndexConverter.cs [DataGrid의 DataGridRow 개체를 받아 해당 행(row)의 0부터 시작하는 인덱스에 1을 더해 행번호를 반환하는 값 변환기]
    - [x] ComparisonMultiConverter.cs [다중 값(MultiBinding) 비교]
    - [x] DateFormatConverter.cs [날짜 형식 지정 변환]
    - [x] DepthConverter.cs [하위자식 마진 구하기 예 TreeView]
