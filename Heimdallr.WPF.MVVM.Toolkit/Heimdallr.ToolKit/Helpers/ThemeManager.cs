@@ -3,8 +3,23 @@
 namespace Heimdallr.ToolKit.Helpers;
 
 /// <summary>
-/// 테마(색상 리소스) 전환을 위한 ThemeManager 클래스
+/// 테마(색상 리소스) 전환을 위한 ThemeManager 클래스입니다.
 /// </summary>
+/// <remarks>
+/// 지정된 테마 이름("Dark", "Light" 등)에 따라 App.xaml에 머지된 색상 리소스를 동적으로 교체합니다.
+/// 테마 리소스 파일은 다음 경로에 있어야 합니다:
+/// <c>/Themes/Controls/Colors/DarkColors.xaml</c> 또는 <c>LightColors.xaml</c>
+/// </remarks>
+/// <example>
+/// 사용 예:
+/// <code>
+/// // 다크 테마로 전환
+/// ThemeManager.ChangedTehme("Dark");
+///
+/// // 라이트 테마로 전환
+/// ThemeManager.ChangedTehme("Light");
+/// </code>
+/// </example>
 public static class ThemeManager
 {
   /// <summary>
@@ -38,8 +53,3 @@ public static class ThemeManager
     appResources.Insert(0, newTheme);
   }
 }
-
-
-/* 사용방법
-ThemeManager.ChangeTheme("Light"); // 또는 "Dark"
-*/

@@ -8,6 +8,8 @@
   <ResourceDictionary.MergedDictionaries>
 
     <!-- 1. 공통 색상 및 아이콘 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/LightColors.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/DarkColors.xaml"/>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
 

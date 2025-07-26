@@ -208,7 +208,58 @@ public class HoldSubmitButton : Button
     get => (Brush)GetValue(BgEllipseFillProperty);
     set => SetValue(BgEllipseFillProperty, value);
   }
+  #endregion
 
+  #region Command Handling
+  /// <summary>
+  /// CommandProperty에 대한 CLR 래퍼입니다.
+  /// 이 속성은 커스텀 버튼에서 실행할 Command를 설정하고 바인딩하는 데 사용됩니다.
+  /// </summary>
+  public new ICommand Command
+  {
+    get => (ICommand)GetValue(CommandProperty);  // 바인딩된 Command를 가져옵니다.
+    set => SetValue(CommandProperty, value);    // 새로운 Command를 설정합니다.
+  }
+
+  /// <summary>
+  /// 이 DependencyProperty는 XAML에서 `Command` 속성을 바인딩하는 데 사용됩니다.
+  /// 사용자가 버튼을 눌러 일정 시간 동안 기다린 후 버튼의 "hold" 동작이 완료되었을 때 실행되는 Command를 바인딩합니다.
+  /// </summary>
+  public new static readonly DependencyProperty CommandProperty =
+    DependencyProperty.Register("Command", typeof(ICommand), typeof(HoldSubmitButton), new PropertyMetadata(null));
+
+  /// <summary>
+  /// 마우스 왼쪽 버튼을 눌렀을 때 호출되는 메서드입니다.
+  /// 사용자가 버튼을 일정 시간 동안 누르고 있으면 지정된 Command를 실행하고, 완료 이벤트를 발생시킵니다.
+  /// </summary>
+  /// <param name="e">마우스 버튼 이벤트 인자입니다.</param>
+  protected override async void OnPreviewMouseLeftButtonDown(MouseButtonEventArgs e)
+  {
+    base.OnPreviewMouseLeftButtonDown(e);  // 기본 버튼 기능을 호출하여 기본 동작을 유지합니다.
+
+    _cancellationTokenSource = new CancellationTokenSource();  // 취소를 위한 토큰 소스를 생성합니다.
+
+    try
+    {
+      // 사용자가 버튼을 누르고 있는 동안, 지정된 HoldDuration에 맞게 기다립니다.
+      await Task.Delay(Convert.ToInt32(HoldDuration.TimeSpan.TotalMilliseconds), _cancellationTokenSource.Token);
+
+      // 지정된 시간이 지나면 Command를 수동으로 실행합니다.
+      if (Command?.CanExecute(null) == true)
+      {
+        Command.Execute(null);  // Command가 실행 가능한 경우 실행합니다.
+      }
+
+      // Hold 완료 후 이벤트를 발생시켜 버튼의 Hold 완료를 알립니다.
+      RaiseEvent(new RoutedEventArgs(HoldCompletedEvent));
+    }
+    catch (TaskCanceledException)
+    {
+      // 사용자가 버튼을 너무 빨리 떼거나 취소된 경우 취소 이벤트를 발생시킵니다.
+      RaiseEvent(new RoutedEventArgs(HoldCancelledEvent));
+    }
+
+    base.OnMouseLeftButtonDown(e);  // 기본 마우스 왼쪽 버튼 눌림 동작을 호출하여 추가 기능이 실행되도록 합니다.
+  }
   #endregion
 }
-

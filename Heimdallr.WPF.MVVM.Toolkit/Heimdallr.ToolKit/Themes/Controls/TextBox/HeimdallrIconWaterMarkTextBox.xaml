@@ -45,7 +45,7 @@
                      AcceptsReturn="{TemplateBinding AcceptsReturn}"
                      TextWrapping="{TemplateBinding TextWrapping}"
                      Padding="0"
-                     VerticalAlignment="Stretch"
+                     VerticalAlignment="Bottom"
                      HorizontalAlignment="Stretch" />
 
               <!-- Watermark -->

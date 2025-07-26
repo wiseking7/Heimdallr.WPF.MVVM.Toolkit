@@ -3,7 +3,7 @@
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls"
                     xmlns:cnvts="clr-namespace:Heimdallr.ToolKit.Converters">
 
-  <Style TargetType="{x:Type ctrls:HoldSubmitButton}">
+  <Style TargetType="{x:Type ctrls:HoldSubmitButton}" BasedOn="{StaticResource {x:Type Button}}">
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>

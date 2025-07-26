@@ -19,10 +19,10 @@ public class BoolToActiveStatusConverter : BaseValueConverter<BoolToActiveStatus
   {
     if (value is bool isActive)
     {
-      return isActive ? "사용" : "불가";
+      return isActive ? "사용" : "미사용";
     }
 
-    return "불가"; // 기본값
+    return "미사용"; // 기본값
   }
 
   /// <summary>

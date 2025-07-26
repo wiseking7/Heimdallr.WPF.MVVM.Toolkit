@@ -38,6 +38,16 @@ public enum PathIconType
   Barcode,
 
   /// <summary>
+  /// 원형브랜드 문자열
+  /// </summary>
+  BrandEllipse,
+
+  /// <summary>
+  /// BrandText
+  /// </summary>
+  BrandLogo,
+
+  /// <summary>
   /// 캐시(Cache) 아이콘
   /// </summary>
   Cache,
@@ -113,6 +123,11 @@ public enum PathIconType
   Commit,
 
   /// <summary>
+  /// 이미지 빌딩
+  /// </summary>
+  Company,
+
+  /// <summary>
   /// 회사 텍스트 타원(Company Text Ellipse) 아이콘
   /// </summary>
   CompanyTextEllipse,
@@ -125,12 +140,12 @@ public enum PathIconType
   /// <summary>
   /// 생성(Create) 아이콘
   /// </summary>
-  Create,
+  CreateEllipsePlus,
 
   /// <summary>
   /// 생성 1(Create1) 아이콘
   /// </summary>
-  Create1,
+  CreateSquarePlus,
 
   /// <summary>
   /// 생성 텍스트 타원(Create Text Ellipse) 아이콘
@@ -258,6 +273,11 @@ public enum PathIconType
   HomeTextEllipse,
 
   /// <summary>
+  /// 가져오기
+  /// </summary>
+  Import,
+
+  /// <summary>
   /// 정보(Information) 아이콘
   /// </summary>
   Information,
@@ -313,6 +333,11 @@ public enum PathIconType
   Menu,
 
   /// <summary>
+  /// 빼기
+  /// </summary>
+  Minus,
+
+  /// <summary>
   /// 모바일 타원(Mobile Ellipse) 아이콘
   /// </summary>
   MobileEllipse,
@@ -366,6 +391,11 @@ public enum PathIconType
   /// 파이 차트(Pie) 아이콘
   /// </summary>
   Pie,
+
+  /// <summary>
+  /// 더하기
+  /// </summary>
+  Plus,
 
   /// <summary>
   /// 전원(Power) 아이콘
@@ -493,6 +523,11 @@ public enum PathIconType
   RetailTextEllipse,
 
   /// <summary>
+  /// 역할
+  /// </summary>
+  Role,
+
+  /// <summary>
   /// 판매(Sale) 아이콘
   /// </summary>
   Sale,
@@ -516,6 +551,11 @@ public enum PathIconType
   /// 검색 1(Search1) 아이콘
   /// </summary>
   Search1,
+
+  /// <summary>
+  /// Sell
+  /// </summary>
+  Sell,
 
   /// <summary>
   /// 설정(Setting) 아이콘
