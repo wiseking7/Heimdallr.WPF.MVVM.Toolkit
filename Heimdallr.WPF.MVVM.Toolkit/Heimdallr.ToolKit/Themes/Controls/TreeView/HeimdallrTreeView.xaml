@@ -21,15 +21,17 @@
                   BorderThickness="{TemplateBinding BorderThickness}"
                   SnapsToDevicePixels="True"
                   CornerRadius="{TemplateBinding CornerRadius}">
-            
-            <!-- 스크롤 가능한 콘텐츠 영역-->
+
+            <ItemsPresenter />
+
+            <!-- 스크롤 가능한 콘텐츠 영역--><!--
             <ScrollViewer Padding="0"
                           Focusable="false"
-                          HorizontalScrollBarVisibility="Auto"
+                          HorizontalScrollBarVisibility="Visible"
                           VerticalScrollBarVisibility="Auto">
-              <!-- 실제 항목이 렌더링 되는 위치-->
+              --><!-- 실제 항목이 렌더링 되는 위치--><!--
               <ItemsPresenter />
-            </ScrollViewer>
+            </ScrollViewer>-->
           </Border>
         </ControlTemplate>
       </Setter.Value>

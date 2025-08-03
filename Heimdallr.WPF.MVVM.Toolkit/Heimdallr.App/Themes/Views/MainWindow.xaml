@@ -36,6 +36,38 @@
               <RowDefinition />
             </Grid.RowDefinitions>
 
+            <ctrls:HeimdallrTreeView Grid.Row="1" Width="500" Background="Transparent">
+              <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
+                               ExpandIcon="ChevronDownEllipse"
+                               CollapseIcon="ChevronUpEllipse"
+                               ExpandIconFill="Yellow"
+                               CollapseIconFill="CornflowerBlue"
+                               IconWidth="40" IconHeight="40"
+                               PathIconFill="Black"
+                               SelectedCommand="{Binding ButtonTextCommamd}"
+                               SelectedBackground="AliceBlue"
+                               HoverBackground="Blue"
+                               FontSize="40" Foreground="Red">
+
+                <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
+                  ExpandIcon="ChevronDownEllipse"
+                  CollapseIcon="ChevronUpEllipse"
+                  IconWidth="30" IconHeight="30"
+                  ExpandIconFill="AliceBlue"
+                  CollapseIconFill="Bisque"
+                  FontSize="30" Foreground="AliceBlue">
+
+                  <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
+                  IconWidth="20" IconHeight="20"
+                  PathIconFill="AliceBlue"
+                  FontSize="20" Foreground="Green">
+                  </ctrls:HeimdallrTreeViewItem>
+                </ctrls:HeimdallrTreeViewItem>
+              </ctrls:HeimdallrTreeViewItem>
+              <ctrls:HeimdallrThumb />
+            </ctrls:HeimdallrTreeView>
+
+
             <Grid Grid.Row="11" Margin="0 10 0 0">
               <StackPanel Margin="10">
                 <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10" />

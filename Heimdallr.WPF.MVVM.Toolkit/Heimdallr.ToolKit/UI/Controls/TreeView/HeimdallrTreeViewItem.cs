@@ -221,5 +221,68 @@ public class HeimdallrTreeViewItem : TreeViewItem
       SelectedCommand.Execute(DataContext);
     }
   }
+  #region 항목선택/마우스오버시 색상지정
+  /// <summary>
+  /// 항목이 선택되었을 때 배경 색상
+  /// </summary>
+  public Brush SelectedBackground
+  {
+    get => (Brush)GetValue(SelectedBackgroundProperty);
+    set => SetValue(SelectedBackgroundProperty, value);
+  }
+  /// <summary>
+  /// 기본값 LightBlue
+  /// </summary>
+  public static readonly DependencyProperty SelectedBackgroundProperty =
+      DependencyProperty.Register(nameof(SelectedBackground), typeof(Brush), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(Brushes.LightBlue));  // 기본값
+
+  /// <summary>
+  /// 마우스 오버 시 배경 색상
+  /// </summary>
+  public Brush HoverBackground
+  {
+    get => (Brush)GetValue(HoverBackgroundProperty);
+    set => SetValue(HoverBackgroundProperty, value);
+  }
+  /// <summary>
+  /// 기본값 LightPink
+  /// </summary>
+  public static readonly DependencyProperty HoverBackgroundProperty =
+      DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(Brushes.LightPink)); // 기본값
+  #endregion
+
+  #region 확장/축소 아이콘 너비/축소 설정
+  /// <summary>
+  /// 확장/축소 아이콘의 너비 (픽셀 단위)
+  /// </summary>
+  public double ExpandToggleIconWidth
+  {
+    get => (double)GetValue(ExpandToggleIconWidthProperty);
+    set => SetValue(ExpandToggleIconWidthProperty, value);
+  }
+  /// <summary>
+  /// 확장 기본값 16.0
+  /// </summary>
+  public static readonly DependencyProperty ExpandToggleIconWidthProperty =
+      DependencyProperty.Register(nameof(ExpandToggleIconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(16.0));
+
+  /// <summary>
+  /// 확장/축소 아이콘의 높이 (픽셀 단위)
+  /// </summary>
+  public double ExpandToggleIconHeight
+  {
+    get => (double)GetValue(ExpandToggleIconHeightProperty);
+    set => SetValue(ExpandToggleIconHeightProperty, value);
+  }
+  /// <summary>
+  /// 축소 기본값 16.0
+  /// </summary>
+  public static readonly DependencyProperty ExpandToggleIconHeightProperty =
+      DependencyProperty.Register(nameof(ExpandToggleIconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(16.0));
+  #endregion
 }
 

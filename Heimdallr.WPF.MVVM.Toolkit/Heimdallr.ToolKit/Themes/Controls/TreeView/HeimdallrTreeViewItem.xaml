@@ -16,8 +16,8 @@
         <ControlTemplate TargetType="ToggleButton">
           <ContentPresenter
                    HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   RecognizesAccessKey="True"/>
+                   VerticalAlignment="Center"/>
+          <!--RecognizesAccessKey="True" ContentPresenter 제외 -->
         </ControlTemplate>
       </Setter.Value>
     </Setter>
@@ -38,7 +38,8 @@
                 BorderThickness="{TemplateBinding BorderThickness}"
                 SnapsToDevicePixels="True"
                 Padding="3"
-                Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, Converter={cnvts:DepthConverter}}">
+                Margin="{Binding RelativeSource={RelativeSource TemplatedParent}, 
+                            Converter={cnvts:DepthConverter}}">
 
               <Grid>
                 <Grid.ColumnDefinitions>
@@ -47,6 +48,7 @@
 
                   <!-- 문자열 -->
                   <ColumnDefinition Width="*" />
+                  
                   <!-- ToggleButton -->
                   <ColumnDefinition Width="Auto" />
                 </Grid.ColumnDefinitions>
@@ -57,14 +59,18 @@
                     PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
                     Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
                     Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                    Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}" />
+                    Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                    Visibility="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}, 
+                                  Converter={cnvts:PathIconToVisibilityConverter}}" />
 
                   <!-- 문자열 -->
                   <TextBlock 
                       Grid.Column="1"
                       Text="{TemplateBinding Text}"
-                      VerticalAlignment="Center" Margin="20 0 0 0"
-                      Padding="3" />
+                      VerticalAlignment= "Center" Margin="10 0 0 0"
+                      Padding="0" 
+                      Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent},
+                                     Converter={cnvts:NullOrEmptyToVisibilityConverter}}"/>
 
                   <!-- 펼침 접힘 아이콘 -->
                 <ToggleButton 
@@ -72,24 +78,28 @@
                       IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
                       Style="{StaticResource FlatToggleButtonStyle}"
                       VerticalAlignment="Center" 
-                      Margin="50 0 0 0">
+                      Margin="10 0 0 0">
 
                   <Grid Width="Auto" Height="Auto">
                     <!-- 확장 아이콘 -->
-                    <ctrls:HeimdallrIcon
-                        x:Name="ExpandIconElement"
-                        PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                        Fill="{Binding ExpandIconFill, RelativeSource={RelativeSource TemplatedParent}}"
-                        Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                        Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
-                        Visibility="Collapsed" />
+                    <Viewbox Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                             Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                      <ctrls:HeimdallrIcon
+                              x:Name="ExpandIconElement"
+                              PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                              Fill="{Binding ExpandIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                              Visibility="Collapsed"/>
+                    </Viewbox>
+
                     <!-- 축소 아이콘 -->
-                    <ctrls:HeimdallrIcon x:Name="CollapseIconElement"
-                        PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"       
-                        Fill="{Binding CollapseIconFill, RelativeSource={RelativeSource TemplatedParent}}"
-                        Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                        Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
-                        Visibility="Collapsed" />
+                    <Viewbox Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                             Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                      <ctrls:HeimdallrIcon
+                              x:Name="CollapseIconElement"
+                              PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                              Fill="{Binding CollapseIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                              Visibility="Collapsed"/>
+                    </Viewbox>
                   </Grid>
                 </ToggleButton>
               </Grid>
@@ -114,10 +124,12 @@
 
             <!-- 선택 및 마우스 오버 스타일 -->
             <Trigger Property="IsSelected" Value="True">
-              <Setter TargetName="border" Property="Background" Value="#FF3DC2EC"/>
+              <Setter TargetName="border" Property="Background" 
+                      Value="{Binding SelectedBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="border" Property="Background" Value="Transparent"/>
+              <Setter TargetName="border" Property="Background" 
+                      Value="{Binding HoverBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

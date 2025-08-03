@@ -15,6 +15,12 @@ public static class PasswordHasherWithSalt
   private const string HexFormat = "x2";
 
   /// <summary>
+  /// 매개변수 없는 오버로드 추가 (기본 16 바이트)
+  /// </summary>
+  /// <returns></returns>
+  public static string GenerateSalt() => GenerateSalt(16);
+
+  /// <summary>
   /// 비밀번호와 Salt를 결합하여 SHA-256 해시 방식으로 해시하는 메서드
   /// </summary>
   /// <param name="password">사용자가 입력한 비밀번호</param>
@@ -52,7 +58,7 @@ public static class PasswordHasherWithSalt
   /// </summary>
   /// <param name="length">Salt의 길이 (바이트 단위)</param>
   /// <returns>랜덤 Salt 값</returns>
-  private static string GenerateSalt(int length)
+  public static string GenerateSalt(int length)
   {
     byte[] saltBytes = new byte[length];
 
