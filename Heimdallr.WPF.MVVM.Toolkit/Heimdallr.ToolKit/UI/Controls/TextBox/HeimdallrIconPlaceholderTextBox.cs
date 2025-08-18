@@ -120,7 +120,7 @@ public class HeimdallrIconPlaceholderTextBox : Control
   /// </summary>
   public static readonly DependencyProperty PlaceholderForegroundProperty =
       DependencyProperty.Register(nameof(PlaceholderForeground), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
-          new PropertyMetadata(Brushes.Gray));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 
   //====================== 내부 상태 ======================//
   /// <summary>
@@ -175,7 +175,7 @@ public class HeimdallrIconPlaceholderTextBox : Control
   /// </summary>
   public static readonly DependencyProperty FillProperty =
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
-          new PropertyMetadata(Brushes.Gray));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 
   /// <summary>
   /// 커서 색상
@@ -191,5 +191,5 @@ public class HeimdallrIconPlaceholderTextBox : Control
   /// </summary>
   public static readonly DependencyProperty CaretBrushProperty =
       DependencyProperty.Register(nameof(CaretBrush), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
-          new PropertyMetadata(Brushes.Black));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#000000"))));
 }

@@ -54,25 +54,38 @@
                 </Grid.ColumnDefinitions>
 
                 <!-- PathIcon -->
-                <ctrls:HeimdallrIcon 
-                    Grid.Column="0"
-                    PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                    Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
-                    Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                    Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
-                    Visibility="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}, 
-                                  Converter={cnvts:PathIconToVisibilityConverter}}" />
+                <Viewbox Grid.Column="0"
+                         Stretch="Fill"
+                         Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                         Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                  <ctrls:HeimdallrIcon 
+                          Grid.Column="0"
+                          PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                          Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                          Visibility="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}, 
+                                        Converter={cnvts:PathIconToVisibilityConverter}}" />
+                </Viewbox>
 
-                  <!-- 문자열 -->
+                <!-- 문자열 -->
                   <TextBlock 
                       Grid.Column="1"
                       Text="{TemplateBinding Text}"
-                      VerticalAlignment= "Center" Margin="10 0 0 0"
-                      Padding="0" 
+                      VerticalAlignment= "Center" 
+                      Margin="10 0 0 0"
+                      Padding="2" 
                       Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent},
                                      Converter={cnvts:NullOrEmptyToVisibilityConverter}}"/>
 
-                  <!-- 펼침 접힘 아이콘 -->
+                <!-- ✔ 문자열 없을 때 간격 유지를 위한 Dummy Spacer -->
+                <Border 
+                      Grid.Column="1"
+                      Background="Transparent"
+                      Visibility="{Binding Text, RelativeSource={RelativeSource TemplatedParent},
+                                   Converter={cnvts:NullOrEmptyToVisibilityConverter}, ConverterParameter=invert}"
+                      Margin="{Binding IconSpacingWhenTextIsEmpty, RelativeSource={RelativeSource TemplatedParent}, 
+                                   Converter={cnvts:DoubleToLeftMarginConverter}}" />
+
+                <!-- 펼침 접힘 아이콘 -->
                 <ToggleButton 
                       Grid.Column="2"
                       IsChecked="{Binding IsExpanded, RelativeSource={RelativeSource TemplatedParent}}"
@@ -80,27 +93,30 @@
                       VerticalAlignment="Center" 
                       Margin="10 0 0 0">
 
-                  <Grid Width="Auto" Height="Auto">
-                    <!-- 확장 아이콘 -->
-                    <Viewbox Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                             Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
-                      <ctrls:HeimdallrIcon
-                              x:Name="ExpandIconElement"
-                              PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                              Fill="{Binding ExpandIconFill, RelativeSource={RelativeSource TemplatedParent}}"
-                              Visibility="Collapsed"/>
-                    </Viewbox>
-
-                    <!-- 축소 아이콘 -->
-                    <Viewbox Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                             Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
-                      <ctrls:HeimdallrIcon
-                              x:Name="CollapseIconElement"
-                              PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                              Fill="{Binding CollapseIconFill, RelativeSource={RelativeSource TemplatedParent}}"
-                              Visibility="Collapsed"/>
-                    </Viewbox>
-                  </Grid>
+                  <Border Background="Transparent" MinWidth="24" MinHeight="24">
+                    <Grid>
+                      <Viewbox
+                            Stretch="Fill"
+                            Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                            Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ctrls:HeimdallrIcon
+                                x:Name="ExpandIconElement"
+                                PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                                Fill="{Binding ExpandIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                                Visibility="Collapsed"/>
+                      </Viewbox>
+                      <Viewbox
+                            Stretch="Fill"
+                            Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                            Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                        <ctrls:HeimdallrIcon
+                                x:Name="CollapseIconElement"
+                                PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                                Fill="{Binding CollapseIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                                Visibility="Collapsed"/>
+                      </Viewbox>
+                    </Grid>
+                  </Border>
                 </ToggleButton>
               </Grid>
             </Border>

@@ -45,12 +45,15 @@
             <!-- Thumb -->
             <Border x:Name="PART_Thumb"
                     Style="{StaticResource SwitchThumbStyle}">
-              <ctrls:HeimdallrIcon x:Name="ThumbIcon"
-                            PathIcon="HeimdallrLogo"
-                            Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
-                            Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"/>
+              <Viewbox
+                    x:Name="ThumbIcon"
+                    Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                    Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}">
+                <ctrls:HeimdallrIcon 
+                      PathIcon="HeimdallrLogo"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"/>
+              </Viewbox>
             </Border>
 
             <!-- ON/OFF 텍스트 -->

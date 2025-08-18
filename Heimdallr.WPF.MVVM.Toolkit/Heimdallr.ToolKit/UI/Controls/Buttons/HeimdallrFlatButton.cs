@@ -132,7 +132,7 @@ public class HeimdallrFlatButton : Button
   /// </summary>
   public static readonly DependencyProperty DisabledBackgroundProperty =
       DependencyProperty.Register(nameof(DisabledBackground), typeof(Brush), typeof(HeimdallrFlatButton),
-          new PropertyMetadata(new SolidColorBrush(Color.FromRgb(0xAA, 0xAA, 0xAA))));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 
   /// <summary>
   /// 

@@ -86,7 +86,7 @@ public class HeimdallrProgressBar : Control
   /// </summary>
   public static readonly DependencyProperty FillProperty =
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrProgressBar),
-          new PropertyMetadata(Brushes.DeepSkyBlue));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#6EACDA"))));
   #endregion
 
   #region IsIndeterminate 프로퍼티 (인디터미넌트 모드 여부)
@@ -159,7 +159,7 @@ public class HeimdallrProgressBar : Control
   /// </summary>
   public static readonly DependencyProperty ProgressTextForegroundProperty =
       DependencyProperty.Register(nameof(ProgressTextForeground), typeof(Brush), typeof(HeimdallrProgressBar),
-          new PropertyMetadata(Brushes.White));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"))));
   #endregion
 
   /// <summary>

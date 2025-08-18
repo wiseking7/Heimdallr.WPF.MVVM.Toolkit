@@ -13,9 +13,54 @@ public enum PathIconType
   Account,
 
   /// <summary>
+  /// 활동
+  /// </summary>
+  Activity,
+
+  /// <summary>
   /// 주소(Address) 아이콘
   /// </summary>
   Address,
+
+  /// <summary>
+  /// 조정
+  /// </summary>
+  Adjustment,
+
+  /// <summary>
+  /// 분석
+  /// </summary>
+  Analytics,
+
+  /// <summary>
+  /// 승인
+  /// </summary>
+  Approval,
+
+  /// <summary>
+  /// 아래방향
+  /// </summary>
+  ArrowDown,
+
+  /// <summary>
+  /// 왼쪽방향
+  /// </summary>
+  ArrowLeft,
+
+  /// <summary>
+  /// 오른족방향
+  /// </summary>
+  ArrowRight,
+
+  /// <summary>
+  /// 위방향
+  /// </summary>
+  ArrowUp,
+
+  /// <summary>
+  /// 권한
+  /// </summary>
+  Authority,
 
   /// <summary>
   /// 뒤로 가기(Back) 아이콘
@@ -33,6 +78,11 @@ public enum PathIconType
   BackupTextEllipse,
 
   /// <summary>
+  /// 은행
+  /// </summary>
+  Bank,
+
+  /// <summary>
   /// 바코드(Barcode) 아이콘
   /// </summary>
   Barcode,
@@ -43,9 +93,24 @@ public enum PathIconType
   BrandEllipse,
 
   /// <summary>
+  /// 브래든
+  /// </summary>
+  Brand,
+
+  /// <summary>
   /// BrandText
   /// </summary>
   BrandLogo,
+
+  /// <summary>
+  /// 예산문자
+  /// </summary>
+  BudgetString,
+
+  /// <summary>
+  /// 구매
+  /// </summary>
+  Buy,
 
   /// <summary>
   /// 캐시(Cache) 아이콘
@@ -56,6 +121,11 @@ public enum PathIconType
   /// 계산(Calculation) 아이콘
   /// </summary>
   Calculation,
+
+  /// <summary>
+  /// 달력
+  /// </summary>
+  Calender,
 
   /// <summary>
   /// 취소(Cancel) 아이콘
@@ -71,6 +141,11 @@ public enum PathIconType
   /// 장바구니(Cart) 아이콘
   /// </summary>
   Cart,
+
+  /// <summary>
+  /// 현금
+  /// </summary>
+  Cash,
 
   /// <summary>
   /// 카테고리(Category) 아이콘
@@ -93,6 +168,11 @@ public enum PathIconType
   Chart,
 
   /// <summary>
+  /// 채팅
+  /// </summary>
+  Chat,
+
+  /// <summary>
   /// 아래 방향 화살표 타원(Chevron Down Ellipse) 아이콘
   /// </summary>
   ChevronDownEllipse,
@@ -111,6 +191,11 @@ public enum PathIconType
   /// 위쪽 방향 화살표 타원(Chevron Up Ellipse) 아이콘
   /// </summary>
   ChevronUpEllipse,
+
+  /// <summary>
+  /// 도시
+  /// </summary>
+  City,
 
   /// <summary>
   /// 클라이언트 타원(Client Ellipse) 아이콘
@@ -138,6 +223,21 @@ public enum PathIconType
   ContractEllipse,
 
   /// <summary>
+  /// 나라
+  /// </summary>
+  CountryString,
+
+  /// <summary>
+  /// 쿠폰
+  /// </summary>
+  Coupon,
+
+  /// <summary>
+  /// 생성하기
+  /// </summary>
+  Create,
+
+  /// <summary>
   /// 생성(Create) 아이콘
   /// </summary>
   CreateEllipsePlus,
@@ -153,6 +253,16 @@ public enum PathIconType
   CreateTextEllipse,
 
   /// <summary>
+  /// 신용카드
+  /// </summary>
+  CreditCard,
+
+  /// <summary>
+  /// 원화표시
+  /// </summary>
+  CurrencyWon,
+
+  /// <summary>
   /// 고객(Customer) 아이콘
   /// </summary>
   Customer,
@@ -160,7 +270,7 @@ public enum PathIconType
   /// <summary>
   /// 고객 1(Customer1) 아이콘
   /// </summary>
-  Customer1,
+  CustomerA,
 
   /// <summary>
   /// 대시보드(Dashboard) 아이콘
@@ -168,9 +278,19 @@ public enum PathIconType
   Dashboard,
 
   /// <summary>
+  /// 대시보드(Dashboard) 아이콘
+  /// </summary>
+  DashboardA,
+
+  /// <summary>
   /// 대시보드 텍스트 타원(Dashboard Text Ellipse) 아이콘
   /// </summary>
   DashboardTextEllipse,
+
+  /// <summary>
+  /// 일
+  /// </summary>
+  Day,
 
   /// <summary>
   /// 낮 시간 타원(Day Ellipse) 아이콘
@@ -188,6 +308,46 @@ public enum PathIconType
   DeleteTextEllipse,
 
   /// <summary>
+  /// 배송시간
+  /// </summary>
+  Delivery,
+
+  /// <summary>
+  /// 입금
+  /// </summary>
+  Deposit,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  Detail,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  DetailA,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  DetailB,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  DetailC,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  DetailD,
+
+  /// <summary>
+  /// 세부사항
+  /// </summary>
+  DetailE,
+
+  /// <summary>
   /// 할인(Discount) 아이콘
   /// </summary>
   Discount,
@@ -198,9 +358,19 @@ public enum PathIconType
   Discount1,
 
   /// <summary>
-  /// 편집(Edit) 아이콘
+  /// 아래방향
+  /// </summary>
+  Down,
+
+  /// <summary>
+  /// 편집
   /// </summary>
   Edit,
+
+  /// <summary>
+  /// 편집(Edit) 아이콘
+  /// </summary>
+  EditA,
 
   /// <summary>
   /// 이메일(Email) 아이콘
@@ -213,14 +383,29 @@ public enum PathIconType
   Employee,
 
   /// <summary>
+  /// 직원(Employee) 아이콘
+  /// </summary>
+  EmployeeA,
+
+  /// <summary>
   /// 직원 텍스트 타원(Employee Text Ellipse) 아이콘
   /// </summary>
   EmployeeTextEllipse,
 
   /// <summary>
+  /// 환경
+  /// </summary>
+  Environment,
+
+  /// <summary>
   /// 교환(Exchange) 아이콘
   /// </summary>
   Exchange,
+
+  /// <summary>
+  /// 빨리
+  /// </summary>
+  Fast,
 
   /// <summary>
   /// 즐겨찾기(Favorite) 아이콘
@@ -231,6 +416,11 @@ public enum PathIconType
   /// 파일(File) 아이콘
   /// </summary>
   File,
+
+  /// <summary>
+  /// 자금
+  /// </summary>
+  Finance,
 
   /// <summary>
   /// 폴더(Folder) 아이콘
@@ -263,9 +453,19 @@ public enum PathIconType
   HEIMDALLR_STRING,
 
   /// <summary>
+  /// 이력
+  /// </summary>
+  History,
+
+  /// <summary>
   /// 홈(Home) 아이콘
   /// </summary>
   Home,
+
+  /// <summary>
+  /// 홈(Home) 아이콘
+  /// </summary>
+  HomeA,
 
   /// <summary>
   /// 홈 텍스트 타원(Home Text Ellipse) 아이콘
@@ -278,6 +478,11 @@ public enum PathIconType
   Import,
 
   /// <summary>
+  /// 수익
+  /// </summary>
+  Income,
+
+  /// <summary>
   /// 정보(Information) 아이콘
   /// </summary>
   Information,
@@ -286,6 +491,11 @@ public enum PathIconType
   /// 재고(Inventory) 아이콘
   /// </summary>
   Inventory,
+
+  /// <summary>
+  /// 창고형재고
+  /// </summary>
+  InventoryA,
 
   /// <summary>
   /// 재고 텍스트 타원(Inventory Text Ellipse) 아이콘
@@ -298,9 +508,24 @@ public enum PathIconType
   Invoice,
 
   /// <summary>
+  /// 청구서 리스트
+  /// </summary>
+  InvoiceList,
+
+  /// <summary>
   /// 청구서 텍스트 타원(Invoice Text Ellipse) 아이콘
   /// </summary>
   InvoiceTextEllipse,
+
+  /// <summary>
+  /// 항목피라미드
+  /// </summary>
+  Item,
+
+  /// <summary>
+  /// 항목사이트
+  /// </summary>
+  ItemSite,
 
   /// <summary>
   /// 키(Key) 아이콘
@@ -313,6 +538,71 @@ public enum PathIconType
   Label,
 
   /// <summary>
+  /// 왼쪽방향
+  /// </summary>
+  Left,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  List,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListA,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListB,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListC,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListD,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListE,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListF,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListG,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListH,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListI,
+
+  /// <summary>
+  /// 목록
+  /// </summary>
+  ListJ,
+
+  /// <summary>
+  /// 잠금
+  /// </summary>
+  Lock,
+
+  /// <summary>
   /// 로그(Log) 아이콘
   /// </summary>
   Log,
@@ -323,9 +613,19 @@ public enum PathIconType
   Login,
 
   /// <summary>
+  /// 로그기록
+  /// </summary>
+  LogRecord,
+
+  /// <summary>
   /// 로그아웃(Logout) 아이콘
   /// </summary>
   Logout,
+
+  /// <summary>
+  /// 관리
+  /// </summary>
+  Manager,
 
   /// <summary>
   /// 메뉴(Menu) 아이콘
@@ -343,9 +643,34 @@ public enum PathIconType
   MobileEllipse,
 
   /// <summary>
+  /// 이동전화
+  /// </summary>
+  MobilePhone,
+
+  /// <summary>
   /// 돈(Money) 아이콘
   /// </summary>
   Money,
+
+  /// <summary>
+  /// 월별
+  /// </summary>
+  Month,
+
+  /// <summary>
+  /// 월 요약
+  /// </summary>
+  MonthSummary,
+
+  /// <summary>
+  /// 탐색
+  /// </summary>
+  Navigation,
+
+  /// <summary>
+  /// 탐색
+  /// </summary>
+  NavigationOutLine,
 
   /// <summary>
   /// 아이콘 없음(None)
@@ -378,6 +703,11 @@ public enum PathIconType
   Payment,
 
   /// <summary>
+  /// 전화
+  /// </summary>
+  Phone,
+
+  /// <summary>
   /// 전화 타원(Phone Ellipse) 아이콘
   /// </summary>
   PhoneEllipse,
@@ -393,9 +723,24 @@ public enum PathIconType
   Pie,
 
   /// <summary>
+  /// Pin
+  /// </summary>
+  Pin,
+
+  /// <summary>
   /// 더하기
   /// </summary>
   Plus,
+
+  /// <summary>
+  /// 점수
+  /// </summary>
+  Point,
+
+  /// <summary>
+  /// 우편번호
+  /// </summary>
+  PostalString,
 
   /// <summary>
   /// 전원(Power) 아이콘
@@ -433,14 +778,34 @@ public enum PathIconType
   Print,
 
   /// <summary>
+  /// 진행
+  /// </summary>
+  Processing,
+
+  /// <summary>
   /// 제품(Product) 아이콘
   /// </summary>
   Product,
 
   /// <summary>
-  /// 제품 1(Product1) 아이콘
+  /// 제품 A(Product1) 아이콘
   /// </summary>
-  Product1,
+  ProductA,
+
+  /// <summary>
+  /// 제품 B
+  /// </summary>
+  ProductB,
+
+  /// <summary>
+  /// 제품 C
+  /// </summary>
+  ProductC,
+
+  /// <summary>
+  /// 제품공장 
+  /// </summary>
+  ProductFactory,
 
   /// <summary>
   /// 제품 생성(Product Create) 아이콘
@@ -483,6 +848,11 @@ public enum PathIconType
   PurchaseTextEllipse,
 
   /// <summary>
+  /// 빠른
+  /// </summary>
+  Quick,
+
+  /// <summary>
   /// 읽기(Read) 아이콘
   /// </summary>
   Read,
@@ -503,14 +873,34 @@ public enum PathIconType
   Receipt,
 
   /// <summary>
+  /// 기록
+  /// </summary>
+  Record,
+
+  /// <summary>
+  /// 환불
+  /// </summary>
+  Refund,
+
+  /// <summary>
   /// 지역(Region) 아이콘
   /// </summary>
   Region,
 
   /// <summary>
+  /// 요청
+  /// </summary>
+  Request,
+
+  /// <summary>
   /// 보고서(Report) 아이콘
   /// </summary>
   Report,
+
+  /// <summary>
+  /// 보고서 A
+  /// </summary>
+  ReportA,
 
   /// <summary>
   /// 보고서 텍스트 타원(Report Text Ellipse) 아이콘
@@ -523,6 +913,21 @@ public enum PathIconType
   RetailTextEllipse,
 
   /// <summary>
+  /// 반환
+  /// </summary>
+  Return,
+
+  /// <summary>
+  /// 반품입고
+  /// </summary>
+  ReturnedWarehousing,
+
+  /// <summary>
+  /// 오른쪽바향
+  /// </summary>
+  Right,
+
+  /// <summary>
   /// 역할
   /// </summary>
   Role,
@@ -531,6 +936,16 @@ public enum PathIconType
   /// 판매(Sale) 아이콘
   /// </summary>
   Sale,
+
+  /// <summary>
+  /// 판매(Sale) 아이콘
+  /// </summary>
+  SaleA,
+
+  /// <summary>
+  /// 매출실적
+  /// </summary>
+  SaleRevenue,
 
   /// <summary>
   /// 저장(Save) 아이콘
@@ -568,9 +983,29 @@ public enum PathIconType
   SettingTextEllipse,
 
   /// <summary>
+  /// 배송트럭
+  /// </summary>
+  Shipped,
+
+  /// <summary>
   /// 배송(Shipping) 아이콘
   /// </summary>
   Shipping,
+
+  /// <summary>
+  /// 군,구,읍
+  /// </summary>
+  StateString,
+
+  /// <summary>
+  /// 통계
+  /// </summary>
+  Stats,
+
+  /// <summary>
+  /// 재고
+  /// </summary>
+  Stock,
 
   /// <summary>
   /// 재고 텍스트 타원(Stock Text Ellipse) 아이콘
@@ -583,9 +1018,24 @@ public enum PathIconType
   Store,
 
   /// <summary>
+  /// 매장
+  /// </summary>
+  StoreA,
+
+  /// <summary>
+  /// 거리
+  /// </summary>
+  StreetString,
+
+  /// <summary>
   /// 제출 텍스트 타원(Submit Text Ellipse) 아이콘
   /// </summary>
   SubmitTextEllipse,
+
+  /// <summary>
+  /// 합계
+  /// </summary>
+  Sum,
 
   /// <summary>
   /// 공급자 타원(Supplier Ellipse) 아이콘
@@ -596,6 +1046,16 @@ public enum PathIconType
   /// 세금(Tax) 아이콘
   /// </summary>
   Tax,
+
+  /// <summary>
+  /// 세금계산서
+  /// </summary>
+  TaxInvoice,
+
+  /// <summary>
+  /// 세금계산서
+  /// </summary>
+  TaxInvoiceA,
 
   /// <summary>
   /// 세금 텍스트 타원(Tax Text Ellipse) 아이콘
@@ -613,9 +1073,25 @@ public enum PathIconType
   UnitTextEllipse,
 
   /// <summary>
+  /// 위 방향
+  /// </summary>
+  Up,
+
+  /// <summary>
   /// 업데이트(Update) 아이콘
   /// </summary>
   Update,
+
+  /// <summary>
+  /// 업데이트(Update) 아이콘
+  /// </summary>
+  UpdateA,
+
+
+  /// <summary>
+  /// 업데이트(Update) 아이콘
+  /// </summary>
+  UpdateB,
 
   /// <summary>
   /// 업데이트 텍스트 타원(Update Text Ellipse) 아이콘
@@ -626,6 +1102,11 @@ public enum PathIconType
   /// 사용자(User) 아이콘
   /// </summary>
   User,
+
+  /// <summary>
+  /// 중간판매자
+  /// </summary>
+  Vendor,
 
   /// <summary>
   /// 공급자 텍스트 타원(Vendor Text Ellipse) 아이콘
@@ -645,7 +1126,12 @@ public enum PathIconType
   /// <summary>
   /// 창 최소화(Window Minimize) 아이콘
   /// </summary>
-  WindowMinimize
+  WindowMinimize,
+
+  /// <summary>
+  /// 년
+  /// </summary>
+  Year
 }
 
 /*

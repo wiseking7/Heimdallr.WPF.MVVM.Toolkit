@@ -47,7 +47,7 @@ public class HeimdallrIconRadioButton : RadioButton
   /// </summary>
   public static readonly DependencyProperty IconFillProperty =
       DependencyProperty.Register(nameof(IconFill), typeof(Brush),
-        typeof(HeimdallrIconRadioButton), new PropertyMetadata(Brushes.Black));
+        typeof(HeimdallrIconRadioButton), new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#000000"))));
   #endregion
 
   #region PathIcon
@@ -81,7 +81,7 @@ public class HeimdallrIconRadioButton : RadioButton
   /// </summary>
   public static readonly DependencyProperty CheckedForegroundProperty =
       DependencyProperty.Register(nameof(CheckedForeground), typeof(Brush), typeof(HeimdallrIconRadioButton),
-        new PropertyMetadata(Brushes.Red));
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#BE3144"))));
   #endregion
 
   #region RadioButton Mouse Overred
@@ -98,6 +98,6 @@ public class HeimdallrIconRadioButton : RadioButton
   /// </summary>
   public static readonly DependencyProperty MouseOverForegroundProperty =
       DependencyProperty.Register(nameof(MouseOverForeground), typeof(Brush), typeof(HeimdallrIconRadioButton),
-        new PropertyMetadata(Brushes.Orange));
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EB5B00"))));
   #endregion
 }

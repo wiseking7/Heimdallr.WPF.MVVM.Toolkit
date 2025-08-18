@@ -26,11 +26,14 @@
                 Background="Transparent"
                 SnapsToDevicePixels="True"/>
 
-            <ctrls:HeimdallrIcon VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"
-                PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+            <Viewbox
+                Stretch="Fill"
                 Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}" />
+                Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+              <ctrls:HeimdallrIcon VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"
+                    PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                    Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}" />     
+            </Viewbox>
           </Grid>
 
           <ControlTemplate.Triggers>

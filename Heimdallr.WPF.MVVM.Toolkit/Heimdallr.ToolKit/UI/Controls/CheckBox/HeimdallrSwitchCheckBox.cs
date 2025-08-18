@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using Heimdallr.ToolKit.Enums;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -11,6 +12,7 @@ namespace Heimdallr.ToolKit.UI.Controls;
 /// </summary>
 public class HeimdallrSwitchCheckBox : CheckBox
 {
+  #region Fields
   /// <summary>
   /// Thumb(버튼)의 좌우 여백 (트랙 끝까지 이동하지 않도록 조정용)
   /// </summary>
@@ -25,6 +27,7 @@ public class HeimdallrSwitchCheckBox : CheckBox
   /// Thumb의 이동을 위한 TranslateTransform
   /// </summary>
   private TranslateTransform? _thumbTranslate;
+  #endregion
 
   /// <summary>
   /// 정적 생성자: 기본 스타일을 Generic.xaml에 있는 스타일로 지정
@@ -35,6 +38,7 @@ public class HeimdallrSwitchCheckBox : CheckBox
         new FrameworkPropertyMetadata(typeof(HeimdallrSwitchCheckBox)));
   }
 
+  #region Overrides 메서드
   /// <summary>
   /// 템플릿이 적용된 후 호출되는 메서드
   /// Thumb 요소를 찾아 TranslateTransform을 설정하고, 이벤트를 연결합니다.
@@ -50,7 +54,9 @@ public class HeimdallrSwitchCheckBox : CheckBox
     {
       // 이동을 위한 TransformGroup 구성
       _thumbTranslate = new TranslateTransform();
+
       var group = new TransformGroup();
+
       group.Children.Add(_thumbTranslate);
 
       // Transform을 Thumb에 적용
@@ -68,6 +74,7 @@ public class HeimdallrSwitchCheckBox : CheckBox
     // 초기 상태에서도 Thumb 위치 반영
     UpdateThumbPosition();
   }
+  #endregion
 
   /// <summary>
   /// 체크/언체크 될 때마다 Thumb 위치를 업데이트
@@ -91,7 +98,7 @@ public class HeimdallrSwitchCheckBox : CheckBox
 
     // Thumb가 이동해야 할 목표 X 위치 계산
     double toX = IsChecked == true
-        ? Math.Max(0, trackWidth - thumbWidth - ThumbPadding) // 오른쪽으로 이동
+        ? Math.Max(0, trackWidth - thumbWidth - ThumbPadding + 3) // 오른쪽으로 이동
         : 0;                                                  // 왼쪽으로 초기화
 
     AnimateThumb(toX);
@@ -119,6 +126,38 @@ public class HeimdallrSwitchCheckBox : CheckBox
     _thumbTranslate.BeginAnimation(TranslateTransform.XProperty, animation);
   }
 
+  //====================== 아이콘 관련 ======================//
+  /// <summary>
+  /// 좌측에 표시할 PathIcon 종류
+  /// </summary>
+  public PathIconType PathIcon
+  {
+    get => (PathIconType)GetValue(PathIconProperty);
+    set => SetValue(PathIconProperty, value);
+  }
+
+  /// <summary>
+  /// PathIcon 속성의 DependencyProperty 정의
+  /// </summary>
+  public static readonly DependencyProperty PathIconProperty =
+      DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrIconPlaceholderTextBox),
+          new PropertyMetadata(PathIconType.None));
+
+  /// <summary>
+  /// 아이콘의 색상 (PathIcon의 Fill 브러시)
+  /// </summary>
+  public Brush Fill
+  {
+    get => (Brush)GetValue(FillProperty);
+    set => SetValue(FillProperty, value);
+  }
+
+  /// <summary>
+  /// Fill 속성의 DependencyProperty 정의
+  /// </summary>
+  public static readonly DependencyProperty FillProperty =
+      DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconPlaceholderTextBox),
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 }
 
 

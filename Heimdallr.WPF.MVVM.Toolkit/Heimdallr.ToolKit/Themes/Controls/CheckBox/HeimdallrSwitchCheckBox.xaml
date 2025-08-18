@@ -7,38 +7,38 @@
   <!--#region Brushes[각 Brushes 는 컨트롤에 사용될 색상 또는 그라디언트 정의]-->
   <!-- 수직방향(위->아래)의 그라디언트 갈색계열-->
   <LinearGradientBrush x:Key="ToggleBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-    <GradientStop Color="#9F8449" Offset="0"/>
-    <GradientStop Color="#7D612B" Offset="0.5"/>
-    <GradientStop Color="#5D4828" Offset="1"/>
-  </LinearGradientBrush>
+    <GradientStop Color="#FF9F8449" Offset="0"/>
+    <GradientStop Color="#FF7D612B" Offset="0.5"/>
+    <GradientStop Color="#FF5D4828" Offset="1"/>
+  </LinearGradientBrush> 
 
   <!-- 토글 OFF 상태 배경 수평방향(왼쪽 -> 오른쪽) 남색 계열-->
   <LinearGradientBrush x:Key="ToggleOffBackgroundBrush" StartPoint="0,0.5" EndPoint="1,0.5">
-    <GradientStop Color="#22404B" Offset="0"/>
-    <GradientStop Color="#20313A" Offset="0.5"/>
-    <GradientStop Color="#1F2D34" Offset="1"/>
+    <GradientStop Color="#FF22404B" Offset="0"/>
+    <GradientStop Color="#FF20313A" Offset="0.5"/>
+    <GradientStop Color="#FF1F2D34" Offset="1"/>
   </LinearGradientBrush>
 
   <!-- 토글 ON 상태 배경 수평방향 초록새 계열-->
   <LinearGradientBrush x:Key="ToggleOnBackgroundBrush" StartPoint="0,0.5" EndPoint="1,0.5">
-    <GradientStop Color="#2C5138" Offset="0"/>
-    <GradientStop Color="#327E3F" Offset="0.3"/>
-    <GradientStop Color="#349C44" Offset="0.5"/>
-    <GradientStop Color="#349C44" Offset="1"/>
+    <GradientStop Color="#FF2C5138" Offset="0"/>
+    <GradientStop Color="#FF327E3F" Offset="0.3"/>
+    <GradientStop Color="#FF349C44" Offset="0.5"/>
+    <GradientStop Color="#FF349C44" Offset="1"/>
   </LinearGradientBrush>
 
   <!-- Thumb(Border)의 기본테두리와 마우스 오버 시의 테두리를 다르게 표현-->
   <LinearGradientBrush x:Key="ThumbBorderBrush" StartPoint="0.5,0" EndPoint="0.5,1">
-    <GradientStop Color="#B79858" Offset="0"/>
-    <GradientStop Color="#93712F" Offset="0.5"/>
-    <GradientStop Color="#664D27" Offset="1"/>
+    <GradientStop Color="#FFB79858" Offset="0"/>
+    <GradientStop Color="#FF93712F" Offset="0.5"/>
+    <GradientStop Color="#FF664D27" Offset="1"/>
   </LinearGradientBrush>
 
   <!-- Thumb(Border)의 기본테두리와 마우스 오버 시의 테두리를 다르게 표현-->
   <LinearGradientBrush x:Key="ThumbBorderBrushOver" StartPoint="0.5,0" EndPoint="0.5,1">
-    <GradientStop Color="#EDE2CD" Offset="0"/>
-    <GradientStop Color="#D2B67C" Offset="0.5"/>
-    <GradientStop Color="#C3973D" Offset="1"/>
+    <GradientStop Color="#FFEDE2CD" Offset="0"/>
+    <GradientStop Color="#FFD2B67C" Offset="0.5"/>
+    <GradientStop Color="#FFC3973D" Offset="1"/>
   </LinearGradientBrush>
   <!--#endregion -->
 
@@ -46,11 +46,10 @@
   <Style x:Key="SwitchTrackStyle" TargetType="Border">
     <Setter Property="Background" Value="{StaticResource ToggleOffBackgroundBrush}"/>
     <Setter Property="BorderBrush" Value="{StaticResource ToggleBorderBrush}"/>
-    <!--<Setter Property="Width" Value="38"/>-->
-    <Setter Property="Height" Value="20"/>
-    <Setter Property="CornerRadius" Value="8"/>
+    <Setter Property="CornerRadius" Value="12 12 10 10"/>
     <Setter Property="BorderThickness" Value="2"/>
     <Setter Property="UseLayoutRounding" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="True" />
   </Style>
 
   <!-- Thumb 스타일 [Thumb은 스위치의 움직이는 동그란 부분입니다 Thumb 위치는 Margin="-8,0,0,0"으로 왼쪽으로 살짝 튀어나오게 설정.
@@ -58,8 +57,10 @@
   <Style x:Key="SwitchThumbStyle" TargetType="Border">
     <Setter Property="BorderBrush" Value="{StaticResource ThumbBorderBrush}"/>
     <Setter Property="Background" Value="{StaticResource ToggleOffBackgroundBrush}"/>
-    <Setter Property="Width" Value="26"/>
-    <Setter Property="Height" Value="26"/>
+    <Setter Property="Width" Value="{Binding RelativeSource={RelativeSource Self}, Path=Height}" />
+    <Setter Property="Height" 
+            Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type ctrls:HeimdallrSwitchCheckBox}}, 
+                      Path=Height, Converter={cnvts:ThumbSizeConverter}}" />
     <Setter Property="BorderThickness" Value="2"/>
     <Setter Property="CornerRadius" Value="20"/>
     <!-- 원형이므로 절반으로 변경 -->
@@ -68,6 +69,7 @@
     <Setter Property="Margin" Value="0"/>
     <!-- 음수 마진 제거 -->
     <Setter Property="UseLayoutRounding" Value="True"/>
+    <Setter Property="SnapsToDevicePixels" Value="True"/>
   </Style>
   
   <!-- Content 영역 스타일 [텍스트나 라벨 등 콘텐츠를 오른쪽에 띄우는 스타일입니다. Grid.Column="1"로 위치 지정. -->
@@ -90,6 +92,69 @@
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrSwitchCheckBox}">
           <Grid Width="{TemplateBinding Width}" Height="{TemplateBinding Height}">
+
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition Width="Auto"/>
+              <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Toggle Track -->
+            <Border x:Name="SwitchTrack"
+                    Style="{StaticResource SwitchTrackStyle}"
+                    Width="{TemplateBinding Width}"
+                    Height="{TemplateBinding Height}"
+                    UseLayoutRounding="True"
+                    SnapsToDevicePixels="True"/>
+
+            <!-- Thumb with Icon -->
+            <Border x:Name="Thumb"
+                     Style="{StaticResource SwitchThumbStyle}"
+                     Height="{TemplateBinding Height}"
+                     UseLayoutRounding="True"
+                     SnapsToDevicePixels="True">
+
+              <ctrls:HeimdallrIcon
+                    x:Name="ThumbIcon"
+                    PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                    Fill="{Binding Fill, RelativeSource={RelativeSource TemplatedParent}}"
+                    Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                    Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Stretch="Uniform"/>
+            </Border>
+
+            <!-- State Text: ON -->
+            <TextBlock
+                x:Name="OnText"
+                Text="열기"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                Margin="8,0,0,0"
+                Foreground="#FFF5E8C7"
+                FontWeight="SemiBold"
+                Visibility="Collapsed"
+                FontSize="14"/>
+
+            <!-- State Text: OFF -->
+            <TextBlock 
+                x:Name="OffText"
+                Text="닫기"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Right"
+                Margin="0,0,8,0"
+                Foreground="#FFD95F59"
+                FontWeight="SemiBold"
+                Visibility="Visible"
+                FontSize="14"/>
+
+            <!-- Content area -->
+            <ContentPresenter Grid.Column="1"
+                   Style="{StaticResource ContentStyle}"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Margin="10 0 0 0" />
+
             <VisualStateManager.VisualStateGroups>
               <VisualStateGroup x:Name="CommonStates">
                 <VisualState x:Name="Normal"/>
@@ -119,11 +184,15 @@
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Background">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleOnBackgroundBrush}"/>
                     </ObjectAnimationUsingKeyFrames>
-                    
-                    <!-- 애니메이션 오르쪽으로 이동-->
-                    <!--<DoubleAnimation Storyboard.TargetName="ThumbTransfor" Storyboard.TargetProperty="X"
-                                     To="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}, Converter={cnvet:SwitchThumbOffsetConverter}}"
-                                     Duration="0:0:0.5" EasingFunction="{StaticResource SwitchEase}"/>-->
+                    <!-- ✅ Label 텍스트 및 위치 변경 -->
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OnText"
+                       Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OffText"
+                       Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
 
@@ -135,54 +204,19 @@
                     <ObjectAnimationUsingKeyFrames Storyboard.TargetName="Thumb" Storyboard.TargetProperty="Background">
                       <DiscreteObjectKeyFrame KeyTime="0" Value="{StaticResource ToggleOffBackgroundBrush}"/>
                     </ObjectAnimationUsingKeyFrames>
-
-                    <!-- 이동 애니메이션: 왼쪽으로 이동 -->
-                    <!--<DoubleAnimation
-                                    Storyboard.TargetName="ThumbTransform"
-                                    Storyboard.TargetProperty="X"
-                                    To="0"
-                                    Duration="0:0:0.2"
-                                    EasingFunction="{StaticResource SwitchEase}" />-->
+                    <!-- ✅ Label 텍스트 및 위치 변경 -->
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OnText"
+                       Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Collapsed}" />
+                    </ObjectAnimationUsingKeyFrames>
+                    <ObjectAnimationUsingKeyFrames Storyboard.TargetName="OffText"
+                       Storyboard.TargetProperty="Visibility">
+                      <DiscreteObjectKeyFrame KeyTime="0" Value="{x:Static Visibility.Visible}" />
+                    </ObjectAnimationUsingKeyFrames>
                   </Storyboard>
                 </VisualState>
               </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="Auto"/>
-              <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions>
-
-            <!-- Toggle Track -->
-            <Border x:Name="SwitchTrack"
-                    Style="{StaticResource SwitchTrackStyle}"
-                    Width="{TemplateBinding Width}"
-                    Height="{TemplateBinding Height}"/>
-
-            <!-- Thumb with Icon -->
-            <Border x:Name="Thumb"
-                    Style="{StaticResource SwitchThumbStyle}">
-              <ctrls:HeimdallrIcon x:Name="ThumbIcon"
-                                   PathIcon="HeimdallrLogo"
-                                   Width="{Binding Width, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
-                                   Height="{Binding Height, RelativeSource={RelativeSource AncestorType=Border}, Converter={cnvts:IconSizeConverter}}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"/>
-              
-              <!-- RenderTransform은 C#에서 적용됨 -->
-              <!--<Border.RenderTransform>
-                <TransformGroup>
-                  <TranslateTransform X="0" Y="0"/>
-                </TransformGroup>
-              </Border.RenderTransform>-->
-            </Border>
-
-            <!-- Content area -->
-            <ContentPresenter Grid.Column="1"
-                              Style="{StaticResource ContentStyle}"
-                              VerticalAlignment="Center"
-                              HorizontalAlignment="Center"
-                              Margin="10 0 0 0" />
           </Grid>
         </ControlTemplate>
       </Setter.Value>

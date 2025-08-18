@@ -12,7 +12,8 @@
           <Grid Background="{TemplateBinding Background}">
            
             <Viewbox x:Name="viewbox" Visibility="Collapsed"
-                     Stretch="Uniform" StretchDirection="Both">
+                     Stretch="{TemplateBinding Stretch}" 
+                     StretchDirection="Both">
               <Path HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Data="{TemplateBinding Data}"

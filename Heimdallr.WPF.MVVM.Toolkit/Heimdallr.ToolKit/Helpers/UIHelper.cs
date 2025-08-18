@@ -13,6 +13,15 @@ public static class UIHelper
   /// 주어진 작업(<paramref name="action"/>)을 UI 스레드에서 동기적으로 실행합니다.
   /// 현재 호출 스레드가 UI 스레드인 경우 바로 실행하고,
   /// 그렇지 않으면 Dispatcher를 통해 UI 스레드에서 실행합니다.
+  /// 
+  /// 사용 예시:
+  /// <code>
+  /// UIHelper.RunOnUIThread(() =>
+  /// {
+  ///     myTextBlock.Text = "완료되었습니다";
+  ///     myListView.Items.Clear();
+  /// });
+  /// </code>
   /// </summary>
   /// <param name="action">UI 스레드에서 실행할 작업</param>
   public static void RunOnUIThread(Action action)
@@ -34,6 +43,15 @@ public static class UIHelper
   /// 비동기 작업(<paramref name="asyncAction"/>)을 UI 스레드에서 실행합니다.
   /// 현재 호출 스레드가 UI 스레드인 경우 바로 실행하고,
   /// 그렇지 않으면 Dispatcher를 통해 UI 스레드에서 비동기 실행합니다.
+  /// 
+  /// 사용 예시:
+  /// <code>
+  /// await UIHelper.RunOnUIThreadAsync(async () =>
+  /// {
+  ///     await Task.Delay(100); // 비동기 작업
+  ///     myTextBlock.Text = "작업 완료";
+  /// });
+  /// </code>
   /// </summary>
   /// <param name="asyncAction">UI 스레드에서 실행할 비동기 작업</param>
   /// <returns>비동기 작업을 나타내는 Task</returns>
@@ -44,7 +62,6 @@ public static class UIHelper
       // UI 스레드인 경우 바로 실행
       await asyncAction();
     }
-
     else
     {
       // UI 스레드가 아닌 경우 Dispatcher를 통해 비동기로 실행

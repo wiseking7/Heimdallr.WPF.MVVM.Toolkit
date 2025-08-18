@@ -32,6 +32,16 @@ public class MainViewModel : ViewModelBase
   public AsyncDelegateCommand? InformationCommand => _informationCommand ??=
     new AsyncDelegateCommand(ExecuteOpenInformationViewAsync);
 
+  private AsyncDelegateCommand? _testTreeViewCommand;
+  public AsyncDelegateCommand? TestTreeViewCommand => _testTreeViewCommand
+    ??= new AsyncDelegateCommand(OnTreeViewChedk);
+
+  private async Task OnTreeViewChedk()
+  {
+    MessageBox.Show("확인됨");
+    await Task.CompletedTask;
+  }
+
   private void ExecuteLogin()
   {
     Username = "로그인시 사용자이름표기"; // 로그인 후 사용자 이름 설정  

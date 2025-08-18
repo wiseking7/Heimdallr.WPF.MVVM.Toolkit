@@ -29,12 +29,17 @@
               </Grid.ColumnDefinitions>
 
               <!-- 아이콘 -->
-              <ctrls:HeimdallrIcon Grid.Column="0" Padding="5" Margin="7 0 0 0"
-                                   Width="20" Height="20"
-                                   PathIcon="{TemplateBinding PathIcon}"
-                                   Fill="{TemplateBinding IconFill}"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center" />
+              <Viewbox 
+                  Grid.Column="0"  Margin="7 0 0 0"
+                  Width="20" Height="20"
+                  Stretch="Fill"
+                  VerticalAlignment="Center"
+                  HorizontalAlignment="Center">
+                <ctrls:HeimdallrIcon 
+                        Padding="5"
+                        PathIcon="{TemplateBinding PathIcon}"
+                        Fill="{TemplateBinding IconFill}" />
+              </Viewbox>
               <!-- 텍스트 -->
               <TextBlock Grid.Column="1"
                          Margin="10 0 0 0"

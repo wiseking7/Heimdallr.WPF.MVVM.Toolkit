@@ -36,18 +36,20 @@
               <RowDefinition />
             </Grid.RowDefinitions>
 
-            <ctrls:HeimdallrTreeView Grid.Row="1" Width="500" Background="Transparent">
-              <ctrls:HeimdallrTreeViewItem Text="네트워크 설정" PathIcon="Barcode"
+            <ctrls:HeimdallrTreeView Grid.Row="1" Width="Auto">
+              <ctrls:HeimdallrTreeViewItem PathIcon="Barcode"
                                ExpandIcon="ChevronDownEllipse"
                                CollapseIcon="ChevronUpEllipse"
                                ExpandIconFill="Yellow"
                                CollapseIconFill="CornflowerBlue"
                                IconWidth="40" IconHeight="40"
                                PathIconFill="Black"
-                               SelectedCommand="{Binding ButtonTextCommamd}"
+                               ExpandToggleIconHeight="20"
+                               ExpandToggleIconWidth="20"
                                SelectedBackground="AliceBlue"
-                               HoverBackground="Blue"
-                               FontSize="40" Foreground="Red">
+                        
+                                
+                               FontSize="10" Foreground="Red">
 
                 <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
                   ExpandIcon="ChevronDownEllipse"
@@ -55,19 +57,59 @@
                   IconWidth="30" IconHeight="30"
                   ExpandIconFill="AliceBlue"
                   CollapseIconFill="Bisque"
-                  FontSize="30" Foreground="AliceBlue">
+                  FontSize="30" Foreground="AliceBlue"
+                  SelectedCommand="{Binding TestTreeViewCommand}"
+                                             CommandParameter="없음">
 
                   <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
                   IconWidth="20" IconHeight="20"
                   PathIconFill="AliceBlue"
-                  FontSize="20" Foreground="Green">
-                  </ctrls:HeimdallrTreeViewItem>
+                  FontSize="20" Foreground="Green"/>
+
                 </ctrls:HeimdallrTreeViewItem>
               </ctrls:HeimdallrTreeViewItem>
               <ctrls:HeimdallrThumb />
             </ctrls:HeimdallrTreeView>
 
+            <TreeView Grid.Row="2" >
+              <TreeViewItem>
+                <TextBlock Text="OK" />
+                <TextBlock Text="good" />
+                <TextBlock Text="cancel" />
+              </TreeViewItem>
+            </TreeView>
 
+
+            <ctrls:HeimdallrSwitchCheckBox Grid.Row="8" 
+                                            IsChecked="{Binding IsChecked, Mode=TwoWay}"
+                                            Content="스위치 체크박스"
+                                            Width="80" 
+                                            Fill="Blue"
+                                            Margin="0,10,0,0"
+                                            HorizontalAlignment="Left"
+                                            VerticalAlignment="Top"
+                                            Foreground="White"
+                                            PathIcon="Menu"
+                                             />
+
+            <ctrls:HeimdallrFlatButton
+                  Grid.Row="9"
+                  x:Name="LoginButton"
+                  Width="150"
+                  Margin="0,50,0,0"
+                  Background="#FF6EACDA"
+                  Command="{Binding LoginCommand}"
+                  Content="LOGIN"
+                  CornerRadius="7"
+                  Foreground="White"
+                  DisabledBackground="#FFB9B4C7"
+                  DisabledBorderBrush="#FFB9B4C7"
+                  DisabledForeground="DarkGray"
+                  MouseOverBackground="#FF03346E"
+                  MouseOverBorderBrush="#FF07346E"
+                  PressedBackground="#FFC147E9"
+                  PressedBorderBrush="#FFC747E9" />
+            
             <Grid Grid.Row="11" Margin="0 10 0 0">
               <StackPanel Margin="10">
                 <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10" />
@@ -107,7 +149,7 @@
                     Width="100" Height="30"
                     Command="{Binding LoadDataCommand}" />
 
-            <ctrls:HeimdallrIcon PathIcon="TaxTextEllipse"  Fill="AliceBlue" />
+            <ctrls:HeimdallrIcon Grid.Row="8" PathIcon="DetailE"  Width="100" Height="100" Fill="AliceBlue" />
 
             <ctrls:HeimdallrIconWaterMarkTextBox Text="우리는" Foreground="White"
                                                  FontSize="16" Width="200" TextWrapping="Wrap"
@@ -117,26 +159,98 @@
 
             <Viewbox Grid.Row="13" Width="100" Height="100">
               <Path Fill="Black" 
-                  Data="m 1718.106,308.48963
-c 11.9172,-0.10898 31.6404,-0.10906 43.8292,-1.8e-4 12.1889,0.10887 2.4385,0.19804 -21.6676,0.19814 -24.1061,10e-5 -34.0788,-0.089 -22.1616,-0.19796
-z
-
-m 0,-11.25546
-c 11.9172,-0.10897 31.6404,-0.10906 43.8292,-1.8e-4 12.1889,0.10888 2.4385,0.19804 -21.6676,0.19814 -24.1061,1e-4 -34.0788,-0.089 -22.1616,-0.19796
-z
-
-m 0.4392,-49.94618
-c 12.1588,-0.10883 32.0549,-0.10883 44.2137,0 12.1588,0.10883 2.2107,0.19787 -22.1068,0.19787 -24.3176,0 -34.2657,-0.089 -22.1069,-0.19787
-z
-
-m -147.5779,-2.81413
-c 17.6883,-0.10536 46.408,-0.10532 63.8215,9e-5 17.4136,0.10541 2.9414,0.19161 -32.1605,0.19156 -35.1018,-5e-5 -49.3493,-0.0863 -31.661,-0.19165
-z
-
-m 147.1387,-8.44123
-c 11.9172,-0.10898 31.6404,-0.10906 43.8292,-1.8e-4 12.1889,0.10888 2.4385,0.19804 -21.6676,0.19814 -24.1061,1e-4 -34.0788,-0.089 -22.1616,-0.19796
-z
-" />
+                  Data="M 128,240.2 M 129.5,151.4
+l 21.2-7.9
+l 1.2-1.2
+l -13.2-13.2
+l -1.2,1.2
+L 129.5,151.4
+L 129.5,151.4
+L 129.5,151.4
+L 129.5,151.4
+z M 143.1,124.7
+l 13.2,13.2
+l 33-33
+L 176,91.7
+L 143.1,124.7
+L 143.1,124.7
+L 143.1,124.7
+L 143.1,124.7
+z M 198.2,87.2
+l -4.4-4.4
+c -2.4-2.4-6.4-2.4-8.8,0
+l -4.5,4.5
+l 13.2,13.2
+l 4.5-4.5
+C 200.6,93.6,200.6,89.6,198.2,87.2
+L 198.2,87.2
+L 198.2,87.2
+L 198.2,87.2
+L 198.2,87.2
+z M 128,10
+C 62.8,10,10,62.8,10,128
+c 0,65.2,52.8,118,118,118
+c 65.2,0,118-52.8,118-118
+C 246,62.8,193.2,10,128,10
+z M 174.6,187.1
+c 0,6.9-5.2,12.5-12.1,12.5
+H 75.2
+c -6.9,0-11.8-5.6-11.8-12.5
+V 68.6
+c 0-6.9,4.9-12.1,11.8-12.1
+H 122
+h 1.7
+h 3.2
+h 8.7
+l 28.1,30
+l -4.4,4.4
+l -21.8-23.2
+v 22.9
+c 0,3.4,2.8,6.2,6.2,6.2
+h 9.7
+l -6.2,6.2
+h -3.4
+c -6.9,0-12.5-5.6-12.5-12.5
+V 62.3
+H 75.2
+c -3.4,0-6.2,2.8-6.2,6.2
+v 118.5
+c 0,3.4,2.8,6.2,6.2,6.2
+h 87.3
+c 3.4,0,6.2-2.8,6.2-6.2
+v -44
+l 5.9-6.2
+V 187.1
+L 174.6,187.1
+z M 77.1,124.4
+v -7.3
+H 119
+v 7.3
+H 77.1
+z M 119,144.9
+v 7.3
+H 77.1
+v -7.3
+H 119
+z M 77.1,95.5
+v -7.3
+H 119
+v 7.3
+H 77.1
+z M 161,175
+v 7.3
+H 77.1
+V 175
+H 161
+z M 202.5,100.5
+L 154.1,149
+l -35.4,12.7
+l 13.3-34.8
+l 48.4-48.4
+c 4.9-4.9,12.8-4.9,17.7,0
+l 4.4,4.4
+C 207.4,87.8,207.4,95.7,202.5,100.5
+z"  />
             </Viewbox>
 
 

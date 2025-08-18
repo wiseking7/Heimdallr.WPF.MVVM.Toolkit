@@ -3,6 +3,7 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace Heimdallr.ToolKit.UI.Controls;
 /// <summary>
@@ -37,9 +38,12 @@ public class HeimdallrToggleButtonSwitch : ToggleButton
       _thumb.RenderTransform = group;
     }
 
+    // 중심점을 왼쪽 상단으로 고정
+    _thumb!.RenderTransformOrigin = new Point(0, 0);
+
     this.Checked += (_, _) => UpdateThumbPosition();
     this.Unchecked += (_, _) => UpdateThumbPosition();
-    this.SizeChanged += (_, _) => UpdateThumbPosition();
+    this.SizeChanged += (_, _) => Dispatcher.BeginInvoke((Action)(UpdateThumbPosition), DispatcherPriority.Loaded);
 
     UpdateThumbPosition();
   }

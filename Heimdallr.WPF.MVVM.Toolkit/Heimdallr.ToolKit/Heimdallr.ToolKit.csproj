@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.8.07</Version>
+	<Version>1.8.25</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
@@ -61,11 +61,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Themes\Controls\Colors\Color.xaml"/>
+    <Resource Include="Themes\Controls\Colors\Color.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.13" />
     <PackageReference Include="ModernWpfUI" Version="0.9.6" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Prism.DryIoc" Version="9.0.537" />

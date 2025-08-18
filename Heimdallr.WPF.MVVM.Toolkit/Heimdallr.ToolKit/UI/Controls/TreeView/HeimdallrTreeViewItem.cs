@@ -1,4 +1,5 @@
 ﻿using Heimdallr.ToolKit.Enums;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -12,7 +13,8 @@ namespace Heimdallr.ToolKit.UI.Controls;
 /// </summary>
 public class HeimdallrTreeViewItem : TreeViewItem
 {
-  #region 확장 속성 정의 (CornerRadius, ExpandIcon, CollapseIcon, IconWidth, IconHeight, Fill, PathIcon, Text, SelectedCommand)
+  #region 확장 속성 정의 (CornerRadius, ExpandIcon, CollapseIcon, IconWidth, IconHeight, PathIcon, Text, SelectedCommand)
+
   /// <summary>
   /// 트리뷰 아이템의 테두리 둥글기 정도를 지정하는 속성입니다.
   /// 예를 들어 "4,4,4,4"와 같이 지정하면 테두리가 둥글게 렌더링됩니다.
@@ -23,7 +25,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(CornerRadiusProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 
   /// </summary>
   public static readonly DependencyProperty CornerRadiusProperty =
     DependencyProperty.Register(nameof(CornerRadius), typeof(CornerRadius),
@@ -39,7 +41,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(ExpandIconProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 PathIconType 없음
   /// </summary>
   public static readonly DependencyProperty ExpandIconProperty =
       DependencyProperty.Register(nameof(ExpandIcon), typeof(PathIconType), typeof(HeimdallrTreeViewItem),
@@ -55,15 +57,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(CollapseIconProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 PathIconType 없음
   /// </summary>
   public static readonly DependencyProperty CollapseIconProperty =
       DependencyProperty.Register(nameof(CollapseIcon), typeof(PathIconType), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(PathIconType.None));
 
   /// <summary>
-  /// 주 아이콘(PathIcon)의 너비 (픽셀 단위) 지정
-  /// 기본값은 16픽셀
+  /// 주 아이콘(PathIcon)의 너비 (픽셀 단위) 지정, 기본값 16픽셀
   /// </summary>
   public double IconWidth
   {
@@ -71,15 +72,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(IconWidthProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 16.0
   /// </summary>
   public static readonly DependencyProperty IconWidthProperty =
     DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
-      new PropertyMetadata(16.0)); // 기본값 16
+      new PropertyMetadata(16.0));
 
   /// <summary>
-  /// 주 아이콘(PathIcon)의 높이 (픽셀 단위) 지정
-  /// 기본값은 16픽셀
+  /// 주 아이콘(PathIcon)의 높이 (픽셀 단위) 지정, 기본값 16픽셀
   /// </summary>
   public double IconHeight
   {
@@ -87,15 +87,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(IconHeightProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 16.0
   /// </summary>
   public static readonly DependencyProperty IconHeightProperty =
     DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
-      new PropertyMetadata(16.0)); // 기본값 16
+      new PropertyMetadata(16.0));
 
   /// <summary>
-  /// PathIcon (주 아이콘) 의 색상 지정용 Brush
-  /// 기본값은 회색(Gray)
+  /// PathIcon (주 아이콘) 의 색상 지정용 Brush, 기본값 회색(#AAAAAA)
   /// </summary>
   public Brush PathIconFill
   {
@@ -103,14 +102,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set { SetValue(PathIconFillProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 #AAAAAA 회색
   /// </summary>
   public static readonly DependencyProperty PathIconFillProperty =
-      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem), new PropertyMetadata(Brushes.Gray));
+      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem),
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 
   /// <summary>
-  /// 확장 아이콘(ExpandIcon)의 색상 지정용 Brush
-  /// 기본값은 밝은 파랑색(AliceBlue)
+  /// 확장 아이콘(ExpandIcon)의 색상 지정용 Brush, 기본값 밝은 보라색(#B13BFF)
   /// </summary>
   public Brush ExpandIconFill
   {
@@ -118,14 +117,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set { SetValue(ExpandIconFillProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 보라색
   /// </summary>
   public static readonly DependencyProperty ExpandIconFillProperty =
-      DependencyProperty.Register(nameof(ExpandIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem), new PropertyMetadata(Brushes.AliceBlue));
+      DependencyProperty.Register(nameof(ExpandIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem),
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#B13BFF"))));
 
   /// <summary>
-  /// 축소 아이콘(CollapseIcon)의 색상 지정용 Brush
-  /// 기본값은 검정색(Black)
+  /// 축소 아이콘(CollapseIcon)의 색상 지정용 Brush, 기본값 연두색(#9BC09C)
   /// </summary>
   public Brush CollapseIconFill
   {
@@ -133,10 +132,11 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set { SetValue(CollapseIconFillProperty, value); }
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 연두색
   /// </summary>
   public static readonly DependencyProperty CollapseIconFillProperty =
-      DependencyProperty.Register(nameof(CollapseIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem), new PropertyMetadata(Brushes.Black));
+      DependencyProperty.Register(nameof(CollapseIconFill), typeof(Brush), typeof(HeimdallrTreeViewItem),
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#9BC09C"))));
 
   /// <summary>
   /// 타이틀 아이콘으로 표시될 PathIcon 타입 지정 (예: Barcode, Setting 등)
@@ -147,7 +147,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(PathIconProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 PathIconType.None
   /// </summary>
   public static readonly DependencyProperty PathIconProperty =
       DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrTreeViewItem),
@@ -162,15 +162,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(TextProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 string.Empty
   /// </summary>
   public static readonly DependencyProperty TextProperty =
     DependencyProperty.Register(nameof(Text), typeof(string), typeof(HeimdallrTreeViewItem),
       new PropertyMetadata(string.Empty));
 
   /// <summary>
-  /// TreeViewItem이 선택되었을 때 실행할 ICommand 속성
-  /// MVVM 패턴에서 ViewModel의 명령과 바인딩하여 동작하도록 함
+  /// TreeViewItem이 선택되었을 때 실행할 ICommand 속성 (MVVM 명령 바인딩용)
   /// </summary>
   public ICommand SelectedCommand
   {
@@ -178,13 +177,16 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(SelectedCommandProperty, value);
   }
   /// <summary>
-  /// 종속성주입
+  /// 기본값 null
   /// </summary>
   public static readonly DependencyProperty SelectedCommandProperty =
       DependencyProperty.Register(nameof(SelectedCommand), typeof(ICommand), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(null));
 
   #endregion
+
+
+  #region 기본 생성자 및 컨테이너 생성 오버라이드
 
   /// <summary>
   /// 기본 스타일 연결 (Themes/Generic.xaml에 정의된 스타일 적용)
@@ -205,6 +207,11 @@ public class HeimdallrTreeViewItem : TreeViewItem
     return new HeimdallrTreeViewItem();
   }
 
+  #endregion
+
+
+  #region 선택 및 키보드 이벤트 오버라이드 (명령 실행 처리)
+
   /// <summary>
   /// TreeViewItem 선택 시 호출되는 이벤트 핸들러 오버라이드
   /// 기본 선택 동작 수행 후, SelectedCommand가 바인딩 되어 있으면 실행함
@@ -212,18 +219,78 @@ public class HeimdallrTreeViewItem : TreeViewItem
   /// <param name="e">이벤트 인자</param>
   protected override void OnSelected(RoutedEventArgs e)
   {
-    // 기본 TreeViewItem의 선택 처리 수행
     base.OnSelected(e);
 
-    // SelectedCommand가 null이 아니고, 실행 가능하면 DataContext를 인자로 실행
-    if (SelectedCommand?.CanExecute(DataContext) == true)
+    // 1. 이미 선택된 경우 중복 실행 방지
+    if (!IsSelected)
+      return;
+
+    // 2. CommandParameter 우선, 없으면 DataContext 사용
+    var parameter = CommandParameter ?? DataContext;
+
+    // 3. Command 실행 전 조건 검사 및 로그 출력
+    if (SelectedCommand != null)
     {
-      SelectedCommand.Execute(DataContext);
+      if (SelectedCommand.CanExecute(parameter))
+      {
+        Debug.WriteLine($"[HeimdallrTreeViewItem] Command 실행됨. Parameter: {parameter}");
+        SelectedCommand.Execute(parameter);
+      }
+      else
+      {
+        Debug.WriteLine($"[HeimdallrTreeViewItem] CanExecute 반환 false. Parameter: {parameter}");
+      }
+    }
+    else
+    {
+      Debug.WriteLine("[HeimdallrTreeViewItem] SelectedCommand is null.");
     }
   }
-  #region 항목선택/마우스오버시 색상지정
+
+  /// <summary>
+  /// 선택 해제 시 호출되는 이벤트 핸들러 오버라이드
+  /// </summary>
+  /// <param name="e"></param>
+  protected override void OnUnselected(RoutedEventArgs e)
+  {
+    base.OnUnselected(e);
+
+    Debug.WriteLine($"[HeimdallrTreeViewItem] 항목 선택 해제됨: {Text}");
+  }
+
+  /// <summary>
+  /// 키보드 이벤트 처리 (Enter 키로 SelectedCommand 실행)
+  /// </summary>
+  /// <param name="e"></param>
+  protected override void OnKeyDown(KeyEventArgs e)
+  {
+    base.OnKeyDown(e);
+
+    if (e.Key == Key.Enter)
+    {
+      var parameter = CommandParameter ?? DataContext;
+
+      if (SelectedCommand?.CanExecute(parameter) == true)
+      {
+        Debug.WriteLine($"[HeimdallrTreeViewItem] (Enter Key) Command 실행됨. Parameter: {parameter}");
+        SelectedCommand.Execute(parameter);
+        e.Handled = true;
+      }
+      else
+      {
+        Debug.WriteLine($"[HeimdallrTreeViewItem] (Enter Key) Command 실행 불가. Parameter: {parameter}");
+      }
+    }
+  }
+
+  #endregion
+
+
+  #region 선택 및 마우스 오버 색상 지정 (SelectedBackground, HoverBackground)
+
   /// <summary>
   /// 항목이 선택되었을 때 배경 색상
+  /// 기본값 #4B70F5 (파란색)
   /// </summary>
   public Brush SelectedBackground
   {
@@ -231,14 +298,15 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(SelectedBackgroundProperty, value);
   }
   /// <summary>
-  /// 기본값 LightBlue
+  /// 기본값 파란색
   /// </summary>
   public static readonly DependencyProperty SelectedBackgroundProperty =
       DependencyProperty.Register(nameof(SelectedBackground), typeof(Brush), typeof(HeimdallrTreeViewItem),
-          new PropertyMetadata(Brushes.LightBlue));  // 기본값
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4B70F5"))));
 
   /// <summary>
   /// 마우스 오버 시 배경 색상
+  /// 기본값 #577B8D (회색톤)
   /// </summary>
   public Brush HoverBackground
   {
@@ -246,16 +314,19 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(HoverBackgroundProperty, value);
   }
   /// <summary>
-  /// 기본값 LightPink
+  /// 기본값 회색
   /// </summary>
   public static readonly DependencyProperty HoverBackgroundProperty =
       DependencyProperty.Register(nameof(HoverBackground), typeof(Brush), typeof(HeimdallrTreeViewItem),
-          new PropertyMetadata(Brushes.LightPink)); // 기본값
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#577B8D"))));
+
   #endregion
 
-  #region 확장/축소 아이콘 너비/축소 설정
+
+  #region 확장/축소 아이콘 크기 지정 (ExpandToggleIconWidth, ExpandToggleIconHeight)
+
   /// <summary>
-  /// 확장/축소 아이콘의 너비 (픽셀 단위)
+  /// 확장/축소 아이콘의 너비 (픽셀 단위), 기본값 16.0
   /// </summary>
   public double ExpandToggleIconWidth
   {
@@ -263,14 +334,14 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(ExpandToggleIconWidthProperty, value);
   }
   /// <summary>
-  /// 확장 기본값 16.0
+  /// 기본값 16
   /// </summary>
   public static readonly DependencyProperty ExpandToggleIconWidthProperty =
       DependencyProperty.Register(nameof(ExpandToggleIconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
           new PropertyMetadata(16.0));
 
   /// <summary>
-  /// 확장/축소 아이콘의 높이 (픽셀 단위)
+  /// 확장/축소 아이콘의 높이 (픽셀 단위), 기본값 16.0
   /// </summary>
   public double ExpandToggleIconHeight
   {
@@ -278,11 +349,49 @@ public class HeimdallrTreeViewItem : TreeViewItem
     set => SetValue(ExpandToggleIconHeightProperty, value);
   }
   /// <summary>
-  /// 축소 기본값 16.0
+  /// 기본값 16
   /// </summary>
   public static readonly DependencyProperty ExpandToggleIconHeightProperty =
       DependencyProperty.Register(nameof(ExpandToggleIconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
           new PropertyMetadata(16.0));
+
+  #endregion
+
+
+  #region 기타 속성 (IconSpacingWhenTextIsEmpty, CommandParameter)
+
+  /// <summary>
+  /// 텍스트가 없을 때 PathIcon과 확장/축소 아이콘 사이 간격
+  /// 기본값 10.0
+  /// </summary>
+  public double IconSpacingWhenTextIsEmpty
+  {
+    get => (double)GetValue(IconSpacingWhenTextIsEmptyProperty);
+    set => SetValue(IconSpacingWhenTextIsEmptyProperty, value);
+  }
+  /// <summary>
+  /// 기본값 간격 10
+  /// </summary>
+  public static readonly DependencyProperty IconSpacingWhenTextIsEmptyProperty =
+      DependencyProperty.Register(nameof(IconSpacingWhenTextIsEmpty), typeof(double),
+          typeof(HeimdallrTreeViewItem), new PropertyMetadata(10.0));
+
+  /// <summary>
+  /// SelectedCommand에 전달할 매개변수
+  /// </summary>
+  public object CommandParameter
+  {
+    get => GetValue(CommandParameterProperty);
+    set => SetValue(CommandParameterProperty, value);
+  }
+  /// <summary>
+  /// 기본값 null
+  /// </summary>
+  public static readonly DependencyProperty CommandParameterProperty =
+      DependencyProperty.Register(nameof(CommandParameter), typeof(object), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(null));
+
   #endregion
 }
+
 

@@ -11,6 +11,7 @@
     <Setter Property="Background" Value="Transparent" />
 
     <Setter Property="Cursor" Value="Hand" />
+
     <!-- TreeView ControlTemplate 정의 -->
     <Setter Property="Template">
       <Setter.Value>
@@ -22,16 +23,15 @@
                   SnapsToDevicePixels="True"
                   CornerRadius="{TemplateBinding CornerRadius}">
 
-            <ItemsPresenter />
-
-            <!-- 스크롤 가능한 콘텐츠 영역--><!--
-            <ScrollViewer Padding="0"
-                          Focusable="false"
-                          HorizontalScrollBarVisibility="Visible"
-                          VerticalScrollBarVisibility="Auto">
-              --><!-- 실제 항목이 렌더링 되는 위치--><!--
-              <ItemsPresenter />
-            </ScrollViewer>-->
+            <Grid Grid.IsSharedSizeScope="True">
+              <ctrls:HeimdallrStackPanel
+                   StripeColor1="#2F3E46"
+                   StripeColor2="#CAD2C5"
+                   VerticalAlignment="Top"
+                   ItemHeight="{Binding ElementName=Items, Path=ActualHeight}">
+              </ctrls:HeimdallrStackPanel>
+              <ItemsPresenter x:Name="Items" VerticalAlignment="Top" />
+            </Grid>
           </Border>
         </ControlTemplate>
       </Setter.Value>

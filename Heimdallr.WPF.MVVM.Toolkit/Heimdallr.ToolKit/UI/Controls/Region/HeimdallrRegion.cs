@@ -6,6 +6,22 @@ namespace Heimdallr.ToolKit.UI.Controls;
 /// <summary>
 /// MVVM(Prism) 프레임워크에서 영역(Region) 역할을 하는 ContentControl 기반 커스텀 컨트롤.
 /// RegionName 속성을 통해 영역 이름을 지정하고, RegionManager와 연결하여 영역 관리 기능 제공.
+///
+/// 사용 방법 예제 (XAML):
+///
+///     &lt;local:HeimdallrRegion RegionName="ContentRegion" /&gt;
+///
+/// 또는 View에 직접 적용:
+///
+///     &lt;views:MainView xmlns:jangs="https://Heimdallr.WPF.MVVM.ToolKit/xaml" ...&gt;
+///         &lt;jangs:HeimdallrRegion prism:RegionManager.RegionName="ContentRegion" /&gt;
+///     &lt;/views:MainView&gt;
+///
+/// 이 RegionName은 ViewModel에서 다음과 같이 탐색에 사용됩니다:
+///
+///     RegionManager.RequestNavigate("ContentRegion", nameof(SomeOtherView));
+///
+/// Region 연결은 자동으로 MainWindow의 RegionManager를 사용하여 연결됩니다.
 /// </summary>
 public class HeimdallrRegion : ContentControl
 {

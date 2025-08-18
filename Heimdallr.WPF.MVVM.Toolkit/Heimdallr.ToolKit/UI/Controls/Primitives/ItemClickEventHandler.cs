@@ -1,13 +1,17 @@
 ﻿using System.Windows;
 
 namespace Heimdallr.ToolKit.UI.Controls;
+
+#region ItemClickEventHandler 핸들러
 /// <summary>
 /// 항목이 클릭되었을 때 발생하는 이벤트를 처리하기 위한 델리게이트입니다.
 /// </summary>
 /// <param name="sender">이벤트를 발생시킨 컨트롤 또는 개체입니다.</param>
 /// <param name="e">클릭된 항목에 대한 정보가 포함된 <see cref="ItemClickEventArgs"/> 인스턴스입니다.</param>
 public delegate void ItemClickEventHandler(object sender, ItemClickEventArgs e);
+#endregion
 
+#region ItemClickEventArgs
 /// <summary>
 /// 항목 클릭 이벤트에 대한 데이터를 포함하는 이벤트 인수 클래스입니다.
 /// </summary>
@@ -45,3 +49,4 @@ public sealed class ItemClickEventArgs : RoutedEventArgs
   /// </summary>
   public object? ClickedItem { get; internal set; }
 }
+#endregion

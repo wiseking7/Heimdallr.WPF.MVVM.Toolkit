@@ -22,7 +22,7 @@
                                 Background="{Binding ToggleBackground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrDropdownContentMenu}}"                                
                                 VerticalAlignment="Center" >
                       <!-- 왼쪽: 메인 아이콘 -->
-                      <Viewbox>
+                      <Viewbox Stretch="Fill">
                         <!-- ContentPresenter 대신 HeimdallrIcon 컨트롤을 직접 배치하고 
                              PathIcon과 Fill을 템플릿 바인딩해서 아이콘 표시 -->
                         <ctrls:HeimdallrIcon 

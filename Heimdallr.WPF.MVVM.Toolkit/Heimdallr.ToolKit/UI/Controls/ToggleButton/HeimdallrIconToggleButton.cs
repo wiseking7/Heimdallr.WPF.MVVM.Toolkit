@@ -94,7 +94,8 @@ public class HeimdallrIconToggleButton : ToggleButton
   /// 종속성주입
   /// </summary>
   public static readonly DependencyProperty PathIconFillProperty =
-      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrIconToggleButton), new PropertyMetadata(Brushes.Gray));
+      DependencyProperty.Register(nameof(PathIconFill), typeof(Brush), typeof(HeimdallrIconToggleButton),
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
 
   /// <summary>
   /// IsChecked=True일 때 배경에 적용할 색상
@@ -109,7 +110,7 @@ public class HeimdallrIconToggleButton : ToggleButton
   /// </summary>
   public static readonly DependencyProperty CheckedBackgroundProperty =
       DependencyProperty.Register(nameof(CheckedBackground), typeof(Brush), typeof(HeimdallrIconToggleButton),
-          new PropertyMetadata(Brushes.DarkCyan)); // 기본값
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#008B8B")))); // 기본값
 
   /// <summary>
   /// 타이틀 아이콘으로 표시될 PathIcon 타입 지정 (예: Barcode, Setting 등)

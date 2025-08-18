@@ -73,7 +73,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
   /// </summary>
   public static readonly DependencyProperty WaterMarkForegroundProperty =
       DependencyProperty.Register(nameof(WaterMarkForeground), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
-        new PropertyMetadata(Brushes.Gray));
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
   #endregion
 
   #region Fill
@@ -91,7 +91,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
   /// </summary>
   public static readonly DependencyProperty FillProperty =
       DependencyProperty.Register(nameof(Fill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
-        new PropertyMetadata(Brushes.Gray));
+        new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#AAAAAA"))));
   #endregion
 
   #region
@@ -142,7 +142,7 @@ public class HeimdallrIconWaterMarkTextBox : TextBox
   /// </summary>
   public static readonly DependencyProperty FocusFillProperty =
       DependencyProperty.Register(nameof(FocusFill), typeof(Brush), typeof(HeimdallrIconWaterMarkTextBox),
-          new PropertyMetadata(Brushes.White));
+          new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FFFFFF"))));
   #endregion
 
   private TextBox? _innerTextBox;

@@ -313,4 +313,22 @@ public class HeimdallrIcon : ContentControl
       DependencyProperty.Register(nameof(CommandParameter), typeof(object),
           typeof(HeimdallrIcon), new PropertyMetadata(null));
   #endregion
+
+  #region Stretch
+  /// <summary>
+  /// Viewbox 또는 Path 렌더링에 사용할 Stretch 모드
+  /// </summary>
+  public Stretch Stretch
+  {
+    get => (Stretch)GetValue(StretchProperty);
+    set => SetValue(StretchProperty, value);
+  }
+
+  /// <summary>
+  /// 기본값 Uniform으로 설정된 Stretch 속성
+  /// </summary>
+  public static readonly DependencyProperty StretchProperty =
+      DependencyProperty.Register(nameof(Stretch), typeof(Stretch), typeof(HeimdallrIcon),
+          new PropertyMetadata(Stretch.Uniform));
+  #endregion
 }
