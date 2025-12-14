@@ -8,8 +8,22 @@ namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
 /// HeimdallrWindow 클래스는 WPF의 기본 Window를 상속하여,
-/// MVVM 패턴에서 View와 ViewModel을 자동으로 연결해주는 기능과, IViewable 구현(ViwModel 과 View 접근 가능 인터페이스를 구현합니다.
-/// UI 조작에 도움이 되는 유틸리티(AddChild(), CenterAlignContent(), ApplyThemeColors() 등 편의성 기능) 메서드를 포함하는 사용자 정의 윈도우입니다.
+/// MVVM 패턴에서 View와 ViewModel을 자동으로 연결해주는 기능과, IViewable 구현
+/// (ViewModel과 View 접근 가능 인터페이스 구현) 기능을 제공합니다.
+/// 
+/// UI 조작에 도움이 되는 유틸리티(AddChild(), CenterAlignContent(), ApplyThemeColors() 등) 메서드를 포함합니다.
+///
+/// <para>
+/// Dimming 기능을 구현하려면 반드시 인터페이스 IDimmable을 상속하고,
+/// 다이밍 속성 이름은 'Dimming'으로 지정해야 합니다.
+/// </para>
+///
+/// <example>
+/// public interface IDimmable
+/// {
+///     bool Dimming { get; set; }
+/// }
+/// </example>
 /// </summary>
 public class HeimdallrWindow : Window, IViewable
 {

@@ -212,5 +212,71 @@ public class ImageData
 
   /// <summary>PowerBlue 변환</summary>
   public static string PowerBlue => ImageConverter.GetData();
+
+  /// <summary>왕초연</summary>
+  public static string Wangchuran => ImageConverter.GetData();
+
+  /// <summary>왕초연</summary>
+  public static string WangchuranA => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string Scenery => ImageConverter.GetData();
+  /// <summary>노욱효</summary>
+  public static string LuYuxiao => ImageConverter.GetData();
+
+  /// <summary>노욱효</summary>
+  public static string LuYuxiaoA => ImageConverter.GetData();
+
+  /// <summary>장원영</summary>
+  public static string Jangwonyoung => ImageConverter.GetData();
+
+  /// <summary>장원영</summary>
+  public static string JangwonyoungA => ImageConverter.GetData();
+
+  /// <summary>한지민</summary>
+  public static string HanJimin => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string SceneryA => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string SceneryB => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string SceneryC => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string SceneryD => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string SceneryE => ImageConverter.GetData();
+
+  /// <summary>풍경</summary>
+  public static string Naksan => ImageConverter.GetData();
+
+  /// <summary>캄보디아</summary>
+  public static string Cambodia => ImageConverter.GetData();
+
+  /// <summary>구채구</summary>
+  public static string Guchae => ImageConverter.GetData();
+
+  /// <summary>태항산</summary>
+  public static string Taehang => ImageConverter.GetData();
+
+  /// <summary>무릉도원</summary>
+  public static string Mureung => ImageConverter.GetData();
+
+  /// <summary>킬리만자로</summary>
+  public static string Kilimanjaro => ImageConverter.GetData();
+
+  /// <summary>토레스델파이네</summary>
+  public static string TorresDelphi => ImageConverter.GetData();
+
+  /// <summary>로키산맥</summary>
+  public static string RockyMountain => ImageConverter.GetData();
+
+  /// <summary>알프스</summary>
+  public static string Alps => ImageConverter.GetData();
+
 }
 

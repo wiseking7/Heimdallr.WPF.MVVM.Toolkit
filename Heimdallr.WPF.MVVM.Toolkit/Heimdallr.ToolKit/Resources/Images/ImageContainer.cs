@@ -40,7 +40,7 @@ public static class ImageContainer
       Assembly assembly = Assembly.GetExecutingAssembly();
       string resourceName = "Heimdallr.ToolKit.Resources.Data.images.yaml";
 
-      Debug.WriteLine($"[ImageContainer] 리소스 로드 중: {resourceName}");
+      Debug.WriteLine($"[ImageContainer.cs 리소스 로드 중: {resourceName}");
 
       using Stream? stream = assembly.GetManifestResourceStream(resourceName);
       if (stream == null)
@@ -73,11 +73,11 @@ public static class ImageContainer
         }
       }
 
-      Debug.WriteLine($"[ImageContainer] {_items.Count}개의 이미지 항목 로드됨");
+      Debug.WriteLine($"[ImageContainer.cs] {_items.Count}개의 이미지 항목 로드됨");
     }
     catch (Exception ex)
     {
-      Debug.WriteLine($"[ImageContainer] 오류 발생: {ex.Message}");
+      Debug.WriteLine($"[ImageContainer.cs] 오류 발생: {ex.Message}");
       throw;
     }
   }

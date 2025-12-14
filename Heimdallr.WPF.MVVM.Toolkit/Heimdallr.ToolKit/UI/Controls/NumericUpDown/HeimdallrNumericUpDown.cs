@@ -102,7 +102,10 @@ public class HeimdallrNumericUpDown : Control
   private static void OnMinMaxChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     var control = (HeimdallrNumericUpDown)d;
+
+    // Min 또는 Max가 변경될 때 Value를 강제 조정
     control.CoerceValue(ValueProperty);
+    control.UpdateTextBox();
   }
   #endregion
 
@@ -192,8 +195,24 @@ public class HeimdallrNumericUpDown : Control
   public static readonly DependencyProperty DownIconFillProperty =
       DependencyProperty.Register(nameof(DownIconFill), typeof(Brush), typeof(HeimdallrNumericUpDown),
         new PropertyMetadata(new SolidColorBrush(Colors.Gray)));
+  #endregion
 
+  #region IconSize
+  /// <summary>
+  /// 이이콘 사이즈 너비,높이
+  /// </summary>
+  public double IconSize
+  {
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
+  }
 
+  /// <summary>
+  /// 아이콘사이즈 기본값
+  /// </summary>
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double),
+          typeof(HeimdallrNumericUpDown), new PropertyMetadata(20.0));
   #endregion
 
   /// <summary>
@@ -208,13 +227,13 @@ public class HeimdallrNumericUpDown : Control
   {
     base.OnApplyTemplate();
 
-    if (GetTemplateChild("PART_UpButton") is Button up)
+    if (GetTemplateChild("PART_UpButton") is HeimdallrRepeatButton up)
     {
       up.Click -= Up_Click;
       up.Click += Up_Click;
     }
 
-    if (GetTemplateChild("PART_DownButton") is Button down)
+    if (GetTemplateChild("PART_DownButton") is HeimdallrRepeatButton down)
     {
       down.Click -= Down_Click;
       down.Click += Down_Click;
@@ -236,6 +255,33 @@ public class HeimdallrNumericUpDown : Control
       _textBox.TextChanged += TextBox_TextChanged;
 
       _textBox.Text = Value.ToString(CultureInfo.InvariantCulture);
+    }
+
+    // 키보드 업 / 다운 이벤트 처리
+    if (_textBox != null)
+    {
+      _textBox.KeyDown += Textbox_KeyDown;
+    }
+  }
+
+
+  /// <summary>
+  /// 키보드의 Up/Down 키를 눌렀을 때 Value 값을 증가/감소시키는 이벤트 핸들러입니다.
+  /// </summary>
+  /// <param name="sender"></param>
+  /// <param name="e"></param>
+  /// <exception cref="NotImplementedException"></exception>
+  private void Textbox_KeyDown(object sender, KeyEventArgs e)
+  {
+    if (e.Key == Key.Up)
+    {
+      Value = NormalizePrecision(Value + Step);
+      e.Handled = true;
+    }
+    else if (e.Key == Key.Down)
+    {
+      Value = NormalizePrecision(Value - Step);
+      e.Handled = true;
     }
   }
 
@@ -281,6 +327,29 @@ public class HeimdallrNumericUpDown : Control
       var text = Value.ToString(CultureInfo.InvariantCulture);
       if (_textBox.Text != text)
         _textBox.Text = text;
+    }
+
+    // 범위를 벗어나면 배경색 변경
+    if (Value < Min || Value > Max)
+    {
+      if (_textBox != null)
+        _textBox.Background = new SolidColorBrush(Colors.Red);
+    }
+    else
+    {
+      if (_textBox != null)
+        _textBox.Background = new SolidColorBrush(Colors.Transparent);
+    }
+
+    // 값이 유효하지 않으면 경고 메세지 표시
+    if (!double.TryParse(_textBox?.Text, out _))
+    {
+      // 경고 아이콘 추가
+      _textBox!.Foreground = new SolidColorBrush(Colors.Red);
+    }
+    else
+    {
+      _textBox!.Foreground = Foreground;
     }
   }
 
@@ -381,6 +450,93 @@ public class HeimdallrNumericUpDown : Control
     if (index < 0) return 0;
     return text.Length - index - 1;
   }
+
+  #region Foreground
+  /// <summary>
+  /// 텍스트 박스의 글자색입니다.
+  /// </summary>
+  public new Brush Foreground
+  {
+    get => (Brush)GetValue(ForegroundProperty);
+    set => SetValue(ForegroundProperty, value);
+  }
+
+  /// <summary>
+  /// Foreground 속성은 텍스트 박스의 글자색을 나타냅니다.
+  /// </summary>
+  public new static readonly DependencyProperty ForegroundProperty =
+      DependencyProperty.Register(nameof(Foreground), typeof(Brush), typeof(HeimdallrNumericUpDown),
+          new PropertyMetadata(new SolidColorBrush(Colors.Black)));
+  #endregion
+
+  #region UpIconMouseOverFill
+  /// <summary>
+  /// Up 아이콘의 마우스 오버 색상을 설정합니다.
+  /// </summary>
+  public Brush UpIconMouseOverFill
+  {
+    get => (Brush)GetValue(UpIconMouseOverFillProperty);
+    set => SetValue(UpIconMouseOverFillProperty, value);
+  }
+  /// <summary>
+  /// Up 아이콘의 마우스 오버 색상 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty UpIconMouseOverFillProperty =
+      DependencyProperty.Register(nameof(UpIconMouseOverFill), typeof(Brush), typeof(HeimdallrNumericUpDown),
+          new PropertyMetadata(new SolidColorBrush(Colors.Blue)));  // 기본값은 파란색
+  #endregion
+
+  #region UpIconPressedFill
+  /// <summary>
+  /// Up 아이콘의 눌렀을 때 색상을 설정합니다.
+  /// </summary>
+  public Brush UpIconPressedFill
+  {
+    get => (Brush)GetValue(UpIconPressedFillProperty);
+    set => SetValue(UpIconPressedFillProperty, value);
+  }
+  /// <summary>
+  /// Up 아이콘의 눌렀을 때 색상 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty UpIconPressedFillProperty =
+      DependencyProperty.Register(nameof(UpIconPressedFill), typeof(Brush), typeof(HeimdallrNumericUpDown),
+          new PropertyMetadata(new SolidColorBrush(Colors.Red)));  // 기본값은 빨간색
+  #endregion
+
+  #region DownIconMouseOverFill
+  /// <summary>
+  /// Down 아이콘의 마우스 오버 색상을 설정합니다.
+  /// </summary>
+  public Brush DownIconMouseOverFill
+  {
+    get => (Brush)GetValue(DownIconMouseOverFillProperty);
+    set => SetValue(DownIconMouseOverFillProperty, value);
+  }
+  /// <summary>
+  /// Down 아이콘의 마우스 오버 색상 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty DownIconMouseOverFillProperty =
+      DependencyProperty.Register(nameof(DownIconMouseOverFill), typeof(Brush), typeof(HeimdallrNumericUpDown),
+          new PropertyMetadata(new SolidColorBrush(Colors.Orange)));  // 기본값은 오렌지색
+  #endregion
+
+  #region DownIconPressedFill
+  /// <summary>
+  /// Down 아이콘의 눌렀을 때 색상을 설정합니다.
+  /// </summary>
+  public Brush DownIconPressedFill
+  {
+    get => (Brush)GetValue(DownIconPressedFillProperty);
+    set => SetValue(DownIconPressedFillProperty, value);
+  }
+  /// <summary>
+  /// Down 아이콘의 눌렀을 때 색상 속성입니다.
+  /// </summary>
+  public static readonly DependencyProperty DownIconPressedFillProperty =
+      DependencyProperty.Register(nameof(DownIconPressedFill), typeof(Brush), typeof(HeimdallrNumericUpDown),
+          new PropertyMetadata(new SolidColorBrush(Colors.Green)));  // 기본값은 초록색
+  #endregion
+
 }
 
 

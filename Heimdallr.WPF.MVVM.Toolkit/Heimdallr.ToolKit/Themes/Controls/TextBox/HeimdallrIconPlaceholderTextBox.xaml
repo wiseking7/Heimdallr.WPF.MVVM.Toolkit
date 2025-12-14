@@ -4,26 +4,36 @@
 
   <Style TargetType="{x:Type ctrls:HeimdallrIconPlaceholderTextBox}">
     <Setter Property="Padding" Value="5" />
-    <Setter Property="Background" Value="White" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="#000000" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="1" />
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIconPlaceholderTextBox}">
           <Border x:Name="textBorder"
-                  CornerRadius="5"
-                  BorderThickness="2"
+                  CornerRadius="{TemplateBinding CornerRadius}"
                   BorderBrush="{TemplateBinding BorderBrush}"
-                  Background="{TemplateBinding Background}">
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Background="{TemplateBinding Background}"
+                  SnapsToDevicePixels="True"
+                  UseLayoutRounding="True">
+            
             <Grid Margin="{TemplateBinding Padding}">
               <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
+                <!-- 이이콘 자리 -->
+                <ColumnDefinition Width="Auto"/>
+                
+                <!-- 문자열 자리-->
                 <ColumnDefinition Width="*"/>
               </Grid.ColumnDefinitions>
 
               <!-- 좌측 아이콘 -->
               <ctrls:HeimdallrIcon
                   Grid.Column="0"
-                  Width="25" Height="25"
+                  Width="{TemplateBinding IconSize}"  
+                  Height="{TemplateBinding IconSize}"  
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center"
                   PathIcon="{TemplateBinding PathIcon}"
@@ -31,6 +41,7 @@
 
               <!-- 텍스트 입력 -->
               <TextBox x:Name="PART_TextBox"
+                       Margin="5 0 0 0"
                        Grid.Column="1"
                        Background="Transparent"
                        BorderThickness="0"
@@ -38,7 +49,25 @@
                        CaretBrush="{TemplateBinding CaretBrush}"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Stretch"
-                       Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                       TextAlignment="{TemplateBinding TextAlignment}"
+                       Text="{Binding Text, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                       
+                       FontSize="{TemplateBinding FontSize}"
+                       FontFamily="{TemplateBinding FontFamily}"
+                       FontWeight="{TemplateBinding FontWeight}"
+                   
+                       IsReadOnly="{Binding IsReadOnly, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                       AcceptsTab="{Binding AcceptsTab, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                       MaxLength="{Binding MaxLength, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                       CharacterCasing="{Binding CharacterCasing, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                       TextWrapping="{Binding TextWrapping, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                       AcceptsReturn="{Binding AcceptsReturn, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrIconPlaceholderTextBox}}"
+                   
+                       HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                       VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                   
+                       ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                       ScrollViewer.VerticalScrollBarVisibility="Auto" />
 
               <!-- 플레이스홀더 텍스트 -->
               <TextBlock x:Name="PlaceholderTextBlock"
@@ -46,7 +75,7 @@
                          Foreground="{TemplateBinding PlaceholderForeground}"
                          VerticalAlignment="Center"
                          HorizontalAlignment="Left"
-                         Margin="5,0,0,0"
+                         Margin="10,0,0,0"
                          IsHitTestVisible="False"
                          Visibility="Collapsed"
                          Grid.Column="1"/>
@@ -56,13 +85,15 @@
           <ControlTemplate.Triggers>
             <!-- 마우스 오버 시 테두리 강조 -->
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFF58F84"/>
+              <Setter TargetName="textBorder" Property="BorderBrush" 
+                      Value="{Binding MouseOverBorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
 
             <!-- 포커스 시 강조 -->
-            <Trigger Property="IsKeyboardFocused" Value="True">
-              <Setter TargetName="textBorder" Property="BorderBrush" Value="#FFF58F84"/>
-              <Setter TargetName="textBorder" Property="BorderThickness" Value="0.5 0.5 0.5 3"/>
+            <Trigger Property="IsKeyboardFocusWithin" Value="True">
+              <Setter TargetName="textBorder" Property="BorderBrush" 
+                      Value="{Binding FocusedBorderBrush, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Setter TargetName="textBorder" Property="BorderThickness" Value="0.5 0.5 0.5 2"/>
             </Trigger>
 
             <!-- 텍스트 없을 때 플레이스홀더 표시 -->

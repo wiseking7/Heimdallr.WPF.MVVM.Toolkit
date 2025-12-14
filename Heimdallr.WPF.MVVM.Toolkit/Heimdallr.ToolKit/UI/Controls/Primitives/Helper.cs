@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Media;
@@ -147,7 +148,7 @@ internal static class Helper
     }
     else
     {
-      Debug.Fail("여기에 도달해서는 안 됩니다");
+      Debug.Fail($"[{nameof(Helper)}.{MethodBase.GetCurrentMethod()?.Name}] 여기에 도달해서는 안 됩니다");
       return new DpiScale2(1, 1); // fallback to 96 DPI
     }
 #endif

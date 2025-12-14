@@ -6,6 +6,9 @@
   <!-- 이 섹션에는 공통적으로 사용하는 기본 테마 리소스와 컨트롤 스타일을 배치합니다. 순서 -->
 
   <ResourceDictionary.MergedDictionaries>
+    
+    <!--0 기타 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Card/FlipAnimationCard.xaml" />
 
     <!-- 1. 공통 색상 및 아이콘 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/LightColors.xaml" />
@@ -14,21 +17,22 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Icon/HeimdallrIcon.xaml" />
 
     <!-- 2. 버튼 및 인터랙션 -->
-
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/NumericUpDown/HeimdallrNumericUpDown.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/RadioButton/HeimdallrIconRadioButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrFlatButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HoldSubmitButton.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrHoldIconButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrPulseRectButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/HeimdallrPulseEllipse.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MinimizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/MaximizeButton.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Buttons/CloseButton.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/RepeatButton/HeimdallrRepeatButton.xaml" />
 
     <!-- 3. 입력 컨트롤 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ProgressBar/HeimdallrProgressBar.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrRightIconTextBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconPlaceholderTextBox.xaml" />
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TextBox/HeimdallrIconWaterMarkTextBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/PasswordBox/HeimdallrIconWaterMarkPasswordBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ComboBox/HeimdallrComboBox.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/CheckBox/HeimdallrSwitchCheckBox.xaml" />
@@ -37,23 +41,33 @@
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToggleButton/ThemeSwitchButton.xaml" />
 
     <!-- 4. List, TreeView 및 ItemControl 컨트롤 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/DataGrid/HeimdallrDataGrid.xaml" />
+
+    <!-- ListView-->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListViewItem.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrGridViewColumnHeader.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ListView/HeimdallrListView.xaml"/>
+
+    <!-- TreeView-->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeView.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/TreeView/HeimdallrTreeViewItem.xaml" />
 
     <!-- 5. 슬라이더, Thumb, 패널 -->
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ScrollViewer/HeimdallrScrollViewer.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ScrollBar/HeimdallrScrollBar.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/RiotSlider.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Slider/HeimdallrSlider.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Thumb/HeimdallrThumb.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/SliderPanel/HeimdallrSlidingPanel.xaml" />
-
+    
     <!-- 6. Indicator 표시기 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/Indicator.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Indicator/LoadingOverlay.xaml"/>
 
-    <!-- 7. 툴팁 및 정보창 -->
+    <!-- 7. 툴팁/ContentMenu 및 정보창 -->
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ToolTip/HeimdallrToolTip.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentMenu/HeimdallrContextMenu.xaml" />
+    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/ContentMenu/HeimdallrMenuItem.xaml" />
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Information/InformationWindow.xaml" />
 
     <!-- 8. 레이아웃 및 영역 -->

@@ -3,11 +3,22 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls;assembly=Heimdallr.ToolKit"
     xmlns:views="clr-namespace:Heimdallr.App"
-    xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit">
+    xmlns:conve="clr-namespace:Heimdallr.ToolKit.Converters;assembly=Heimdallr.ToolKit"
+    xmlns:entity="clr-namespace:Heimdallr.ToolKit.EntityTest;assembly=Heimdallr.ToolKit">
 
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
   </ResourceDictionary.MergedDictionaries>
+
+  <Style x:Key="HeimdallrColumnHeaderStyle" TargetType="GridViewColumnHeader">
+    <Setter Property="Background" Value="#2B2B2B"/>
+    <Setter Property="Foreground" Value="White"/>
+    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+    <Setter Property="VerticalContentAlignment" Value="Center"/>
+    <Setter Property="FontWeight" Value="SemiBold"/>
+    <Setter Property="Padding" Value="6,3"/>
+  </Style>
+
 
   <conve:InverseBooleanConverter x:Key="InverseBooleanConverter" />
 
@@ -31,232 +42,288 @@
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
-              <RowDefinition Height="*" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
+              <RowDefinition Height="Auto" />
               <RowDefinition Height="Auto" />
               <RowDefinition />
             </Grid.RowDefinitions>
 
-            <ctrls:HeimdallrTreeView Grid.Row="1" Width="Auto">
-              <ctrls:HeimdallrTreeViewItem PathIcon="Barcode"
-                               ExpandIcon="ChevronDownEllipse"
-                               CollapseIcon="ChevronUpEllipse"
-                               ExpandIconFill="Yellow"
-                               CollapseIconFill="CornflowerBlue"
-                               IconWidth="40" IconHeight="40"
-                               PathIconFill="Black"
-                               ExpandToggleIconHeight="20"
-                               ExpandToggleIconWidth="20"
-                               SelectedBackground="AliceBlue"
-                        
-                                
-                               FontSize="10" Foreground="Red">
+            <!--#region Row 1 HeimdallrRightIconTextBox, HeimdallrIconPlaceholderTextBox, HeimdallrComboBox, HeimdallrSwitchCheckBox, PathIcon 테스트 -->
+            <Grid Grid.Row="1" Margin="10">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <!--#region Column 0 HeimdallrRightIconTextBox-->
+              <ctrls:HeimdallrRightIconTextBox Grid.Column="0"
+                                               Margin="10"
+                                               Placeholder="Code"
+                                               CornerRadius="7"
+                                               MaxLength="16"
+                                               PlaceholderForeground="#FFFFFFFF"
+                                               PathIcon="Unit"
+                                               TextAlignment="Left"
+                                               TextWrapping="Wrap"
+                                               IconSize="30"
+                                               IconSizeRigth="20"
+                                               AcceptsReturn="False"
+                                               AcceptsTab="False"
+                                               CharacterCasing="Upper"
+                                               Fill="#FF0F828C"
+                                               Foreground="#FFFFFFFF"
+                                               Background="Transparent"
+                                               BorderBrush="AliceBlue"
+                                               FontSize="16"
+                                               RightPathIcon="Information"
+                                               RightFill="#FFB12C00"
+                                               RightPressedFill="#FF8CABFF"
+                                               Text="{Binding NumberString, UpdateSourceTrigger=PropertyChanged, Converter={conve:BarcodeFormatConverter}}"
+                                               CommandParameter="LoginView"
+                                               EntityType="{x:Type entity:EntityTest}"
+                                               DescriptionParameter="Buy"/>
+              <!--#endregion-->
+              <!--#region Column 1 HeimdallrIconPlaceholderTextBox -->
+              <ctrls:HeimdallrIconPlaceholderTextBox Grid.Column="1"  
+                                                     Margin="10"
+                                                     BorderBrush="#FFFFFFFF"
+                                                     CharacterCasing="Upper"
+                                                     CornerRadius="7"
+                                                     PathIcon="Account"
+                                                     CaretBrush="#FFFFFFFF"
+                                                     Placeholder="OK바리"
+                                                     PlaceholderForeground="#FFFFFFFF"
+                                                     Fill="#FF0F828C"
+                                                     MouseOverBorderBrush="#FF32012F"
+                                                     FocusedBorderBrush="#FF4477CE"
+                                                     Foreground="#FFFFFFFF"
+                                                     TextAlignment="Left"
+                                                     Background="Transparent"
+                                                     FontSize="16"
+                                                     Text="{Binding Number, UpdateSourceTrigger=PropertyChanged, Converter={conve:NumberCommaConverter}}"/>
+              <!--#endregion-->
+              <!--#region Column 2 HeimdallrComboBox -->
+              <ctrls:HeimdallrComboBox Grid.Column="2"
+                                       Margin="10"
+                                       Background="Transparent"
+                                       CornerRadius="7"
+                                       Height="40"
+                                       IsEditable="True"
+                                       BorderThickness="1"
+                                       BorderBrush="#98CD00"
+                                       PopupBorderThickness="0" 
+                                       FontSize="16"
+                                       CaretBrush="#FFFFFFFF"
+                                       Foreground="#FFFFFFFF"
+                                       SelectedItemForeground="Red"
+                                       PathIcon="Brand"
+                                       PathIconFill="#FFEAD8A4"
+                                       IconSize="30"
+                                       PlaceholderText="콤보박스 테스트"
+                                       PlaceholderForeground="BlanchedAlmond"
+                                       IconCheckedFill="#FF065084"
+                                       IconMouseOverFill="#FFFF2DD1"
+                                       DropDownBackground="#9929EA" 
+                                       DisplayMemberPath="Value" 
+                                       SelectedValuePath="Key" 
+                                       IconDisabledFill="Red"
+                                       ItemsSource="{Binding ComboBoxItems}"
+                                       VerticalContentAlignment="Center">
+                <!-- 아이템 추가 -->
+              </ctrls:HeimdallrComboBox>
+              <!--#endregion-->
+              <!--#region Column 3 HeimdallrSwitchCheckBox-->
+              <ctrls:HeimdallrSwitchCheckBox Grid.Column="3"  
+                                             Margin="10"
+                                             Content="스위치 체크박스"
+                                             Width="80" 
+                                             Fill="Blue"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Top"
+                                             Foreground="White"
+                                             PathIcon="Menu" />
+              <!--#endregion-->
+              <!--#region Column  PathIcon 테스트 -->
+              <StackPanel Grid.Column="4" Orientation="Horizontal" >
+                <ctrls:HeimdallrIcon PathIcon="Save" Fill="White" Width="50" Height="50" />
+                <ctrls:HeimdallrIcon PathIcon="Position" Fill="White" Width="50" Height="50" Margin="20 0 0 0"/>
+                <ctrls:HeimdallrIcon PathIcon="PositionA" Fill="White" Width="50" Height="50" Margin="20 0 0 0"/>
+                <ctrls:HeimdallrIcon PathIcon="None"  Fill="White" Width="50" Height="50" Margin="20 0 0 0"/>
+                <ctrls:HeimdallrIcon PathIcon="None" Fill="White" Width="50" Height="50" Margin="20 0 0 0"/>
+                <ctrls:HeimdallrIcon PathIcon="None" Fill="White" Width="50" Height="50" Margin="20 0 0 0"/>
+              </StackPanel>
+              <!--#endregion-->
+            </Grid>
+            <!--#endregion-->
 
-                <ctrls:HeimdallrTreeViewItem Text="네트워크 등록" PathIcon="Barcode"
-                  ExpandIcon="ChevronDownEllipse"
-                  CollapseIcon="ChevronUpEllipse"
-                  IconWidth="30" IconHeight="30"
-                  ExpandIconFill="AliceBlue"
-                  CollapseIconFill="Bisque"
-                  FontSize="30" Foreground="AliceBlue"
-                  SelectedCommand="{Binding TestTreeViewCommand}"
-                                             CommandParameter="없음">
+            <!--#region Row 2 FlipAnimationCard, HeimdallrHoldIconButton, HeimdallrScrollBar -->
+            <Grid Grid.Row="2" Margin="10">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
 
-                  <ctrls:HeimdallrTreeViewItem Text="네트워크 세부정보" PathIcon="Barcode"                             
-                  IconWidth="20" IconHeight="20"
-                  PathIconFill="AliceBlue"
-                  FontSize="20" Foreground="Green"/>
+              </Grid.ColumnDefinitions>
+              <ctrls:FlipAnimationCard Grid.Column="0" CardHeight="200" CardWidth="200" FrontCornerRadius="10"
+                                       BackCornerRadius="10"
+                                       FrontBackground="#FF636CCB" BackBackground="#FFA8FBD3"
+                                       Image="Alps" CardTitle="멋진풍경"
+                                       CardDescription="사용자 정보">
+
+                <ctrls:FlipAnimationCard.BackContent>
+                  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="This is the back!" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                    <Button Content="Click Me" Width="100" Height="30" Command="{Binding MessageCommand}"/>
+                  </StackPanel>
+                </ctrls:FlipAnimationCard.BackContent>
+              </ctrls:FlipAnimationCard>
+              <ctrls:FlipAnimationCard Grid.Column="1" CardHeight="200" CardWidth="200" FrontCornerRadius="10"
+                                       BackCornerRadius="10"
+                                       FrontBackground="#FF636CCB" BackBackground="#FFA8FBD3"
+                                       Image="TorresDelphi" CardTitle="멋진풍경"
+                                       CardDescription="사용자 정보">
+
+                <ctrls:FlipAnimationCard.BackContent>
+                  <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <TextBlock Text="This is the back!" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                    <Button Content="Click Me" Width="100" Height="30" Command="{Binding MessageCommand}"/>
+                  </StackPanel>
+                </ctrls:FlipAnimationCard.BackContent>
+              </ctrls:FlipAnimationCard>
+
+              <StackPanel Grid.Column="2" Margin="10" Orientation="Vertical">
+
+                <TextBlock Text="이름 입력:" />
+                <TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" />
+
+                <!-- 오류 메시지 표시 -->
+                <TextBlock Text="{Binding ErrorMessage}" Foreground="Red" Margin="0,5,0,0" />
+
+                <ctrls:HeimdallrHoldIconButton 
+                               Width="150"
+                               Margin="200 0 0 0"
+                               PathIcon="Address"
+                               CornerRadius="7"
+                               HoldDuration="0:0:0.8"
+                               PathIconFill="Aqua"
+                               IconSize="30"
+                               FontSize="16"
+                               Background="Gray"       
+                               OneHoldFill="Red"
+                               MouseOverBackground="#FF4DA1A9"
+                               PressedBackground="#FFB13BFF"
+                               TwoHoldFill="Yellow"
+                               ThreeHoldFill="Blue"
+                               Foreground="#FFFFFFFF"
+                               Content="Hold Me"
+                               Command="{Binding SaveCommand}"/>
+
+                <ctrls:HeimdallrIconRadioButton PathIcon="ArrowDown" IconSize="40"/>
+              </StackPanel>
+
+              <ctrls:HeimdallrScrollBar Grid.Column="3" Orientation="Vertical" Height="50"/>
+
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Row 3 HeimdallrRepeatButton, HeimdallrNumericUpDown, HeimdallrScrollBar -->
+            <Grid Grid.Row="3" Margin="10">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+
+              <ctrls:HeimdallrRepeatButton Grid.Column="0" PathIcon="Code" Fill="AliceBlue" Grid.Row="0" Background="Black" MouseOverBackground="BlanchedAlmond" 
+                                           PressedBackground="Black" Width="50" Height="50" CornerRadius="25"/>
+
+              <ctrls:HeimdallrNumericUpDown Grid.Column="1" DownIconFill="AliceBlue" 
+                                            UpIconFill="Aqua" IconSize="30" Background="Transparent" Width="100" UpIconMouseOverFill="Bisque"
+                                            UpIconPressedFill="BlanchedAlmond" DownIconPressedFill="Brown" DownIconMouseOverFill="CornflowerBlue"
+                                            Foreground="#FFFFFFFF"/>
+              <ctrls:HeimdallrScrollBar Grid.Column="2" Orientation="Horizontal"  />
+
+              <Button Grid.Column="3" Content="비동기" Width="100" Height="30" Command="{Binding LoadDataCommand}" />
+            </Grid>
+            <!--#endregion-->
+
+            <!--#region Row 4 ViewBox -->
+            <Grid Grid.Row="4">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
+              <!--#region 뷰박스-->
+              <Viewbox Grid.Column="5" Width="50" Height="50">
+                <Path Fill="AliceBlue"
+                      Data=""  />
+              </Viewbox>
+              <!--#endregion -->
+            </Grid>
+            <!--#endregion -->
+
+            <!--#region Row 5 HeimdallrTreeView, HeimdallrTreeViewItem-->
+            <ctrls:HeimdallrTreeView Grid.Row="5" Width="Auto" Background="Transparent">
+              <ctrls:HeimdallrTreeViewItem PathIcon="Approval"
+                                           ExpandIcon="Arrow_Triangle_Down"
+                                           CollapseIcon="Arrow_Triangle_Up"
+                                           ExpandIconFill="Yellow"
+                                           CollapseIconFill="CornflowerBlue"
+                                           IconSize="20"
+                                           PathIconFill="Black"
+                                           ExpandToggleIconSize="20"
+                                           SelectedBackground="AliceBlue"                         
+                                           FontSize="10" Foreground="Red">
+
+                <ctrls:HeimdallrTreeViewItem Text="등록" PathIcon="Create"
+                                             ExpandIcon="Arrow_Triangle_Down"
+                                             CollapseIcon="Arrow_Triangle_Up"
+                                             IconSize="20"
+                                             ExpandIconFill="AliceBlue"
+                                             CollapseIconFill="Bisque"
+                                             SelectedCommand="{Binding TestTreeViewCommand}"
+                                                                          CommandParameter="없음">
+
+                  <ctrls:HeimdallrTreeViewItem Text="세부정보" PathIcon="Create"                             
+                                               IconSize="16"
+                                               PathIconFill="AliceBlue"
+                                               Foreground="Green"/>
 
                 </ctrls:HeimdallrTreeViewItem>
               </ctrls:HeimdallrTreeViewItem>
               <ctrls:HeimdallrThumb />
             </ctrls:HeimdallrTreeView>
+            <!--#endregion-->
 
-            <TreeView Grid.Row="2" >
-              <TreeViewItem>
-                <TextBlock Text="OK" />
-                <TextBlock Text="good" />
-                <TextBlock Text="cancel" />
-              </TreeViewItem>
-            </TreeView>
+            <Grid Grid.Row="6">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+              </Grid.ColumnDefinitions>
 
-
-            <ctrls:HeimdallrSwitchCheckBox Grid.Row="8" 
-                                            IsChecked="{Binding IsChecked, Mode=TwoWay}"
-                                            Content="스위치 체크박스"
-                                            Width="80" 
-                                            Fill="Blue"
-                                            Margin="0,10,0,0"
-                                            HorizontalAlignment="Left"
-                                            VerticalAlignment="Top"
-                                            Foreground="White"
-                                            PathIcon="Menu"
-                                             />
-
-            <ctrls:HeimdallrFlatButton
-                  Grid.Row="9"
-                  x:Name="LoginButton"
-                  Width="150"
-                  Margin="0,50,0,0"
-                  Background="#FF6EACDA"
-                  Command="{Binding LoginCommand}"
-                  Content="LOGIN"
-                  CornerRadius="7"
-                  Foreground="White"
-                  DisabledBackground="#FFB9B4C7"
-                  DisabledBorderBrush="#FFB9B4C7"
-                  DisabledForeground="DarkGray"
-                  MouseOverBackground="#FF03346E"
-                  MouseOverBorderBrush="#FF07346E"
-                  PressedBackground="#FFC147E9"
-                  PressedBorderBrush="#FFC747E9" />
-            
-            <Grid Grid.Row="11" Margin="0 10 0 0">
-              <StackPanel Margin="10">
-                <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" Margin="0 0 0 10" />
-
-                <Button Content="사용자 불러오기"
-                    Command="{Binding LoadUsersCommand}"
-                    IsEnabled="{Binding IsBusy, Converter={StaticResource InverseBooleanConverter}}" />
-                
-                <!-- IsEnabled="{Binding IsBusy}" 삭제 -->
-                <!-- ViewModel과 View 연결 (ViewModelLocator 또는 Region 등록 시) -->
-                <ctrls:LoadingOverlay
-                    IsLoading="{Binding IsBusy}"
-                    LoadingText="{Binding BusyMessage}"
-                    IndicatorType="Cupertino"
-                    VerticalAlignment="Center"
-                    HorizontalAlignment="Center"
-                    Margin="0 10 0 0" />
-
-                <ctrls:HeimdallrListView ItemsSource="{Binding People}"
-                                         Margin="0 10 0 0"
-                                         SelectedBackground="red"
-                                         SelectionMode="Single">
-                  <ctrls:HeimdallrListView.View>
-                    <GridView>
-                      <GridViewColumn Header="ID" DisplayMemberBinding="{Binding Id}" Width="60"/>
-                      <GridViewColumn Header="이름" DisplayMemberBinding="{Binding Name}" Width="120"/>
-                      <GridViewColumn Header="나이" DisplayMemberBinding="{Binding Age}" Width="80"/>
-                      <GridViewColumn Header="생일" DisplayMemberBinding="{Binding BirthDay, StringFormat='yyyy-MM-dd'}" Width="130"/>
-                      <GridViewColumn Header="주소" DisplayMemberBinding="{Binding Address}" Width="200" />
-                    </GridView>
-                  </ctrls:HeimdallrListView.View>
-                </ctrls:HeimdallrListView>
-              </StackPanel>
+              <ctrls:HeimdallrFlatButton Grid.Column="0" Content="Flat" />
+              <ctrls:HeimdallrHoldIconButton Grid.Column="1"  Content="HoldIcon"/>
+              <ctrls:HeimdallrPulseEllipse Grid.Column="2"  Content="PulseEllipse"/>
+              <ctrls:HeimdallrPulseRectButton Grid.Column="3" Content="PulseRect" />
+              <ctrls:HoldSubmitButton Grid.Column="4" Content="Submit" HoldDuration="0:0:1"
+                                      EllipseFill="DarkGray" BgEllipseFill="Blue"
+                                      Width="80" Height="80"/>
             </Grid>
-
-            <Button Grid.Row="12" Content="비동기"
-                    Width="100" Height="30"
-                    Command="{Binding LoadDataCommand}" />
-
-            <ctrls:HeimdallrIcon Grid.Row="8" PathIcon="DetailE"  Width="100" Height="100" Fill="AliceBlue" />
-
-            <ctrls:HeimdallrIconWaterMarkTextBox Text="우리는" Foreground="White"
-                                                 FontSize="16" Width="200" TextWrapping="Wrap"
-                                                 AcceptsReturn="True"
-                                                 CaretBrush="White"
-                                                 PathIcon="Address" Fill="Wheat"/>
-
-            <Viewbox Grid.Row="13" Width="100" Height="100">
-              <Path Fill="Black" 
-                  Data="M 128,240.2 M 129.5,151.4
-l 21.2-7.9
-l 1.2-1.2
-l -13.2-13.2
-l -1.2,1.2
-L 129.5,151.4
-L 129.5,151.4
-L 129.5,151.4
-L 129.5,151.4
-z M 143.1,124.7
-l 13.2,13.2
-l 33-33
-L 176,91.7
-L 143.1,124.7
-L 143.1,124.7
-L 143.1,124.7
-L 143.1,124.7
-z M 198.2,87.2
-l -4.4-4.4
-c -2.4-2.4-6.4-2.4-8.8,0
-l -4.5,4.5
-l 13.2,13.2
-l 4.5-4.5
-C 200.6,93.6,200.6,89.6,198.2,87.2
-L 198.2,87.2
-L 198.2,87.2
-L 198.2,87.2
-L 198.2,87.2
-z M 128,10
-C 62.8,10,10,62.8,10,128
-c 0,65.2,52.8,118,118,118
-c 65.2,0,118-52.8,118-118
-C 246,62.8,193.2,10,128,10
-z M 174.6,187.1
-c 0,6.9-5.2,12.5-12.1,12.5
-H 75.2
-c -6.9,0-11.8-5.6-11.8-12.5
-V 68.6
-c 0-6.9,4.9-12.1,11.8-12.1
-H 122
-h 1.7
-h 3.2
-h 8.7
-l 28.1,30
-l -4.4,4.4
-l -21.8-23.2
-v 22.9
-c 0,3.4,2.8,6.2,6.2,6.2
-h 9.7
-l -6.2,6.2
-h -3.4
-c -6.9,0-12.5-5.6-12.5-12.5
-V 62.3
-H 75.2
-c -3.4,0-6.2,2.8-6.2,6.2
-v 118.5
-c 0,3.4,2.8,6.2,6.2,6.2
-h 87.3
-c 3.4,0,6.2-2.8,6.2-6.2
-v -44
-l 5.9-6.2
-V 187.1
-L 174.6,187.1
-z M 77.1,124.4
-v -7.3
-H 119
-v 7.3
-H 77.1
-z M 119,144.9
-v 7.3
-H 77.1
-v -7.3
-H 119
-z M 77.1,95.5
-v -7.3
-H 119
-v 7.3
-H 77.1
-z M 161,175
-v 7.3
-H 77.1
-V 175
-H 161
-z M 202.5,100.5
-L 154.1,149
-l -35.4,12.7
-l 13.3-34.8
-l 48.4-48.4
-c 4.9-4.9,12.8-4.9,17.7,0
-l 4.4,4.4
-C 207.4,87.8,207.4,95.7,202.5,100.5
-z"  />
-            </Viewbox>
-
-
+            
           </Grid>
+          
         </Border>
-
       </Setter.Value>
     </Setter>
 </Style>

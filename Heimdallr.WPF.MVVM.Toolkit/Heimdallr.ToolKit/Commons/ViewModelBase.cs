@@ -1,212 +1,364 @@
-﻿using System.Windows;
+﻿using System.Collections;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
+using System.Runtime.CompilerServices;
+using System.Windows;
 
 namespace Heimdallr.ToolKit.Commons;
 
 /// <summary>
-/// Prism 프레임워크를 기반으로 하는 기본 ViewModel 클래스입니다.
-/// BindableBase를 상속하여 INotifyPropertyChanged 구현과
-/// 속성 변경 알림(SetProperty 메서드)을 지원합니다.
+/// INotifyDataErrorInfo를 확장한 ViewModel 기본 클래스
+/// - Prism ViewModelBase 상속 (INotifyPropertyChanged, DI, EventAggregator 등 지원)
+/// - 속성별 동기/비동기 검증 지원
+/// - UI 스레드 안전하게 오류 이벤트 전달
+/// - 여러 ViewModel에서 재사용 가능
 /// </summary>
-public abstract class ViewModelBase : BindableBase, IDestructible, INavigationAware
+public class ViewModelBase : BaseViewModel, INotifyDataErrorInfo
 {
-  #region Title 속성
-  private string _title = string.Empty;
+  #region 필드
+  // 실제 오류 메시지를 속성별로 저장
+  // key: 속성명, value: 오류 메시지 리스트
+  private readonly Dictionary<string, List<string>> _errors = new();
 
+  // 동기 검증 규칙 저장
+  // key: 속성명, value: 검증 함수 리스트 (각 함수는 IEnumerable<string> 반환)
+  private readonly Dictionary<string, List<Func<IEnumerable<string>>>> _syncRules = new();
+
+  // 비동기 검증 규칙 저장
+  // key: 속성명, value: 검증 함수 리스트 (각 함수는 Task<IEnumerable<string>> 반환)
+  private readonly Dictionary<string, List<Func<Task<IEnumerable<string>>>>> _asyncRules = new();
+
+
+  // UI 바인딩 가능한 HasErrors 속성
+  private bool _hasErrorsBindable;
+  #endregion
+
+  #region 생성자
   /// <summary>
-  /// View에 바인딩 가능한 Title 속성 (주로 윈도우 타이틀이나 화면 제목용)
-  /// 내부 필드 _title이 변경되면 OnPropertyChanged 이벤트 발생
+  /// 생성자
+  /// - DI 컨테이너(IContainerProvider)를 상속받아 ViewModelBase 초기화
   /// </summary>
-  public string Title
+  /// <param name="container">Prism DI 컨테이너</param>
+  protected ViewModelBase(IContainerProvider container) : base(container)
   {
-    get => _title;
-    set => SetProperty(ref _title, value);
   }
   #endregion
 
-  #region View에서 표시하기 위한 필수 패턴
-  private bool _isBusy;
+  #region 속성
+  /// <summary>
+  /// 전체 오류 존재 여부 확인
+  /// - _errors 딕셔너리가 비어있지 않으면 true 반환
+  /// </summary>
+  public bool HasErrors => _errors.Any();
 
   /// <summary>
-  /// API 호출, Navigation 중 로딩 상태를 View에서 표시하기 위한 필수 패턴입니다
+  /// UI 바인딩용 전체 오류 존재 여부
+  /// - 예: 버튼 Enable/Disable 바인딩
   /// </summary>
-  public bool IsBusy
+  public bool HasErrorsBindable
   {
-    get => _isBusy;
-    set => SetProperty(ref _isBusy, value);
+    get => _hasErrorsBindable;
+    private set => SetProperty(ref _hasErrorsBindable, value);
   }
 
-  private string _busyMessage = string.Empty;
   /// <summary>
-  /// View에서 로딩 중 메시지를 표시하기 위한 필수 패턴입니다.
+  /// 전체 오류 문자열
+  /// - 예: 모든 속성 오류를 TextBlock이나 메시지 창에 표시
   /// </summary>
-  public string BusyMessage
+  public string AllErrors
   {
-    get => _busyMessage;
-    set => SetProperty(ref _busyMessage, value);
+    get
+    {
+      var all = GetErrors(null)?.Cast<string>().ToList() ?? new List<string>();
+      return string.Join(Environment.NewLine, all);
+    }
+  }
+
+  /// <summary>
+  /// 현재 ViewModel의 전체 오류 메시지 개수 반환
+  /// - UI에서 오류 개수 표시 또는 로깅용
+  /// - 예: "입력 오류 3건 발생" 표시
+  /// </summary>
+  public int HasErrorsCount => _errors.Sum(kv => kv.Value.Count);
+  #endregion
+
+  #region INotifyDataErrorInfo 이벤트
+  /// <summary>
+  /// INotifyDataErrorInfo 이벤트
+  /// - 속성의 오류가 변경될 때 UI에 알리기 위해 사용
+  /// </summary>
+  public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+
+  /// <summary>
+  /// 특정 속성 또는 모든 속성의 오류 반환
+  /// - propertyName이 null이면 전체 속성의 오류를 반환
+  /// - propertyName이 지정되면 해당 속성 오류 반환
+  /// </summary>
+  /// <param name="propertyName">속성 이름</param>
+  /// <returns>오류 문자열 IEnumerable</returns>
+  public IEnumerable GetErrors(string? propertyName)
+  {
+    // 1️⃣ 오류 딕셔너리가 비었으면 빈 컬렉션 반환
+    if (_errors.Count == 0)
+      return Enumerable.Empty<string>();
+
+    // 2️⃣ 특정 속성 지정되지 않은 경우 → 전체 반환
+    if (string.IsNullOrEmpty(propertyName))
+    {
+      return _errors
+        .SelectMany(kv => kv.Value ?? Enumerable.Empty<string>())
+        .ToList(); // 안전하게 materialize
+    }
+
+    // 3️⃣ 특정 속성의 오류 반환
+    if (_errors.TryGetValue(propertyName, out var value))
+      return value ?? Enumerable.Empty<string>();
+
+    return Enumerable.Empty<string>();
   }
   #endregion
 
-  #region IContainerProvider
+  #region 검증 규칙 등록
   /// <summary>
-  /// Prism의 DI 컨테이너 인터페이스(컨테이너프로바이더)를 저장하는 필드, protected로 선언하여 상속받은 ViewModel에서 직접 접근 가능 런타임에 필요한 서비스,
-  /// 개체를 리솔브제네릭 메서드로 꺼낼 수 있다.
+  /// 동기 검증 규칙 등록
+  /// - 속성별로 여러 검증 함수를 등록 가능
   /// </summary>
-  protected IContainerProvider Container { get; private set; }
-  #endregion
-
-  #region IEventAggregator
-  private IEventAggregator? _eventAggregator;
-  /// <summary>
-  /// Prism의 이벤트 집합체인 이벤트에그리에터 인스턴스 (느슨한 결합을 위한 Pub/Sub 이벤트 통신)
-  /// 여러 ViewModel 간 메시지 전달 및 구독에 활용
-  /// private set으로 외부에서 수정 불가, 생성자에서 DI 컨테이너로부터 주입받음
-  /// null일 경우 예외 발생(런타임 안전성 확보)
-  /// </summary>
-  public IEventAggregator EventAggregator
+  /// <param name="propertyName">속성 이름</param>
+  /// <param name="rule">검증 함수: IEnumerable<string></string> 반환 (오류 메시지)</param>
+  protected void AddRule(string propertyName, Func<IEnumerable<string>> rule)
   {
-    get => _eventAggregator ?? throw new ArgumentNullException(nameof(_eventAggregator));
-    private set => SetProperty(ref _eventAggregator, value);
+    if (!_syncRules.TryGetValue(propertyName, out var list))
+    {
+      // 속성에 대한 규칙 리스트가 없으면 새로 생성
+      list = new List<Func<IEnumerable<string>>>();
+
+      _syncRules[propertyName] = list;
+    }
+
+    // 검증 함수 추가
+    list.Add(rule);
+  }
+
+  /// <summary>
+  /// 비동기 검증 규칙 등록
+  /// - 예: 서버 API 체크, DB 중복 확인 등 비동기 검증에 사용
+  /// </summary>
+  /// <param name="propertyName">속성 이름</param>
+  /// <param name="asyncRule">검증 함수 반환</param>
+  protected void AddRuleAsync(string propertyName, Func<Task<IEnumerable<string>>> asyncRule)
+  {
+    if (!_asyncRules.TryGetValue(propertyName, out var list))
+    {
+      // 속성에 대한 비동기 규칙 리스트가 없으면 새로 생성
+      list = new List<Func<Task<IEnumerable<string>>>>();
+
+      _asyncRules[propertyName] = list;
+    }
+
+    // 비동기 검증 함수 추가
+    list.Add(asyncRule);
   }
   #endregion
 
-  #region IRegionManager
-  private IRegionManager? _regionManager;
+  #region 검증 수행
+  /// <summary>
+  /// 특정 속성 검증 수행
+  /// - 동기/비동기 규칙을 모두 실행
+  /// - 오류가 있으면 SetErrors 호출하여 UI 이벤트 발생
+  /// 오류 발생시 SerErrors 호출하여 UI 갱신
+  /// 예외 발생시 DEBUB 모드에서 로그 기록
+  /// </summary>
+  /// <param name="propertyName">속성 이름</param>
+  /// <returns>Task</returns>
+  protected async Task ValidatePropertyAsync(string propertyName)
+  {
+    var errors = new List<string>();
+
+    // 1. 동기 검증 실행
+    if (_syncRules.TryGetValue(propertyName, out var syncList))
+    {
+      foreach (var rule in syncList)
+      {
+        try
+        {
+          // 검증함수 실행
+          var res = rule();
+          if (res != null)
+            errors.AddRange(res.Where(s => !string.IsNullOrWhiteSpace(s)));
+        }
+        catch (Exception ex)
+        {
+          Debug.WriteLine($"[{nameof(ViewModelBase)}.{MethodBase.GetCurrentMethod()?.Name}] 실패: {propertyName} 에서 검증 규칙 오류: {ex.Message}");
+          // 운영 환경에서는 로그 기록 가능
+        }
+      }
+    }
+
+    // 2. 비동기 검증 실행
+    if (_asyncRules.TryGetValue(propertyName, out var asyncList))
+    {
+      foreach (var asyncRule in asyncList)
+      {
+        try
+        {
+          // 비동기 실행
+          var res = await asyncRule().ConfigureAwait(false);
+          if (res != null)
+            errors.AddRange(res.Where(s => !string.IsNullOrWhiteSpace(s)));
+        }
+        catch (Exception ex)
+        {
+          Debug.WriteLine($"[{nameof(ViewModelBase)}.{MethodBase.GetCurrentMethod()?.Name}] 실패: {propertyName} 에서 검증 규칙 오류: {ex.Message}");
+          // 운영 환경에서는 로그 기록 가능
+        }
+      }
+    }
+
+    // 오류 저장 및 UI 알림 이벤트 호출
+    SetErrors(propertyName, errors);
+  }
 
   /// <summary>
-  /// Prism의 RegionManager 인스턴스 (화면 내 여러 영역(Region)에 View를 동적으로 로드/교체)
-  /// 메뉴 클릭 등으로 특정 Region에 View를 전환할 때 사용
-  /// private set으로 외부 변경 제한, 생성자에서 DI 컨테이너로부터 초기화됨
-  /// null일 경우 예외 발생하여 런타임 오류 방지
+  /// 모든 속성 검증 수행
+  /// - 등록된 모든 속성에 대해 ValidatePropertyAsync 실행
   /// </summary>
-  public IRegionManager RegionManager
+  /// <returns>Task</returns>
+  protected Task ValidateAllAsync()
   {
-    get => _regionManager ?? throw new ArgumentNullException(nameof(_regionManager));
-    private set => SetProperty(ref _regionManager, value);
+    // 등록된 모든 속성 이름
+    var propertyNames = _syncRules.Keys.Union(_asyncRules.Keys).Distinct().ToArray();
+
+    return Task.WhenAll(propertyNames.Select(ValidatePropertyAsync));
+  }
+
+  /// <summary>
+  /// 모든 속성 검증 수행 후 오류 여부 반환
+  /// - 예: 저장 버튼 클릭 전 검증 체크
+  /// </summary>
+  /// <returns>오류가 없음 true </returns>
+  public async Task<bool> ValidateAllAndReturnAsync()
+  {
+    await ValidateAllAsync();
+    return !HasErrors;
   }
   #endregion
 
+  #region 오류 처리
+
   /// <summary>
-  /// 생성자: Prism의 DI 컨테이너 IContainerProvider를 인자로 받음
-  /// 내부 필드 Container에 저장하며,
-  /// DI 컨테이너를 통해 IRegionManager와 IEventAggregator 인스턴스를 Resolve하여 초기화한다.
-  /// null 체크를 통해 DI 누락 시 즉시 예외를 던져 런타임 안전성 확보
+  /// 속성별 오류 설정
+  /// - UI에 알리기 위해 ErrorsChanged 이벤트 호출
+  /// - 이전 오류와 비교하여 변경이 있을 때만 이벤트 발생
   /// </summary>
-  /// <param name="container">DI 컨테이너 인스턴스 (IContainerProvider)</param>
-  /// <exception cref="ArgumentNullException">container, IRegionManager, IEventAggregator가 null일 때 발생</exception>
-  public ViewModelBase(IContainerProvider container)
+  /// <param name="propertyName">속성 이름</param>
+  /// <param name="errors">오류 문자열 컬렉션</param>
+  private void SetErrors(string propertyName, IEnumerable<string> errors)
   {
-    // DI 컨테이너가 null이면 즉시 예외 발생
-    Container = container ?? throw new ArgumentNullException(nameof(container));
+    bool changed = false;
 
-    // RegionManager를 DI 컨테이너에서 해석(Resolve)하고 null이면 예외 발생
-    RegionManager = Container.Resolve<IRegionManager>() ?? throw new ArgumentNullException(nameof(IRegionManager));
+    if (errors != null && errors.Any())
+    {
+      var list = errors.ToList();
 
-    // EventAggregator를 DI 컨테이너에서 해석(Resolve)하고 null이면 예외 발생
-    EventAggregator = Container.Resolve<IEventAggregator>() ?? throw new ArgumentNullException(nameof(IEventAggregator));
-  }
-
-  #region Lazy<T>
-  /// <summary>
-  /// DI 컨테이너에서 지연 초기화(Lazy) 객체를 쉽게 생성할 수 있는 헬퍼 메서드입니다.
-  /// </summary>
-  /// <typeparam name="T">해당 서비스 타입</typeparam>
-  /// <returns>Lazy로 감싼 서비스 인스턴스</returns>
-  protected Lazy<T> ResolveLazy<T>() where T : class
-  {
-    // DI 컨테이너에서 T 타입의 인스턴스를 Lazy로 해석하여 반환
-    return new Lazy<T>(() => Container.Resolve<T>());
-  }
-  #endregion
-
-  #region RunOnUiThread
-  /// <summary>
-  /// 비동기 작업을 UI 스레드에서 실행하기 위한 헬퍼 메서드입니다.
-  /// 비동기 콜백 등에서 UI 스레드 접근 시 유용합니다 
-  /// UI 요소(예: ObservableCollection, Text, ListView.Items 등)**는 UI 스레드에서만 접근 가능합니다.
-  /// </summary>
-  /// <param name="action"></param>
-  protected async Task RunOnUiThread(Func<Task> action)
-  {
-    if (Application.Current.Dispatcher.CheckAccess())
-      // 현재 스레드가 UI 스레드이면 바로 실행
-      await action();
+      // 기존 오류와 비교 (순서 무시)
+      if (!_errors.TryGetValue(propertyName, out var exists) || !new HashSet<string>(exists).SetEquals(list))
+      {
+        _errors[propertyName] = list;
+        changed = true; // 오류 내용이 변경된 경우에만 true
+      }
+    }
     else
-      // UI 스레드가 아니면 Dispatcher를 통해 실행
-      await Application.Current.Dispatcher.InvokeAsync(action);
+    {
+      // 오류 제거 (기존에 존재하면 true 반환)
+      changed = _errors.Remove(propertyName);
+    }
+
+    // 바인딩용 속성 갱신
+    HasErrorsBindable = _errors.Any();
+
+    // 오류 상태가 실제로 변경된 경우에만 이벤트 발생
+    if (changed)
+      OnErrorsChanged(propertyName);
+  }
+
+
+  /// <summary>
+  /// 특정 속성 오류 제거
+  /// </summary>
+  /// <param name="propertyName">속성 이름</param>
+  protected void ClearErrors(string propertyName) => SetErrors(propertyName, Enumerable.Empty<string>());
+
+  /// <summary>
+  /// ErrorsChanged 이벤트 호출
+  /// - UI 스레드에서 안전하게 호출
+  /// </summary>
+  /// <param name="propertyName">속성 이름</param>
+  protected virtual void OnErrorsChanged(string propertyName)
+  {
+    // WPF UI 스레드에서 비동기 안전하게 호출
+    if (Application.Current?.Dispatcher != null)
+    {
+      _ = Application.Current?.Dispatcher.InvokeAsync(() =>
+          ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName)));
+    }
+    else
+    {
+      // UI 스레드가 없으면 직접 호출
+      ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+    }
   }
   #endregion
 
-  #region CancellationTokenSource
-  private CancellationTokenSource _cts = new();
-
+  #region 편의 메서드
   /// <summary>
-  /// 현재 ViewModel에 연결된 취소 토큰입니다.
+  /// 속성 값 변경 + 자동 검증
+  /// - 예: SetPropertyAndValidate(ref _name, value);
   /// </summary>
-  protected CancellationToken CancellationToken => _cts.Token;
-
-  /// <summary>
-  /// 현재 실행 중인 비동기 작업을 취소합니다.
-  ///  _cts.Cancel(); 작업취소, _cts.Dispose(); 자원해제,  _cts = new CancellationTokenSource(); 새로운 토큰 생성 
-  /// </summary>
-  protected void CancelCurrentTask()
+  protected bool SetPropertyAndValidate<T>(ref T storage, T value, [CallerMemberName] string propertyName = null!)
   {
-    if (_cts.IsCancellationRequested)
-      return;
-
-    _cts.Cancel();
-    _cts.Dispose();
-    _cts = new CancellationTokenSource();
-  }
-  #endregion
-
-  #region 메모리정리
-  /// <summary>
-  /// Disposable 패턴을 구현하여 ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
-  /// </summary>
-  /// <exception cref="NotImplementedException"></exception>
-  public void Destroy()
-  {
-    // ViewModel이 소멸될 때 CancellationTokenSource를 정리합니다.
-    CancelCurrentTask();
-    OnDestroying();
+    if (SetProperty(ref storage, value, propertyName))
+    {
+      _ = ValidatePropertyAsync(propertyName);
+      return true;
+    }
+    return false;
   }
 
   /// <summary>
-  /// 자식 ViewModel 에서 필요한 경우 overrid
-  /// EventAggregator 구독해제, 타이머 중단, IDisposable 자원해제, 내부 연결 또는 참조정리
+  /// 속성 초기화(기본값 설정) + 검증 + PropertyChanged 이벤트 발생
+  /// - 사용 예: ResetProperty(ref _name);
+  /// - UI 바인딩에서 값 변경과 오류 상태 모두 갱신됨
   /// </summary>
-  protected virtual void OnDestroying()
+  protected void ResetProperty<T>(ref T storage, T defaultValue = default!, [CallerMemberName] string propertyName = null!)
   {
-    // 자식 ViewModel 에서 필요한 리소스 해제 등 처리
-  }
-  #endregion
-
-  #region INavigationAware 기본 구현
-  /// <summary>
-  /// 이 View로 Navigation 되었을 때 호출됨, virtual로 선언하여 필요시 override 가능
-  /// </summary>
-  public virtual void OnNavigatedTo(NavigationContext navigationContext)
-  {
-    // 필요시 override하여 NavigationContext를 처리할 수 있습니다.
+    storage = defaultValue!;
+    _ = ValidatePropertyAsync(propertyName);
+    RaisePropertyChanged(propertyName);
   }
 
   /// <summary>
-  /// Navigation이 발생했을 때, View가 이 ViewModel을 재사용할지 여부 결정
-  /// 기본값: true (재사용), virtual로 선언하여 필요시 override 가능
+  /// ViewModel의 모든 속성 초기화 후 검증
+  /// - 등록된 모든 동기/비동기 검증 규칙을 기반으로 오류 상태 갱신
+  /// - 사용 예: ViewModel 초기화 시 전체 속성 초기화
   /// </summary>
-  public virtual bool IsNavigationTarget(NavigationContext navigationContext) => true;
+  protected async Task ResetAllPropertiesAndValidateAsync()
+  {
+    foreach (var prop in _syncRules.Keys.Union(_asyncRules.Keys))
+    {
+      ClearErrors(prop);
+    }
+    await ValidateAllAsync();
+  }
 
   /// <summary>
-  /// 다른 View로 이동되기 전 호출됨, virtual로 선언하여 필요시 override 가능
+  /// 모든 속성의 오류 초기화
+  /// - 값은 변경하지 않고 오류 상태만 제거
   /// </summary>
-  public virtual void OnNavigatedFrom(NavigationContext navigationContext)
+  protected void ClearAllErrors()
   {
-    // 기본적으로 비동기 작업 취소
-    CancelCurrentTask();
+    foreach (var prop in _errors.Keys.ToArray())
+      ClearErrors(prop);
   }
   #endregion
 }
-
-
-
-

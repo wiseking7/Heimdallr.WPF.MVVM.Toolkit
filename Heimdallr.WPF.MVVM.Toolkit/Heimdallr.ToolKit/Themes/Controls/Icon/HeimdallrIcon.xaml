@@ -20,14 +20,17 @@
                     Fill="{TemplateBinding Fill}" />
             </Viewbox>
 
-            <Image x:Name="image"
-                   RenderOptions.BitmapScalingMode="HighQuality"
-                   SnapsToDevicePixels="True"
-                   Source="{TemplateBinding Source}"
-                   UseLayoutRounding="True"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
-                   Visibility="Collapsed" />
+            <Viewbox x:Name="imageViewbox"
+                     Visibility="Collapsed"
+                     Margin="2"
+                     Stretch="Fill"
+                     StretchDirection="Both">
+              <Image x:Name="image"
+                     RenderOptions.BitmapScalingMode="HighQuality"
+                     SnapsToDevicePixels="True"
+                     Source="{TemplateBinding Source}"
+                     UseLayoutRounding="True" />
+            </Viewbox>
           </Grid>
           <ControlTemplate.Triggers>
             <Trigger Property="Mode" Value="Icon">
@@ -35,7 +38,7 @@
               <Setter TargetName="image" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="Mode" Value="Image">
-              <Setter TargetName="image" Property="Visibility" Value="Visible" />
+              <Setter TargetName="imageViewbox" Property="Visibility" Value="Visible" />
               <Setter TargetName="viewbox" Property="Visibility" Value="Collapsed" />
             </Trigger>
             <Trigger Property="Mode" Value="PathIcon">

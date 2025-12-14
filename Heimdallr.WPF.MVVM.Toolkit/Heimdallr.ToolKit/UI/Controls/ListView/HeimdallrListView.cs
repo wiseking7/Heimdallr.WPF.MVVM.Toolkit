@@ -1,4 +1,6 @@
 ﻿using System.ComponentModel;
+using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -9,243 +11,213 @@ namespace Heimdallr.ToolKit.UI.Controls;
 
 /// <summary>
 /// 완전 커스터마이징 가능한 Heimdallr 스타일의 ListView 컨트롤입니다.
+/// 외형, 선택/마우스오버 색상, 컬럼 숨김/복원, 컬럼 너비 저장/복원, 정렬 기능 포함
 /// </summary>
 public class HeimdallrListView : ListView
 {
   static HeimdallrListView()
   {
-    // 기본 스타일 키를 HeimdallrListView 타입으로 설정하여 Themes/Generic.xaml에서 스타일을 찾도록 함
-    DefaultStyleKeyProperty.OverrideMetadata(typeof(HeimdallrListView),
-        new FrameworkPropertyMetadata(typeof(HeimdallrListView)));
+    // 기본 스타일 키를 HeimdallrListView 타입으로 설정
+    // Themes/Generic.xaml에서 이 스타일을 찾습니다.
+    DefaultStyleKeyProperty.OverrideMetadata(
+        typeof(HeimdallrListView),
+        new FrameworkPropertyMetadata(typeof(HeimdallrListView))
+    );
   }
 
-  #region 2. 컬럼 숨김 제어용 딕셔너리 (컬럼 이름 - Visible bool)
+  #region 컬럼 숨김 기능 (ColumnVisibility)
 
   /// <summary>
-  /// 컬럼 이름별 가시성 상태를 저장하는 딕셔너리입니다.
-  /// true이면 컬럼을 보여주고, false이면 숨깁니다.
+  /// GridViewColumn에는 Visibility 속성이 없으므로 Width를 0으로 설정하여 숨깁니다. Width가 0이면 최소 기본값(100)으로 복원 가능
+  /// true = 표시, false = 숨김
   /// </summary>
   public Dictionary<string, bool> ColumnVisibility
   {
-    get { return (Dictionary<string, bool>)GetValue(ColumnVisibilityProperty); }
-    set { SetValue(ColumnVisibilityProperty, value); }
+    get => (Dictionary<string, bool>)GetValue(ColumnVisibilityProperty);
+    set => SetValue(ColumnVisibilityProperty, value);
   }
-  /// <summary>
-  /// ColumnVisibility 의존성 속성입니다.
-  /// </summary>
-  public static readonly DependencyProperty ColumnVisibilityProperty =
-      DependencyProperty.Register(nameof(ColumnVisibility), typeof(Dictionary<string, bool>),
-          typeof(HeimdallrListView), new PropertyMetadata(new Dictionary<string, bool>(), OnColumnVisibilityChanged));
 
   /// <summary>
-  /// ColumnVisibility가 변경되었을 때 호출됩니다.
-  /// 각 컬럼 헤더 이름에 대응하는 Visibility를 설정합니다.
+  /// 종속성 등록: 컬럼 가시성 딕셔너리
   /// </summary>
+  public static readonly DependencyProperty ColumnVisibilityProperty =
+      DependencyProperty.Register(
+          nameof(ColumnVisibility),
+          typeof(Dictionary<string, bool>),
+          typeof(HeimdallrListView),
+          new PropertyMetadata(new Dictionary<string, bool>(), OnColumnVisibilityChanged)
+      );
+
+  /// <summary>
+  /// 컬럼 가시성 변경 시 호출되는 콜백
+  /// </summary>
+  /// <param name="d"></param>
+  /// <param name="e"></param>
   private static void OnColumnVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
   {
     if (d is HeimdallrListView lv && lv.View is GridView gv)
     {
-      var dict = e.NewValue as Dictionary<string, bool>;
-      if (dict == null) return;
+      if (e.NewValue is not Dictionary<string, bool> dict) return;
 
       foreach (var col in gv.Columns)
       {
         if (col.Header is string header && dict.TryGetValue(header, out var isVisible))
         {
-          if (isVisible)
-          {
-            // 숨김 해제 시, 기존 너비가 0이었으면 기본 너비 100으로 설정
-            if (col.Width == 0)
-              col.Width = 100;
-
-            // Visibility 속성은 GridViewColumn에 없으므로 대신 Width 조절로 숨김 구현
-          }
-          else
-          {
-            // 컬럼 숨김을 Width 0으로 구현 (Visibility 속성 없음)
-            col.Width = 0;
-          }
+          // GridViewColumn에는 Visibility 속성이 없으므로 Width 0으로 숨김
+          col.Width = isVisible ? (col.Width == 0 ? 100 : col.Width) : 0;
         }
       }
     }
   }
+
   #endregion
 
-  #region 3. 열 너비 저장/복원 지원용 컬렉션
+  #region 컬럼 너비 저장/복원 (ColumnWidths)
+
   /// <summary>
-  /// 컬럼별로 저장된 너비 정보를 저장하는 딕셔너리입니다.
+  /// 컬럼별 저장된 너비 정보를 담는 딕셔너리
   /// </summary>
   public Dictionary<string, double> ColumnWidths
   {
-    get { return (Dictionary<string, double>)GetValue(ColumnWidthsProperty); }
-    set { SetValue(ColumnWidthsProperty, value); }
+    get => (Dictionary<string, double>)GetValue(ColumnWidthsProperty);
+    set => SetValue(ColumnWidthsProperty, value);
   }
+
   /// <summary>
-  /// ColumnWidths 의존성 속성입니다.
+  /// 종속성 등록: 컬럼 너비 딕셔너리
   /// </summary>
   public static readonly DependencyProperty ColumnWidthsProperty =
-      DependencyProperty.Register(nameof(ColumnWidths), typeof(Dictionary<string, double>),
-          typeof(HeimdallrListView), new PropertyMetadata(new Dictionary<string, double>()));
+      DependencyProperty.Register(
+          nameof(ColumnWidths),
+          typeof(Dictionary<string, double>),
+          typeof(HeimdallrListView),
+          new PropertyMetadata(new Dictionary<string, double>())
+      );
 
   /// <summary>
-  /// 열 너비 변경을 감지하여 저장할 수 있도록 초기화 시 호출할 수 있는 메서드입니다.
-  /// (실제 너비 변경 감지는 별도 이벤트 등에서 구현 필요)
-  /// </summary>
-  protected override void OnInitialized(EventArgs e)
-  {
-    base.OnInitialized(e);
-    // 예: 여기서 마우스 업 이벤트 등으로 너비 저장 처리 구현 권장
-  }
-
-  /// <summary>
-  /// 현재 GridView의 컬럼 너비 상태를 ColumnWidths 프로퍼티에 저장합니다.
+  /// 현재 GridView의 컬럼 너비를 ColumnWidths에 저장
   /// </summary>
   public void SaveColumnWidths()
   {
-    if (View is GridView gv)
+    if (View is not GridView gv) return;
+
+    var dict = new Dictionary<string, double>();
+    foreach (var col in gv.Columns)
     {
-      var dict = new Dictionary<string, double>();
-      foreach (var col in gv.Columns)
-      {
-        if (col.Header is string header)
-        {
-          dict[header] = col.Width;
-        }
-      }
-      ColumnWidths = dict;
-      // 이후 저장된 딕셔너리를 파일이나 설정에 저장하는 로직 추가 가능
+      if (col.Header is string header)
+        dict[header] = col.Width;
     }
+    ColumnWidths = dict;
   }
 
   /// <summary>
-  /// ColumnWidths 프로퍼티에 저장된 너비 정보를 읽어와 컬럼 너비를 복원합니다.
+  /// ColumnWidths에 저장된 컬럼 너비를 GridView에 적용
   /// </summary>
   public void RestoreColumnWidths()
   {
-    if (View is GridView gv)
+    if (View is not GridView gv) return;
+
+    foreach (var col in gv.Columns)
     {
-      foreach (var col in gv.Columns)
+      if (col.Header is string header && ColumnWidths.TryGetValue(header, out var width))
       {
-        if (col.Header is string header && ColumnWidths.TryGetValue(header, out var width))
-        {
-          col.Width = width;
-        }
+        col.Width = width;
       }
     }
   }
+
   #endregion
 
-  #region 1. 컬럼 헤더 클릭 시 정렬 처리
-  private Dictionary<string, ListSortDirection> _columnSortDirections = new();
+  #region 컬럼 클릭 정렬
+
+  private readonly Dictionary<string, ListSortDirection> _columnSortDirections = new();
+
   /// <summary>
-  /// GridViewColumnHeader 클릭 시 해당 컬럼으로 정렬을 수행합니다.
+  /// GridViewColumnHeader 클릭 시 정렬 수행
   /// </summary>
-  /// <param name="e"></param>
   protected override void OnPreviewMouseLeftButtonUp(MouseButtonEventArgs e)
   {
     base.OnPreviewMouseLeftButtonUp(e);
 
-    if (e.OriginalSource is DependencyObject source)
-    {
-      var header = VisualUpwardSearch<GridViewColumnHeader>(source);
-      if (header?.Column != null)
-      {
-        // DisplayMemberBinding 경로에서 실제 정렬 속성명 추출
-        string? sortBy = null;
-        if (header.Column.DisplayMemberBinding is Binding binding && !string.IsNullOrEmpty(binding.Path?.Path))
-        {
-          sortBy = binding.Path.Path;
-        }
+    if (e.OriginalSource is not DependencyObject source) return;
 
-        if (string.IsNullOrEmpty(sortBy)) return;
+    var header = VisualUpwardSearch<GridViewColumnHeader>(source);
+    if (header?.Column == null) return;
 
-        var collectionView = CollectionViewSource.GetDefaultView(ItemsSource);
-        if (collectionView == null) return;
+    // DisplayMemberBinding에서 실제 속성명 추출
+    if (header.Column.DisplayMemberBinding is not Binding binding || string.IsNullOrEmpty(binding.Path?.Path))
+      return;
 
-        // 이전에 저장된 정렬 상태 가져오기 (기본 Ascending)
-        if (!_columnSortDirections.TryGetValue(sortBy, out var currentDirection))
-          currentDirection = ListSortDirection.Ascending;
+    string sortBy = binding.Path.Path;
+    var collectionView = CollectionViewSource.GetDefaultView(ItemsSource);
+    if (collectionView == null) return;
 
-        // 토글 정렬 방향
-        var newDirection = currentDirection == ListSortDirection.Ascending
-            ? ListSortDirection.Descending
-            : ListSortDirection.Ascending;
+    // 이전 정렬 상태 확인, 기본 Ascending
+    _columnSortDirections.TryGetValue(sortBy, out var currentDirection);
+    var newDirection = currentDirection == ListSortDirection.Ascending
+        ? ListSortDirection.Descending
+        : ListSortDirection.Ascending;
 
-        // 현재 정렬 상태와 비교해서 변경 없으면 리턴 (불필요한 Refresh 방지)
-        if (collectionView.SortDescriptions.Count > 0)
-        {
-          var currentSort = collectionView.SortDescriptions[0];
-          if (currentSort.PropertyName == sortBy && currentSort.Direction == newDirection)
-          {
-            // 이미 같은 정렬 상태, 리턴
-            return;
-          }
-        }
+    _columnSortDirections[sortBy] = newDirection;
 
-        // 정렬 상태 업데이트
-        _columnSortDirections[sortBy] = newDirection;
-
-        // 정렬 변경 적용
-        collectionView.SortDescriptions.Clear();
-        collectionView.SortDescriptions.Add(new SortDescription(sortBy, newDirection));
-        collectionView.Refresh();
-      }
-    }
+    // 정렬 적용
+    collectionView.SortDescriptions.Clear();
+    collectionView.SortDescriptions.Add(new SortDescription(sortBy, newDirection));
+    collectionView.Refresh();
   }
 
   /// <summary>
-  /// Visual Tree를 거슬러 올라가면서 특정 타입의 부모를 찾는 헬퍼 메서드입니다.
+  /// VisualTree를 따라 특정 타입의 부모를 찾는 헬퍼
   /// </summary>
   private static T? VisualUpwardSearch<T>(DependencyObject source) where T : DependencyObject
   {
-    while (source != null && !(source is T))
-    {
+    while (source != null && source is not T)
       source = VisualTreeHelper.GetParent(source);
-    }
     return source as T;
   }
+
   #endregion
 
-  #region 6. RowDetails를 위한 의존성 속성 및 템플릿
-
+  #region RowDetailsTemplate 지원
   /// <summary>
-  /// 행 상세 내용을 보여줄 DataTemplate을 바인딩할 수 있는 의존성 속성입니다.
+  /// 행 세부 정보 템플릿
   /// </summary>
   public DataTemplate? RowDetailsTemplate
   {
-    get { return (DataTemplate?)GetValue(RowDetailsTemplateProperty); }
-    set { SetValue(RowDetailsTemplateProperty, value); }
+    get => (DataTemplate?)GetValue(RowDetailsTemplateProperty);
+    set => SetValue(RowDetailsTemplateProperty, value);
   }
+
   /// <summary>
-  /// RowDetailsTemplate 의존성 속성입니다.
+  /// 행 세부 정보 템플릿 종속성 속성
   /// </summary>
   public static readonly DependencyProperty RowDetailsTemplateProperty =
-      DependencyProperty.Register(nameof(RowDetailsTemplate), typeof(DataTemplate), typeof(HeimdallrListView));
+      DependencyProperty.Register(
+          nameof(RowDetailsTemplate),
+          typeof(DataTemplate),
+          typeof(HeimdallrListView)
+      );
+
   #endregion
 
-  #region 7. GetContainerForItemOverride 및 IsItemItsOwnContainerOverride (추가)
+  #region ListViewItem 연결 (HeimdallrListViewItem)
   /// <summary>
-  /// 커스텀 ListViewItem 컨테이너로 HeimdallrListViewItem을 생성하도록 오버라이드.
+  /// ListViewItem 컨테이너 생성  
   /// </summary>
+  /// <returns></returns>
   protected override DependencyObject GetContainerForItemOverride()
-  {
-    return new HeimdallrListViewItem();
-  }
+      => new HeimdallrListViewItem();
 
   /// <summary>
-  /// 아이템이 자체 컨테이너인지 확인
+  /// ListViewItem 컨테이너 확인
   /// </summary>
   /// <param name="item"></param>
   /// <returns></returns>
   protected override bool IsItemItsOwnContainerOverride(object item)
-  {
-    return item is HeimdallrListViewItem;
-  }
-  #endregion
+      => item is HeimdallrListViewItem;
 
-  #region 8. 선택 시 배경색 지정
   /// <summary>
-  /// 
+  /// ListViewItem이 생성될 때 호출됩니다. 여기서 선택/마우스오버 색상, Background/Foreground를 전달합니다.
   /// </summary>
   /// <param name="element"></param>
   /// <param name="item"></param>
@@ -255,24 +227,142 @@ public class HeimdallrListView : ListView
 
     if (element is HeimdallrListViewItem lvi)
     {
-      // ListView에 지정된 SelectedBackground를 자식 아이템에 전달
       lvi.SelectedBackground = this.SelectedBackground;
+      lvi.MouseOverBackground = this.MouseOverBackground;
+      lvi.Background ??= this.Background ?? Brushes.Transparent;
+      lvi.Foreground ??= this.Foreground ?? Brushes.White;
     }
   }
+
+  #endregion
+
+  #region 선택/마우스오버 색상
   /// <summary>
-  /// 선택 시 배경색을 지정하는 의존성 속성입니다.
+  /// 마우스오버 및 선택 시 배경색을 지정하는 의존성 속성입니다.
   /// </summary>
   public Brush SelectedBackground
   {
-    get { return (Brush)GetValue(SelectedBackgroundProperty); }
-    set { SetValue(SelectedBackgroundProperty, value); }
+    get => (Brush)GetValue(SelectedBackgroundProperty);
+    set => SetValue(SelectedBackgroundProperty, value);
   }
+
   /// <summary>
-  /// 기본색은 회색입니다.
+  /// 종속성 속성: 선택 시 배경색 기본값은 회색입니다.
   /// </summary>
   public static readonly DependencyProperty SelectedBackgroundProperty =
-      DependencyProperty.Register(nameof(SelectedBackground), typeof(Brush), typeof(HeimdallrListView),
-          new PropertyMetadata(Brushes.Gray));
+      DependencyProperty.Register(
+          nameof(SelectedBackground),
+          typeof(Brush),
+          typeof(HeimdallrListView),
+          new PropertyMetadata(Brushes.Gray)
+      );
+
+  /// <summary>
+  /// 마우스 오버 시 배경색을 지정하는 의존성 속성입니다.
+  /// </summary>
+  public Brush MouseOverBackground
+  {
+    get => (Brush)GetValue(MouseOverBackgroundProperty);
+    set => SetValue(MouseOverBackgroundProperty, value);
+  }
+
+  /// <summary>
+  /// 종속성 속성: 마우스 오버 시 배경색 기본값은 #334155 입니다.
+  /// </summary>
+  public static readonly DependencyProperty MouseOverBackgroundProperty =
+      DependencyProperty.Register(
+          nameof(MouseOverBackground),
+          typeof(Brush),
+          typeof(HeimdallrListView),
+          new PropertyMetadata(new SolidColorBrush(Color.FromRgb(51, 65, 85))) // #334155
+      );
+
   #endregion
+
+  #region CornerRadius
+
+  /// <summary>
+  /// 코너라디우스
+  /// </summary>
+  public CornerRadius CornerRadius
+  {
+    get => (CornerRadius)GetValue(CornerRadiusProperty);
+    set => SetValue(CornerRadiusProperty, value);
+  }
+
+  /// <summary>
+  /// 종속성 주입(코너라디우스): 기본값 0
+  /// </summary>
+  public static readonly DependencyProperty CornerRadiusProperty =
+      DependencyProperty.Register(
+          nameof(CornerRadius),
+          typeof(CornerRadius),
+          typeof(HeimdallrListView),
+          new FrameworkPropertyMetadata(new CornerRadius(0))
+      );
+
+  #endregion
+
+  /// <summary>
+  /// 열 컬렉션에 대한 편리한 액세스
+  /// </summary>
+  public GridViewColumnCollection Columns
+  {
+    get
+    {
+      if (this.View is GridView gridView)
+        return gridView.Columns;
+      return null!;
+    }
+  }
+
+  /// <summary>
+  /// 생성자
+  /// </summary>
+  public HeimdallrListView()
+  {
+    this.Loaded += (s, e) =>
+    {
+      var headers = FindVisualChildren<GridViewColumnHeader>(this);
+      foreach (var header in headers)
+      {
+        header.Loaded -= OnHeaderLoaded;
+        header.Loaded += OnHeaderLoaded;
+      }
+    };
+  }
+
+  private void OnHeaderLoaded(object sender, RoutedEventArgs e)
+  {
+    if (sender is GridViewColumnHeader header)
+    {
+      if (header.Content is TextBlock tb)
+      {
+        Debug.WriteLine($"[{nameof(HeimdallrListView)}.{MethodBase.GetCurrentMethod()?.Name}] Header 로드 -> {tb.Text} | Foreground={tb.Foreground} | Background={tb.Background}");
+      }
+      else
+      {
+        Debug.WriteLine($"[{nameof(HeimdallrListView)}.{MethodBase.GetCurrentMethod()?.Name}] Header 로드 -> {header.Content} | Foreground={header.Foreground} | Background={header.Background}");
+      }
+    }
+  }
+
+  private IEnumerable<T> FindVisualChildren<T>(DependencyObject depObj) where T : DependencyObject
+  {
+    if (depObj != null)
+    {
+      for (int i = 0; i < VisualTreeHelper.GetChildrenCount(depObj); i++)
+      {
+        var child = VisualTreeHelper.GetChild(depObj, i);
+        if (child is T t)
+          yield return t;
+
+        foreach (var childOfChild in FindVisualChildren<T>(child))
+          yield return childOfChild;
+      }
+    }
+  }
 }
+
+
 

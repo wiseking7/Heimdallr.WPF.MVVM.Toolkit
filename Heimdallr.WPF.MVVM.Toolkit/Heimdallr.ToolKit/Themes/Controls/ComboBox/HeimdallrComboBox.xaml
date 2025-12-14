@@ -2,94 +2,195 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
+  <!-- 공용 색상 리소스 불러오기 -->
   <ResourceDictionary.MergedDictionaries>
     <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
   </ResourceDictionary.MergedDictionaries>
 
+  <!-- Boolean을 Visibility로 변환하는 컨버터 -->
+  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+
+  <!-- HeimdallrComboBox 스타일 정의 -->
   <Style TargetType="{x:Type ctrls:HeimdallrComboBox}">
+    <!-- 기본 설정 -->
     <Setter Property="UIElement.SnapsToDevicePixels" Value="True"/>
+    <!-- 픽셀 단위 정확도 보장 -->
     <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Auto"/>
     <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
     <Setter Property="ScrollViewer.CanContentScroll" Value="True"/>
     <Setter Property="TextElement.Foreground" Value="Black"/>
+    <!-- 기본 텍스트 색상 -->
     <Setter Property="FrameworkElement.FocusVisualStyle" Value="{x:Null}"/>
-    <Setter Property="Cursor" Value="Hand" />
+    <!-- 포커스 시 기본 테두리 제거 -->
+    <Setter Property="Cursor" Value="Hand"/>
+    <!-- 마우스 오버 시 손가락 커서 -->
+
+    <!-- ControlTemplate 정의 -->
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrComboBox}">
-          <Border
-              x:Name="border"
-              Background="{TemplateBinding Background}"
-              CornerRadius="{TemplateBinding CornerRadius}"
-              BorderBrush="{TemplateBinding BorderBrush}"
-              BorderThickness="{TemplateBinding BorderThickness}"
-              SnapsToDevicePixels="True">
+          <!-- 외부 Border -->
+          <Border x:Name="border"
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="True"
+                  UseLayoutRounding="True">
             <Grid ClipToBounds="True">
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <!-- 선택 영역 -->
+                <ColumnDefinition Width="Auto" />
+                <!-- 드롭다운 버튼 영역 -->
+              </Grid.ColumnDefinitions>
 
-              <ctrls:HeimdallrIconToggleButton
-                x:Name="ToggleButton" Grid.Column="2"
-                CornerRadius="{TemplateBinding CornerRadius}"
-                MouseOverBackground="{TemplateBinding MouseOverBackground}"
-                PathIcon="{TemplateBinding PathIcon}"
-                IconWidth="{TemplateBinding IconWidth}"          
-                IconHeight="{TemplateBinding IconHeight}"
-                PathIconFill="{TemplateBinding PathIconFill}" 
-                CheckedBackground="{TemplateBinding CheckedBackground}"
-                ClickMode="Press" Focusable="False"
-                IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"
-                />
+              <!-- 선택된 아이템 표시 영역 -->
+              <ContentPresenter Grid.Column="0"
+                                x:Name="ContentSite"
+                                Margin="10,0,10,0"
+                                IsHitTestVisible="False"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Content="{TemplateBinding SelectedItem}"
+                                ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
+                                ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
+                                TextElement.Foreground="{Binding SelectedItemForeground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrComboBox}}"/>
+              <!-- 선택 아이템 텍스트 색상 바인딩 -->
 
-              <ContentPresenter 
-                  x:Name="ContentSite"  Margin="10 3 23 3"
-                  IsHitTestVisible="False" HorizontalAlignment="Left" VerticalAlignment="Center"
-                  Content="{TemplateBinding SelectedItem}"
-                  ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
-                  ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"/>
+              <!-- 드롭다운 버튼 -->
+              <ctrls:HeimdallrIconToggleButton x:Name="ToggleButton"
+                                               Grid.Column="1"
+                                               VerticalContentAlignment="Center"
+                                               HorizontalContentAlignment="Center"
+                                               CornerRadius="{TemplateBinding CornerRadius}"
+                                               IconMouseOverFill="{TemplateBinding IconMouseOverFill}"
+                                               PathIcon="{TemplateBinding PathIcon}"
+                                               IconWidth="{TemplateBinding IconSize}"
+                                               IconHeight="{TemplateBinding IconSize}"
+                                               PathIconFill="{TemplateBinding PathIconFill}"
+                                               IconCheckedFill="{TemplateBinding IconCheckedFill}"
+                                               IconDisabledFill="{TemplateBinding IconDisabledFill}"
+                                               ClickMode="Press"
+                                               Focusable="False"
+                                               IsEnabled="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}}"
+                                               IsChecked="{Binding Path=IsDropDownOpen, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
+              <!-- 버튼 클릭 시 DropDown 열림 -->
 
-              <TextBox 
-                  x:Name="PART_EditableTextBox" Margin="3 3 23 3"
-                  IsReadOnly="{TemplateBinding IsReadOnly}"
-                  Visibility="Hidden" Background="Transparent"
-                  HorizontalAlignment="Left" VerticalAlignment="Center"
-                  Focusable="True">
+              <!-- Editable TextBox (편집 가능한 상태일 때) -->
+              <!-- 초기에는 숨김 Visibility -->
+              <TextBox Grid.Column="0"
+                       x:Name="PART_EditableTextBox"
+                       Margin="7,0,10,0"
+                       IsReadOnly="{TemplateBinding IsReadOnly}"
+                       Visibility="Hidden" 
+                       Background="Transparent"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center"
+                       CaretBrush="{Binding CaretBrush, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrComboBox}}"
+                       IsEnabled="{TemplateBinding IsEditable}"
+                       Foreground="{Binding SelectedItemForeground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrComboBox}}"
+                       Focusable="True"
+                       Text="{TemplateBinding Text}">
 
+                <!-- TextBox Template -->
                 <TextBox.Template>
-                  <ControlTemplate TargetType="TextBox" >
-                    <Border Name="PART_ContentHost" Focusable="False" />
+                  <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                      <!-- 실제 텍스트 입력 영역 -->
+                      <ScrollViewer x:Name="PART_ContentHost" Background="{TemplateBinding Background}" Focusable="False"/>
+
+                      <!-- Placeholder 텍스트 -->
+                      <TextBlock x:Name="PlaceholderTextBlock"
+                                 Text="{Binding PlaceholderText, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrComboBox}}"
+                                 Foreground="{Binding PlaceholderForeground, RelativeSource={RelativeSource AncestorType=ctrls:HeimdallrComboBox}}"
+                                 Margin="4,0,0,0"
+                                 VerticalAlignment="Center"
+                                 IsHitTestVisible="False"
+                                 Opacity="1"/>
+                      <!-- Placeholder 색상은 사용자 지정 가능 -->
+                    </Grid>
+
+                    <!-- Placeholder 페이드 애니메이션 -->
+                    <ControlTemplate.Triggers>
+                      <MultiDataTrigger>
+                        <MultiDataTrigger.Conditions>
+                          <Condition Binding="{Binding Text, RelativeSource={RelativeSource TemplatedParent}}" Value=""/>
+                          <Condition Binding="{Binding SelectedItem, RelativeSource={RelativeSource TemplatedParent}}" Value="{x:Null}"/>
+                        </MultiDataTrigger.Conditions>
+                        <MultiDataTrigger.EnterActions>
+                          <BeginStoryboard>
+                            <Storyboard>
+                              <DoubleAnimation Storyboard.TargetName="PlaceholderTextBlock"
+                                               Storyboard.TargetProperty="Opacity"
+                                               To="1"
+                                               Duration="0:0:0.2"/>
+                            </Storyboard>
+                          </BeginStoryboard>
+                        </MultiDataTrigger.EnterActions>
+                        <MultiDataTrigger.ExitActions>
+                          <BeginStoryboard>
+                            <Storyboard>
+                              <DoubleAnimation Storyboard.TargetName="PlaceholderTextBlock"
+                                               Storyboard.TargetProperty="Opacity"
+                                               To="0"
+                                               Duration="0:0:0.2"/>
+                            </Storyboard>
+                          </BeginStoryboard>
+                        </MultiDataTrigger.ExitActions>
+                      </MultiDataTrigger>
+                    </ControlTemplate.Triggers>
                   </ControlTemplate>
                 </TextBox.Template>
-                </TextBox>
+              </TextBox>
 
-                <!-- Popup showing items -->
-                <Popup Name="Popup" Placement="Bottom"
-                     Focusable="False" AllowsTransparency="True"
+              <!-- 드롭다운 Popup -->
+              <Popup Grid.Column="0"
+                     Name="Popup"
+                     Placement="Bottom"
+                     Focusable="False"
+                     AllowsTransparency="True"
                      IsOpen="{TemplateBinding ComboBox.IsDropDownOpen}"
                      PopupAnimation="Slide">
-                <Grid Name="DropDown" SnapsToDevicePixels="True"
-                      MinWidth="{TemplateBinding FrameworkElement.ActualWidth}"
-                      MaxHeight="{TemplateBinding ComboBox.MaxDropDownHeight}">
-                  <Border Name="DropDownBorder"  Margin="0, 1, 0, 0"
+                <Grid Name="DropDown"
+                      SnapsToDevicePixels="True"
+                      MinWidth="{Binding ActualWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                      MaxHeight="{TemplateBinding MaxDropDownHeight}">
+                  <Border Name="DropDownBorder"
+                          Margin="-1,1.5,3,0"
                           Background="{TemplateBinding DropDownBackground}"
-                          CornerRadius="0" BorderThickness="1,1,1,1" 
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          BorderThickness="{TemplateBinding PopupBorderThickness}"
                           SnapsToDevicePixels="True"
-                          BorderBrush="{StaticResource DarkBlack}"/>
-                  <ScrollViewer Margin="4" SnapsToDevicePixels="True">
-                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained" />
+                          UseLayoutRounding="True"
+                          BorderBrush="{TemplateBinding BorderBrush}"/>
+                  <ScrollViewer Margin="4"
+                                SnapsToDevicePixels="True">
+                    <ItemsPresenter KeyboardNavigation.DirectionalNavigation="Contained"/>
                   </ScrollViewer>
                 </Grid>
               </Popup>
             </Grid>
           </Border>
+
+          <!-- ComboBox 전체 트리거 -->
           <ControlTemplate.Triggers>
+            <!-- 아이템이 없으면 DropDown 최소 높이 설정 -->
             <Trigger Property="ItemsControl.HasItems" Value="False">
               <Setter Property="FrameworkElement.MinHeight" TargetName="DropDownBorder" Value="95"/>
             </Trigger>
+
+            <!-- 비활성화 상태 시 텍스트 색상 변경 -->
             <Trigger Property="UIElement.IsEnabled" Value="False">
               <Setter Property="TextElement.Foreground" Value="{StaticResource LavenderBrush}"/>
             </Trigger>
+
+            <!-- 그룹핑 모드에서는 스크롤 캔버스 비활성화 -->
             <Trigger Property="ItemsControl.IsGrouping" Value="True">
               <Setter Property="ScrollViewer.CanContentScroll" Value="False"/>
             </Trigger>
+
+            <!-- Editable 모드일 때 TextBox와 ContentPresenter 전환 -->
             <Trigger Property="ComboBox.IsEditable" Value="True">
               <Setter Property="KeyboardNavigation.IsTabStop" Value="False"/>
               <Setter Property="UIElement.Visibility" TargetName="PART_EditableTextBox" Value="Visible"/>
@@ -101,3 +202,12 @@
     </Setter>
   </Style>
 </ResourceDictionary>
+
+
+
+
+
+
+
+
+

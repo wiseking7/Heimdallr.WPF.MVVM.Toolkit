@@ -100,4 +100,22 @@ public class HeimdallrIconRadioButton : RadioButton
       DependencyProperty.Register(nameof(MouseOverForeground), typeof(Brush), typeof(HeimdallrIconRadioButton),
         new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EB5B00"))));
   #endregion
+
+  #region IconSize
+  /// <summary>
+  /// 이이콘 사이즈
+  /// </summary>
+  public double IconSize
+  {
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
+  }
+
+  /// <summary>
+  /// 아이콘사이즈 기본값
+  /// </summary>
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double),
+          typeof(HeimdallrIconRadioButton), new PropertyMetadata(25.0));
+  #endregion
 }

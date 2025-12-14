@@ -35,6 +35,18 @@ public class NumberCommaConverter : BaseValueConverter<NumberCommaConverter>
       return number.ToString("N0", culture);
     }
 
+    // value가 long 일 경우
+    if (value is long longValue)
+      return longValue == 0 ? string.Empty : longValue.ToString("N0", culture);
+
+    // value가 double 일 경우
+    if (value is double doubleValue)
+      return doubleValue == 0 ? string.Empty : doubleValue.ToString("N0", culture);
+
+    // value가 decimal 일 경우
+    if (value is decimal decValue)
+      return decValue == 0 ? string.Empty : decValue.ToString("N0", culture);
+
     // value가 문자열이고, 정수로 파싱 가능한 경우
     if (value is string strValue && int.TryParse(strValue, out int parsed))
     {
@@ -64,7 +76,9 @@ public class NumberCommaConverter : BaseValueConverter<NumberCommaConverter>
     string input = value?.ToString() ?? string.Empty;
 
     // 숫자만 남기기 위해 모든 숫자가 아닌 문자 제거 (콤마, 공백 등 제거)
-    string numericOnly = Regex.Replace(input, "[^0-9]", string.Empty);
+    // string numericOnly = Regex.Replace(input, "[^0-9]", string.Empty);   // 아래와 동일 
+    string numericOnly = Regex.Replace(input, @"[^\d]", string.Empty);
+
 
     // 정수로 파싱 가능하면 반환
     if (int.TryParse(numericOnly, NumberStyles.Any, culture, out int result))

@@ -1,0 +1,219 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <Style TargetType="{x:Type ctrls:FlipAnimationCard}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:FlipAnimationCard}">
+          <!-- 3D 뷰포트 정의 -->
+          <Viewport3D SnapsToDevicePixels="True"
+                      UseLayoutRounding="True"
+                      Height="{TemplateBinding CardHeight}" 
+                      Width="{TemplateBinding CardWidth}">
+
+            <!-- 뷰포트 카메라 설정 -->
+            <Viewport3D.Camera>
+              <PerspectiveCamera Position="0,0,4"  />
+            </Viewport3D.Camera>
+
+            <!-- 3D 뷰포트 내 2D 시각 요소 정의 -->
+            <Viewport2DVisual3D x:Name="ViewPort">
+
+              <!-- 2D 시각 요소에 변환 적용 -->
+              <Viewport2DVisual3D.Transform>
+                <RotateTransform3D>
+                  <RotateTransform3D.Rotation>
+                    <AxisAngleRotation3D Angle="0" Axis="0,1,0" />
+                  </RotateTransform3D.Rotation>
+                </RotateTransform3D>
+              </Viewport2DVisual3D.Transform>
+
+              <!-- 2D 시각 요소의 메쉬 지오메트리 정의 -->
+              <Viewport2DVisual3D.Geometry>
+                <MeshGeometry3D Positions="-1,1,0 -1,-1,0 1,-1,0 1,1,0"
+                                TextureCoordinates="0,0 0,1 1,1 1,0"
+                                TriangleIndices="0 1 2 0 2 3" />
+              </Viewport2DVisual3D.Geometry>
+
+              <!-- 2D 시각 요소의 재질 설정 -->
+              <Viewport2DVisual3D.Material>
+                <DiffuseMaterial Viewport2DVisual3D.IsVisualHostMaterial="True"
+                               Brush="#FFFFFF" />
+              </Viewport2DVisual3D.Material>
+
+              <!-- 토글 버튼 추가 -->
+              <ToggleButton x:Name="Flip_Card" Cursor="Hand">
+
+                <!-- 토글 버튼 스타일 정의 -->
+                <ToggleButton.Style>
+                  <Style TargetType="ToggleButton">
+                    <Setter Property="Template">
+                      <Setter.Value>
+                        <ControlTemplate TargetType="ToggleButton">
+                          <Border x:Name="border" BorderThickness="0">
+                            <ContentPresenter />
+                          </Border>
+                        </ControlTemplate>
+                      </Setter.Value>
+                    </Setter>
+                  </Style>
+                </ToggleButton.Style>
+
+                <ToggleButton.Content>
+
+                  <Grid>
+                    <!-- 앞면: ControlTemplate 내부에서 TemplateBinding으로 크기/모서리/배경/테두리 바인딩 -->
+                    <Border x:Name="Front_Side"
+                            Width="{TemplateBinding CardWidth}"
+                            Height="{TemplateBinding CardHeight}"
+                            CornerRadius="{TemplateBinding FrontCornerRadius}"
+                            Background="{TemplateBinding FrontBackground}"
+                            BorderBrush="{TemplateBinding CardBorderBrush}"
+                            BorderThickness="{TemplateBinding CardBorderThickness}"
+                            SnapsToDevicePixels="True">
+
+                      <!-- 하나의 HeimdallrIcon 사용 -->
+                      <ctrls:HeimdallrIcon Width="{TemplateBinding CardWidth}"
+                                           Height="{TemplateBinding CardHeight}"
+                                           Fill="White"
+                                           PathIcon="{TemplateBinding PathIcon}"
+                                           Image="{TemplateBinding Image}"
+                                           Icon="{TemplateBinding Icon}"
+                                           Mode="{Binding FrontMode, RelativeSource={RelativeSource AncestorType=ctrls:FlipAnimationCard}}"/>
+                    </Border>
+
+                    <!-- 뒷면: 동일하게 바인딩 -->
+                    <Border x:Name="Back_Side"
+                            Width="{TemplateBinding CardWidth}"
+                            Height="{TemplateBinding CardHeight}"
+                            CornerRadius="{TemplateBinding BackCornerRadius}"
+                            Background="{TemplateBinding BackBackground}"
+                            BorderBrush="{TemplateBinding CardBorderBrush}"
+                            BorderThickness="{TemplateBinding CardBorderThickness}"
+                            Opacity="0"
+                            SnapsToDevicePixels="True">
+
+                      <ContentControl Content="{TemplateBinding BackContent}"
+                                      Width="{TemplateBinding CardWidth}"
+                                      Height="{TemplateBinding CardHeight}" />
+                    </Border>
+                  </Grid>
+
+                </ToggleButton.Content>
+                <!-- 토글 버튼 - Checked 이벤트 -->
+                <ToggleButton.Triggers>
+                  <EventTrigger RoutedEvent="ToggleButton.Checked">
+                    <BeginStoryboard>
+
+                      <!-- 앞면 애니메이션 -->
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="Front_Side"
+                                         Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0.5" Duration="0:0:0.3" From="1.0" To="0.0" />
+                      </Storyboard>
+                    </BeginStoryboard>
+
+                    <!-- 뒷면 애니메이션 -->
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <DoubleAnimation Storyboard.TargetName="Back_Side"
+                                         Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0.5" Duration="0:0:0.3" From="0.0" To="1.0" />
+                      </Storyboard>
+                    </BeginStoryboard>
+
+                    <!-- 뷰포트 회전 애니메이션 생성 -->
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Rotation3DAnimation Storyboard.TargetName="ViewPort"
+                                             Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
+                                             Duration="0:0:0.5" BeginTime="0:0:0">
+
+                          <!-- 초기 회전 값 설정 -->
+                          <Rotation3DAnimation.From>
+                            <AxisAngleRotation3D Angle="0" Axis="0,1,0" />
+                          </Rotation3DAnimation.From>
+                          <!-- 최종 회전 값 설정 -->
+                          <Rotation3DAnimation.To>
+                            <AxisAngleRotation3D Angle="90" Axis="0,1,0" />
+                          </Rotation3DAnimation.To>
+                        </Rotation3DAnimation>
+                        <Rotation3DAnimation Storyboard.TargetName="ViewPort"
+                                             Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
+                                             Duration="0:0:0.5" BeginTime="0:0:0.5">
+                          <Rotation3DAnimation.From>
+                            <AxisAngleRotation3D Angle="-90" Axis="0,1,0" />
+                          </Rotation3DAnimation.From>
+                          <Rotation3DAnimation.To>
+                            <AxisAngleRotation3D Angle="0" Axis="0,1,0" />
+                          </Rotation3DAnimation.To>
+                        </Rotation3DAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger>
+
+                  <!-- 토글 버튼 - Unchecked 이벤트 -->
+                  <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <!-- 뒷면 애니메이션 -->
+                        <DoubleAnimation Storyboard.TargetName="Back_Side"
+                                         Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0.5" Duration="0:0:0" From="1.0" To="0.0" />
+
+                      </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <!-- 앞면 애니메이션 -->
+                        <DoubleAnimation Storyboard.TargetName="Front_Side"
+                                         Storyboard.TargetProperty="Opacity"
+                                         BeginTime="0:0:0.5" Duration="0:0:0" From="0.0" To="1.0" />
+                      </Storyboard>
+                    </BeginStoryboard>
+                    <BeginStoryboard>
+                      <Storyboard>
+                        <Rotation3DAnimation Storyboard.TargetName="ViewPort"
+                                             Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:0">
+                          <Rotation3DAnimation.From>
+                            <AxisAngleRotation3D Angle="0" Axis="0,1,0" />
+                          </Rotation3DAnimation.From>
+                          <Rotation3DAnimation.To>
+                            <AxisAngleRotation3D Angle="-90" Axis="0,1,0" />
+                          </Rotation3DAnimation.To>
+                        </Rotation3DAnimation>
+                        <Rotation3DAnimation Storyboard.TargetName="ViewPort"
+                                             Storyboard.TargetProperty="(Viewport2DVisual3D.Transform).(RotateTransform3D.Rotation)"
+                                             Duration="0:0:0.5"
+                                             BeginTime="0:0:0.5">
+                          <Rotation3DAnimation.From>
+                            <AxisAngleRotation3D Angle="90" Axis="0,1,0" />
+                          </Rotation3DAnimation.From>
+                          <Rotation3DAnimation.To>
+                            <AxisAngleRotation3D Angle="0" Axis="0,1,0" />
+                          </Rotation3DAnimation.To>
+                        </Rotation3DAnimation>
+                      </Storyboard>
+                    </BeginStoryboard>
+                  </EventTrigger>
+                </ToggleButton.Triggers>
+              </ToggleButton>
+            </Viewport2DVisual3D>
+            <!-- ModelVisual3D 요소 생성 -->
+            <ModelVisual3D>
+              <!-- ModelVisual3D 내용 설정 -->
+              <ModelVisual3D.Content>
+                <!-- 색상과 방향이 있는 DirectionalLight 생성 -->
+                <DirectionalLight Color="#FFFFFF" Direction="0,0,-1" />
+              </ModelVisual3D.Content>
+            </ModelVisual3D>
+          </Viewport3D>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+</ResourceDictionary>

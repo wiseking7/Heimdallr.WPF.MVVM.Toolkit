@@ -110,7 +110,7 @@ public class HeimdallrPulseEllipse : Button
   /// 기본값 사이즈 24
   /// </summary>
   public static readonly DependencyProperty IconSizeProperty =
-      DependencyProperty.Register(nameof(IconSize), typeof(double), typeof(HeimdallrPulseEllipse), new PropertyMetadata(24.0));
+      DependencyProperty.Register(nameof(IconSize), typeof(double), typeof(HeimdallrPulseEllipse), new PropertyMetadata(25.0));
 
   #endregion
 }

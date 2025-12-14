@@ -53,23 +53,12 @@
                         FontSize="50" Foreground="#FFEEEEEE" Content="HEIMDALLR SYSTEM" />
 
                   <!-- Username -->
-                  <ctrls:HeimdallrIconWaterMarkTextBox
-                        PathIcon="Email"
-                        x:Name="txtUsername" Focusable="True"
-                        FontWeight="SemiBold" Foreground="#FFB9B4C7"
-                        Margin="0 30 0 0" WaterMark="EMAIL" WaterMarkForeground="Beige"
-                        Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}">
-                    <i:Interaction.Triggers>
-                      <i:EventTrigger EventName="GotFocus">
-                        <i:InvokeCommandAction Command="{Binding FocusCommand}"/>
-                      </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                  </ctrls:HeimdallrIconWaterMarkTextBox>
+ 
 
                   <!-- PasswordBox-->
                   <ctrls:HeimdallrIconWaterMarkPasswordBox
                         PathIcon="PasswordEllipse"
-                        x:Name="txtPassword" WaterMark="PASSWORD"
+                        x:Name="txtPassword" PasswordWaterMark="PASSWORD"
                         FontWeight="SemiBold" Foreground="#FFB9B4C7"
                         Margin="0 10 0 0" Tag="PASSWORD"
                         Password="{Binding Password, UpdateSourceTrigger=PropertyChanged}">

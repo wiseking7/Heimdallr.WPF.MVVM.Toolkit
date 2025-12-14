@@ -3,7 +3,7 @@
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
   <!-- 아이콘만 표시되는 버튼 템플릿 -->
-  <ControlTemplate x:Key="IconOnlyButtonTemplate" TargetType="Button">
+  <ControlTemplate x:Key="IconOnlyButtonTemplate" TargetType="{x:Type ctrls:HeimdallrRepeatButton}">
     <ContentPresenter 
         HorizontalAlignment="Center"
         VerticalAlignment="Center"
@@ -19,7 +19,7 @@
     <Setter Property="BorderThickness" Value="0"/>
     <Setter Property="FontSize" Value="16" />
     <Setter Property="MinWidth" Value="60"/>
-    <Setter Property="Height" Value="24"/>
+    <Setter Property="Height" Value="40"/>
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrNumericUpDown}">
@@ -36,98 +36,85 @@
             <Grid>
               <Grid.ColumnDefinitions>
                 <!-- 왼쪽 Down 버튼 -->
-                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="Auto"/>
                 <!-- 중앙 숫자 -->
-                <ColumnDefinition />
+                <ColumnDefinition Width="*"/>
                 <!-- 오른쪽 Up 버튼 -->
-                <ColumnDefinition Width="24"/>
+                <ColumnDefinition Width="Auto"/>
               </Grid.ColumnDefinitions>
 
               <!-- Down 버튼 (왼쪽) -->
-              <Button x:Name="PART_DownButton"
-                      Width="24" Height="24"
-                      Focusable="False"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      Padding="0"
-                      Template="{StaticResource IconOnlyButtonTemplate}"
-                      ToolTip="DOWN">
-                <ctrls:HeimdallrIcon
-                      x:Name="DownIcon"
-                      Width="20" Height="20"
-                      PathIcon="{TemplateBinding DownButtonIcon}"
-                      Fill="{TemplateBinding DownIconFill}" />
-              </Button>
+              <ctrls:HeimdallrRepeatButton x:Name="PART_DownButton"
+                                           Grid.Column="0"
+                                           Focusable="False"
+                                           Width="{TemplateBinding IconSize}" 
+                                           Height="{TemplateBinding IconSize}"
+                                           Background="Transparent"
+                                           BorderThickness="0"
+                                           Padding="2"
+                                           ToolTip="DOWN"
+                                           PathIcon="{TemplateBinding DownButtonIcon}"
+                                           Fill="{TemplateBinding DownIconFill}"
+                                           MouseOverBackground="Transparent"
+                                           PressedBackground="Transparent" />
 
               <!-- TextBox (중앙) -->
-              <!-- UpdateSourceTrigger=LostFocus 
-                   사용자가 입력을 완료하고 TextBox 포커스를 잃었을 때 한 번만 바인딩 소스를 업데이트합니다 -->
-              <TextBox 
-                     x:Name="PART_TextBox"
-                     Grid.Column="1"
-                     BorderThickness="0"
-                     Margin="0 0 5 0"  
-                     FontWeight="Medium"
-                     FontSize="{TemplateBinding FontSize}"
-                     VerticalContentAlignment="Center"
-                     HorizontalContentAlignment="Right"
-                     Background="Transparent"
-                     Padding="0"
-                     Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"/>
+              <TextBox x:Name="PART_TextBox"
+                       Grid.Column="1"
+                       Background="{TemplateBinding Background}"
+                       BorderThickness ="{TemplateBinding BorderThickness}"
+                       BorderBrush="{TemplateBinding BorderBrush}"
+                       Margin="0 0 5 0"  
+                       FontWeight="Medium"
+                       FontSize="{TemplateBinding FontSize}"
+                       VerticalContentAlignment="Center"
+                       HorizontalContentAlignment="Center"
+                       Padding="2"
+                       IsEnabled="False"
+                       Text="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                       Foreground="{TemplateBinding Foreground}">
+              </TextBox>
 
-              <!-- Up 버튼 (오른쪽) 사용자 이미지로 지정 -->
-              <Button x:Name="PART_UpButton"
-                      Grid.Column="2"
-                      Width="24" Height="24"
-                      Focusable="False"
-                      Background="Transparent"
-                      BorderThickness="0"
-                      Padding="0"
-                      Template="{StaticResource IconOnlyButtonTemplate}"
-                      ToolTip="UP">
-                <ctrls:HeimdallrIcon
-                      x:Name="UpIcon"
-                      Width="20" Height="20"
-                      PathIcon="{TemplateBinding UpButtonIcon}"
-                      Fill="{TemplateBinding UpIconFill}" 
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Margin="0"/>
-              </Button>
+              <!-- Up 버튼 -->
+              <ctrls:HeimdallrRepeatButton x:Name="PART_UpButton"
+                                            Grid.Column="2"
+                                           Focusable="False"
+                                           Width="{TemplateBinding IconSize}" 
+                                           Height="{TemplateBinding IconSize}"
+                                           Background="Transparent"
+                                           BorderThickness="0"
+                                           Padding="2"
+                                           ToolTip="UP"
+                                           PathIcon="{TemplateBinding UpButtonIcon}"
+                                           Fill="{TemplateBinding UpIconFill}"
+                                           MouseOverBackground="Transparent"
+                                           PressedBackground="Transparent" />
             </Grid>
-            
-            <VisualStateManager.VisualStateGroups>
-              <VisualStateGroup x:Name="ButtonStates">
-                <VisualState x:Name="Normal"/>
-                <VisualState x:Name="PressedUp">
-                  <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="UpIcon"
-                                          Storyboard.TargetProperty="Fill.Color"
-                                          To="#FF4C3BCF" Duration="0:0:0.2" AutoReverse="True"/>
-                  </Storyboard>
-                </VisualState>
-                <VisualState x:Name="PressedDown">
-                  <Storyboard>
-                    <ColorAnimation Storyboard.TargetName="DownIcon"
-                                          Storyboard.TargetProperty="Fill.Color"
-                                          To="#FFEB3678" Duration="0:0:0.2" AutoReverse="True"/>
-                  </Storyboard>
-                </VisualState>
-              </VisualStateGroup>
-            </VisualStateManager.VisualStateGroups>
           </Border>
           <ControlTemplate.Triggers>
             <!-- 비활성화 상태 -->
             <Trigger Property="IsEnabled" Value="False">
               <Setter TargetName="PART_TextBox" Property="Foreground" Value="Gray"/>
-              <Setter TargetName="UpIcon" Property="Fill" Value="Gray"/>
-              <Setter TargetName="DownIcon" Property="Fill" Value="Gray"/>
+              <Setter TargetName="PART_UpButton" Property="Fill" Value="Gray"/>
+              <Setter TargetName="PART_DownButton" Property="Fill" Value="Gray"/>
             </Trigger>
 
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="PART_TextBox" Property="Foreground" Value="#FF1E3E62"/>
-              <Setter TargetName="UpIcon" Property="Fill" Value="#FF7A1CAC"/>
-              <Setter TargetName="DownIcon" Property="Fill" Value="#FFFF6500"/>
+              <Setter TargetName="PART_TextBox" Property="Foreground" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Foreground}" />
+              <Setter TargetName="PART_UpButton" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=UpIconPressedFill}" />
+              <Setter TargetName="PART_DownButton" Property="Fill" Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DownIconPressedFill}" />
+            </Trigger>
+
+            <!-- PressedUp 상태 -->
+            <Trigger  SourceName="PART_UpButton" Property="IsPressed" Value="True">
+              <Setter TargetName="PART_UpButton" Property="Fill"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=UpIconPressedFill}" />
+            </Trigger>
+
+            <!-- PressedDown 상태 -->
+            <Trigger  SourceName="PART_DownButton" Property="IsPressed" Value="True">
+              <Setter TargetName="PART_DownButton" Property="Fill"
+                      Value="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=DownIconPressedFill}" />
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>
@@ -135,3 +122,4 @@
     </Setter>
   </Style>
 </ResourceDictionary>
+

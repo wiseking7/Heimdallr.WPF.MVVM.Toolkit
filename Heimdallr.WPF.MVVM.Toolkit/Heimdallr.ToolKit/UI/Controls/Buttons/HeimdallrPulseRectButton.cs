@@ -185,5 +185,23 @@ public class HeimdallrPulseRectButton : Button
       DependencyProperty.Register(nameof(FocusedBorderThickness), typeof(Thickness),
           typeof(HeimdallrPulseRectButton), new PropertyMetadata(new Thickness(2)));
   #endregion
+
+  #region IconSize
+  /// <summary>
+  /// 이이콘 사이즈 너비,높이
+  /// </summary>
+  public double IconSize
+  {
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
+  }
+
+  /// <summary>
+  /// 아이콘사이즈 기본값
+  /// </summary>
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double),
+          typeof(HeimdallrPulseRectButton), new PropertyMetadata(25.0));
+  #endregion
 }
 

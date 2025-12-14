@@ -31,12 +31,13 @@
               <!-- 아이콘 -->
               <Viewbox 
                   Grid.Column="0"  Margin="7 0 0 0"
-                  Width="20" Height="20"
                   Stretch="Fill"
                   VerticalAlignment="Center"
                   HorizontalAlignment="Center">
                 <ctrls:HeimdallrIcon 
                         Padding="5"
+                        Width="{TemplateBinding IconSize}"
+                        Height="{TemplateBinding IconSize}"
                         PathIcon="{TemplateBinding PathIcon}"
                         Fill="{TemplateBinding IconFill}" />
               </Viewbox>

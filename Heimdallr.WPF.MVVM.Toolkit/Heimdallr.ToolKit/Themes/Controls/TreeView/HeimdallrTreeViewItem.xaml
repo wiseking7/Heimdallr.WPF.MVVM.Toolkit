@@ -55,11 +55,11 @@
 
                 <!-- PathIcon -->
                 <Viewbox Grid.Column="0"
-                         Stretch="Fill"
-                         Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                         Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                         Stretch="Fill">
                   <ctrls:HeimdallrIcon 
                           Grid.Column="0"
+                          Width="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                          Height="{Binding IconSize, RelativeSource={RelativeSource TemplatedParent}}"
                           PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
                           Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
                           Visibility="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}, 
@@ -97,8 +97,8 @@
                     <Grid>
                       <Viewbox
                             Stretch="Fill"
-                            Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                            Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                            Width="{Binding ExpandToggleIconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                            Height="{Binding ExpandToggleIconSize, RelativeSource={RelativeSource TemplatedParent}}">
                         <ctrls:HeimdallrIcon
                                 x:Name="ExpandIconElement"
                                 PathIcon="{Binding ExpandIcon, RelativeSource={RelativeSource TemplatedParent}}"
@@ -107,8 +107,8 @@
                       </Viewbox>
                       <Viewbox
                             Stretch="Fill"
-                            Width="{Binding ExpandToggleIconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                            Height="{Binding ExpandToggleIconHeight, RelativeSource={RelativeSource TemplatedParent}}">
+                            Width="{Binding ExpandToggleIconSize, RelativeSource={RelativeSource TemplatedParent}}"
+                            Height="{Binding ExpandToggleIconSize, RelativeSource={RelativeSource TemplatedParent}}">
                         <ctrls:HeimdallrIcon
                                 x:Name="CollapseIconElement"
                                 PathIcon="{Binding CollapseIcon, RelativeSource={RelativeSource TemplatedParent}}"

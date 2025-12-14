@@ -2,52 +2,48 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
 
-  <ResourceDictionary.MergedDictionaries>
-    <ResourceDictionary Source="/Heimdallr.ToolKit;component/Themes/Controls/Colors/Color.xaml" />
-  </ResourceDictionary.MergedDictionaries>
-
   <!-- HeimdallrIconToggleButton 스타일 정의 (팝업창이나 ContentMenu 외부 UI 열기) -->
   <Style TargetType="{x:Type ctrls:HeimdallrIconToggleButton}">
     <Setter Property="Cursor" Value="Hand" />
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIconToggleButton}">
-          <Grid ClipToBounds="True">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition />
-              <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
 
-            <Border 
-                Grid.ColumnSpan="2" Name="border"
-                BorderBrush="Transparent"
-                CornerRadius="0" 
-                BorderThickness="{TemplateBinding BorderThickness}"
-                Background="Transparent"
-                SnapsToDevicePixels="True"/>
+          <Border Name="border"
+                  BorderBrush="Transparent"
+                  CornerRadius="0" 
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  Background="Transparent"
+                  SnapsToDevicePixels="True">
 
-            <Viewbox
-                Stretch="Fill"
-                Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
-                Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}">
-              <ctrls:HeimdallrIcon VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 5 0"
-                    PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
-                    Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}" />     
-            </Viewbox>
-          </Grid>
+            <ctrls:HeimdallrIcon x:Name="icon" 
+                                  Width="{Binding IconWidth, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Height="{Binding IconHeight, RelativeSource={RelativeSource TemplatedParent}}"
+                                  VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"
+                                  Margin="0 2 10 2"
+                                  Stretch="Uniform"
+                                  PathIcon="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}}"
+                                  Fill="{Binding PathIconFill, RelativeSource={RelativeSource TemplatedParent}}"
+                                  />
+    
+          </Border>
 
           <ControlTemplate.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-              <Setter TargetName="border" Property="Background"
-                      Value="{Binding MouseOverBackground, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Setter TargetName="icon" Property="Fill"
+                      Value="{Binding IconMouseOverFill, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
-              <Setter TargetName="border" Property="Background" Value="{Binding CheckedBackground,RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Setter TargetName="icon" Property="Fill" Value="{Binding IconCheckedFill, RelativeSource={RelativeSource TemplatedParent}}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-              <Setter TargetName="border" Property="Background" Value="{StaticResource DarkGoldenrodBrush}"/>
-              <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource DarkMagentaBrush}"/>
-              <Setter Property="Foreground" Value="{StaticResource LavenderBrush}"/>
+              <!-- <Setter TargetName="border" Property="Background" Value="{StaticResource DarkGoldenrodBrush}"/>
+                   <Setter TargetName="border" Property="BorderBrush" Value="{StaticResource DarkMagentaBrush}"/>-->
+              <Setter TargetName="icon" Property="Fill" 
+                      Value="{Binding IconDisabledFill, RelativeSource={RelativeSource TemplatedParent}}"/>
+              <Setter Property="Opacity" Value="0.5" />
+              <Setter Property="Foreground" Value="#FFA5158C"/>
             </Trigger>
           </ControlTemplate.Triggers>
         </ControlTemplate>

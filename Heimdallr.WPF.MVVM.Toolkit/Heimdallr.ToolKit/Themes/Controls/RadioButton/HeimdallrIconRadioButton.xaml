@@ -8,36 +8,35 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="{x:Type ctrls:HeimdallrIconRadioButton}">
-          <Border 
-            x:Name="border"
-            Padding="6"
-            Background="{TemplateBinding Background}"
-            BorderBrush="{TemplateBinding BorderBrush}"
-            BorderThickness="{TemplateBinding BorderThickness}"
-            CornerRadius="{TemplateBinding CornerRadius}"
-            SnapsToDevicePixels="True"
-            UseLayoutRounding="True"
-            HorizontalAlignment="Center">
+          <Border x:Name="border"
+                    Padding="6"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    SnapsToDevicePixels="True"
+                    UseLayoutRounding="True"
+                    HorizontalAlignment="Center">
 
             <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center">
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Stretch">
               
               <!-- HeimdallrIcon-->
-              <ctrls:HeimdallrIcon
-                x:Name="icon"
-                PathIcon="{TemplateBinding PathIcon}"
-                Fill="{TemplateBinding IconFill}"
-                VerticalAlignment="Center"
-                Margin="0 0 6 0" />
+              <ctrls:HeimdallrIcon x:Name="icon"
+                                   Width="{TemplateBinding IconSize}"
+                                   Height="{TemplateBinding IconSize}"
+                                   PathIcon="{TemplateBinding PathIcon}"
+                                   Fill="{TemplateBinding IconFill}"
+                                   VerticalAlignment="Center"
+                                   Margin="0 0 6 0" />
 
-              <ContentPresenter
-                x:Name="contentPresenter"
-                VerticalAlignment="Center"
-                RecognizesAccessKey="True"
-                Content="{TemplateBinding Content}"
-                ContentTemplate="{TemplateBinding ContentTemplate}"
-                TextElement.Foreground="{TemplateBinding Foreground}"/>
+              <ContentPresenter x:Name="contentPresenter"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True"
+                                Content="{TemplateBinding Content}"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                TextElement.Foreground="{TemplateBinding Foreground}"/>
             </StackPanel>
           </Border>
 

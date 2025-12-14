@@ -49,16 +49,16 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
   /// <summary>
   /// 비어 있을 때 표시되는 안내 텍스트
   /// </summary>
-  public string WaterMark
+  public string PasswordWaterMark
   {
-    get => (string)GetValue(WaterMarkProperty);
-    set => SetValue(WaterMarkProperty, value);
+    get => (string)GetValue(PasswordWaterMarkProperty);
+    set => SetValue(PasswordWaterMarkProperty, value);
   }
   /// <summary>
   /// 종속성주입
   /// </summary>
-  public static readonly DependencyProperty WaterMarkProperty =
-      DependencyProperty.Register(nameof(WaterMark), typeof(string), typeof(HeimdallrIconWaterMarkPasswordBox),
+  public static readonly DependencyProperty PasswordWaterMarkProperty =
+      DependencyProperty.Register(nameof(PasswordWaterMark), typeof(string), typeof(HeimdallrIconWaterMarkPasswordBox),
           new PropertyMetadata(string.Empty));
 
   //======================= WaterMarkForeground =======================//
@@ -66,16 +66,16 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
   /// <summary>
   /// WaterMark 문자열 색상
   /// </summary>
-  public Brush WaterMarkForeground
+  public Brush PasswordWaterMarkForeground
   {
-    get => (Brush)GetValue(WaterMarkForegroundProperty);
-    set => SetValue(WaterMarkForegroundProperty, value);
+    get => (Brush)GetValue(PasswordWaterMarkForegroundProperty);
+    set => SetValue(PasswordWaterMarkForegroundProperty, value);
   }
   /// <summary>
   /// 종속성주입
   /// </summary>
-  public static readonly DependencyProperty WaterMarkForegroundProperty =
-      DependencyProperty.Register(nameof(WaterMarkForeground), typeof(Brush), typeof(HeimdallrIconWaterMarkPasswordBox),
+  public static readonly DependencyProperty PasswordWaterMarkForegroundProperty =
+      DependencyProperty.Register(nameof(PasswordWaterMarkForeground), typeof(Brush), typeof(HeimdallrIconWaterMarkPasswordBox),
           new PropertyMetadata(Brushes.Gray));
 
   //======================= HasPassword (읽기 전용) =======================//
@@ -183,6 +183,25 @@ public class HeimdallrIconWaterMarkPasswordBox : Control
   public static readonly DependencyProperty ShowPasswordProperty =
       DependencyProperty.Register(nameof(ShowPassword), typeof(bool), typeof(HeimdallrIconWaterMarkPasswordBox),
           new PropertyMetadata(false));
+
+
+  #region IconSize
+  /// <summary>
+  /// 이이콘 사이즈 너비,높이
+  /// </summary>
+  public double IconSize
+  {
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
+  }
+
+  /// <summary>
+  /// 아이콘사이즈 기본값
+  /// </summary>
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double),
+          typeof(HeimdallrIconWaterMarkPasswordBox), new PropertyMetadata(25.0));
+  #endregion
 
   //======================= 템플릿 적용 시 연결 설정 =======================//
 

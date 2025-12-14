@@ -12,42 +12,42 @@ public class App : HeimdallrApplication
     // 현재는 MainWindwo 인스턴스를 생성하여 반환하고 있음
     return new MainWindow();
   }
-}
-/*
+
   protected override void OnStartup(StartupEventArgs e)
   {
     base.OnStartup(e);
 
-    MainWindow window = new();
+    #region Text
+    //MainWindow window = new();
 
-    window.Title = "HEIMDALLR";
+    //window.Title = "HEIMDALLR";
 
-    //Title 색상변경
-    window.TitleHeaderBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF7A1CAC"));
+    ////Title 색상변경
+    //window.TitleHeaderBackground = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#FF7A1CAC"));
 
-    // 매그러운 모서리 
-    //win.SnapsToDevicePixels = false;
-    //win.UseLayoutRounding = true;
+    //// 매그러운 모서리 
+    ////win.SnapsToDevicePixels = false;
+    ////win.UseLayoutRounding = true;
 
-    // 헤더만 흐림효과 적용
-    //win.Dimming = true;
-    //win.DimmingOpacity = 4.0;
-    //win.DimmingColor = new SolidColorBrush(Color.FromArgb(128, 20, 20, 20)); // 반투명한 검정
+    //// 헤더만 흐림효과 적용
+    ////win.Dimming = true;
+    ////win.DimmingOpacity = 4.0;
+    ////win.DimmingColor = new SolidColorBrush(Color.FromArgb(128, 20, 20, 20)); // 반투명한 검정
 
-    // Background 변경(Content)
-    var brush = new BrushConverter().ConvertFrom("#FF393E46") as Brush;
-    if (brush != null)
-    {
-      window.Background = brush;
-    }
+    //// Background 변경(Content)
+    //var brush = new BrushConverter().ConvertFrom("#FF393E46") as Brush;
+    //if (brush != null)
+    //{
+    //  window.Background = brush;
+    //}
 
-    // Loaded 이벤트 핸들러
-    window.Loaded += (s, e) =>
-    {
-      Debug.WriteLine($"Width: {window.ActualWidth}, Height: {window.ActualHeight}");
-    };
+    //// Loaded 이벤트 핸들러
+    //window.Loaded += (s, e) =>
+    //{
+    //  Debug.WriteLine($"Width: {window.ActualWidth}, Height: {window.ActualHeight}");
+    //};
 
-    window.Show();
+    //window.Show();
+    #endregion
   }
- 
- */
+}

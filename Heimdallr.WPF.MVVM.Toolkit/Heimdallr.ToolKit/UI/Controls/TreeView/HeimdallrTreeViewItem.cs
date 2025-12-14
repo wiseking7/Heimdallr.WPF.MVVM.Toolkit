@@ -1,5 +1,6 @@
 ﻿using Heimdallr.ToolKit.Enums;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -63,35 +64,23 @@ public class HeimdallrTreeViewItem : TreeViewItem
       DependencyProperty.Register(nameof(CollapseIcon), typeof(PathIconType), typeof(HeimdallrTreeViewItem),
         new PropertyMetadata(PathIconType.None));
 
+  #region IconSize
   /// <summary>
-  /// 주 아이콘(PathIcon)의 너비 (픽셀 단위) 지정, 기본값 16픽셀
+  /// 이이콘 사이즈 너비,높이
   /// </summary>
-  public double IconWidth
+  public double IconSize
   {
-    get => (double)GetValue(IconWidthProperty);
-    set => SetValue(IconWidthProperty, value);
+    get => (double)GetValue(IconSizeProperty);
+    set => SetValue(IconSizeProperty, value);
   }
-  /// <summary>
-  /// 기본값 16.0
-  /// </summary>
-  public static readonly DependencyProperty IconWidthProperty =
-    DependencyProperty.Register(nameof(IconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
-      new PropertyMetadata(16.0));
 
   /// <summary>
-  /// 주 아이콘(PathIcon)의 높이 (픽셀 단위) 지정, 기본값 16픽셀
+  /// 아이콘사이즈 기본값
   /// </summary>
-  public double IconHeight
-  {
-    get => (double)GetValue(IconHeightProperty);
-    set => SetValue(IconHeightProperty, value);
-  }
-  /// <summary>
-  /// 기본값 16.0
-  /// </summary>
-  public static readonly DependencyProperty IconHeightProperty =
-    DependencyProperty.Register(nameof(IconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
-      new PropertyMetadata(16.0));
+  public static readonly DependencyProperty IconSizeProperty =
+      DependencyProperty.Register(nameof(IconSize), typeof(double),
+          typeof(HeimdallrTreeViewItem), new PropertyMetadata(25.0));
+  #endregion
 
   /// <summary>
   /// PathIcon (주 아이콘) 의 색상 지정용 Brush, 기본값 회색(#AAAAAA)
@@ -233,17 +222,17 @@ public class HeimdallrTreeViewItem : TreeViewItem
     {
       if (SelectedCommand.CanExecute(parameter))
       {
-        Debug.WriteLine($"[HeimdallrTreeViewItem] Command 실행됨. Parameter: {parameter}");
+        Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] Command 실행됨 -> Parameter: {parameter}");
         SelectedCommand.Execute(parameter);
       }
       else
       {
-        Debug.WriteLine($"[HeimdallrTreeViewItem] CanExecute 반환 false. Parameter: {parameter}");
+        Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] CanExecute 반환 false -> Parameter: {parameter}");
       }
     }
     else
     {
-      Debug.WriteLine("[HeimdallrTreeViewItem] SelectedCommand is null.");
+      Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] SelectedCommand -> null입니다");
     }
   }
 
@@ -255,7 +244,7 @@ public class HeimdallrTreeViewItem : TreeViewItem
   {
     base.OnUnselected(e);
 
-    Debug.WriteLine($"[HeimdallrTreeViewItem] 항목 선택 해제됨: {Text}");
+    Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] Item 선택 해제ㄷ -> {Text}");
   }
 
   /// <summary>
@@ -272,13 +261,13 @@ public class HeimdallrTreeViewItem : TreeViewItem
 
       if (SelectedCommand?.CanExecute(parameter) == true)
       {
-        Debug.WriteLine($"[HeimdallrTreeViewItem] (Enter Key) Command 실행됨. Parameter: {parameter}");
+        Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] (Enter Key) Command 실행됨 -> Parameter: {parameter}");
         SelectedCommand.Execute(parameter);
         e.Handled = true;
       }
       else
       {
-        Debug.WriteLine($"[HeimdallrTreeViewItem] (Enter Key) Command 실행 불가. Parameter: {parameter}");
+        Debug.WriteLine($"[{nameof(HeimdallrTreeViewItem)}.{MethodBase.GetCurrentMethod()?.Name}] (Enter Key) Command 실행 불가 -> Parameter: {parameter}");
       }
     }
   }
@@ -328,32 +317,17 @@ public class HeimdallrTreeViewItem : TreeViewItem
   /// <summary>
   /// 확장/축소 아이콘의 너비 (픽셀 단위), 기본값 16.0
   /// </summary>
-  public double ExpandToggleIconWidth
+  public double ExpandToggleIconSize
   {
-    get => (double)GetValue(ExpandToggleIconWidthProperty);
-    set => SetValue(ExpandToggleIconWidthProperty, value);
+    get => (double)GetValue(ExpandToggleIconSizeProperty);
+    set => SetValue(ExpandToggleIconSizeProperty, value);
   }
   /// <summary>
   /// 기본값 16
   /// </summary>
-  public static readonly DependencyProperty ExpandToggleIconWidthProperty =
-      DependencyProperty.Register(nameof(ExpandToggleIconWidth), typeof(double), typeof(HeimdallrTreeViewItem),
-          new PropertyMetadata(16.0));
-
-  /// <summary>
-  /// 확장/축소 아이콘의 높이 (픽셀 단위), 기본값 16.0
-  /// </summary>
-  public double ExpandToggleIconHeight
-  {
-    get => (double)GetValue(ExpandToggleIconHeightProperty);
-    set => SetValue(ExpandToggleIconHeightProperty, value);
-  }
-  /// <summary>
-  /// 기본값 16
-  /// </summary>
-  public static readonly DependencyProperty ExpandToggleIconHeightProperty =
-      DependencyProperty.Register(nameof(ExpandToggleIconHeight), typeof(double), typeof(HeimdallrTreeViewItem),
-          new PropertyMetadata(16.0));
+  public static readonly DependencyProperty ExpandToggleIconSizeProperty =
+      DependencyProperty.Register(nameof(ExpandToggleIconSize), typeof(double), typeof(HeimdallrTreeViewItem),
+          new PropertyMetadata(20.0));
 
   #endregion
 

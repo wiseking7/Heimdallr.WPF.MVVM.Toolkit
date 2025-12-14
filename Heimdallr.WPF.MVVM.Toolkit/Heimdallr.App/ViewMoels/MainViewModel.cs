@@ -2,7 +2,9 @@
 using Heimdallr.ToolKit.Commons;
 using Heimdallr.ToolKit.UI.Controls;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Diagnostics;
+using System.Reflection;
 using System.Windows;
 
 namespace Heimdallr.App.ViewMoels;
@@ -14,14 +16,29 @@ public class MainViewModel : ViewModelBase
   public bool IsMenuOpen
   {
     get => _isMenuOpen;
-    set => SetProperty(ref _isMenuOpen, value);
+    set => SetPropertyAndValidate(ref _isMenuOpen, value);
   }
   private string? _username;
   public string? Username
   {
     get => _username;
-    set => SetProperty(ref _username, value);
+    set => SetPropertyAndValidate(ref _username, value); // 검증 자동실행
   }
+
+  public string? _number;
+  public string? Number
+  {
+    get => _number;
+    set => SetPropertyAndValidate(ref _number, value);
+  }
+
+  public string? _numberString;
+  public string? NumberString
+  {
+    get => _numberString;
+    set => SetPropertyAndValidate(ref _numberString, value);
+  }
+
   #endregion
 
   #region 필수 Commands
@@ -35,6 +52,12 @@ public class MainViewModel : ViewModelBase
   private AsyncDelegateCommand? _testTreeViewCommand;
   public AsyncDelegateCommand? TestTreeViewCommand => _testTreeViewCommand
     ??= new AsyncDelegateCommand(OnTreeViewChedk);
+
+  private DelegateCommand? _editPersonCommand;
+  public DelegateCommand? EditPersonCommand => _editPersonCommand ??= new DelegateCommand(async () =>
+  {
+    await Task.CompletedTask;
+  });
 
   private async Task OnTreeViewChedk()
   {
@@ -75,10 +98,56 @@ public class MainViewModel : ViewModelBase
       _loadUsersCommand ??= new AsyncDelegateCommand(async () => await LoadUsersAsync(), () => !IsBusy)
           .ObservesProperty(() => IsBusy);
 
+  public DelegateCommand? _saveCommand;
+  public DelegateCommand? SaveCommand => _saveCommand ??= new DelegateCommand(async () =>
+  {
+    bool isvalid = await SaveAsync();
+    if (isvalid)
+    {
+      MessageBox.Show("저장 성공!");
+    }
+    else
+    {
+      // 저장 실패 시, HeimdallrMessageBox를 사용하여 오류 메시지 표시
+      MessageBoxResult result = HeimdallrMessageBox.Show(
+          "입력값을 확인하세요.",    // 메시지 내용
+          "오류",
+          MessageBoxButton.OK,     // 버튼 설정 (OK 버튼만 표시)
+          MessageBoxImage.Error   // 아이콘 설정 (Error 아이콘 표시)
+      );
+
+      // 만약 버튼 클릭 후 추가 로직이 필요하다면, 'result' 값을 사용하여 추가 처리를 할 수 있습니다.
+      if (result == MessageBoxResult.OK)
+      {
+        // OK 버튼 클릭 후 처리할 코드
+        Debug.WriteLine($"[{nameof(MainViewModel)}.{MethodBase.GetCurrentMethod()?.Name}] OK 버튼 클릭됨");
+      }
+    }
+  });
+
+  private DelegateCommand? _messageCommand;
+  public DelegateCommand? MessageCommand => _messageCommand ??= new DelegateCommand(() =>
+  {
+    MessageBox.Show("버튼을 클릭 성공");
+  });
 
   public MainViewModel(IContainerProvider container) : base(container)
   {
     Title = "사용자 목록";
+
+    ComboBoxItems = new ObservableCollection<Item>
+    {
+        new Item { Key = "1", Value = "Item 1" },
+        new Item { Key = "2", Value = "Item 2" },
+        new Item { Key = "3", Value = "Item 3" }
+    };
+
+    _ = LoadUsersAsync();
+
+    AddValidationRules();
+
+    // ErrorsChanged 이벤트를 구독해서 자동 삭제 (ViewModelBase 에서 상속)
+    ErrorsChanged += OnErrorsChangedAutoClear;
   }
 
   private async Task LoadUsersAsync()
@@ -99,7 +168,14 @@ public class MainViewModel : ViewModelBase
       var dummyPeoples = new List<Person>
       {
         new Person { Id = 1, Name = "홍길동", Age = 25, BirthDay = DateTime.Now, Address ="조선" },
-        new Person { Id = 2, Name = "김철수", Age = 45, BirthDay = DateTime.Now, Address ="한국" }
+        new Person { Id = 2, Name = "김철수", Age = 45, BirthDay = DateTime.Now, Address ="한국" },
+        new Person { Id = 3, Name = "이영희", Age = 30, BirthDay = DateTime.Now, Address ="대한민국" },
+        new Person { Id = 4, Name = "박민수", Age = 28, BirthDay = DateTime.Now, Address ="서울" },
+        new Person { Id = 5, Name = "최지은", Age = 35, BirthDay = DateTime.Now, Address ="부산" },
+        new Person { Id = 6, Name = "장보고", Age = 40, BirthDay = DateTime.Now, Address ="완도" },
+        new Person { Id = 7, Name = "신사임당", Age = 50, BirthDay = DateTime.Now, Address ="강릉" },
+        new Person { Id = 8, Name = "세종대왕", Age = 60, BirthDay = DateTime.Now, Address ="조선" },
+        new Person { Id = 9, Name = "이순신", Age = 55, BirthDay = DateTime.Now, Address ="한산도" }
       };
 
       await RunOnUiThread(() =>
@@ -210,6 +286,81 @@ public class MainViewModel : ViewModelBase
       IsBusy = false;
     }
   }
+  #endregion
+
+  public class Item
+  {
+    public string? Key { get; set; }
+    public string? Value { get; set; }
+  }
+  public ObservableCollection<Item> ComboBoxItems { get; set; }
+
+  #region ViewModelBase text
+  private string _name = string.Empty;
+
+  public string Name
+  {
+    get => _name;
+    set => SetPropertyAndValidate(ref _name, value);
+  }
+
+  //테스트메서드
+  private void AddValidationRules()
+  {
+    // 동기 검증
+    AddRule(nameof(Name), () =>
+    {
+      var errors = new List<string>();
+      if (string.IsNullOrWhiteSpace(Name))
+        errors.Add("이름은 필수 입력 항목입니다.");
+      else if (Name.Length < 3)
+        errors.Add("이름은 3글자 이상이어야 합니다.");
+      return errors;
+    });
+
+    // 비동기 검증
+    AddRuleAsync(nameof(Name), async () =>
+    {
+      await Task.Delay(200); // 서버 호출 시뮬레이션
+      if (Name == "admin")
+        return new List<string> { "이 이름은 이미 사용 중입니다." };
+      return new List<string>();
+    });
+  }
+
+  private void OnErrorsChangedAutoClear(object? sender, DataErrorsChangedEventArgs e)
+  {
+    // 오류가 있으면 3초 후 자동 제거
+    if (GetErrors(e.PropertyName).Cast<string>().Any())
+      _ = AutoClearErrorAsync(e.PropertyName!, 3000);
+  }
+
+  private async Task AutoClearErrorAsync(string propertyName, int delayMilliseconds)
+  {
+    await Task.Delay(delayMilliseconds);
+    ClearErrors(propertyName);
+  }
+
+  public async Task<bool> SaveAsync()
+  {
+    bool isValid = await ValidateAllAndReturnAsync();
+    if (isValid)
+    {
+      // 실제 저장 로직 수행
+      // 예: DB 저장, API 호출 등
+    }
+    return isValid;
+  }
+
+  protected override void OnErrorsChanged(string propertyName)
+  {
+    base.OnErrorsChanged(propertyName);
+
+    // 전체 오류 메시지 속성 갱신 알림
+    RaisePropertyChanged(nameof(ErrorMessage));
+  }
+
+  public string ErrorMessage => AllErrors;
   #endregion
 }
 

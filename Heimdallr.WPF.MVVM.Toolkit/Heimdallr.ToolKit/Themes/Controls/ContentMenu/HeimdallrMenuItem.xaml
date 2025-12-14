@@ -1,0 +1,141 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:jangs="https://Heimdallr.WPF.MVVM.ToolKit/xaml"
+                    xmlns:converters="clr-namespace:Heimdallr.ToolKit.Converters"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+
+  <converters:PathIconToVisibilityConverter x:Key="PathIconToVisibilityConverter" />
+  <converters:BoolToOpacityConverter x:Key="BoolToOpacityConverter" />
+  <converters:StringToVisibilityConverter x:Key="StringToVisibilityConverter" />
+
+  <!--#region Theme Colors -->
+  <Color x:Key="MenuBackgroundDark">#FF2B2B2B</Color>
+  <Color x:Key="MenuForegroundDark">#FFF5F5F5</Color>
+  <Color x:Key="MenuItemHoverColor">#FF0078D7</Color>
+  <Color x:Key="MenuItemPressedColor">#FF0050A0</Color>
+  <!--#endregion -->
+
+  <!-- Light/Dark Theme Support -->
+  <SolidColorBrush x:Key="MenuBackground" Color="{StaticResource MenuBackgroundDark}" />
+  <SolidColorBrush x:Key="MenuForeground" Color="{StaticResource MenuForegroundDark}" />
+  <SolidColorBrush x:Key="MenuHover" Color="{StaticResource MenuItemHoverColor}" />
+  <SolidColorBrush x:Key="MenuPressed" Color="{StaticResource MenuItemPressedColor}" />
+
+  <!--#region MenuItem Style -->
+  <!--#region HeimdallrMenuItem Style -->
+  <Style TargetType="{x:Type ctrls:HeimdallrMenuItem}" BasedOn="{StaticResource {x:Type MenuItem}}">
+    <Setter Property="Foreground" Value="{StaticResource MenuForeground}" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Padding" Value="10,5" />
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrMenuItem}">
+          <Border x:Name="Border"
+                  Background="{TemplateBinding Background}"
+                  CornerRadius="3"
+                  SnapsToDevicePixels="True"
+                  UseLayoutRounding="True"
+                  BorderThickness="0">
+
+            <VisualStateManager.VisualStateGroups>
+              <VisualStateGroup x:Name="CommonStates">
+                <VisualState x:Name="Normal" />
+                <VisualState x:Name="MouseOver">
+                  <Storyboard>
+                    <ColorAnimation Storyboard.TargetName="Border"
+                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                    To="{StaticResource MenuItemHoverColor}"
+                                    Duration="0:0:0.2" />
+                  </Storyboard>
+                </VisualState>
+                <VisualState x:Name="Pressed">
+                  <Storyboard>
+                    <ColorAnimation Storyboard.TargetName="Border"
+                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                    To="{StaticResource MenuItemPressedColor}"
+                                    Duration="0:0:0.1" />
+                  </Storyboard>
+                </VisualState>
+              </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Grid>
+              <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <!-- Shortcut key -->
+              </Grid.ColumnDefinitions>
+
+              <!-- Icon -->
+              <ctrls:HeimdallrIcon x:Name="Icon"
+                                   Grid.Column="0"
+                                   Margin="7"
+                                   Width="{TemplateBinding IconSize}"
+                                   Height="{TemplateBinding IconSize}"
+                                   VerticalAlignment="Center"
+                                   Fill="{TemplateBinding Fill}"
+                                   PathIcon="{TemplateBinding PathIcon}"
+                                   Opacity="{Binding IsEnabled, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BoolToOpacityConverter}}"
+                                   Visibility="{Binding PathIcon, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource PathIconToVisibilityConverter}}" />
+
+              <!-- Header -->
+              <ContentPresenter Grid.Column="1"
+                                VerticalAlignment="Center"
+                                RecognizesAccessKey="True"
+                                ContentSource="Header"
+                                Margin="10,0,4,0" />
+
+              <!-- Submenu Indicator -->
+              <Path Grid.Column="2"
+                    Data="M 0 0 L 4 4 L 0 8 Z"
+                    Fill="{TemplateBinding Foreground}"
+                    VerticalAlignment="Center"
+                    Margin="10,0,4,0"
+                    Visibility="{Binding HasItems, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+
+              <!-- ShortcutKeyText -->
+              <TextBlock Grid.Column="3"
+                         VerticalAlignment="Center"
+                         Margin="0,0,10,0"
+                         Foreground="{TemplateBinding Foreground}"
+                         Text="{TemplateBinding ShortcutKeyText}"
+                         FontSize="14"
+                         Opacity="0.7"
+                         TextTrimming="CharacterEllipsis"
+                         HorizontalAlignment="Right"
+                         Visibility="{Binding ShortcutKeyText, RelativeSource={RelativeSource TemplatedParent}, Converter={StaticResource StringToVisibilityConverter}}" />
+            </Grid>
+          </Border>
+
+          <!-- Triggers for states other than MouseOver and Pressed -->
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="Border" Property="Background" Value="{StaticResource MenuPressed}" />
+            </Trigger>
+            <Trigger Property="IsHighlighted" Value="True">
+              <Setter TargetName="Border" Property="Background" Value="{StaticResource MenuHover}" />
+              <Setter Property="Foreground" Value="White" />
+            </Trigger>
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter Property="Foreground" Value="#777" />
+              <Setter Property="Opacity" Value="0.5" />
+              <Setter TargetName="Icon" Property="Opacity" Value="0.3" />
+            </Trigger>
+            <Trigger Property="IsChecked" Value="True">
+              <Setter TargetName="Border" Property="Background" Value="{StaticResource MenuHover}" />
+              <Setter TargetName="Border" Property="BorderThickness" Value="0" />
+            </Trigger>
+            <Trigger Property="IsCheckable" Value="True">
+              <Setter TargetName="Border" Property="Padding" Value="5" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+  <!--#endregion-->
+</ResourceDictionary>

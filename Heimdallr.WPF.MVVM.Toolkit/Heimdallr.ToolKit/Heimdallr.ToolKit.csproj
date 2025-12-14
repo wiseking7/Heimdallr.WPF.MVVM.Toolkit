@@ -12,7 +12,7 @@
 	<!-- Heimdallr.ToolKit.1.5.0.nupkg (bin 폴더에 생성되는 Name) -->
 	<PackageId>Heimdallr.WPF.MVVM.ToolKit</PackageId>
 	<!-- 사용자가 원하는 버전-->
-	<Version>1.8.25</Version>
+	<Version>1.11.17</Version>
 	<!-- 고정 AssemblyVersion -->
 	<AssemblyVersion>1.0.0.0</AssemblyVersion>
 	<!-- 고정 FileVersion-->
@@ -45,22 +45,56 @@
   </PropertyGroup>
 
   <ItemGroup>
+	<EmbeddedResource Include="Resources\Data\geometries.json">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</EmbeddedResource>
+	<EmbeddedResource Include="Resources\Data\images.yaml">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</EmbeddedResource>
+	<!-- 'Generic.xaml' 리소스를 임베드된 리소스로 추가 -->
+	<EmbeddedResource Include="Themes\Generic.xaml" />
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <None Remove="Assets\Down_Arrow_Default.png" />
+    <None Remove="Assets\Left_Arrow_Default.png" />
+    <None Remove="Assets\Left_Arrow_MouseOver.png" />
+    <None Remove="Assets\Right_Arrow_Default.png" />
+    <None Remove="Assets\Right_Arrow_MouseOver.png" />
+    <None Remove="Assets\Thumb_Icon_Default.png" />
+    <None Remove="Assets\Thumb_Icon_Horizontal_Default.png" />
+    <None Remove="Assets\Thumb_Icon_Horizontal_MouseOver.png" />
+    <None Remove="Assets\Thumb_Icon_MouseOver.png" />
+    <None Remove="Assets\Up_Arrow_Default.png" />
+    <None Remove="Assets\Up_Arrow_MouseOver.png" />
     <None Remove="Resources\Data\geometries.json" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Data\geometries.json">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
+	<None Update="Resources\Data\geometries.json">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
+
+	<None Update="Resources\Data\images.yaml">
+		<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	</None>
   </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Resources\Data\images.yaml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Down_Arrow_MouseOver.png" />
+    <Resource Include="Assets\Down_Arrow_Default.png" />
+    <Resource Include="Assets\Left_Arrow_Default.png" />
+    <Resource Include="Assets\Left_Arrow_MouseOver.png" />
+    <Resource Include="Assets\Right_Arrow_Default.png" />
+    <Resource Include="Assets\Right_Arrow_MouseOver.png" />
+    <Resource Include="Assets\Thumb_Icon_Default.png" />
+    <Resource Include="Assets\Thumb_Icon_Horizontal_Default.png" />
+    <Resource Include="Assets\Thumb_Icon_Horizontal_MouseOver.png" />
+    <Resource Include="Assets\Thumb_Icon_MouseOver.png" />
+    <Resource Include="Assets\Up_Arrow_Default.png" />
+    <Resource Include="Assets\Up_Arrow_MouseOver.png" />
     <Resource Include="Themes\Controls\Colors\Color.xaml" />
   </ItemGroup>
 

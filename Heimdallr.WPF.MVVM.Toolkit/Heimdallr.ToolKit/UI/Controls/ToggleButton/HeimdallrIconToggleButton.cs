@@ -19,19 +19,19 @@ public class HeimdallrIconToggleButton : ToggleButton
   /// <summary>
   /// 마우스 오버 시 배경색을 설정하는 종속성 속성입니다.
   /// </summary>
-  public static readonly DependencyProperty MouseOverBackgroundProperty =
+  public static readonly DependencyProperty IconMouseOverFillProperty =
         DependencyProperty.Register(
-            nameof(MouseOverBackground),
+            nameof(IconMouseOverFill),
             typeof(Brush),
             typeof(HeimdallrIconToggleButton),
             new PropertyMetadata(Brushes.Transparent));
   /// <summary>
   /// 마우스 오버 시 배경색을 설정하는 종속성 속성입니다.
   /// </summary>
-  public Brush MouseOverBackground
+  public Brush IconMouseOverFill
   {
-    get => (Brush)GetValue(MouseOverBackgroundProperty);
-    set => SetValue(MouseOverBackgroundProperty, value);
+    get => (Brush)GetValue(IconMouseOverFillProperty);
+    set => SetValue(IconMouseOverFillProperty, value);
   }
 
   /// <summary>
@@ -100,16 +100,16 @@ public class HeimdallrIconToggleButton : ToggleButton
   /// <summary>
   /// IsChecked=True일 때 배경에 적용할 색상
   /// </summary>
-  public Brush CheckedBackground
+  public Brush IconCheckedFill
   {
-    get => (Brush)GetValue(CheckedBackgroundProperty);
-    set => SetValue(CheckedBackgroundProperty, value);
+    get => (Brush)GetValue(IconCheckedFillProperty);
+    set => SetValue(IconCheckedFillProperty, value);
   }
   /// <summary>
   /// 종속성 주입
   /// </summary>
-  public static readonly DependencyProperty CheckedBackgroundProperty =
-      DependencyProperty.Register(nameof(CheckedBackground), typeof(Brush), typeof(HeimdallrIconToggleButton),
+  public static readonly DependencyProperty IconCheckedFillProperty =
+      DependencyProperty.Register(nameof(IconCheckedFill), typeof(Brush), typeof(HeimdallrIconToggleButton),
           new PropertyMetadata(new SolidColorBrush((Color)ColorConverter.ConvertFromString("#008B8B")))); // 기본값
 
   /// <summary>
@@ -126,5 +126,21 @@ public class HeimdallrIconToggleButton : ToggleButton
   public static readonly DependencyProperty PathIconProperty =
       DependencyProperty.Register(nameof(PathIcon), typeof(PathIconType), typeof(HeimdallrIconToggleButton),
         new PropertyMetadata(PathIconType.None));
+
+  /// <summary>
+  /// IsEditable="False" 편집불가시 색상변경
+  /// </summary>
+  public Brush IconDisabledFill
+  {
+    get => (Brush)GetValue(IconDisabledFillProperty);
+    set => SetValue(IconDisabledFillProperty, value);
+  }
+
+  /// <summary>
+  /// 기본값 그레이
+  /// </summary>
+  public static readonly DependencyProperty IconDisabledFillProperty =
+      DependencyProperty.Register(nameof(IconDisabledFill), typeof(Brush), typeof(HeimdallrIconToggleButton),
+          new PropertyMetadata(Brushes.Gray));
 
 }

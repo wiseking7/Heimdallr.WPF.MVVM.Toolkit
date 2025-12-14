@@ -11,7 +11,7 @@ namespace Heimdallr.ToolKit.Converters;
 /// DescriptionAttribute가 있으면 해당 속성의 Description 값을 반환하고,
 /// 없으면 Enum의 기본 ToString() 값을 반환합니다.
 /// </summary>
-public class EnumToTextConverter : BaseValueConverter<EnumToTextConverter>
+public class EnumToStringConverter : BaseValueConverter<EnumToStringConverter>
 {
   /// <summary>
   /// Enum 값을 문자열로 변환합니다.
@@ -26,14 +26,22 @@ public class EnumToTextConverter : BaseValueConverter<EnumToTextConverter>
     // value가 Enum 타입인지 체크
     if (value is Enum enumValue)
     {
-      // Enum 값에 해당하는 필드 정보를 가져옴
-      var fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
+      try
+      {
+        // Enum 값에 해당하는 필드 정보를 가져옴
+        var fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
 
-      // 필드에 붙은 DescriptionAttribute를 찾음
-      var description = fieldInfo?.GetCustomAttribute<DescriptionAttribute>();
+        // 필드에 붙은 DescriptionAttribute를 찾음
+        var description = fieldInfo?.GetCustomAttribute<DescriptionAttribute>();
 
-      // Description이 있으면 그 값을, 없으면 기본 ToString() 값을 반환
-      return description?.Description ?? enumValue.ToString();
+        // Description이 있으면 그 값을, 없으면 기본 ToString() 값을 반환
+        return description?.Description ?? enumValue.ToString();
+      }
+      catch (Exception)
+      {
+        // 예외 처리 (디버깅을 위해 로그나 디버깅 메시지 추가 가능)
+        return enumValue.ToString();
+      }
     }
 
     // Enum 타입이 아니면 빈 문자열 반환
@@ -54,15 +62,23 @@ public class EnumToTextConverter : BaseValueConverter<EnumToTextConverter>
     // value가 문자열이고, targetType이 Enum인지 확인
     if (value is string str && targetType.IsEnum)
     {
-      // targetType의 모든 필드(멤버)를 검사
-      foreach (var field in targetType.GetFields())
+      try
       {
-        // 각 필드에 붙은 DescriptionAttribute의 Description 값을 가져옴
-        var desc = field.GetCustomAttribute<DescriptionAttribute>()?.Description;
+        // targetType의 모든 필드(멤버)를 검사
+        foreach (var field in targetType.GetFields())
+        {
+          // 각 필드에 붙은 DescriptionAttribute의 Description 값을 가져옴
+          var desc = field.GetCustomAttribute<DescriptionAttribute>()?.Description;
 
-        // 문자열이 Description과 같거나 필드 이름과 같으면 해당 Enum 값을 반환
-        if (desc == str || field.Name == str)
-          return Enum.Parse(targetType, field.Name);
+          // 문자열이 Description과 같거나 필드 이름과 같으면 해당 Enum 값을 반환
+          if (desc == str || field.Name == str)
+            return Enum.Parse(targetType, field.Name);
+        }
+      }
+      catch (Exception)
+      {
+        // 예외 처리 (디버깅을 위해 로그나 디버깅 메시지 추가 가능)
+        return Binding.DoNothing;
       }
     }
 

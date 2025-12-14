@@ -22,7 +22,7 @@ public class InverseBooleanConverter : BaseValueConverter<InverseBooleanConverte
     }
 
     // bool이 아닌 경우 기본값 false 반환
-    return true;
+    return false;
   }
 
   /// <summary>

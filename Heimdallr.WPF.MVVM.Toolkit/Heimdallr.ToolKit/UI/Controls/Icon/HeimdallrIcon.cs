@@ -167,11 +167,11 @@ public class HeimdallrIcon : ContentControl
     {
       pathIcon.Data = geometry;
       pathIcon.Mode = IconMode.PathIcon;
-      Debug.WriteLine($"[HeimdallrIcon] '{pathIcon.PathIcon}' → Geometry 적용");
+      Debug.WriteLine($"[HeimdallrIcon.cs] '{pathIcon.PathIcon}' → Geometry 적용");
     }
     else
     {
-      Debug.WriteLine($"[HeimdallrIcon] '{pathIcon.PathIcon}' → Geometry 없음");
+      Debug.WriteLine($"[HeimdallrIcon.cs] '{pathIcon.PathIcon}' → Geometry 없음");
     }
   }
   #endregion
@@ -239,11 +239,11 @@ public class HeimdallrIcon : ContentControl
 
     if (Data != null)
     {
-      Debug.WriteLine("Data 는 속성(Property) 설정 입니다");
+      Debug.WriteLine("[HeimdallrIcon.cs] Data 는 속성(Property) 설정 입니다");
     }
     else
     {
-      Debug.WriteLine("Data 가 null 입니다");
+      Debug.WriteLine("[HeimdallrIcon.cs] Data 가 null 입니다");
     }
   }
 

@@ -32,12 +32,17 @@ public abstract class HeimdallrApplication : PrismApplication
     {
       // 기본 테마 리소스를 애플리케이션 리소스에 추가
       AddDefaultThemeResource();
+
+      // 테마 초기화 개체 생성
+      InitializeResource<HeimdallrDefaultResource>();
+
+      Debug.WriteLine($"[{nameof(HeimdallrApplication)}.{MethodBase.GetCurrentMethod()?.Name}] Generic.xaml Themes Load 완료");
     }
 
     catch (Exception ex)
     {
       // 오류 발생 시 메시지 박스로 알림
-      MessageBox.Show("기본 테마 리소스를 추가하는 동안 오류가 발생했습니다: " + ex.Message);
+      Debug.WriteLine($"[{nameof(HeimdallrApplication)}.{MethodBase.GetCurrentMethod()?.Name}] 기본 Themes(Generic) Resource 추가하는 동안 오류가 발생했습니다 -> {ex.Message}");
       throw;
     }
   }
@@ -59,58 +64,31 @@ public abstract class HeimdallrApplication : PrismApplication
   }
 
   /// <summary>
-  /// 테마 리소스를 애플리케이션 리소스에 동적으로 추가하는 메서드
-  /// Generic.xaml 의 리소스를 가져옴
+  /// 애플리케이션의 리소스에 기본 테마(Heimdallr.ToolKit의 Generic.xaml)를 동적으로 추가합니다.
   /// </summary>
   private void AddDefaultThemeResource()
   {
-    // 현재 실행 중인 애플리케이션의 진입 어셈블리를 가져옵니다.
-    Assembly? entryAssembly = Assembly.GetEntryAssembly();
-    if (entryAssembly == null)
+    try
     {
-      Debug.WriteLine("Error: entryAssembly 를 가져올 수 없습니다.");
-      return; // 진입 어셈블리를 가져오지 못한 경우 테마 로딩 중단
+      // 1. Generic.xaml 리소스를 가져올 URI를 정의합니다. 여기서는 Theme.xaml 로 고정 (주소입력 정확히)
+      Uri resourceUri = new Uri("pack://application:,,,/Heimdallr.ToolKit;component/Themes/Generic.xaml", UriKind.Absolute);
+
+      // 2. ResourceDictionary 객체를 생성하고, 정의된 URI를 Source에 할당하여 리소스를 로드합니다.
+      ResourceDictionary resourceDictionary = new ResourceDictionary { Source = resourceUri };
+
+      // 3. 리소스를 애플리케이션 리소스에 병합합니다.
+      base.Resources.MergedDictionaries.Add(resourceDictionary);
+
+      // 4. 테마 로드 성공 로그를 출력합니다.
+      Debug.WriteLine($"[{nameof(HeimdallrApplication)}.{MethodBase.GetCurrentMethod()?.Name}] Themes(Generic) Load Succrss");
     }
-
-    // 진입 어셈블리가 참조하는 모든 어셈블리 목록을 가져옵니다.
-    AssemblyName[] referencedAssemblies = entryAssembly.GetReferencedAssemblies();
-    AssemblyName[] array = referencedAssemblies;
-
-    // 각 참조 어셈블리를 순회하며 Themes/Default.xaml 리소스를 찾습니다.
-    foreach (AssemblyName assemblyName in array)
+    catch (Exception ex)
     {
-      try
-      {
-        // /[어셈블리명];component/Themes/Default.xaml 형식으로 XAML 리소스를 지정합니다.
-        string text = assemblyName.Name + ";component/Themes/Default.xaml";
-
-        // 위의 리소스를 URI로 만듭니다 (Pack URI 형식, relative or absolute 가능)
-        Uri source = new Uri("/" + text, UriKind.RelativeOrAbsolute);
-
-        // 해당 URI를 가진 ResourceDictionary를 생성합니다.
-        ResourceDictionary item = new ResourceDictionary
-        {
-          Source = source
-        };
-
-        // 애플리케이션 전체 리소스에 테마를 병합합니다.
-        base.Resources.MergedDictionaries.Add(item);
-
-        // 첫 번째 테마만 로딩하도록 break (다른 테마는 무시)
-        return;
-      }
-
-      catch (Exception ex)
-      {
-        // 특정 어셈블리에 Themes/Default.xaml 이 없거나 오류 발생 시 로그만 출력
-        Console.WriteLine("Themes/Default.xaml 로드할 수 없습니다" +
-                                       assemblyName.Name + ": " + ex.Message);
-      }
+      // 5. 예외 발생 시 오류 메시지를 출력합니다.
+      Debug.WriteLine($"[{nameof(HeimdallrApplication)}.{MethodBase.GetCurrentMethod()?.Name}] Error Loading Themes(Generic) -> {ex.Message}");
     }
-
-    // 테마 리소스를 찾지 못했을 경우 디버그 로그 출력
-    Debug.WriteLine("Error: 참조된 어셈블리에서 Themes/Default.xaml 리소스를 찾을 수 없습니다");
   }
+
 
   /// <summary>
   /// IoC 모듈을 애플리케이션에 추가
@@ -134,6 +112,7 @@ public abstract class HeimdallrApplication : PrismApplication
   /// <typeparam name="T">
   /// 등록할 iewModelLocationScenario 타입. 이 타입은 ViewModelLocator에 
   /// ViewModel을 등독할 때 필요한 로직을 구현해야 합니다. 
+  /// View 와 ViewModel 간의 매핑 규칙을 정의하는 역할을 합니다.
   /// </typeparam>
   /// <returns>
   /// 현재 HeimdallrApplication 인스턴스를 반환하여 메서드 체이닝을 지원합니다.</returns>
@@ -183,12 +162,12 @@ public abstract class HeimdallrApplication : PrismApplication
       containerRegistry.RegisterSingleton<ResourceManager>();
 
       // 등록 직후 리소스 매니저를 바로 사용할 수 있음
-      var service = GetService<ResourceManager>();
+      // var service = GetService<ResourceManager>();
     }
 
     else
     {
-      Debug.WriteLine("Error: theme 초기화 되지 않았습니다");
+      Debug.WriteLine($"[{nameof(HeimdallrApplication)}.{MethodBase.GetCurrentMethod()?.Name}] Error: Themes(Genrric) 초기화 되지 않았습니다");
     }
 
     // 사용자 정의 모듈들의 RegisterTypes 메서드 호출하여 모듈 별 서비스 등록

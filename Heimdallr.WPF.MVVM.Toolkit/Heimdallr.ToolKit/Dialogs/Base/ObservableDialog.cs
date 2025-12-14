@@ -17,7 +17,7 @@ public class ObservableDialog : ObservableObject, IDialogAware
   /// <summary>
   /// 다이얼로그 제목
   /// </summary>
-  public string? Title { get; set; }
+  public string? DimmingTitle { get; set; }
 
   /// <summary>
   /// Prism 프레임워크가 내부적으로 사용하는 RequestClose 델리게이트.

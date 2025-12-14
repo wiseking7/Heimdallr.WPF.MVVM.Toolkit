@@ -340,6 +340,72 @@ public enum ImageType
   /// <summary>
   /// 웨스트 브롬위치 앨비언 축구팀 로고 이미지
   /// </summary>
-  WestBromwichAlbion
+  WestBromwichAlbion,
+
+  /// <summary>풍경</summary>
+  Scenery,
+
+  /// <summary>왕초연</summary>
+  Wangchuran,
+
+  /// <summary>왕초연</summary>
+  WangchuranA,
+
+  /// <summary>노육효</summary>
+  LuYuxiao,
+
+  /// <summary>노육효</summary>
+  LuYuxiaoA,
+
+  /// <summary>한지민</summary>
+  HanJimin,
+
+  /// <summary>풍경</summary>
+  SceneryA,
+
+  /// <summary>풍경</summary>
+  SceneryB,
+
+  /// <summary>풍경</summary>
+  SceneryC,
+
+  /// <summary>풍경</summary>
+  SceneryD,
+
+  /// <summary>풍경</summary>
+  SceneryE,
+
+  /// <summary>낙산대불</summary>
+  Naksan,
+
+  /// <summary>캄보디아</summary>
+  Cambodia,
+
+  /// <summary>구채구</summary>
+  Guchae,
+
+  /// <summary>태항산</summary>
+  Taehang,
+
+  /// <summary>무릉도원</summary>
+  Mureung,
+
+  /// <summary>장원영</summary>
+  JangwonyoungA,
+
+  /// <summary>킬리만자로</summary>
+  Kilimanjaro,
+
+  /// <summary>로키산맥</summary>
+  RockyMountain,
+
+  /// <summary>토레스델파이네</summary>
+  TorresDelphi,
+
+  /// <summary>알프스</summary>
+  Alps,
+
+  /// <summary>장원영</summary>
+  Jangwonyoung
 }
 

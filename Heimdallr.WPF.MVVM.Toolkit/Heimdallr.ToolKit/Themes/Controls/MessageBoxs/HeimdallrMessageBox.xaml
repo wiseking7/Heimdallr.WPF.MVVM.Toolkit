@@ -1,0 +1,46 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:ctrls="clr-namespace:Heimdallr.ToolKit.UI.Controls">
+
+  <Style TargetType="{x:Type ctrls:HeimdallrMessageBox}">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="{x:Type ctrls:HeimdallrMessageBox}">
+          <Border Background="{TemplateBinding Background}"
+                  BorderBrush="{TemplateBinding BorderBrush}"
+                  BorderThickness="{TemplateBinding BorderThickness}"
+                  SnapsToDevicePixels="True"
+                  UseLayoutRounding="True"
+                  Padding="20">
+
+            <StackPanel>
+              <!-- Title -->
+              <TextBlock Text="{Binding Title}" FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,0,0,10"/>
+
+              <!-- Message Text -->
+              <TextBlock Text="{Binding Message}" FontSize="14" TextWrapping="Wrap" Margin="0,0,0,20"/>
+
+              <!-- Icon -->
+              <ctrls:HeimdallrIcon PathIcon="{TemplateBinding PathIcon}" Width="40" Height="40" Visibility="{Binding IconVisibility}" HorizontalAlignment="Center" Margin="0,0,0,20"/>
+
+              <!-- Buttons -->
+              <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <!-- YES Button -->
+                <Button Name="YesButton" Content="Yes" Width="75" Height="30" Margin="5" Command="{Binding YesCommand}" Visibility="{Binding IsYesButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <!-- NO Button -->
+                <Button Name="NoButton" Content="No" Width="75" Height="30" Margin="5" Command="{Binding NoCommand}" Visibility="{Binding IsNoButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <!-- OK Button -->
+                <Button Name="OkButton" Content="OK" Width="75" Height="30" Margin="5" Command="{Binding OkCommand}" Visibility="{Binding IsOkButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+
+                <!-- CANCEL Button -->
+                <Button Name="CancelButton" Content="Cancel" Width="75" Height="30" Margin="5" Command="{Binding CancelCommand}" Visibility="{Binding IsCancelButtonVisible, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+              </StackPanel>
+            </StackPanel>
+          </Border>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+</ResourceDictionary>
